@@ -18,9 +18,9 @@ export class Karyawan_kerja_dimana{
 }
 
 export class Kategori_transaksi{
-    constructor(kt_id_kategori, kt_name_kategori) {
+    constructor(kt_id_kategori, kt_nama_kategori) {
         this.kt_id_kategori=kt_id_kategori
-        this.kt_name_kategori=kt_name_kategori
+        this.kt_nama_kategori=kt_nama_kategori
     }
 }
 

@@ -387,7 +387,7 @@ export class Dao{
                 for(let i=0; i<categories.length; i++){
                     categories.push(new Kategori_transaksi(
                         result[i].kt_id_kategori,
-                        result[i].kt_name_kategori
+                        result[i].kt_nama_kategori
                     ))
                 }
                 resolve(categories)
@@ -424,13 +424,13 @@ export class Dao{
             }
 
             const query="INSERT INTO `kategori` (`kategori_transaksi`) VALUES(?)"
-            this.mysqlConn.query(query, kategori.kt_name_kategori, (error,result)=>{
+            this.mysqlConn.query(query, kategori.kt_nama_kategori, (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                kategori.kt_name_kategori=result.kt_name_kategori
+                kategori.kt_nama_kategori=result.kt_nama_kategori
                 resolve(kategori)
             })
         })
@@ -444,7 +444,7 @@ export class Dao{
             }
 
             const query="UPDATE kategori_transaksi SET kt_nama_kategori=? WHERE kt_id_kategori=?"
-            this.mysqlConn.query(query, [kategori.kt_name_kategori,kategori.kt_id_kategori], (error,result)=>{
+            this.mysqlConn.query(query, [kategori.kt_nama_kategori,kategori.kt_id_kategori], (error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -669,7 +669,7 @@ export class Dao{
         })
     }
 
-   updateTransaksi(transaksi){
+    updateTransaksi(transaksi){
         return new Promise((resolve,reject)=>{
             if(!transaksi instanceof Transaksi){
                 reject(MISMATCH_OBJ_TYPE)
@@ -689,6 +689,54 @@ export class Dao{
             })
         })
     }
+
+    deleteTransaksi(transaksi){
+        return new Promise((resolve,reject)=>{
+            if(!transaksi instanceof Transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="DELETE * FROM transaksi WHERE t_id_transaksi=?"
+            this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                transaksi.t_id_transaksi=result.t_id_transaksi
+                resolve(result)
+            })
+        })
+    }
+
+   /* bindKaryawanToPerusahaan(karyawan,perusahaan){
+        return new Promise((resolve,reject)=>{
+            if(karyawan instanceof Karyawan && perusahaan instanceof Perusahaan){
+                const checkQuery="SELECT kkd_id_karyawan_kerja_dimana FROM karyawan_kerja_dimana WHERE kkd_id_karyawan=?, kkd_id_perusahaan=? "
+                this.mysqlConn.query(checkQuery, [karyawan.kkd_id_karyawan,perusahaan.kkd_id_perusahaan],(err,res)=>{
+                    if(res.length>1){
+                        reject(ERROR_DUPLICATE_ENTRY)
+                        return
+                    }
+
+                    const query="INSERT INTO `karyawan_kerja_dimana` (`kkd_id_karyawan`, `kkd_id_perusahaan`) VALUES(?, ?)"
+                    this.mysqlConn.query(query, [karyawan.kkd_id_karyawan,perusahaan.kkd_id_perusahaan], (err,res)=>{
+                        if(err){
+                            reject(err)
+                            return
+                        }
+
+                        resolve(SUCCESS)
+                    })
+                })
+            }
+
+            else {
+                reject(MISMATCH_OBJ_TYPE)
+            }
+        })
+    }*/
 
 
 }
