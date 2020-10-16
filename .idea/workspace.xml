@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/agrofinance-backend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/employee_module/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/employee_module/dao.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/strings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-    </list>
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,22 +49,38 @@
       <updated>1602643402995</updated>
       <workItem from="1602643404985" duration="20760000" />
       <workItem from="1602723477897" duration="27499000" />
-      <workItem from="1602808744661" duration="1848000" />
+      <workItem from="1602808744661" duration="2316000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1602810731600</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602810731600</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="380" y="8" key="CommitChangelistDialog2" timestamp="1602643711751">
+    <state x="406" y="0" key="CommitChangelistDialog2" timestamp="1602810729793">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="380" y="8" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602643711751" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1602647224166">
+    <state x="406" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602810729793" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1602810737448">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602647224166" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602810737448" />
+    <state x="486" y="314" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1602811105361">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="486" y="314" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602811105361" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1602661403016">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
