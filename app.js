@@ -43,7 +43,7 @@ const password = typeof process.env.MY_SQL_PASSWORD === 'undefined' ? '' : proce
 const dbname = process.env.MY_SQL_DBNAME
 const dao = new Dao(host,user,password,dbname)
 
-app.get("/api/employee/retrieve-karyawan",(req,res)=>{
+app.get("/api/retrieve-karyawan",(req,res)=>{
     if(typeof req.query.k_id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
             res.status(200).send({
@@ -567,6 +567,8 @@ app.delete("/api/user/delete-transaksi", (req,res)=>{
     })
 })
 
+
+
 app.listen(PORT, ()=>{
-    console.listen(`Server serving port ${PORT}`)
+    console.info(`Server serving port ${PORT}`)
 })

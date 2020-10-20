@@ -1,14 +1,15 @@
-import mysqlConn from '../util/mysql-conn.js'
+import mysqlConn from './mysql-conn'
 import fs from 'fs'
 import {
     ADMIN_VALIDATED,
     ALL, CANCELLED, DUPLICATE_ENTRY, ERROR_DUPLICATE_ENTRY, INVALID, INVALID_FINAL,
     MISMATCH_OBJ_TYPE,
     NO_AFFECTED_ROWS,
+    NO_SUCH_CONTENT,
     ONLY_WITH_VENDORS, ORDER_PROCESSING,
     SOMETHING_WENT_WRONG, SUCCESS, VALID, WRONG_BODY_FORMAT
-} from "../strings";
-import {Karyawan, Karyawan_kerja_dimana, Kategori_transaksi, Pembebanan, Perusahaan, Transaksi} from "../model";
+} from "./strings"
+import {Karyawan, Karyawan_kerja_dimana, Kategori_transaksi, Pembebanan, Perusahaan, Transaksi} from "./model";
 
 export class Dao{
     constructor(host, user, password, dbname) {
@@ -737,6 +738,5 @@ export class Dao{
             }
         })
     }*/
-
-
+    
 }
