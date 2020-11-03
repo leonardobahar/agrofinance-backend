@@ -66,6 +66,7 @@ app.get("/api/retrieve-karyawan",(req,res)=>{
                 result:result
             })
         }).catch(error=>{
+            console.error(error)
             res.status(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
@@ -95,6 +96,7 @@ app.post("/api/add-karyawan",(req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -119,6 +121,7 @@ app.post("/api/update-karyawan", (req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -143,6 +146,7 @@ app.delete("/api/delete-karyawan", (req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -173,6 +177,7 @@ app.get("/api/retrieve-perusahaan",(req,res)=>{
                 result:result
             })
         }).catch(error=>{
+            console.error(error)
             res.status(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
@@ -199,6 +204,7 @@ app.post("/api/add-perusahaan",(req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -223,6 +229,7 @@ app.post("/api/update-perusahaan", (req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -247,6 +254,7 @@ app.delete("/api/delete-perusahaan", (req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -277,6 +285,7 @@ app.get("/api/retrieve-pemebebanan",(req,res)=>{
                 result:result
             })
         }).catch(error=>{
+            console.error(error)
             res.status(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
@@ -302,6 +311,7 @@ app.post("/api/add-pembebanan",(req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -326,6 +336,7 @@ app.post("/api/update-pembebanan", (req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -350,6 +361,7 @@ app.delete("/api/delete-pembebanan", (req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -380,6 +392,7 @@ app.get("/api/retrieve-kategori-transaksi",(req,res)=>{
                 result:result
             })
         }).catch(error=>{
+            console.error(error)
             res.status(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
@@ -405,6 +418,7 @@ app.post("/api/add-kategori-transaksi",(req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -429,6 +443,7 @@ app.post("/api/update-kategori-transaksi", (req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -453,6 +468,7 @@ app.delete("/api/delete-kategori-transaksi", (req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -484,6 +500,7 @@ app.get("/api/retrieve-transaksi",(req,res)=>{
                 result:result
             })
         }).catch(error=>{
+            console.error(error)
             res.status(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
@@ -510,6 +527,7 @@ app.post("/api/add-transaksi",(req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -535,6 +553,7 @@ app.post("/api/update-transaksi", (req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
@@ -560,6 +579,7 @@ app.delete("/api/delete-transaksi", (req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
