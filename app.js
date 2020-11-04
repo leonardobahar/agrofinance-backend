@@ -77,12 +77,11 @@ app.get("/api/karyawan/retrieve",(req,res)=>{
 })
 
 app.post("/api/karyawan/add",(req,res)=>{
-    console.log("Got add request")
     if(typeof req.body.nama_lengkap==='undefined' ||
-       typeof req.body.posisi==='undefined' ||
-       typeof req.body.nik==='undefined' ||
-       typeof req.body.role==='undefined' ||
-       typeof req.body.masih_hidup==='undefined'){
+        typeof req.body.posisi==='undefined' ||
+        typeof req.body.nik==='undefined' ||
+        typeof req.body.role==='undefined' ||
+        typeof req.body.masih_hidup==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -107,7 +106,12 @@ app.post("/api/karyawan/add",(req,res)=>{
 })
 
 app.post("/api/karyawan/update", (req,res)=>{
-    if(typeof req.body.id_karyawan==='undefined'){
+    if(typeof req.body.id_karyawan==='undefined' ||
+       typeof req.body.nama_lengkap==='undefined' ||
+       typeof req.body.posisi==='undefined' ||
+       typeof req.body.nik==='undefined' ||
+       typeof req.body.role==='undefined' ||
+       typeof req.body.masih_hidup==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -156,8 +160,8 @@ app.delete("/api/karyawan/delete", (req,res)=>{
     })
 })
 
-app.get("/api/agrofinance/retrieve-perusahaan",(req,res)=>{
-    if(typeof req.query.p_id_perusahaan==='undefined'){
+app.get("/api/perusahaan/retrieve",(req,res)=>{
+    if(typeof req.query.id_perusahaan==='undefined'){
         dao.retrievePerusahaan().then(result=>{
             res.status(200).send({
                 success:true,
@@ -171,7 +175,7 @@ app.get("/api/agrofinance/retrieve-perusahaan",(req,res)=>{
             })
         })
     }else{
-        const perusahaan=new Perusahaan(req.query.p_id_perusahaan,null,null)
+        const perusahaan=new Perusahaan(req.query.id_perusahaan,null,null)
 
         dao.retrieveOnePerusahaan(perusahaan).then(result=>{
             res.status(200).send({
@@ -188,9 +192,9 @@ app.get("/api/agrofinance/retrieve-perusahaan",(req,res)=>{
     }
 })
 
-app.post("/api/agrofinance/add-perusahaan",(req,res)=>{
-    if(req.body.p_nama_perusahaan==='undefined' ||
-       req.body.p_alamat==='undefined'){
+app.post("/api/perusahaan/add",(req,res)=>{
+    if(typeof req.body.nama_perusahaan==='undefined' ||
+        typeof req.body.alamat==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -198,7 +202,7 @@ app.post("/api/agrofinance/add-perusahaan",(req,res)=>{
         return
     }
 
-    const perusahaan=new Perusahaan(null,req.body.p_nama_perusahaan.toUpperCase(),req.body.p_alamat)
+    const perusahaan=new Perusahaan(null,req.body.nama_perusahaan.toUpperCase(),req.body.alamat)
 
     dao.addPerusahaan(perusahaan).then(result=>{
         res.status(200).send({
@@ -214,8 +218,10 @@ app.post("/api/agrofinance/add-perusahaan",(req,res)=>{
     })
 })
 
-app.post("/api/agrofinance/update-perusahaan", (req,res)=>{
-    if(req.body.p_id_perusahaan==='undefined'){
+app.post("/api/perusahaan/update", (req,res)=>{
+    if(typeof req.body.id_perusahaan==='undefined' ||
+       typeof req.body.nama_perusahaan==='undefined' ||
+       typeof req.body.alamat==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -223,7 +229,7 @@ app.post("/api/agrofinance/update-perusahaan", (req,res)=>{
         return
     }
 
-    const perusahaan=new Perusahaan(req.body.p_id_perusahaan,req.body.p_nama_perusahaan.toUpperCase(),req.body.p_alamat)
+    const perusahaan=new Perusahaan(req.body.id_perusahaan,req.body.nama_perusahaan.toUpperCase(),req.body.alamat)
 
     dao.updatePerusahaan(perusahaan).then(result=>{
         res.status(200).send({
@@ -239,8 +245,8 @@ app.post("/api/agrofinance/update-perusahaan", (req,res)=>{
     })
 })
 
-app.delete("/api/agrofinance/delete-perusahaan", (req,res)=>{
-    if(req.query.p_id_perusahaan==='undefined'){
+app.delete("/api/perusahaan/delete", (req,res)=>{
+    if(req.query.id_perusahaan==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -248,7 +254,7 @@ app.delete("/api/agrofinance/delete-perusahaan", (req,res)=>{
         return
     }
 
-    const perusahaan=new Perusahaan(req.query.p_id_perusahaan,null,null)
+    const perusahaan=new Perusahaan(req.query.id_perusahaan,null,null)
 
     dao.deletePerusahaan(perusahaan).then(result=>{
         res.status(200).send({
@@ -264,8 +270,8 @@ app.delete("/api/agrofinance/delete-perusahaan", (req,res)=>{
     })
 })
 
-app.get("/api/agrofinance/retrieve-pemebebanan",(req,res)=>{
-    if(typeof req.query.pbb_id==='undefined'){
+app.get("/api/pemebebanan/retrieve",(req,res)=>{
+    if(typeof req.query.id==='undefined'){
         dao.retrievePembebanan().then(result=>{
             res.status(200).send({
                 success:true,
@@ -279,7 +285,7 @@ app.get("/api/agrofinance/retrieve-pemebebanan",(req,res)=>{
             })
         })
     }else{
-        const pembebanan=new Pembebanan(req.query.pbb_id,null)
+        const pembebanan=new Pembebanan(req.query.id,null)
 
         dao.retrieveOnePembebanan(pembebanan).then(result=>{
             res.status(200).send({
@@ -296,8 +302,8 @@ app.get("/api/agrofinance/retrieve-pemebebanan",(req,res)=>{
     }
 })
 
-app.post("/api/agrofinance/add-pembebanan",(req,res)=>{
-    if(req.body.pbb_id==='undefined'){
+app.post("/api/pemebebanan/add",(req,res)=>{
+    if(typeof req.body.pembebanan_json==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -305,7 +311,7 @@ app.post("/api/agrofinance/add-pembebanan",(req,res)=>{
         return
     }
 
-    const pembebanan=new Pembebanan(null,req.body.skema_pembebanan_json)
+    const pembebanan=new Pembebanan(null,req.body.pembebanan_json)
 
     dao.addPembebanan(pembebanan).then(result=>{
         res.status(200).send({
@@ -321,8 +327,9 @@ app.post("/api/agrofinance/add-pembebanan",(req,res)=>{
     })
 })
 
-app.post("/api/agrofinance/update-pembebanan", (req,res)=>{
-    if(req.body.pbb_id==='undefined'){
+app.post("/api/pemebebanan/update", (req,res)=>{
+    if(typeof req.body.id==='undefined' ||
+       typeof req.body.pembebanan_json==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -330,7 +337,7 @@ app.post("/api/agrofinance/update-pembebanan", (req,res)=>{
         return
     }
 
-    const pembebanan=new Pembebanan(req.body.pbb_id,req.body.skema_pembebanan_json)
+    const pembebanan=new Pembebanan(req.body.id,req.body.pembebanan_json)
 
     dao.updatePembebanan(pembebanan).then(result=>{
         res.status(200).send({
@@ -346,8 +353,8 @@ app.post("/api/agrofinance/update-pembebanan", (req,res)=>{
     })
 })
 
-app.delete("/api/agrofinance/delete-pembebanan", (req,res)=>{
-    if(req.query.pbb_id==='undefined'){
+app.delete("/api/pemebebanan/delete", (req,res)=>{
+    if(typeof req.query.id==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -355,7 +362,7 @@ app.delete("/api/agrofinance/delete-pembebanan", (req,res)=>{
         return
     }
 
-    const pembebanan=new Pembebanan(req.query.pbb_id,null)
+    const pembebanan=new Pembebanan(req.query.id,null)
 
     dao.deletePembebanan(pembebanan).then(result=>{
         res.status(200).send({
@@ -371,8 +378,8 @@ app.delete("/api/agrofinance/delete-pembebanan", (req,res)=>{
     })
 })
 
-app.get("/api/agrofinance/retrieve-kategori-transaksi",(req,res)=>{
-    if(typeof req.query.kt_id_kategori==='undefined'){
+app.get("/api/kategori-transaksi/retrieve",(req,res)=>{
+    if(typeof req.query.id_kategori==='undefined'){
         dao.retrieveKategoriTransaksi().then(result=>{
             res.status(200).send({
                 success:true,
@@ -386,7 +393,7 @@ app.get("/api/agrofinance/retrieve-kategori-transaksi",(req,res)=>{
             })
         })
     }else{
-        const kategori=new Kategori_transaksi(req.query.kt_id_kategori,null)
+        const kategori=new Kategori_transaksi(req.query.id_kategori,null)
 
         dao.retrieveOneKategoriTransaksi(kategori).then(result=>{
             res.status(200).send({
@@ -403,8 +410,8 @@ app.get("/api/agrofinance/retrieve-kategori-transaksi",(req,res)=>{
     }
 })
 
-app.post("/api/agrofinance/add-kategori-transaksi",(req,res)=>{
-    if(req.body.kt_id_kategori==='undefined'){
+app.post("/api/kategori-transaksi/add",(req,res)=>{
+    if(typeof req.body.nama_kategori==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -412,7 +419,7 @@ app.post("/api/agrofinance/add-kategori-transaksi",(req,res)=>{
         return
     }
 
-    const kategori=new Kategori_transaksi(null,req.body.kt_nama_kategori.toUpperCase())
+    const kategori=new Kategori_transaksi(null,req.body.nama_kategori.toUpperCase())
 
     dao.addKategoriTransaksi(kategori).then(result=>{
         res.status(200).send({
@@ -428,8 +435,9 @@ app.post("/api/agrofinance/add-kategori-transaksi",(req,res)=>{
     })
 })
 
-app.post("/api/agrofinance/update-kategori-transaksi", (req,res)=>{
-    if(req.body.kt_id_kategori==='undefined'){
+app.post("/api/kategori-transaksi/update", (req,res)=>{
+    if(typeof req.body.id_kategori==='undefined' ||
+       typeof req.body.nama_kategori==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -437,7 +445,7 @@ app.post("/api/agrofinance/update-kategori-transaksi", (req,res)=>{
         return
     }
 
-    const kategori=new Kategori_transaksi(req.body.kt_id_kategori,req.body.kt_nama_kategori.toUpperCase())
+    const kategori=new Kategori_transaksi(req.body.id_kategori,req.body.nama_kategori.toUpperCase())
 
     dao.updateKategoriTransaksi(kategori).then(result=>{
         res.status(200).send({
@@ -453,8 +461,8 @@ app.post("/api/agrofinance/update-kategori-transaksi", (req,res)=>{
     })
 })
 
-app.delete("/api/agrofinance/delete-kategori-transaksi", (req,res)=>{
-    if(req.query.kt_id_kategori==='undefined'){
+app.delete("/api/kategori-transaksi/delete", (req,res)=>{
+    if(req.query.id_kategori==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -462,7 +470,7 @@ app.delete("/api/agrofinance/delete-kategori-transaksi", (req,res)=>{
         return
     }
 
-    const kategori=new Kategori_transaksi(req.query.kt_id_kategori,null)
+    const kategori=new Kategori_transaksi(req.query.id_kategori,null)
 
     dao.deleteKategoriTransaksi(kategori).then(result=>{
         res.status(200).send({
@@ -478,8 +486,8 @@ app.delete("/api/agrofinance/delete-kategori-transaksi", (req,res)=>{
     })
 })
 
-app.get("/api/agrofinance/retrieve-transaksi",(req,res)=>{
-    if(typeof req.query.t_id_transaksi==='undefined'){
+app.get("/api/transaksi/retrieve",(req,res)=>{
+    if(typeof req.query.id_transaksi==='undefined'){
         dao.retrieveTransaksi().then(result=>{
             res.status(200).send({
                 success:true,
@@ -493,7 +501,7 @@ app.get("/api/agrofinance/retrieve-transaksi",(req,res)=>{
             })
         })
     }else{
-        const transfer=new Transaksi(req.query.t_id_transaksi,null,null,null,null,null,null,null,null,
+        const transfer=new Transaksi(req.query.id_transaksi,null,null,null,null,null,null,null,null,
             null, null,null,null,null,null)
 
         dao.retrieveOneTransaksi(transfer).then(result=>{
@@ -511,8 +519,21 @@ app.get("/api/agrofinance/retrieve-transaksi",(req,res)=>{
     }
 })
 
-app.post("/api/agrofinance/add-transaksi",(req,res)=>{
-    if(req.body.t_id_transaksi==='undefined'){
+app.post("/api/transaksi/add",(req,res)=>{
+    if(typeof req.body.jumlah==='undefined' ||
+       typeof req.body.id_kategori_transaksi==='undefined' ||
+       typeof req.body.jenis==='undefined' ||
+       typeof req.body.bpu_attachment==='undefined' ||
+       typeof req.body.debit_card==='undefined' ||
+       typeof req.body.status==='undefined' ||
+       typeof req.body.bon_sementara==='undefined' ||
+       typeof req.body.is_rutin==='undefined' ||
+       typeof req.body.tanggal_transaksi==='undefined' ||
+       typeof req.body.tanggal_modifikasi==='undefined' ||
+       typeof req.body.tanggal_realisasi==='undefined' ||
+       typeof req.body.nomor_bukti_transaksi==='undefined' ||
+       typeof req.body.file_bukti_transaksi==='undefined' ||
+       typeof req.body.pembebanan_id==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -520,8 +541,8 @@ app.post("/api/agrofinance/add-transaksi",(req,res)=>{
         return
     }
 
-    const transfer=new Transaksi(null,req.body.t_jumlah,req.body.t_id_kategori_transaksi,req.body.t_jenis,req.body.t_bpu_attachment,req.body.t_debit_card,req.body.t_status,req.body.t_bon_sementara,req.body.t_is_rutin,
-        req.body.t_tanggal_transaksi,req.body.t_tanggal_modifikasi,req.body.t_tanggal_realisi,req.body.t_nomor_bukti_transaksi,req.body.t_file_bukti_transaksi,req.body.t_pembebanan_id)
+    const transfer=new Transaksi(null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.body.bpu_attachment,req.body.debit_card,req.body.status,req.body.bon_sementara,req.body.is_rutin,
+        req.body.tanggal_transaksi,req.body.tanggal_modifikasi,req.body.tanggal_realisi,req.body.nomor_bukti_transaksi,req.body.file_bukti_transaksi,req.body.pembebanan_id)
 
     dao.addTransaksi(transfer).then(result=>{
         res.status(200).send({
@@ -537,8 +558,22 @@ app.post("/api/agrofinance/add-transaksi",(req,res)=>{
     })
 })
 
-app.post("/api/agrofinance/update-transaksi", (req,res)=>{
-    if(req.body.t_id_transaksi==='undefined'){
+app.post("/api/transaksi/update", (req,res)=>{
+    if(typeof req.body.id_transaksi==='undefined' ||
+        typeof req.body.jumlah==='undefined' ||
+        typeof req.body.id_kategori_transaksi==='undefined' ||
+        typeof req.body.jenis==='undefined' ||
+        typeof req.body.bpu_attachment==='undefined' ||
+        typeof req.body.debit_card==='undefined' ||
+        typeof req.body.status==='undefined' ||
+        typeof req.body.bon_sementara==='undefined' ||
+        typeof req.body.is_rutin==='undefined' ||
+        typeof req.body.tanggal_transaksi==='undefined' ||
+        typeof req.body.tanggal_modifikasi==='undefined' ||
+        typeof req.body.tanggal_realisasi==='undefined' ||
+        typeof req.body.nomor_bukti_transaksi==='undefined' ||
+        typeof req.body.file_bukti_transaksi==='undefined' ||
+        typeof req.body.pembebanan_id==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -546,8 +581,8 @@ app.post("/api/agrofinance/update-transaksi", (req,res)=>{
         return
     }
 
-    const transfer=new Transaksi(req.body.t_id_transaksi,req.body.t_jumlah,req.body.t_id_kategori_transaksi,req.body.t_jenis,req.body.t_bpu_attachment,req.body.t_debit_card,req.body.t_status,req.body.t_bon_sementara,req.body.t_is_rutin,
-        req.body.t_tanggal_transaksi,req.body.t_tanggal_modifikasi,req.body.t_tanggal_realisi,req.body.t_nomor_bukti_transaksi,req.body.t_file_bukti_transaksi,req.body.t_pembebanan_id)
+    const transfer=new Transaksi(req.body.id_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.body.bpu_attachment,req.body.debit_card,req.body.status,req.body.bon_sementara,req.body.is_rutin,
+        req.body.tanggal_transaksi,req.body.tanggal_modifikasi,req.body.tanggal_realisi,req.body.nomor_bukti_transaksi,req.body.file_bukti_transaksi,req.body.pembebanan_id)
 
     dao.updateTransaksi(transfer).then(result=>{
         res.status(200).send({
@@ -563,8 +598,8 @@ app.post("/api/agrofinance/update-transaksi", (req,res)=>{
     })
 })
 
-app.delete("/api/agrofinance/delete-transaksi", (req,res)=>{
-    if(req.query.t_id_transaksi==='undefined'){
+app.delete("/api/transaksi/delete", (req,res)=>{
+    if(typeof req.query.id_transaksi==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -572,7 +607,7 @@ app.delete("/api/agrofinance/delete-transaksi", (req,res)=>{
         return
     }
 
-    const transfer=new Transaksi(req.query.t_id_transaksi,null,null,null,null,null,null,null,null,
+    const transfer=new Transaksi(req.query.id_transaksi,null,null,null,null,null,null,null,null,
         null, null,null,null,null,null)
 
     dao.deleteTransaksi(transfer).then(result=>{
@@ -589,9 +624,110 @@ app.delete("/api/agrofinance/delete-transaksi", (req,res)=>{
     })
 })
 
-// app.get("/api/agrofinance/retrieve-karyawan-kerja-dimana",(req,res)=>{
-//
-// })
+app.get("/api/karyawan-kerja-dimana/retrieve",(req,res)=>{
+    if(typeof req.query.id_karyawan==='undefined'){
+        dao.retrieveKaryawanKerjaDimana().then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(err=>{
+            console.error(err)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }else{
+        const kkd=new Karyawan_kerja_dimana(null,req.query.id_karyawan,null)
+        dao.retrieveOneKaryawanKerjaDimana(kkd).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(err=>{
+            console.error(err)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }
+})
+
+app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
+    if(typeof req.body.id_karyawan==='undefined' ||
+       typeof req.body.id_perusahaan==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    const kkd=new Karyawan_kerja_dimana(null,req.body.id_karyawan,req.body.id_perusahaan)
+    dao.addKaryawan_kerja_dimana(kkd).then(result=>{
+        res.status(200).send({
+            success:true,
+            result:result
+        })
+    }).catch(err=>{
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
+app.post("/api/karyawan-kerja-dimana/update", (req,res)=>{
+    if(typeof req.body.id_karyawan_kerja_dimana==='undefined' ||
+       typeof req.body.id_karyawan==='undefined' ||
+       typeof req.body.id_perusahaan==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    const kkd=new Karyawan_kerja_dimana(req.body.id_karyawan_kerja_dimana,req.body.id_karyawan,req.body.id_perusahaan)
+    dao.updateKaryawan_kerja_dimana(kkd).then(result=>{
+        res.status(200).send({
+            success:true,
+            result:result
+        })
+    }).catch(err=>{
+        console.error(err)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
+app.delete("/api/karyawan-kerja-dimana/delete",(req,res)=>{
+    if(typeof req.query.id_karyawan==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    const kkd=new Karyawan_kerja_dimana(null,req.query.id_karyawan,null)
+    dao.deleteKaryawan_kerja_dimana(kkd).then(result=>{
+        res.status(200).send({
+            success:true,
+            result:result
+        })
+    }).catch(err=>{
+        console.error(err)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
 
 app.listen(PORT, ()=>{
     console.info(`Server serving port ${PORT}`)

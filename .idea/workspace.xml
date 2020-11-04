@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,39 +53,7 @@
       <recent name="C:\Users\Asus\WebstormProjects\agrofinance-backend" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
@@ -100,7 +70,6 @@
       <workItem from="1604294812845" duration="7439000" />
       <workItem from="1604366931951" duration="6814000" />
       <workItem from="1604451544769" duration="3553000" />
-      <workItem from="1604467456336" duration="1888000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1602810731600</created>
@@ -137,63 +106,28 @@
       <option name="project" value="LOCAL" />
       <updated>1604408667660</updated>
     </task>
-    <task id="LOCAL-00006" summary="Reviewed some code sections on add-karyawan">
-      <created>1604468871160</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1604468871160</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Edited formatting on app.js on karyawan endpoints">
-      <created>1604468994936</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1604468994936</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Fixed endpoint unreachable issue">
-      <created>1604469799893</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1604469799893</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="New commit" />
     <MESSAGE value="Fixed sql syntax errors" />
     <MESSAGE value="Added a few adjustments" />
-    <MESSAGE value="Reviewed some code sections on add-karyawan" />
-    <MESSAGE value="Edited formatting on app.js on karyawan endpoints" />
-    <MESSAGE value="Fixed endpoint unreachable issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed endpoint unreachable issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a few adjustments" />
   </component>
   <component name="WindowStateProjectService">
     <state x="269" y="0" key="CommitChangelistDialog2" timestamp="1604408665879">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="269" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1604408665879" />
-    <state x="23" y="65" key="DiffContextDialog" timestamp="1604408632133">
+    <state x="146" y="61" width="1228" height="687" key="DiffContextDialog" timestamp="1604473995490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="23" y="65" key="DiffContextDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1604408632133" />
+    <state x="146" y="61" width="1228" height="687" key="DiffContextDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1604473995490" />
     <state x="593" y="314" key="Github.CreateGistDialog" timestamp="1602832864085">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

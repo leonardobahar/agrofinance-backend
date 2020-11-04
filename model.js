@@ -52,7 +52,7 @@ export class Transaksi{
         this.t_is_rutin=t_is_rutin
         this.t_tanggal_transaksi=t_tanggal_transaksi
         this.t_tanggal_modifikasi=t_tanggal_modifikasi
-        this.t_tanggal_realisi=t_tanggal_realisasi
+        this.t_tanggal_realisasi=t_tanggal_realisasi
         this.t_nomor_bukti_transaksi=t_nomor_bukti_transaksi
         this.t_file_bukti_transaksi=t_file_bukti_transaksi
         this.t_pembebanan_id=t_pembebanan_id
