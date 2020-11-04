@@ -43,8 +43,8 @@ const password = typeof process.env.MY_SQL_PASSWORD === 'undefined' ? '' : proce
 const dbname = process.env.MY_SQL_DBNAME
 const dao = new Dao(host,user,password,dbname)
 
-app.get("/api/agrofinance/retrieve-karyawan",(req,res)=>{
-    if(typeof req.query.k_id_karyawan==='undefined'){
+app.get("/api/karyawan/retrieve",(req,res)=>{
+    if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
             res.status(200).send({
                 success:true,
@@ -58,7 +58,7 @@ app.get("/api/agrofinance/retrieve-karyawan",(req,res)=>{
             })
         })
     }else{
-        const employee=new Karyawan(req.query.k_id_karyawan,null,null,null,null,null)
+        const employee=new Karyawan(req.query.id_karyawan,null,null,null,null,null)
 
         dao.retrieveOneKaryawan(employee).then(result=>{
             res.status(200).send({
@@ -75,7 +75,7 @@ app.get("/api/agrofinance/retrieve-karyawan",(req,res)=>{
     }
 })
 
-app.post("/api/agrofinance/add-karyawan",(req,res)=>{
+app.post("/api/karyawan/add",(req,res)=>{
     if(typeof req.body.nama_lengkap==='undefined' ||
        typeof req.body.posisi==='undefined' ||
        typeof req.body.nik==='undefined' ||
@@ -104,8 +104,8 @@ app.post("/api/agrofinance/add-karyawan",(req,res)=>{
     })
 })
 
-app.post("/api/agrofinance/update-karyawan", (req,res)=>{
-    if(req.body.k_id_karyawan==='undefined'){
+app.post("/api/karyawan/update", (req,res)=>{
+    if(typeof req.body.id_karyawan==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -113,7 +113,7 @@ app.post("/api/agrofinance/update-karyawan", (req,res)=>{
         return
     }
 
-    const employee=new Karyawan(req.body.k_id_karyawan, req.body.k_nama_lengkap.toUpperCase(), req.body.k_posisi.toUpperCase(), req.body.k_nik, req.body.k_role.toUpperCase(), req.body.k_masih_hidup.toUpperCase())
+    const employee=new Karyawan(req.body.id_karyawan, req.body.nama_lengkap.toUpperCase(), req.body.posisi.toUpperCase(), req.body.nik, req.body.role.toUpperCase(), req.body.masih_hidup.toUpperCase())
 
     dao.updateKaryawan(employee).then(result=>{
         res.status(200).send({
@@ -129,8 +129,8 @@ app.post("/api/agrofinance/update-karyawan", (req,res)=>{
     })
 })
 
-app.delete("/api/agrofinance/delete-karyawan", (req,res)=>{
-    if(req.query.k_id_karyawan==='undefined'){
+app.delete("/api/karyawan/delete", (req,res)=>{
+    if(typeof req.query.id_karyawan==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -138,7 +138,7 @@ app.delete("/api/agrofinance/delete-karyawan", (req,res)=>{
         return
     }
 
-    const employee=new Karyawan(req.query.k_id_karyawan,null,null,null,null,null)
+    const employee=new Karyawan(req.query.id_karyawan,null,null,null,null,null)
 
     dao.deleteKaryawan(employee).then(result=>{
         res.status(200).send({
