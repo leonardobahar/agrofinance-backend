@@ -12,11 +12,12 @@ import {
 } from "./strings";
 import {Karyawan,Karyawan_kerja_dimana,Kategori_transaksi,Pembebanan,Perusahaan,Transaksi} from "./model";
 
-require('dotenv').config()
+dotenv.config()
 
-const app=express()
+const app = express()
+
 app.use(bodyParser.urlencoded({extended:true}))
-app.use(express.json)
+app.use(express.json())
 
 app.use(cors())
 app.use((err,req,res,next)=>{
@@ -75,7 +76,14 @@ app.get("/api/karyawan/retrieve",(req,res)=>{
     }
 })
 
+app.get("/api/test", (req,res)=>{
+    res.status(200).send({
+        success: true
+    })
+})
+
 app.post("/api/karyawan/add",(req,res)=>{
+    console.log("Got add request")
     if(typeof req.body.nama_lengkap==='undefined' ||
        typeof req.body.posisi==='undefined' ||
        typeof req.body.nik==='undefined' ||
@@ -587,9 +595,9 @@ app.delete("/api/agrofinance/delete-transaksi", (req,res)=>{
     })
 })
 
-app.get("/api/agrofinance/retrieve-karyawan-kerja-dimana",(req,res)=>{
-
-})
+// app.get("/api/agrofinance/retrieve-karyawan-kerja-dimana",(req,res)=>{
+//
+// })
 
 app.listen(PORT, ()=>{
     console.info(`Server serving port ${PORT}`)
