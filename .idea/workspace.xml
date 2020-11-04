@@ -4,6 +4,7 @@
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +67,8 @@
       <workItem from="1603151948547" duration="709000" />
       <workItem from="1603242933958" duration="3705000" />
       <workItem from="1604294812845" duration="7439000" />
-      <workItem from="1604366931951" duration="4797000" />
+      <workItem from="1604366931951" duration="6814000" />
+      <workItem from="1604451544769" duration="3553000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1602810731600</created>
@@ -96,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604329434639</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added a few adjustments">
+      <created>1604408667660</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1604408667660</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,25 +115,30 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="New commit" />
     <MESSAGE value="Fixed sql syntax errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed sql syntax errors" />
+    <MESSAGE value="Added a few adjustments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a few adjustments" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="269" y="0" key="CommitChangelistDialog2" timestamp="1604329433238">
+    <state x="269" y="0" key="CommitChangelistDialog2" timestamp="1604408665879">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="269" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1604329433238" />
+    <state x="269" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1604408665879" />
+    <state x="23" y="65" key="DiffContextDialog" timestamp="1604408632133">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="23" y="65" key="DiffContextDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1604408632133" />
     <state x="593" y="314" key="Github.CreateGistDialog" timestamp="1602832864085">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="593" y="314" key="Github.CreateGistDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602832864085" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1604329445417">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1604408678168">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1604329445417" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602852524216">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1604408678168" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604408585192">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602852524216" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1604408585192" />
     <state x="486" y="314" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1602811105361">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

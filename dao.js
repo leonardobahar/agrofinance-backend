@@ -68,7 +68,7 @@ export class Dao{
                 }
 
                 let employees=[]
-                for(let i=0; i<employees.length; i++){
+                for(let i=0; i<result.length; i++){
                     employees.push(new Karyawan(
                         result[i].k_id_karyawan,
                         result[i].k_nama_lengkap,
@@ -93,7 +93,7 @@ export class Dao{
                 }
 
                 let employees=[]
-                for(let i =0;i<employees.length;i++){
+                for(let i =0;i<result.length;i++){
                     employees.push(new Karyawan(
                         result[i].k_id_karyawan,
                         result[i].k_nama_lengkap,
@@ -179,7 +179,7 @@ export class Dao{
                 }
 
                 let companies=[]
-                for(let i=0; i<companies.length; i++){
+                for(let i=0; i<result.length; i++){
                     companies.push(new Perusahaan(
                         result[i].p_id_perusahaan,
                         result[i].p_nama_perusahaan,
@@ -201,7 +201,7 @@ export class Dao{
                 }
 
                 let companies=[]
-                for(let i =0;i<companies.length;i++){
+                for(let i =0;i<result.length;i++){
                     companies.push(new Perusahaan(
                         result[i].p_id_perusahaan,
                         result[i].p_nama_perusahaan,
@@ -283,7 +283,7 @@ export class Dao{
                 }
 
                 let beban=[]
-                for(let i=0; i<beban.length; i++){
+                for(let i=0; i<result.length; i++){
                     beban.push(new Perusahaan(
                         result[i].pbb_id,
                         result[i].skema_pembebanan_json
@@ -304,7 +304,7 @@ export class Dao{
                 }
 
                 let beban=[]
-                for(let i =0;i<beban.length;i++){
+                for(let i =0;i<result.length;i++){
                     beban.push(new Pembebanan(
                         result[i].pbb_id,
                         result[i].skema_pembebanan_json
@@ -385,7 +385,7 @@ export class Dao{
                 }
 
                 let categories=[]
-                for(let i=0; i<categories.length; i++){
+                for(let i=0; i<result.length; i++){
                     categories.push(new Kategori_transaksi(
                         result[i].kt_id_kategori,
                         result[i].kt_nama_kategori
@@ -406,7 +406,7 @@ export class Dao{
                 }
 
                 let categories=[]
-                for(let i =0;i<categories.length;i++){
+                for(let i =0;i<result.length;i++){
                     categories.push(new Kategori_transaksi(
                         result[i].kt_id_kategori,
                         result[i].kt_name_kategori
@@ -487,7 +487,7 @@ export class Dao{
                 }
 
                 let works=[]
-                for(let i=0; i<works.length; i++){
+                for(let i=0; i<result.length; i++){
                     works.push(new Karyawan_kerja_dimana(
                         result[i].kkd_id_karyawan_kerja_dimana,
                         result[i].kkd_id_karyawan,
@@ -509,7 +509,7 @@ export class Dao{
                 }
 
                 let works=[]
-                for(let i=0; i<works.length; i++){
+                for(let i=0; i<result.length; i++){
                     works.push(new Karyawan_kerja_dimana(
                         result[i].kkd_id_karyawan_kerja_dimana,
                         result[i].kkd_id_karyawan,
