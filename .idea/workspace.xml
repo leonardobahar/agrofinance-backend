@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -101,7 +100,7 @@
       <workItem from="1604294812845" duration="7439000" />
       <workItem from="1604366931951" duration="6814000" />
       <workItem from="1604451544769" duration="3553000" />
-      <workItem from="1604467456336" duration="1858000" />
+      <workItem from="1604467456336" duration="1888000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1602810731600</created>
@@ -152,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604468994936</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed endpoint unreachable issue">
+      <created>1604469799893</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1604469799893</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,7 +182,8 @@
     <MESSAGE value="Added a few adjustments" />
     <MESSAGE value="Reviewed some code sections on add-karyawan" />
     <MESSAGE value="Edited formatting on app.js on karyawan endpoints" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited formatting on app.js on karyawan endpoints" />
+    <MESSAGE value="Fixed endpoint unreachable issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed endpoint unreachable issue" />
   </component>
   <component name="WindowStateProjectService">
     <state x="269" y="0" key="CommitChangelistDialog2" timestamp="1604408665879">

@@ -76,12 +76,6 @@ app.get("/api/karyawan/retrieve",(req,res)=>{
     }
 })
 
-app.get("/api/test", (req,res)=>{
-    res.status(200).send({
-        success: true
-    })
-})
-
 app.post("/api/karyawan/add",(req,res)=>{
     console.log("Got add request")
     if(typeof req.body.nama_lengkap==='undefined' ||
