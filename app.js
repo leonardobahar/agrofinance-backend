@@ -76,11 +76,11 @@ app.get("/api/agrofinance/retrieve-karyawan",(req,res)=>{
 })
 
 app.post("/api/agrofinance/add-karyawan",(req,res)=>{
-    if(req.body.k_nama_lengkap==='undefined' ||
-       req.body.k_posisi==='undefined' ||
-       req.body.k_nik==='undefined' ||
-       req.body.k_role==='undefined' ||
-       req.body.k_masih_hidup==='undefined'){
+    if(typeof req.body.nama_lengkap==='undefined' ||
+       typeof req.body.posisi==='undefined' ||
+       typeof req.body.nik==='undefined' ||
+       typeof req.body.role==='undefined' ||
+       typeof req.body.masih_hidup==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -88,7 +88,7 @@ app.post("/api/agrofinance/add-karyawan",(req,res)=>{
         return
     }
 
-    const employee=new Karyawan(null,req.body.k_nama_lengkap.toUpperCase(),req.body.k_posisi.toUpperCase(), req.body.k_nik, req.body.k_role.toUpperCase(), req.body.k_masih_hidup.toUpperCase())
+    const employee=new Karyawan(null,req.body.nama_lengkap.toUpperCase(),req.body.posisi.toUpperCase(), req.body.nik, req.body.role.toUpperCase(), req.body.masih_hidup.toUpperCase())
 
     dao.addKaryawan(employee).then(result=>{
         res.status(200).send({
