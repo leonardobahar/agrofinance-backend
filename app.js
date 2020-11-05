@@ -145,7 +145,6 @@ app.delete("/api/karyawan/delete", (req,res)=>{
     }
 
     const employee=new Karyawan(req.query.id_karyawan,null,null,null,null,null)
-
     dao.deleteKaryawan(employee).then(result=>{
         res.status(200).send({
             success:true,
@@ -672,6 +671,7 @@ app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
             result:result
         })
     }).catch(err=>{
+        console.error(err)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG

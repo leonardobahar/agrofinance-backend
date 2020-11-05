@@ -429,7 +429,7 @@ export class Dao{
                 for(let i =0;i<result.length;i++){
                     categories.push(new Kategori_transaksi(
                         result[i].kt_id_kategori,
-                        result[i].kt_name_kategori
+                        result[i].kt_nama_kategori
                     ))
                 }
                 resolve(categories)
@@ -444,7 +444,7 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `kategori` (`kategori_transaksi`) VALUES(?)"
+            const query="INSERT INTO `kategori_transaksi` (`kt_nama_kategori`) VALUES(?)"
             this.mysqlConn.query(query, kategori.kt_nama_kategori, (error,result)=>{
                 if(error){
                     reject(error)
@@ -499,7 +499,7 @@ export class Dao{
 
     retrieveKaryawanKerjaDimana(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT kkd.kkd_id_karyawan_kerja_diamana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd.kkd_id_karyawan=ka.k_id_karyawan "+
+            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd.kkd_id_karyawan=ka.k_id_karyawan "+
                 "LEFT OUTER JOIN perusahaan p ON kkd.kkd_id_perusahaan=p.p_id_perusahaan "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
@@ -509,14 +509,14 @@ export class Dao{
 
                 const works=result.map(rowDataPacket=>{
                     return{
-                        id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
-                        id_karyawan:rowDataPacket.kkd_id_karyawan,
-                        nama_lengkap:rowDataPacket.k_nama_lengkap,
-                        id_perusahaan:rowDataPacket.kkd_id_perusahaan,
-                        nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                        kkd_id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
+                        kkd_id_karyawan:rowDataPacket.kkd_id_karyawan,
+                        kkd_nama_lengkap:rowDataPacket.k_nama_lengkap,
+                        kkd_id_perusahaan:rowDataPacket.kkd_id_perusahaan,
+                        kkd_nama_perusahaan:rowDataPacket.p_nama_perusahaan
                     }
-                    resolve(works)
                 })
+                resolve(works)
             })
         })
     }
@@ -528,10 +528,10 @@ export class Dao{
                 return
             }
 
-            const query="SELECT kkd.kkd_id_karyawan_kerja_diamana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd.kkd_id_karyawan=ka.k_id_karyawan "+
+            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd_id_karyawan=ka.k_id_karyawan "+
                 "LEFT OUTER JOIN perusahaan p ON kkd.kkd_id_perusahaan=p.p_id_perusahaan "+
-                "WHERE kkd_id_karyawan=?"
-            this.mysqlConn.query(query, kerja.kkd_id_karyawan_kerja_dimana, (error, result)=>{
+                "WHERE kkd.kkd_id_karyawan=?"
+            this.mysqlConn.query(query, kerja.kkd_id_karyawan, (error, result)=>{
                 if(error){
                     reject(error)
                     return
@@ -539,14 +539,14 @@ export class Dao{
 
                 const works=result.map(rowDataPacket=>{
                     return{
-                        id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
-                        id_karyawan:rowDataPacket.kkd_id_karyawan,
-                        nama_lengkap:rowDataPacket.k_nama_lengkap,
-                        id_perusahaan:rowDataPacket.kkd_id_perusahaan,
-                        nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                        kkd_id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
+                        kkd_id_karyawan:rowDataPacket.kkd_id_karyawan,
+                        kkd_nama_lengkap:rowDataPacket.k_nama_lengkap,
+                        kkd_id_perusahaan:rowDataPacket.kkd_id_perusahaan,
+                        kkd_nama_perusahaan:rowDataPacket.p_nama_perusahaan
                     }
-                    resolve(works)
                 })
+                resolve(works)
             })
         })
     }
@@ -598,8 +598,8 @@ export class Dao{
                 return
             }
 
-            const query="DELETE FROM karyawan_kerja_dimana WHERE kkd_id_karyawan_kerja_dimana=?"
-            this.mysqlConn.query(query,kerja.kkd_id_karyawan_kerja_dimana,(error,result)=>{
+            const query="DELETE FROM karyawan_kerja_dimana WHERE kkd_id_karyawan=?"
+            this.mysqlConn.query(query,kerja.kkd_id_karyawan,(error,result)=>{
                 if(error){
                     reject(error)
                     return

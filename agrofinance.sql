@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan_kerja_dimana` (
   FOREIGN KEY (`kkd_id_karyawan`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`kkd_id_perusahaan`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE);
 
-CREATE TABLE IF NOT EXISTS `agrofinance`.`pembebebanan` (
+CREATE TABLE IF NOT EXISTS `agrofinance`.`pembebanan` (
   `pbb_id` INT(7) PRIMARY KEY AUTO_INCREMENT,
   `skema_pembebanan_json` LONGTEXT NOT NULL);
 
