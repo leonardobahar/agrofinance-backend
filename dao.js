@@ -332,7 +332,7 @@ export class Dao{
 
     addPembebanan(pembebanan){
         return new Promise((resolve,reject)=>{
-            if(!pembenan instanceof Pembebanan){
+            if(!pembebanan instanceof Pembebanan){
                 reject(MISMATCH_OBJ_TYPE)
                 return
             }
