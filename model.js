@@ -40,13 +40,13 @@ export class Perusahaan{
 }
 
 export class Transaksi{
-    constructor(t_id_transaksi, t_jumlah, t_id_kategori_transaksi, t_jenis, t_bpu_attachment, t_debit_card, t_status, t_bon_sementara, t_is_rutin, t_tanggal_transaksi, t_tanggal_modifikasi, t_tanggal_realisasi, t_nomor_bukti_transaksi, t_file_bukti_transaksi, t_pembebanan_id){
+    constructor(t_id_transaksi, t_jumlah, t_id_kategori_transaksi, t_jenis, t_bpu_attachment, t_debit_credit, t_status, t_bon_sementara, t_is_rutin, t_tanggal_transaksi, t_tanggal_modifikasi, t_tanggal_realisasi, t_nomor_bukti_transaksi, t_file_bukti_transaksi, t_pembebanan_id){
         this.t_id_transaksi=t_id_transaksi
         this.t_jumlah=t_jumlah
         this.t_id_kategori_transaksi=t_id_kategori_transaksi
         this.t_jenis=t_jenis
         this.t_bpu_attachment=t_bpu_attachment
-        this.t_debit_card=t_debit_card
+        this.t_debit_credit=t_debit_credit
         this.t_status=t_status
         this.t_bon_sementara=t_bon_sementara
         this.t_is_rutin=t_is_rutin

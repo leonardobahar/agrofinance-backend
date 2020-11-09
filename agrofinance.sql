@@ -31,7 +31,9 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi` (
   `t_tanggal_realisasi` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `t_nomor_bukti_transaksi` VARCHAR(45) NOT NULL,
   `t_file_bukti_transaksi` VARCHAR(45) NOT NULL,
-  `t_pembebanan_id` INT(7) NOT NULL);
+  `t_pembebanan_id` INT(7) NOT NULL,
+  FOREIGN KEY (`t_id_kategori_transaksi`) REFERENCES kategori_transaksi(`kt_id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`t_pembebanan_id`) REFERENCES pembebanan(`pbb_id`) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`perusahaan` (
   `p_id_perusahaan` INT(7) PRIMARY KEY AUTO_INCREMENT,

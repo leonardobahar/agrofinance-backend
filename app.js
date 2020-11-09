@@ -11,6 +11,8 @@ import {
     SOMETHING_WENT_WRONG
 } from "./strings";
 import {Karyawan,Karyawan_kerja_dimana,Kategori_transaksi,Pembebanan,Perusahaan,Transaksi} from "./model";
+import multer from 'multer'
+import path from 'path'
 
 dotenv.config()
 
@@ -485,6 +487,21 @@ app.delete("/api/kategori-transaksi/delete", (req,res)=>{
     })
 })
 
+const storage=multer.diskStorage({
+    destination:'./Uploads/',
+    filename: function (req,file,cb){
+        cb(null,file.fieldname+'-'+Date.now()+path.extname(file.originalname))
+    }
+})
+
+const transaksiFilter=(req,file,cb)=>{
+    if(!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF|doc|docx|pdf|txt|xls|csv|xlsx)$/)){
+        req.fileValidationError='Only jpg, png, gif, doc, pdf, txt, xls, csv files are allowed!';
+        return cb(new Error('Only jpg, png, gif, doc, pdf, txt, xls, csv files are allowed!'), false)
+    }
+    cb(null,true);
+}
+
 app.get("/api/transaksi/retrieve",(req,res)=>{
     if(typeof req.query.id_transaksi==='undefined'){
         dao.retrieveTransaksi().then(result=>{
@@ -518,41 +535,56 @@ app.get("/api/transaksi/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/transaksi/add",(req,res)=>{
-    if(typeof req.body.jumlah==='undefined' ||
-       typeof req.body.id_kategori_transaksi==='undefined' ||
-       typeof req.body.jenis==='undefined' ||
-       typeof req.body.bpu_attachment==='undefined' ||
-       typeof req.body.debit_card==='undefined' ||
-       typeof req.body.status==='undefined' ||
-       typeof req.body.bon_sementara==='undefined' ||
-       typeof req.body.is_rutin==='undefined' ||
-       typeof req.body.tanggal_transaksi==='undefined' ||
-       typeof req.body.tanggal_modifikasi==='undefined' ||
-       typeof req.body.tanggal_realisasi==='undefined' ||
-       typeof req.body.nomor_bukti_transaksi==='undefined' ||
-       typeof req.body.file_bukti_transaksi==='undefined' ||
-       typeof req.body.pembebanan_id==='undefined'){
-        res.status(400).send({
-            success:false,
-            error:WRONG_BODY_FORMAT
-        })
-        return
-    }
+app.post("/api/transaksi/add",async(req,res)=>{
+    const upload=multer({storage:storage, fileFilter:transaksiFilter}).single('attachment_transaksi')
 
-    const transfer=new Transaksi(null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.body.bpu_attachment,req.body.debit_card,req.body.status,req.body.bon_sementara,req.body.is_rutin,
-        req.body.tanggal_transaksi,req.body.tanggal_modifikasi,req.body.tanggal_realisi,req.body.nomor_bukti_transaksi,req.body.file_bukti_transaksi,req.body.pembebanan_id)
+    console.log(req.file)
+    upload(req,res,async (err)=>{
 
-    dao.addTransaksi(transfer).then(result=>{
-        res.status(200).send({
-            success:true,
-            result:result
-        })
-    }).catch(error=>{
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
+        if(typeof req.query.jumlah==='undefined' ||
+            typeof req.query.id_kategori_transaksi==='undefined' ||
+            typeof req.query.jenis==='undefined' ||
+            typeof req.file.filename==='undefined' ||
+            typeof req.query.debit_credit==='undefined' ||
+            typeof req.query.status==='undefined' ||
+            typeof req.query.bon_sementara==='undefined' ||
+            typeof req.query.is_rutin==='undefined' ||
+            typeof req.query.tanggal_transaksi==='undefined' ||
+            typeof req.query.tanggal_modifikasi==='undefined' ||
+            typeof req.query.tanggal_realisasi==='undefined' ||
+            typeof req.query.nomor_bukti_transaksi==='undefined' ||
+            typeof req.query.pembebanan_id==='undefined'){
+            res.status(400).send({
+                success:false,
+                error:WRONG_BODY_FORMAT
+            })
+            return
+        }
+
+        if(err instanceof multer.MulterError){
+            return res.send(err)
+        }
+
+        else if(err){
+            return res.send(err)
+        }
+
+        console.log(req.file.filename)
+
+        const transfer=new Transaksi(null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,req.file.filename,req.query.debit_credit,req.query.status,req.query.bon_sementara,req.query.is_rutin,
+            req.query.tanggal_transaksi,req.query.tanggal_modifikasi,req.query.tanggal_realisasi,req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id)
+
+        dao.addTransaksi(transfer).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
         })
     })
 })
@@ -563,7 +595,7 @@ app.post("/api/transaksi/update", (req,res)=>{
         typeof req.body.id_kategori_transaksi==='undefined' ||
         typeof req.body.jenis==='undefined' ||
         typeof req.body.bpu_attachment==='undefined' ||
-        typeof req.body.debit_card==='undefined' ||
+        typeof req.body.debit_credit==='undefined' ||
         typeof req.body.status==='undefined' ||
         typeof req.body.bon_sementara==='undefined' ||
         typeof req.body.is_rutin==='undefined' ||
@@ -580,8 +612,8 @@ app.post("/api/transaksi/update", (req,res)=>{
         return
     }
 
-    const transfer=new Transaksi(req.body.id_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.body.bpu_attachment,req.body.debit_card,req.body.status,req.body.bon_sementara,req.body.is_rutin,
-        req.body.tanggal_transaksi,req.body.tanggal_modifikasi,req.body.tanggal_realisi,req.body.nomor_bukti_transaksi,req.body.file_bukti_transaksi,req.body.pembebanan_id)
+    const transfer=new Transaksi(req.body.id_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.body.bpu_attachment,req.body.debit_credit,req.body.status,req.body.bon_sementara,req.body.is_rutin,
+        req.body.tanggal_transaksi,req.body.tanggal_modifikasi,req.body.tanggal_realisasi,req.body.nomor_bukti_transaksi,req.body.file_bukti_transaksi,req.body.pembebanan_id)
 
     dao.updateTransaksi(transfer).then(result=>{
         res.status(200).send({

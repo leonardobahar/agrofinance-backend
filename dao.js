@@ -700,8 +700,8 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `transaksi` (`t_jumlah`,`t_id_kategori_transaksi`,`t_jenis`, `t_bpu_attachment`, `t_debit_card`, `t_status`, `t_bon_sementara`, `t_is_rutin`, `t_tangaal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_nomor_bukti_transaksi`, `t_file_bukti_transaksi`, `t_pembebanan_id`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-            this.mysqlConn.query(query, [transaksi.t_jumlah,transaksi.t_id_kategori_transaksi,transaksi.t_jenis,transaksi.t_bpu_attachment,transaksi.t_debit_card,transaksi.t_status,transaksi.t_bon_sementara,
+            const query="INSERT INTO `transaksi` (`t_jumlah`,`t_id_kategori_transaksi`,`t_jenis`, `t_bpu_attachment`, `t_debit_credit`, `t_status`, `t_bon_sementara`, `t_is_rutin`, `t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_nomor_bukti_transaksi`, `t_file_bukti_transaksi`, `t_pembebanan_id`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+            this.mysqlConn.query(query, [transaksi.t_jumlah,transaksi.t_id_kategori_transaksi,transaksi.t_jenis,transaksi.t_bpu_attachment,transaksi.t_debit_credit,transaksi.t_status,transaksi.t_bon_sementara,
                     transaksi.t_is_rutin,transaksi.t_tanggal_transaksi,transaksi.t_tanggal_modifikasi,transaksi.t_tanggal_realisasi,transaksi.t_nomor_bukti_transaksi,transaksi.t_file_bukti_transaksi,transaksi.t_pembebanan_id], (error,result)=>{
                 if(error){
                     reject(error)
