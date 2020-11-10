@@ -105,11 +105,14 @@ app.post("/api/karyawan/add",(req,res)=>{
                 error:ERROR_DUPLICATE_ENTRY
             })
         }
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
+
     })
 })
 
@@ -135,11 +138,19 @@ app.post("/api/karyawan/update", (req,res)=>{
             result:result
         })
     }).catch(error=>{
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
     })
 })
 
@@ -217,11 +228,19 @@ app.post("/api/perusahaan/add",(req,res)=>{
             result:result
         })
     }).catch(error=>{
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
     })
 })
 
@@ -244,11 +263,19 @@ app.post("/api/perusahaan/update", (req,res)=>{
             result:result
         })
     }).catch(error=>{
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
     })
 })
 
@@ -326,11 +353,19 @@ app.post("/api/pemebebanan/add",(req,res)=>{
             result:result
         })
     }).catch(error=>{
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
     })
 })
 
@@ -352,11 +387,19 @@ app.post("/api/pemebebanan/update", (req,res)=>{
             result:result
         })
     }).catch(error=>{
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
     })
 })
 
@@ -434,11 +477,19 @@ app.post("/api/kategori-transaksi/add",(req,res)=>{
             result:result
         })
     }).catch(error=>{
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
     })
 })
 
@@ -460,11 +511,19 @@ app.post("/api/kategori-transaksi/update", (req,res)=>{
             result:result
         })
     }).catch(error=>{
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
     })
 })
 
@@ -586,11 +645,19 @@ app.post("/api/transaksi/add",async(req,res)=>{
                 result:result
             })
         }).catch(error=>{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
+            if(error.code===ER_DUP_ENTRY){
+                res.status(500).send({
+                    success:false,
+                    error:ERROR_DUPLICATE_ENTRY
+                })
+            }
+            else{
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
+            }
         })
     })
 })
@@ -627,11 +694,19 @@ app.post("/api/transaksi/update", (req,res)=>{
             result:result
         })
     }).catch(error=>{
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
     })
 })
 
@@ -711,11 +786,19 @@ app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
             result:result
         })
     }).catch(err=>{
-        console.error(err)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
     })
 })
 
@@ -737,11 +820,19 @@ app.post("/api/karyawan-kerja-dimana/update", (req,res)=>{
             result:result
         })
     }).catch(err=>{
-        console.error(err)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
+        else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
     })
 })
 
