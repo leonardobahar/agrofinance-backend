@@ -787,7 +787,6 @@ app.get("/api/transaksi/retrieve",(req,res)=>{
 app.post("/api/transaksi/add",async(req,res)=>{
     const upload=multer({storage:storage, fileFilter:transaksiFilter}).single('attachment_transaksi')
 
-    console.log(req.file)
     upload(req,res,async (err)=>{
 
         if(typeof req.query.jumlah==='undefined' ||
@@ -823,19 +822,53 @@ app.post("/api/transaksi/add",async(req,res)=>{
         const transfer=new Transaksi(null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,req.file.filename,req.query.debit_credit,req.query.status,req.query.bon_sementara,req.query.is_rutin,
             req.query.tanggal_transaksi,req.query.tanggal_modifikasi,req.query.tanggal_realisasi,req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id)
 
-        dao.addTransaksi(transfer).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
+        dao.retrieveOneKategoriTransaksi(new Kategori_transaksi(req.query.id_kategori_transaksi,null)).then(result=>{
+            dao.retrieveOnePembebanan(new Pembebanan(req.query.pembebanan_id,null)).then(result=>{
+                dao.addTransaksi(transfer).then(result=>{
+                    res.status(200).send({
+                        success:true,
+                        result:result
+                    })
+                }).catch(error=>{
+                    if(error.code==='ER_DUP_ENTRY'){
+                        res.status(500).send({
+                            success:false,
+                            error:ERROR_DUPLICATE_ENTRY
+                        })
+                    }
+                    else{
+                        console.error(error)
+                        res.status(500).send({
+                            success:false,
+                            error:SOMETHING_WENT_WRONG
+                        })
+                    }
+                })
+            }).catch(error=>{
+                if(error===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:true,
+                        error:NO_SUCH_CONTENT
+                    })
+                }
+
+                else {
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
             })
         }).catch(error=>{
-            if(error.code==='ER_DUP_ENTRY'){
-                res.status(500).send({
-                    success:false,
-                    error:ERROR_DUPLICATE_ENTRY
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:true,
+                    error:NO_SUCH_CONTENT
                 })
             }
-            else{
+
+            else {
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -909,7 +942,6 @@ app.post("/api/transaksi/update", (req,res)=>{
             })
         }
     })
-
 })
 
 app.delete("/api/transaksi/delete", (req,res)=>{
@@ -956,7 +988,6 @@ app.delete("/api/transaksi/delete", (req,res)=>{
             })
         }
     })
-
 })
 
 app.get("/api/karyawan-kerja-dimana/retrieve",(req,res)=>{
@@ -1010,20 +1041,55 @@ app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
     }
 
     const kkd=new Karyawan_kerja_dimana(null,req.body.id_karyawan,req.body.id_perusahaan)
-    dao.addKaryawan_kerja_dimana(kkd).then(result=>{
-        res.status(200).send({
-            success:true,
-            result:result
+    dao.retrieveOneKaryawan(new Karyawan(req.body.id_karyawan,null,null)).then(result=>{
+        dao.retrieveOnePerusahaan(new Perusahaan(req.body.id_perusahaan)).then(result=>{
+            dao.addKaryawan_kerja_dimana(kkd).then(result=>{
+                res.status(200).send({
+                    success:true,
+                    result:result
+                })
+            }).catch(err=>{
+                if(err===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:true,
+                        error:NO_SUCH_CONTENT
+                    })
+                }
+
+                else {
+                    console.error(err)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
+            })
+        }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:true,
+                    error:NO_SUCH_CONTENT
+                })
+            }
+
+            else {
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
+            }
         })
-    }).catch(err=>{
-        if(err.code==='ER_DUP_ENTRY'){
-            res.status(500).send({
-                success:false,
-                error:ERROR_DUPLICATE_ENTRY
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:true,
+                error:NO_SUCH_CONTENT
             })
         }
-        else{
-            console.error(err)
+
+        else {
+            console.error(error)
             res.status(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
@@ -1084,7 +1150,7 @@ app.post("/api/karyawan-kerja-dimana/update", (req,res)=>{
 })
 
 app.delete("/api/karyawan-kerja-dimana/delete",(req,res)=>{
-    if(typeof req.query.id_karyawan==='undefined'){
+    if(typeof req.query.id_karyawan_kerja_dimana==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -1092,8 +1158,8 @@ app.delete("/api/karyawan-kerja-dimana/delete",(req,res)=>{
         return
     }
 
-    const kkd=new Karyawan_kerja_dimana(null,req.query.id_karyawan,null)
-    dao.retrieveOneKaryawanKerjaDimana(kkd).then(result=>{
+    const kkd=new Karyawan_kerja_dimana(req.query.id_karyawan_kerja_dimana,null,null)
+    dao.getKaryawanKerjaDimanaByID(kkd).then(result=>{
         dao.deleteKaryawan_kerja_dimana(kkd).then(result=>{
             res.status(200).send({
                 success:true,

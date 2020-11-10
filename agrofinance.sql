@@ -39,8 +39,6 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan` (
   `k_role` VARCHAR(45) NOT NULL,
   `k_masih_hidup` TINYINT(1) NULL);
 
-alter table karyawan modify k_nama_lengkap varchar(255) unique not null, modify k_nik varchar(255) not null unique;
-
 CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan_kerja_dimana` (
   `kkd_id_karyawan_kerja_dimana` INT(7) PRIMARY KEY AUTO_INCREMENT,
   `kkd_id_karyawan` INT(7) NOT NULL,

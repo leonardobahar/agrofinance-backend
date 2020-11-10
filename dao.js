@@ -581,6 +581,43 @@ export class Dao{
         })
     }
 
+    //By kkd_id_karyawan_kerja_dimana
+    getKaryawanKerjaDimanaByID(kerja){
+        return new Promise((resolve, reject)=>{
+            if(!kerja instanceof Karyawan_kerja_dimana){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd_id_karyawan=ka.k_id_karyawan "+
+                "LEFT OUTER JOIN perusahaan p ON kkd.kkd_id_perusahaan=p.p_id_perusahaan "+
+                "WHERE kkd.kkd_id_karyawan_kerja_dimana=?"
+            this.mysqlConn.query(query, kerja.kkd_id_karyawan_kerja_dimana, (error, result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                else if(result.length>0){
+                    const works=result.map(rowDataPacket=>{
+                        return{
+                            kkd_id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
+                            kkd_id_karyawan:rowDataPacket.kkd_id_karyawan,
+                            kkd_nama_lengkap:rowDataPacket.k_nama_lengkap,
+                            kkd_id_perusahaan:rowDataPacket.kkd_id_perusahaan,
+                            kkd_nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                        }
+                    })
+                    resolve(works)
+                }
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
     addKaryawan_kerja_dimana(kerja){
         return new Promise((resolve,reject)=>{
             if(!kerja instanceof Karyawan_kerja_dimana){
@@ -628,8 +665,8 @@ export class Dao{
                 return
             }
 
-            const query="DELETE FROM karyawan_kerja_dimana WHERE kkd_id_karyawan=?"
-            this.mysqlConn.query(query,kerja.kkd_id_karyawan,(error,result)=>{
+            const query="DELETE FROM karyawan_kerja_dimana WHERE kkd_id_karyawan_kerja_dimana=?"
+            this.mysqlConn.query(query,kerja.kkd_id_karyawan_kerja_dimana,(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -732,15 +769,20 @@ export class Dao{
     getTransaksiFile(transaksi){
         return new Promise((resolve,reject)=>{
             if(transaksi instanceof Transaksi){
-                const query="SELECT * FROM transaksi WHERE id=?"
-                this.mysqlConn.query(query,transaksi.id,(error,result)=>{
+                const query="SELECT t_bpu_attachment FROM transaksi WHERE t_id_transaksi=?"
+                this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
                     if(error){
                         reject(error)
                         return
                     }
 
-                    transaksi.id=result.insertId
-                    resolve(transaksi)
+                    else if(result.length>0){
+                        resolve(result[0].t_bpu_attachment)
+                    }
+
+                    else {
+                        reject(NO_SUCH_CONTENT)
+                    }
                 })
             }
         })
@@ -803,7 +845,7 @@ export class Dao{
                 }
 
                 transaksi.t_id_transaksi=result.t_id_transaksi
-                resolve(result)
+                resolve(transaksi)
             })
         })
     }
