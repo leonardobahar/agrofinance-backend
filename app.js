@@ -797,9 +797,6 @@ app.post("/api/transaksi/add",async(req,res)=>{
             typeof req.query.status==='undefined' ||
             typeof req.query.bon_sementara==='undefined' ||
             typeof req.query.is_rutin==='undefined' ||
-            typeof req.query.tanggal_transaksi==='undefined' ||
-            typeof req.query.tanggal_modifikasi==='undefined' ||
-            typeof req.query.tanggal_realisasi==='undefined' ||
             typeof req.query.nomor_bukti_transaksi==='undefined' ||
             typeof req.query.pembebanan_id==='undefined'){
             res.status(400).send({
@@ -820,7 +817,7 @@ app.post("/api/transaksi/add",async(req,res)=>{
         console.log(req.file.filename)
 
         const transfer=new Transaksi(null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,req.file.filename,req.query.debit_credit,req.query.status,req.query.bon_sementara,req.query.is_rutin,
-            req.query.tanggal_transaksi,req.query.tanggal_modifikasi,req.query.tanggal_realisasi,req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id)
+            'NOW()','NOW()','NOW()',req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id)
 
         dao.retrieveOneKategoriTransaksi(new Kategori_transaksi(req.query.id_kategori_transaksi,null)).then(result=>{
             dao.retrieveOnePembebanan(new Pembebanan(req.query.pembebanan_id,null)).then(result=>{
