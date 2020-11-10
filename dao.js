@@ -97,18 +97,24 @@ export class Dao{
                     return
                 }
 
-                let employees=[]
-                for(let i =0;i<result.length;i++){
-                    employees.push(new Karyawan(
-                        result[i].k_id_karyawan,
-                        result[i].k_nama_lengkap,
-                        result[i].k_posisi,
-                        result[i].k_nik,
-                        result[i].k_role,
-                        result[i].k_masih_hidup
-                    ))
+                else if(result.length>0){
+                    let employees=[]
+                    for(let i =0;i<result.length;i++){
+                        employees.push(new Karyawan(
+                            result[i].k_id_karyawan,
+                            result[i].k_nama_lengkap,
+                            result[i].k_posisi,
+                            result[i].k_nik,
+                            result[i].k_role,
+                            result[i].k_masih_hidup
+                        ))
+                    }
+                    resolve(employees)
                 }
-                resolve(employees)
+
+                else {
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
@@ -210,15 +216,21 @@ export class Dao{
                     return
                 }
 
-                let companies=[]
-                for(let i =0;i<result.length;i++){
-                    companies.push(new Perusahaan(
-                        result[i].p_id_perusahaan,
-                        result[i].p_nama_perusahaan,
-                        result[i].p_alamat
-                    ))
+                else if(result.length>0){
+                    let companies=[]
+                    for(let i =0;i<result.length;i++){
+                        companies.push(new Perusahaan(
+                            result[i].p_id_perusahaan,
+                            result[i].p_nama_perusahaan,
+                            result[i].p_alamat
+                        ))
+                    }
+                    resolve(companies)
                 }
-                resolve(companies)
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
@@ -318,14 +330,20 @@ export class Dao{
                     return
                 }
 
-                let beban=[]
-                for(let i =0;i<result.length;i++){
-                    beban.push(new Pembebanan(
-                        result[i].pbb_id,
-                        result[i].skema_pembebanan_json
-                    ))
+                else if(result.length>0){
+                    let beban=[]
+                    for(let i =0;i<result.length;i++){
+                        beban.push(new Pembebanan(
+                            result[i].pbb_id,
+                            result[i].skema_pembebanan_json
+                        ))
+                    }
+                    resolve(beban)
                 }
-                resolve(beban)
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
@@ -425,14 +443,20 @@ export class Dao{
                     return
                 }
 
-                let categories=[]
-                for(let i =0;i<result.length;i++){
-                    categories.push(new Kategori_transaksi(
-                        result[i].kt_id_kategori,
-                        result[i].kt_nama_kategori
-                    ))
+                else if(result.length>0){
+                    let categories=[]
+                    for(let i =0;i<result.length;i++){
+                        categories.push(new Kategori_transaksi(
+                            result[i].kt_id_kategori,
+                            result[i].kt_nama_kategori
+                        ))
+                    }
+                    resolve(categories)
                 }
-                resolve(categories)
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
@@ -537,16 +561,22 @@ export class Dao{
                     return
                 }
 
-                const works=result.map(rowDataPacket=>{
-                    return{
-                        kkd_id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
-                        kkd_id_karyawan:rowDataPacket.kkd_id_karyawan,
-                        kkd_nama_lengkap:rowDataPacket.k_nama_lengkap,
-                        kkd_id_perusahaan:rowDataPacket.kkd_id_perusahaan,
-                        kkd_nama_perusahaan:rowDataPacket.p_nama_perusahaan
-                    }
-                })
-                resolve(works)
+                else if(result.length>0){
+                    const works=result.map(rowDataPacket=>{
+                        return{
+                            kkd_id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
+                            kkd_id_karyawan:rowDataPacket.kkd_id_karyawan,
+                            kkd_nama_lengkap:rowDataPacket.k_nama_lengkap,
+                            kkd_id_perusahaan:rowDataPacket.kkd_id_perusahaan,
+                            kkd_nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                        }
+                    })
+                    resolve(works)
+                }
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
@@ -667,28 +697,34 @@ export class Dao{
                     return
                 }
 
-                const transaksi=result.map(rowDataPacket=>{
-                    return{
-                        id_transaksi:rowDataPacket.t_id_transaksi,
-                        jumlah:rowDataPacket.t_jumlah,
-                        id_kategori_transaksi:rowDataPacket.t_id_kategori_transaksi,
-                        nama_kategori:rowDataPacket.kt_nama_kategori,
-                        jenis:rowDataPacket.t_jenis,
-                        bpu_attachment:rowDataPacket.t_bpu_attachment,
-                        debit_card:rowDataPacket.t_debit_card,
-                        status:rowDataPacket.t_status,
-                        bon_sementara:rowDataPacket.t_bon_sementara,
-                        is_rutin:rowDataPacket.t_is_rutin,
-                        tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
-                        tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
-                        tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
-                        nomor_bukti_transaksi:rowDataPacket.t_nomor_bukti_transaksi,
-                        file_bukti_transaksi:rowDataPacket.t_file_bukti_transaksi,
-                        pembebanan_id:rowDataPacket.t_pembebanan_id,
-                        skema_pembebanan_json:rowDataPacket.skema_pembebanan_json
-                    }
-                })
-                resolve(transaksi)
+                else if(result.length>0){
+                    const transaksi=result.map(rowDataPacket=>{
+                        return{
+                            id_transaksi:rowDataPacket.t_id_transaksi,
+                            jumlah:rowDataPacket.t_jumlah,
+                            id_kategori_transaksi:rowDataPacket.t_id_kategori_transaksi,
+                            nama_kategori:rowDataPacket.kt_nama_kategori,
+                            jenis:rowDataPacket.t_jenis,
+                            bpu_attachment:rowDataPacket.t_bpu_attachment,
+                            debit_card:rowDataPacket.t_debit_card,
+                            status:rowDataPacket.t_status,
+                            bon_sementara:rowDataPacket.t_bon_sementara,
+                            is_rutin:rowDataPacket.t_is_rutin,
+                            tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                            tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
+                            tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                            nomor_bukti_transaksi:rowDataPacket.t_nomor_bukti_transaksi,
+                            file_bukti_transaksi:rowDataPacket.t_file_bukti_transaksi,
+                            pembebanan_id:rowDataPacket.t_pembebanan_id,
+                            skema_pembebanan_json:rowDataPacket.skema_pembebanan_json
+                        }
+                    })
+                    resolve(transaksi)
+                }
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
