@@ -693,6 +693,23 @@ export class Dao{
         })
     }
 
+    getTransaksiFile(transaksi){
+        return new Promise((resolve,reject)=>{
+            if(transaksi instanceof Transaksi){
+                const query="SELECT * FROM transaksi WHERE id=?"
+                this.mysqlConn.query(query,transaksi.id,(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }
+
+                    transaksi.id=result.insertId
+                    resolve(transaksi)
+                })
+            }
+        })
+    }
+
     addTransaksi(transaksi){
         return new Promise((resolve,reject)=>{
             if(!transaksi instanceof Transaksi){

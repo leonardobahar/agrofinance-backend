@@ -99,6 +99,12 @@ app.post("/api/karyawan/add",(req,res)=>{
             result:result
         })
     }).catch(error=>{
+        if(error.code===ER_DUP_ENTRY){
+            res.status(500).send({
+                success:false,
+                error:ERROR_DUPLICATE_ENTRY
+            })
+        }
         console.error(error)
         res.status(500).send({
             success:false,
@@ -640,6 +646,8 @@ app.delete("/api/transaksi/delete", (req,res)=>{
 
     const transfer=new Transaksi(req.query.id_transaksi,null,null,null,null,null,null,null,null,
         null, null,null,null,null,null)
+
+
 
     dao.deleteTransaksi(transfer).then(result=>{
         res.status(200).send({
