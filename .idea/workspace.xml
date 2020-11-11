@@ -76,7 +76,7 @@
       <workItem from="1604623490439" duration="7486000" />
       <workItem from="1604883406824" duration="18198000" />
       <workItem from="1604980356352" duration="26375000" />
-      <workItem from="1605056192026" duration="5986000" />
+      <workItem from="1605056192026" duration="10752000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1602810731600</created>
@@ -162,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605022402756</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Fixed all Transaksi Dates and added Retrieve Transaksi">
+      <created>1605083094152</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1605083094152</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,13 +187,14 @@
     <MESSAGE value="Added new Features to CRUD for all data:&#10;-Add&#10;-Check Add for Duplicates&#10;-Retrieve&#10;-Retrieve all data&#10;-Retrieve existing data&#10;-Retrieve non existing data &#10;-Update&#10;-Update existing data&#10;-Update non existing data&#10;-Delete&#10;-Delete existing data&#10;-Delete non existing data&#10;-Delete File feature for Transaksi" />
     <MESSAGE value="Fixed all existing bugs" />
     <MESSAGE value="Fixed all all Transaksi Dates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed all all Transaksi Dates" />
+    <MESSAGE value="Fixed all Transaksi Dates and added Retrieve Transaksi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed all Transaksi Dates and added Retrieve Transaksi" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="524" y="0" key="CommitChangelistDialog2" timestamp="1605022401641">
+    <state x="524" y="0" key="CommitChangelistDialog2" timestamp="1605083092634">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="524" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605022401641" />
+    <state x="524" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605083092634" />
     <state x="146" y="61" width="1228" height="687" key="DiffContextDialog" timestamp="1604884128092">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -195,14 +203,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="593" y="314" key="Github.CreateGistDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602832864085" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605022411784">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605083106228">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605022411784" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605022387263">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605083106228" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605083063136">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605022387263" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605083063136" />
     <state x="486" y="314" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1602811105361">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
