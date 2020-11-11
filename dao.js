@@ -680,7 +680,7 @@ export class Dao{
 
     retrieveTransaksi(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT t.t_id_transaksi, t.t_jumlah, t.t_id_kategori_transaksi, kt.kt_nama_kategori, t.t_jenis, t.t_bpu_attachment, t.t_debit_card, t.t_status, t.t_bon_sementara "+
+            const query="SELECT t.t_id_transaksi, t.t_jumlah, t.t_id_kategori_transaksi, kt.kt_nama_kategori, t.t_jenis, t.t_bpu_attachment, t.t_debit_credit, t.t_status, t.t_bon_sementara, "+
                 "t.t_is_rutin, t.t_tanggal_transaksi, t.t_tanggal_modifikasi, t.t_tanggal_realisasi, t.t_nomor_bukti_transaksi, t.t_file_bukti_transaksi, t.t_pembebanan_id, p.skema_pembebanan_json "+
                 "FROM transaksi t LEFT OUTER JOIN kategori_transaksi kt ON t.t_id_kategori_transaksi "+
                 "LEFT OUTER JOIN pembebanan p ON t.t_pembebanan_id=p.pbb_id "
@@ -723,7 +723,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT t.t_id_transaksi, t.t_jumlah, t.t_id_kategori_transaksi, kt.kt_nama_kategori, t.t_jenis, t.t_bpu_attachment, t.t_debit_card, t.t_status, t.t_bon_sementara "+
+            const query="SELECT t.t_id_transaksi, t.t_jumlah, t.t_id_kategori_transaksi, kt.kt_nama_kategori, t.t_jenis, t.t_bpu_attachment, t.t_debit_credit, t.t_status, t.t_bon_sementara, "+
                 "t.t_is_rutin, t.t_tanggal_transaksi, t.t_tanggal_modifikasi, t.t_tanggal_realisasi, t.t_nomor_bukti_transaksi, t.t_file_bukti_transaksi, t.t_pembebanan_id, p.skema_pembebanan_json "+
                 "FROM transaksi t LEFT OUTER JOIN kategori_transaksi kt ON t.t_id_kategori_transaksi "+
                 "LEFT OUTER JOIN pembebanan p ON t.t_pembebanan_id=p.pbb_id "+

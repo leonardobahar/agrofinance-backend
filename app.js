@@ -121,7 +121,6 @@ app.post("/api/karyawan/add",(req,res)=>{
                 error:SOMETHING_WENT_WRONG
             })
         }
-
     })
 })
 
