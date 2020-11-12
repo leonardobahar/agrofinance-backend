@@ -134,7 +134,7 @@ export class Dao{
                     return
                 }
 
-                karyawan.k_nama_lengkap=result.k_nama_lengkap
+                karyawan.k_id_karyawan=result.insertId
                 resolve(karyawan)
 
             })
@@ -250,7 +250,7 @@ export class Dao{
                     return
                 }
 
-                perusahaan.p_nama_perusahaan=result.p_nama_perusahaan
+                perusahaan.p_id_perusahaan=result.insertId
                 resolve(perusahaan)
             })
         })
@@ -363,7 +363,7 @@ export class Dao{
                     return
                 }
 
-                pembebanan.skema_pembebanan_json=result.skema_pembebanan_json
+                pembebanan.pbb_id=result.insertId
                 resolve(pembebanan)
             })
         })
@@ -476,7 +476,7 @@ export class Dao{
                     return
                 }
 
-                kategori.kt_nama_kategori=result.kt_nama_kategori
+                kategori.kt_id_kategori=result.insertId
                 resolve(kategori)
             })
         })
@@ -633,7 +633,7 @@ export class Dao{
                     return
                 }
 
-                kerja.kkd_id_karyawan=result.kkd_id_karyawan
+                kerja.kkd_id_karyawan_kerja_dimana=result.insertId
                 resolve(kerja)
             })
         })
@@ -681,7 +681,7 @@ export class Dao{
 
     retrieveTransaksi(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT t.t_id_transaksi, t.t_jumlah, t.t_id_kategori_transaksi, kt.kt_nama_kategori, t.t_jenis, t.t_bpu_attachment, t.t_debit_card, t.t_status, t.t_bon_sementara "+
+            const query="SELECT t.t_id_transaksi, t.t_jumlah, t.t_id_kategori_transaksi, kt.kt_nama_kategori, t.t_jenis, t.t_bpu_attachment, t.t_debit_credit, t.t_status, t.t_bon_sementara, "+
                 "t.t_is_rutin, t.t_tanggal_transaksi, t.t_tanggal_modifikasi, t.t_tanggal_realisasi, t.t_nomor_bukti_transaksi, t.t_file_bukti_transaksi, t.t_pembebanan_id, p.skema_pembebanan_json "+
                 "FROM transaksi t LEFT OUTER JOIN kategori_transaksi kt ON t.t_id_kategori_transaksi "+
                 "LEFT OUTER JOIN pembebanan p ON t.t_pembebanan_id=p.pbb_id "
@@ -724,7 +724,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT t.t_id_transaksi, t.t_jumlah, t.t_id_kategori_transaksi, kt.kt_nama_kategori, t.t_jenis, t.t_bpu_attachment, t.t_debit_card, t.t_status, t.t_bon_sementara "+
+            const query="SELECT t.t_id_transaksi, t.t_jumlah, t.t_id_kategori_transaksi, kt.kt_nama_kategori, t.t_jenis, t.t_bpu_attachment, t.t_debit_credit, t.t_status, t.t_bon_sementara, "+
                 "t.t_is_rutin, t.t_tanggal_transaksi, t.t_tanggal_modifikasi, t.t_tanggal_realisasi, t.t_nomor_bukti_transaksi, t.t_file_bukti_transaksi, t.t_pembebanan_id, p.skema_pembebanan_json "+
                 "FROM transaksi t LEFT OUTER JOIN kategori_transaksi kt ON t.t_id_kategori_transaksi "+
                 "LEFT OUTER JOIN pembebanan p ON t.t_pembebanan_id=p.pbb_id "+
@@ -796,15 +796,15 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `transaksi` (`t_jumlah`,`t_id_kategori_transaksi`,`t_jenis`, `t_bpu_attachment`, `t_debit_credit`, `t_status`, `t_bon_sementara`, `t_is_rutin`, `t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_nomor_bukti_transaksi`, `t_file_bukti_transaksi`, `t_pembebanan_id`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+            const query="INSERT INTO `transaksi` (`t_jumlah`,`t_id_kategori_transaksi`,`t_jenis`, `t_bpu_attachment`, `t_debit_credit`, `t_status`, `t_bon_sementara`, `t_is_rutin`, `t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_nomor_bukti_transaksi`, `t_file_bukti_transaksi`, `t_pembebanan_id`) VALUES(?,?,?,?,?,?,?,?,NOW(),NOW(),NOW(),?,?,?)"
             this.mysqlConn.query(query, [transaksi.t_jumlah,transaksi.t_id_kategori_transaksi,transaksi.t_jenis,transaksi.t_bpu_attachment,transaksi.t_debit_credit,transaksi.t_status,transaksi.t_bon_sementara,
-                    transaksi.t_is_rutin,transaksi.t_tanggal_transaksi,transaksi.t_tanggal_modifikasi,transaksi.t_tanggal_realisasi,transaksi.t_nomor_bukti_transaksi,transaksi.t_file_bukti_transaksi,transaksi.t_pembebanan_id], (error,result)=>{
+                    transaksi.t_is_rutin,transaksi.t_nomor_bukti_transaksi,transaksi.t_file_bukti_transaksi,transaksi.t_pembebanan_id], (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                transaksi.t_jumlah=result.t_jumlah
+                transaksi.t_id_transaksi=result.insertId
                 resolve(transaksi)
             })
         })
