@@ -46,7 +46,36 @@ const user = process.env.MY_SQL_USER
 const password = typeof process.env.MY_SQL_PASSWORD === 'undefined' ? '' : process.env.MY_SQL_PASSWORD
 const dbname = process.env.MY_SQL_DBNAME
 const dao = new Dao(host,user,password,dbname)
+const swaggerJsDoc=require('swagger-jsdoc')
+const swaggerUi=require('swagger-ui-express')
 
+//Extended: https://swagger.io/specification/#infoObject
+const swaggerOptions={
+    swaggerDefinition: {
+        info:{
+            title:"Agrofinance API",
+            description:"Agrofinance Project",
+            contact:{
+                name:"CodeDoc Software Solution"
+            },
+            servers:["http://localhost:8088"]
+        }
+    },
+    apis:["app.js"]
+}
+
+const swaggerDocs=swaggerJsDoc(swaggerOptions)
+app.use("/api-docs",swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+
+/**
+ * @swagger
+ * /karyawan:
+ * get:
+ *   description: Use to get all Karyawan(Employees) data
+ *   responses:
+ *   '200':
+ *     description: A successful response
+ */
 app.get("/api/karyawan/retrieve",(req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
@@ -885,9 +914,6 @@ app.post("/api/transaksi/update", (req,res)=>{
         typeof req.body.status==='undefined' ||
         typeof req.body.bon_sementara==='undefined' ||
         typeof req.body.is_rutin==='undefined' ||
-        typeof req.body.tanggal_transaksi==='undefined' ||
-        typeof req.body.tanggal_modifikasi==='undefined' ||
-        typeof req.body.tanggal_realisasi==='undefined' ||
         typeof req.body.nomor_bukti_transaksi==='undefined' ||
         typeof req.body.file_bukti_transaksi==='undefined' ||
         typeof req.body.pembebanan_id==='undefined'){
@@ -899,7 +925,7 @@ app.post("/api/transaksi/update", (req,res)=>{
     }
 
     const transfer=new Transaksi(req.body.id_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.body.bpu_attachment,req.body.debit_credit,req.body.status,req.body.bon_sementara,req.body.is_rutin,
-        req.body.tanggal_transaksi,req.body.tanggal_modifikasi,req.body.tanggal_realisasi,req.body.nomor_bukti_transaksi,req.body.file_bukti_transaksi,req.body.pembebanan_id)
+        'NOW','NOW','NOW',req.body.nomor_bukti_transaksi,req.body.file_bukti_transaksi,req.body.pembebanan_id)
 
     dao.retrieveOneTransaksi(transfer).then(result=>{
         dao.updateTransaksi(transfer).then(result=>{

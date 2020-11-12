@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi`(
     `t_tanggal_realisasi` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `t_is_rutin` TINYINT(1) NOT NULL DEFAULT 0,
     `t_status` VARCHAR(45) NOT NULL,
-    `t_bon_sementara` VARCHAR(45) NOT NULL,
+    `t_bon_sementara` VARCHAR(45) NOT NULL
 );
 
 /*
@@ -27,23 +27,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi`(
             status
             bon_sementara:
             detil: [{
-                jumlah:
-                id_kategori_transaksi
-                jenis:
-                bpu_attachment
-                debit_credit
-                nomor_bukti_transaksi
-                file_bukti_transaksi
-                pembebanan_id
-            },{
-                jumlah:
-                id_kategori_transaksi
-                jenis:
-                bpu_attachment
-                debit_credit
-                nomor_bukti_transaksi
-                file_bukti_transaksi
-                pembebanan_id
+
             }]
  */
 
@@ -59,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
   `td_file_bukti_transaksi` VARCHAR(45) NOT NULL,
   `td_pembebanan_id` INT(7) NOT NULL,
   FOREIGN KEY (`td_id_kategori_transaksi`) REFERENCES kategori_transaksi(`kt_id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`td_pembebanan_id`) REFERENCES pembebanan(`pbb_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`td_pembebanan_id`) REFERENCES pembebanan(`pbb_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`td_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE
   );
 

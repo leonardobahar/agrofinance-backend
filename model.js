@@ -40,21 +40,56 @@ export class Perusahaan{
 }
 
 export class Transaksi{
-    constructor(t_id_transaksi, t_jumlah, t_id_kategori_transaksi, t_jenis, t_bpu_attachment, t_debit_credit, t_status, t_bon_sementara, t_is_rutin, t_tanggal_transaksi, t_tanggal_modifikasi, t_tanggal_realisasi, t_nomor_bukti_transaksi, t_file_bukti_transaksi, t_pembebanan_id){
+    constructor(t_id_transaksi, t_tanggal_transaksi, t_tanggal_modifikasi, t_tanggal_realisasi, t_is_rutin,  t_status, t_bon_sementara){
         this.t_id_transaksi=t_id_transaksi
-        this.t_jumlah=t_jumlah
-        this.t_id_kategori_transaksi=t_id_kategori_transaksi
-        this.t_jenis=t_jenis
-        this.t_bpu_attachment=t_bpu_attachment
-        this.t_debit_credit=t_debit_credit
-        this.t_status=t_status
-        this.t_bon_sementara=t_bon_sementara
-        this.t_is_rutin=t_is_rutin
         this.t_tanggal_transaksi=t_tanggal_transaksi
         this.t_tanggal_modifikasi=t_tanggal_modifikasi
         this.t_tanggal_realisasi=t_tanggal_realisasi
-        this.t_nomor_bukti_transaksi=t_nomor_bukti_transaksi
-        this.t_file_bukti_transaksi=t_file_bukti_transaksi
-        this.t_pembebanan_id=t_pembebanan_id
+        this.t_is_rutin=t_is_rutin
+        this.t_status=t_status
+        this.t_bon_sementara=t_bon_sementara
     }
 }
+
+export class Detil_transaksi{
+    constructor(td_id_detil_transaksi, td_id_transaksi, td_jumlah, td_id_kategori_transaksi, td_jenis, td_bpu_attachment, td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, td_pembebanan_id) {
+        this.td_id_detil_transaksi=td_id_detil_transaksi
+        this.td_id_transaksi=td_id_transaksi
+        this.td_jumlah=td_jumlah
+        this.td_id_kategori_transaksi=td_id_kategori_transaksi
+        this.td_jenis=td_jenis
+        this.td_bpu_attachment=td_bpu_attachment
+        this.td_debit_credit=td_debit_credit
+        this.td_nomor_bukti_transaksi=td_nomor_bukti_transaksi
+        this.td_file_bukti_transaksi=td_file_bukti_transaksi
+        this.td_pembebanan_id=td_pembebanan_id
+    }
+}
+
+/*
+{
+            is_rutin
+            status
+            bon_sementara:
+            detil: [{
+                jumlah:
+                id_kategori_transaksi
+                jenis:
+                bpu_attachment
+                debit_credit
+                nomor_bukti_transaksi
+                file_bukti_transaksi
+                pembebanan_id
+            },{
+                jumlah:
+
+                id_kategori_transaksi
+                jenis:
+                bpu_attachment
+                debit_credit
+                nomor_bukti_transaksi
+                file_bukti_transaksi
+                pembebanan_id
+            }]
+}
+ */
