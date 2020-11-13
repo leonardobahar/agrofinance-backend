@@ -11,7 +11,15 @@ import {
     SOMETHING_WENT_WRONG,
     NO_SUCH_CONTENT
 } from "./strings";
-import {Karyawan,Karyawan_kerja_dimana,Kategori_transaksi,Pembebanan,Perusahaan,Transaksi} from "./model";
+import {
+    Detil_transaksi,
+    Karyawan,
+    Karyawan_kerja_dimana,
+    Kategori_transaksi,
+    Pembebanan,
+    Perusahaan,
+    Transaksi
+} from "./model";
 import multer from 'multer'
 import path from 'path'
 
@@ -193,7 +201,7 @@ app.post("/api/karyawan/update", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -235,7 +243,7 @@ app.delete("/api/karyawan/delete", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -361,7 +369,7 @@ app.post("/api/perusahaan/update", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -403,7 +411,7 @@ app.delete("/api/perusahaan/delete", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -527,7 +535,7 @@ app.post("/api/pemebebanan/update", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -569,7 +577,7 @@ app.delete("/api/pemebebanan/delete", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -609,7 +617,7 @@ app.get("/api/kategori-transaksi/retrieve",(req,res)=>{
         }).catch(error=>{
             if(error===NO_SUCH_CONTENT){
                 res.status(204).send({
-                    success:true,
+                    success:false,
                     error:NO_SUCH_CONTENT
                 })
             }
@@ -694,7 +702,7 @@ app.post("/api/kategori-transaksi/update", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -738,7 +746,7 @@ app.delete("/api/kategori-transaksi/delete", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -785,8 +793,7 @@ app.get("/api/transaksi/retrieve",(req,res)=>{
             })
         })
     }else{
-        const transfer=new Transaksi(req.query.id_transaksi,null,null,null,null,null,null,null,null,
-            null, null,null,null,null,null)
+        const transfer=new Transaksi(req.query.id_transaksi,null,null,null,null,null,null)
 
         dao.retrieveOneTransaksi(transfer).then(result=>{
             res.status(200).send({
@@ -796,7 +803,7 @@ app.get("/api/transaksi/retrieve",(req,res)=>{
         }).catch(error=>{
             if(error===NO_SUCH_CONTENT){
                 res.status(204).send({
-                    success:true,
+                    success:false,
                     error:NO_SUCH_CONTENT
                 })
             }
@@ -812,19 +819,18 @@ app.get("/api/transaksi/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/transaksi/add",async(req,res)=>{
+app.post("/api/transaksi/add",async(req,res)=> {
     const upload=multer({storage:storage, fileFilter:transaksiFilter}).single('attachment_transaksi')
 
-    upload(req,res,async (err)=>{
+    upload(req,res, async (error)=>{
 
-        if(typeof req.query.jumlah==='undefined' ||
+        if(typeof req.query.is_rutin==='undefined' ||
+            typeof req.query.bon_sementara==='undefined'||
+            typeof req.query.jumlah==='undefined' ||
             typeof req.query.id_kategori_transaksi==='undefined' ||
             typeof req.query.jenis==='undefined' ||
             typeof req.file.filename==='undefined' ||
             typeof req.query.debit_credit==='undefined' ||
-            typeof req.query.status==='undefined' ||
-            typeof req.query.bon_sementara==='undefined' ||
-            typeof req.query.is_rutin==='undefined' ||
             typeof req.query.nomor_bukti_transaksi==='undefined' ||
             typeof req.query.pembebanan_id==='undefined'){
             res.status(400).send({
@@ -834,50 +840,40 @@ app.post("/api/transaksi/add",async(req,res)=>{
             return
         }
 
-        if(err instanceof multer.MulterError){
-            return res.send(err)
+        if(error instanceof multer.MulterError){
+            return res.send(error)
         }
 
-        else if(err){
-            return res.send(err)
+        else if(error){
+            return res.send(error)
         }
 
         console.log(req.file.filename)
 
-        const transfer=new Transaksi(null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,req.file.filename,req.query.debit_credit,req.query.status,req.query.bon_sementara,req.query.is_rutin,
-            'NOW','NOW','NOW',req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id)
+        const transfer=new Transaksi(null,'NOW','NOW','NOW',req.query.is_rutin,'Entry di buat',req.query.bon_sementara,
+            '0',null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,req.file.filename,req.query.debit_credit,req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id,'0')
 
-        dao.retrieveOneKategoriTransaksi(new Kategori_transaksi(req.query.id_kategori_transaksi,null)).then(result=>{
-            dao.retrieveOnePembebanan(new Pembebanan(req.query.pembebanan_id,null)).then(result=>{
+        dao.retrieveOneKategoriTransaksi(new Kategori_transaksi(req.query.id_kategori_transaksi)).then(result=>{
+            dao.retrieveOnePembebanan(new Pembebanan(req.query.pembebanan_id)).then(result=>{
                 dao.addTransaksi(transfer).then(result=>{
                     res.status(200).send({
                         success:true,
                         result:result
                     })
                 }).catch(error=>{
-                    if(error.code==='ER_DUP_ENTRY'){
-                        res.status(500).send({
-                            success:false,
-                            error:ERROR_DUPLICATE_ENTRY
-                        })
-                    }
-                    else{
-                        console.error(error)
-                        res.status(500).send({
-                            success:false,
-                            error:SOMETHING_WENT_WRONG
-                        })
-                    }
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
                 })
             }).catch(error=>{
                 if(error===NO_SUCH_CONTENT){
                     res.status(204).send({
-                        success:true,
+                        success:false,
                         error:NO_SUCH_CONTENT
                     })
-                }
-
-                else {
+                }else {
                     console.error(error)
                     res.status(500).send({
                         success:false,
@@ -888,12 +884,10 @@ app.post("/api/transaksi/add",async(req,res)=>{
         }).catch(error=>{
             if(error===NO_SUCH_CONTENT){
                 res.status(204).send({
-                    success:true,
+                    success:false,
                     error:NO_SUCH_CONTENT
                 })
-            }
-
-            else {
+            } else {
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -905,18 +899,17 @@ app.post("/api/transaksi/add",async(req,res)=>{
 })
 
 app.post("/api/transaksi/update", (req,res)=>{
-    if(typeof req.body.id_transaksi==='undefined' ||
-        typeof req.body.jumlah==='undefined' ||
-        typeof req.body.id_kategori_transaksi==='undefined' ||
-        typeof req.body.jenis==='undefined' ||
-        typeof req.body.bpu_attachment==='undefined' ||
-        typeof req.body.debit_credit==='undefined' ||
-        typeof req.body.status==='undefined' ||
-        typeof req.body.bon_sementara==='undefined' ||
-        typeof req.body.is_rutin==='undefined' ||
-        typeof req.body.nomor_bukti_transaksi==='undefined' ||
-        typeof req.body.file_bukti_transaksi==='undefined' ||
-        typeof req.body.pembebanan_id==='undefined'){
+    const upload=multer({storage:storage, fileFilter:transaksiFilter}).single('attachment_transaksi')
+
+    if(typeof req.query.is_rutin==='undefined' ||
+        typeof req.query.bon_sementara==='undefined'||
+        typeof req.query.jumlah==='undefined' ||
+        typeof req.query.id_kategori_transaksi==='undefined' ||
+        typeof req.query.jenis==='undefined' ||
+        typeof req.file.filename==='undefined' ||
+        typeof req.query.debit_credit==='undefined' ||
+        typeof req.query.nomor_bukti_transaksi==='undefined' ||
+        typeof req.query.pembebanan_id==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -951,7 +944,7 @@ app.post("/api/transaksi/update", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -997,7 +990,7 @@ app.delete("/api/transaksi/delete", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -1036,7 +1029,7 @@ app.get("/api/karyawan-kerja-dimana/retrieve",(req,res)=>{
         }).catch(err=>{
             if(err===NO_SUCH_CONTENT){
                 res.status(204).send({
-                    success:true,
+                    success:false,
                     error:NO_SUCH_CONTENT
                 })
             }
@@ -1073,7 +1066,7 @@ app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
             }).catch(err=>{
                 if(err===NO_SUCH_CONTENT){
                     res.status(204).send({
-                        success:true,
+                        success:false,
                         error:NO_SUCH_CONTENT
                     })
                 }
@@ -1089,7 +1082,7 @@ app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
         }).catch(error=>{
             if(error===NO_SUCH_CONTENT){
                 res.status(204).send({
-                    success:true,
+                    success:false,
                     error:NO_SUCH_CONTENT
                 })
             }
@@ -1105,7 +1098,7 @@ app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -1156,7 +1149,7 @@ app.post("/api/karyawan-kerja-dimana/update", (req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }
@@ -1197,7 +1190,7 @@ app.delete("/api/karyawan-kerja-dimana/delete",(req,res)=>{
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
-                success:true,
+                success:false,
                 error:NO_SUCH_CONTENT
             })
         }

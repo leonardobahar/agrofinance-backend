@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +78,8 @@
       <workItem from="1604883406824" duration="18198000" />
       <workItem from="1604980356352" duration="26375000" />
       <workItem from="1605056192026" duration="11457000" />
-      <workItem from="1605142899884" duration="17110000" />
+      <workItem from="1605142899884" duration="17475000" />
+      <workItem from="1605229167369" duration="29707000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1602810731600</created>
@@ -181,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605102547591</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fixed a few bugs. Started making crud for Detil_Transaksi. &#10;Both Transaksi and Detil Transaksi in both dao.js and app.js are still in progress.">
+      <created>1605196209400</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1605196209400</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,13 +206,15 @@
     <MESSAGE value="Fixed all all Transaksi Dates" />
     <MESSAGE value="Fixed all Transaksi Dates and added Retrieve Transaksi" />
     <MESSAGE value="Finalized all Transaksi dates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finalized all Transaksi dates" />
+    <MESSAGE value="Fixed a few bugs. Started making crud for Detil_Transaksi" />
+    <MESSAGE value="Fixed a few bugs. Started making crud for Detil_Transaksi. &#10;Both Transaksi and Detil Transaksi in both dao.js and app.js are still in progress." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a few bugs. Started making crud for Detil_Transaksi. &#10;Both Transaksi and Detil Transaksi in both dao.js and app.js are still in progress." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="524" y="0" key="CommitChangelistDialog2" timestamp="1605102546077">
+    <state x="524" y="0" key="CommitChangelistDialog2" timestamp="1605196208211">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="524" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605102546077" />
+    <state x="524" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605196208211" />
     <state x="146" y="61" width="1228" height="687" key="DiffContextDialog" timestamp="1605196075030">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -220,14 +227,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="65" key="MergeDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605195854283" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605102554371">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605196268483">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605102554371" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605196074997">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605196268483" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605230978089">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605196074997" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605230978089" />
     <state x="486" y="314" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1602811105361">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -40,7 +40,8 @@ export class Perusahaan{
 }
 
 export class Transaksi{
-    constructor(t_id_transaksi, t_tanggal_transaksi, t_tanggal_modifikasi, t_tanggal_realisasi, t_is_rutin,  t_status, t_bon_sementara){
+    constructor(t_id_transaksi, t_tanggal_transaksi, t_tanggal_modifikasi, t_tanggal_realisasi, t_is_rutin,  t_status, t_bon_sementara, t_is_deleted,
+                td_id_detil_transaksi, td_jumlah, td_id_kategori_transaksi, td_jenis, td_bpu_attachment, td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, td_pembebanan_id, td_is_deleted){
         this.t_id_transaksi=t_id_transaksi
         this.t_tanggal_transaksi=t_tanggal_transaksi
         this.t_tanggal_modifikasi=t_tanggal_modifikasi
@@ -48,13 +49,8 @@ export class Transaksi{
         this.t_is_rutin=t_is_rutin
         this.t_status=t_status
         this.t_bon_sementara=t_bon_sementara
-    }
-}
-
-export class Detil_transaksi{
-    constructor(td_id_detil_transaksi, td_id_transaksi, td_jumlah, td_id_kategori_transaksi, td_jenis, td_bpu_attachment, td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, td_pembebanan_id) {
+        this.t_is_deleted=t_is_deleted
         this.td_id_detil_transaksi=td_id_detil_transaksi
-        this.td_id_transaksi=td_id_transaksi
         this.td_jumlah=td_jumlah
         this.td_id_kategori_transaksi=td_id_kategori_transaksi
         this.td_jenis=td_jenis
@@ -63,6 +59,7 @@ export class Detil_transaksi{
         this.td_nomor_bukti_transaksi=td_nomor_bukti_transaksi
         this.td_file_bukti_transaksi=td_file_bukti_transaksi
         this.td_pembebanan_id=td_pembebanan_id
+        this.td_is_deleted=td_is_deleted
     }
 }
 

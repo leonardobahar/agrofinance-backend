@@ -689,26 +689,25 @@ export class Dao{
 
     retrieveTransaksi(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM transaksi"
+            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_jenis, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.td_pembebanan_id, pbb.skema_pembebanan_json "+
+                "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
+                "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori "+
+                "LEFT OUTER JOIN pembebanan p ON dt.td_pembebanan_id=p.pbb_id "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                let transaksi=[]
-                for(let i=0; i<result.length; i++){
-                    transaksi.push(new Transaksi(
-                        result[i].t_id_transaksi,
-                        result[i].t_tanggal_transaksi,
-                        result[i].t_tanggal_modifikasi,
-                        result[i].t_tanggal_realisasi,
-                        result[i].t_is_rutin,
-                        result[i].t_status,
-                        result[i].t_bon_sementara
-                    ))
-                }
-                resolve(transaksi)
+                const transaksi=result.map(rowDataPacket=>{
+                    return{
+                        t_tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                        t_tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
+                        t_tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                        t_is_rutin:rowDataPacket.t_is_rutin,
+                        t_status:rowDataPacket.t_status
+                    }
+                })
             })
         })
     }
@@ -753,21 +752,19 @@ export class Dao{
     getTransaksiFile(transaksi){
         return new Promise((resolve,reject)=>{
             if(transaksi instanceof Transaksi){
-                const query="SELECT t_bpu_attachment FROM transaksi WHERE t_id_transaksi=?"
+                const query="SELECT td_bpu_attachment FROM detil_transaksi WHERE td_id_transaksi=?"
                 this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
                     if(error){
                         reject(error)
                         return
-                    }
-
-                    else if(result.length>0){
-                        resolve(result[0].t_bpu_attachment)
-                    }
-
-                    else {
+                    } else if(result.length>0){
+                        resolve(result[0].td_bpu_attachment)
+                    } else {
                         reject(NO_SUCH_CONTENT)
                     }
                 })
+            }else{
+                reject(MISMATCH_OBJ_TYPE)
             }
         })
     }
@@ -779,15 +776,25 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`) VALUES(NOW(),NOW(),NOW(),?,?,?)"
-            this.mysqlConn.query(query, [transaksi.t_is_rutin,transaksi.t_status,transaksi.t_bon_sementara], (error,result)=>{
+            const query="INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_is_deleted`) VALUES(NOW(),NOW(),NOW(),?,'Entry di buat',?,'0')"
+            this.mysqlConn.query(query, [transaksi.t_is_rutin,transaksi.t_bon_sementara], (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
                 transaksi.t_id_transaksi=result.insertId
-                resolve(transaksi)
+                const query="INSERT INTO `detil_transaksi` (`td_id_transaksi`, `td_jumlah`, `td_id_kategori_transaksi`, `td_jenis`, `td_bpu_attachment`, `td_debit_credit`, `td_nomor_bukti_transaksi`, `td_file_bukti_transaksi`, `td_pembebanan_id`, `td_is_deleted`) "+
+                    "VALUES (?,?,?,?,?,?,?,'BPU',?,'0')"
+                this.mysqlConn.query(query,[transaksi.t_id_transaksi,transaksi.td_jumlah, transaksi.td_id_kategori_transaksi, transaksi.td_jenis, transaksi.td_bpu_attachment, transaksi.td_debit_credit, transaksi.td_nomor_bukti_transaksi, transaksi.td_pembebanan_id],(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }
+
+                    transaksi.td_id_detil_transaksi=result.insertId
+                    resolve(transaksi)
+                })
             })
         })
     }
@@ -819,8 +826,9 @@ export class Dao{
                 return
             }
 
-            const query="DELETE FROM transaksi WHERE t_id_transaksi=?"
-            this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
+            const query="UPDATE transaksi SET t_is_deleted=1 WHERE t_id_transaksi=?; "+
+                "UPDATE detil_transaksi SET td_is_deleted=1 WHERE td_id_transaksi=?"
+            this.mysqlConn.query(query,[transaksi.t_id_transaksi,transaksi.t_id_transaksi],(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -829,125 +837,6 @@ export class Dao{
                 transaksi.t_id_transaksi=result.t_id_transaksi
                 resolve(transaksi)
             })
-        })
-    }
-
-    retrieveDetilTransaksi(){
-        return new Promise((resolve,reject)=>{
-            const query="SELECT dt.td_id_detil_transaksi, dt.td_id_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_jenis, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.td_pembebanan_id, pbb.skema_pembebanan_json "+
-                "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
-                "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori "+
-                "LEFT OUTER JOIN pembebanan p ON dt.td_pembebanan_id=p.pbb_id "
-            this.mysqlConn.query(query,(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
-
-                const detil=result.map(rowDataPacket=>{
-                    return{
-                        td_id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
-                        td_id_transaksi:rowDataPacket.td_id_transaksi,
-                        t_tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
-                        t_tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
-                        t_tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
-                        t_is_rutin:rowDataPacket.t_is_rutin,
-                        t_status:rowDataPacket.t_status,
-                        t_bon_sementara:rowDataPacket.t_bon_sementara,
-                        td_jumlah:rowDataPacket.td_jumlah,
-                        td_id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
-                        kt_nama_kategori:rowDataPacket.kt_nama_kategori,
-                        td_jenis:rowDataPacket.td_jenis,
-                        td_bpu_attachment:rowDataPacket.td_bpu_attachment,
-                        td_debit_credit:rowDataPacket.td_debit_credit,
-                        td_nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
-                        td_file_bukti_transaksi:rowDataPacket.td_file_bukti_transaksi,
-                        td_pembebanan_id:rowDataPacket.td_pembebanan_id,
-                        skema_pembebanan_json:rowDataPacket.skema_pembebanan_json
-                    }
-                })
-                resolve(detil)
-            })
-        })
-    }
-
-    retrieveOneDetilTransaksi(detil){
-        return new Promise((resolve,reject)=>{
-            if(!detil instanceof Detil_transaksi){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="SELECT dt.td_id_detil_transaksi, dt.td_id_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_jenis, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.td_pembebanan_id, pbb.skema_pembebanan_json "+
-                "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
-                "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori "+
-                "LEFT OUTER JOIN pembebanan p ON dt.td_pembebanan_id=p.pbb_id "+
-                "WHERE dt.td_id_transaksi=? "
-            this.mysqlConn.query(query,detil.td_id_transaksi,(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                } else if(result.length>0){
-                    const detil=result.map(rowDataPacket=>{
-                        return{
-                            td_id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
-                            td_id_transaksi:rowDataPacket.td_id_transaksi,
-                            t_tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
-                            t_tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
-                            t_tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
-                            t_is_rutin:rowDataPacket.t_is_rutin,
-                            t_status:rowDataPacket.t_status,
-                            t_bon_sementara:rowDataPacket.t_bon_sementara,
-                            td_jumlah:rowDataPacket.td_jumlah,
-                            td_id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
-                            kt_nama_kategori:rowDataPacket.kt_nama_kategori,
-                            td_jenis:rowDataPacket.td_jenis,
-                            td_bpu_attachment:rowDataPacket.td_bpu_attachment,
-                            td_debit_credit:rowDataPacket.td_debit_credit,
-                            td_nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
-                            td_file_bukti_transaksi:rowDataPacket.td_file_bukti_transaksi,
-                            td_pembebanan_id:rowDataPacket.td_pembebanan_id,
-                            skema_pembebanan_json:rowDataPacket.skema_pembebanan_json
-                        }
-                    })
-                    resolve(detil)
-                } else{
-                    reject(NO_SUCH_CONTENT)
-                }
-            })
-        })
-    }
-
-    addDetilTransaksi(detil){
-        return new Promise((resolve,reject)=>{
-            if(!detil instanceof Detil_transaksi){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="INSERT INTO `detil_transaksi` (`td_id_transaksi`, `td_jumlah`, `td_id_kategori_transaksi`, `td_jenis`, `td_bpu_attachment`, `td_debit_credit`, `td_nomor_bukti_transaksi`, `td_file_bukti_transaksi`, `td_pembebanan_id`) "+
-                "VALUES (?,?,?,?,?,?,?,'BPU',?)"
-            this.mysqlConn.query(query,[detil.td_id_transaksi, detil.td_jumlah, detil.td_id_kategori_transaksi, detil.td_jenis, detil.td_bpu_attachment, detil.td_debit_credit, detil.td_nomor_bukti_transaksi, detil.td_pembebanan_id],(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
-
-                detil.td_id_detil_transaksi=result.insertId
-                resolve(detil)
-            })
-        })
-    }
-
-    //still in progress
-    updateDetilTransaksi(detil){
-        return new Promise((resolve,reject)=>{
-            if(!detil instanceof Detil_transaksi){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query=""
         })
     }
 }
