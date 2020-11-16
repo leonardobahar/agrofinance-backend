@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605529315461</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Removed unnecessary remark from .sql file">
+      <created>1605530221808</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1605530221808</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +244,8 @@
     <MESSAGE value="Fixed a few bugs. Started making crud for Detil_Transaksi. &#10;Both Transaksi and Detil Transaksi in both dao.js and app.js are still in progress." />
     <MESSAGE value="Added new features for transaksi to add and delete from detil_transaksi. Retireve and Update endpoints are still in progress" />
     <MESSAGE value="Working on Add Transaksi. CRUD for rekening_perusahaan and transaksi_rekening are still in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on Add Transaksi. CRUD for rekening_perusahaan and transaksi_rekening are still in progress" />
+    <MESSAGE value="Removed unnecessary remark from .sql file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary remark from .sql file" />
   </component>
   <component name="WindowStateProjectService">
     <state x="167" y="0" key="CommitChangelistDialog2" timestamp="1605529312486">
