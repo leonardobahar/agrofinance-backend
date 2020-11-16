@@ -1069,14 +1069,7 @@ app.post("/api/transaksi/update", (req,res)=>{
     const upload=multer({storage:storage, fileFilter:transaksiFilter}).single('attachment_transaksi')
 
     if(typeof req.query.is_rutin==='undefined' ||
-        typeof req.query.bon_sementara==='undefined'||
-        typeof req.query.jumlah==='undefined' ||
-        typeof req.query.id_kategori_transaksi==='undefined' ||
-        typeof req.query.jenis==='undefined' ||
-        typeof req.file.filename==='undefined' ||
-        typeof req.query.debit_credit==='undefined' ||
-        typeof req.query.nomor_bukti_transaksi==='undefined' ||
-        typeof req.query.pembebanan_id==='undefined'){
+        typeof req.query.bon_sementara==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
