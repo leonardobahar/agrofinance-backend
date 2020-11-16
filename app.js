@@ -924,7 +924,6 @@ app.post("/api/transaksi/add",async(req,res)=> {
             typeof req.query.jumlah==='undefined' ||
             typeof req.query.id_kategori_transaksi==='undefined' ||
             typeof req.query.jenis==='undefined' ||
-            typeof req.file.filename==='undefined' ||
             typeof req.query.debit_credit==='undefined' ||
             typeof req.query.nomor_bukti_transaksi==='undefined' ||
             typeof req.query.pembebanan_id==='undefined'){
@@ -935,32 +934,38 @@ app.post("/api/transaksi/add",async(req,res)=> {
             return
         }
 
-        if(error instanceof multer.MulterError){
-            return res.send(error)
-        }
+        if (typeof req.file.filename==='undefined'){
 
-        else if(error){
-            return res.send(error)
-        }
+            const transfer=new Transaksi(null,'NOW','NOW','NULL',req.query.is_rutin,'Entry di buat',req.query.bon_sementara,
+                '0',null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,null,req.query.debit_credit,req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id,'0')
 
-        console.log(req.file.filename)
-
-        const transfer=new Transaksi(null,'NOW','NOW','NULL',req.query.is_rutin,'Entry di buat',req.query.bon_sementara,
-            '0',null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,req.file.filename,req.query.debit_credit,req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id,'0')
-
-        dao.retrieveOneKategoriTransaksi(new Kategori_transaksi(req.query.id_kategori_transaksi)).then(result=>{
-            dao.retrieveOnePembebanan(new Pembebanan(req.query.pembebanan_id)).then(result=>{
-                dao.addTransaksi(transfer).then(result=>{
-                    res.status(200).send({
-                        success:true,
-                        result:result
+            dao.retrieveOneKategoriTransaksi(new Kategori_transaksi(req.query.id_kategori_transaksi)).then(result=>{
+                dao.retrieveOnePembebanan(new Pembebanan(req.query.pembebanan_id)).then(result=>{
+                    dao.addTransaksi(transfer).then(result=>{
+                        res.status(200).send({
+                            success:true,
+                            result:result
+                        })
+                    }).catch(error=>{
+                        console.error(error)
+                        res.status(500).send({
+                            success:false,
+                            error:SOMETHING_WENT_WRONG
+                        })
                     })
                 }).catch(error=>{
-                    console.error(error)
-                    res.status(500).send({
-                        success:false,
-                        error:SOMETHING_WENT_WRONG
-                    })
+                    if(error===NO_SUCH_CONTENT){
+                        res.status(204).send({
+                            success:false,
+                            error:NO_SUCH_CONTENT
+                        })
+                    }else {
+                        console.error(error)
+                        res.status(500).send({
+                            success:false,
+                            error:SOMETHING_WENT_WRONG
+                        })
+                    }
                 })
             }).catch(error=>{
                 if(error===NO_SUCH_CONTENT){
@@ -968,7 +973,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
                         success:false,
                         error:NO_SUCH_CONTENT
                     })
-                }else {
+                } else {
                     console.error(error)
                     res.status(500).send({
                         success:false,
@@ -976,20 +981,63 @@ app.post("/api/transaksi/add",async(req,res)=> {
                     })
                 }
             })
-        }).catch(error=>{
-            if(error===NO_SUCH_CONTENT){
-                res.status(204).send({
-                    success:false,
-                    error:NO_SUCH_CONTENT
-                })
-            } else {
-                console.error(error)
-                res.status(500).send({
-                    success:false,
-                    error:SOMETHING_WENT_WRONG
-                })
+        }else{
+            if(error instanceof multer.MulterError){
+                return res.send(error)
             }
-        })
+
+            else if(error){
+                return res.send(error)
+            }
+
+            console.log(req.file.filename)
+
+            const transfer=new Transaksi(null,'NOW','NOW','NULL',req.query.is_rutin,'Entry di buat',req.query.bon_sementara,
+                '0',null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,req.file.filename,req.query.debit_credit,req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id,'0')
+
+            dao.retrieveOneKategoriTransaksi(new Kategori_transaksi(req.query.id_kategori_transaksi)).then(result=>{
+                dao.retrieveOnePembebanan(new Pembebanan(req.query.pembebanan_id)).then(result=>{
+                    dao.addTransaksi(transfer).then(result=>{
+                        res.status(200).send({
+                            success:true,
+                            result:result
+                        })
+                    }).catch(error=>{
+                        console.error(error)
+                        res.status(500).send({
+                            success:false,
+                            error:SOMETHING_WENT_WRONG
+                        })
+                    })
+                }).catch(error=>{
+                    if(error===NO_SUCH_CONTENT){
+                        res.status(204).send({
+                            success:false,
+                            error:NO_SUCH_CONTENT
+                        })
+                    }else {
+                        console.error(error)
+                        res.status(500).send({
+                            success:false,
+                            error:SOMETHING_WENT_WRONG
+                        })
+                    }
+                })
+            }).catch(error=>{
+                if(error===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:false,
+                        error:NO_SUCH_CONTENT
+                    })
+                } else {
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
+            })
+        }
     })
 })
 
