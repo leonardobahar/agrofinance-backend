@@ -15,8 +15,8 @@ import {
     Karyawan_kerja_dimana,
     Kategori_transaksi,
     Pembebanan,
-    Perusahaan,
-    Transaksi
+    Perusahaan, Rekening_perusahaan,
+    Transaksi, Transaksi_rekening
 } from "./model";
 
 export class Dao{
@@ -300,6 +300,268 @@ export class Dao{
 
                 perusahaan.p_id_perusahaan=result.p_id_perusahaan
                 resolve(perusahaan)
+            })
+        })
+    }
+
+    retrieveRekeningPerusahaan(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "
+            this.mysqlConn.query(query, (error, result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                const rekening=result.map(rowDataPacket=>{
+                    return{
+                        rp_id_rekening:rowDataPacket.rp_id_rekening,
+                        rp_nama_bank:rowDataPacket.rp_nama_bank,
+                        rp_nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                        rp_saldo:rowDataPacket.rp_saldo,
+                        rp_id_perusahaan:rowDataPacket.rp_id_perusahaan,
+                        p_nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                        p_alamat:rowDataPacket.p_alamat
+                    }
+                })
+
+                resolve(rekening)
+            })
+        })
+    }
+
+    retrieveOneRekeningPerusahaan(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
+                "WHERE rp_id_perusahaan=? "
+            this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error, result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    const rekening=result.map(rowDataPacket=>{
+                        return{
+                            rp_id_rekening:rowDataPacket.rp_id_rekening,
+                            rp_nama_bank:rowDataPacket.rp_nama_bank,
+                            rp_nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                            rp_saldo:rowDataPacket.rp_saldo,
+                            rp_id_perusahaan:rowDataPacket.rp_id_perusahaan,
+                            p_nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                            p_alamat:rowDataPacket.p_alamat
+                        }
+                    })
+                    resolve(rekening)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+                resolve(rekening)
+            })
+        })
+    }
+
+    /*getRekeningPerusahanId(rekening){
+        return new Promise((resolve,reject))
+    }*/
+
+    addRekeningPerusahaan(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?)"
+            this.mysqlConn.query(query,[rekening.rp_nama_bank,rekening.rp_nomor_rekening,rekening.rp_saldo,rekening.rp_id_perusahaan],(result,error)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                rekening.rp_id_rekening=result.insertId
+                resolve(rekening)
+            })
+        })
+    }
+
+    updateRekeningPerusahaan(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE rekening_perusahaan SET rp_nama_bank=?, rp_nomor_rekening=?, rp_saldo=?, rp_id_perusahaan=? "+
+                "WHERE rp_id_rekening=?"
+
+            this.mysqlConn.query(query, [rekening.rp_nama_bank, rekening.rp_nomor_rekening, rekening.rp_saldo, rekening.rp_id_perusahaan, rekening.rp_id_rekening],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                rekening.rp_id_rekening=result.insertId
+                resolve(rekening)
+            })
+        })
+    }
+
+    deleteRekeningPerusahaan(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="DELETE FROM rekening_perusahaan WHERE rp_id_rekening=?"
+            this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                rekening.rp_id_rekening=result.insertId
+                resolve(rekening)
+            })
+        })
+    }
+
+    retrieveTransaksiRekening(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT tr.tr_id_transaksi_rekening, tr.tr_timestamp_transaksi, tr.tr_credit, tr.tr_debit, tr.tr_id_transaksi, "+
+                "t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, t.t_status, t.t_bon_sementara "+
+                "FROM transaksi_rekening tr LEFT OUTER JOIN transaksi t ON tr.tr_id_transaksi=t.t_id_transaksi"
+
+            this.mysqlConn.query(query,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                const transaksi=result.map(rowDataPacket=>{
+                    return{
+                        tr_id_transaksi_rekening:rowDataPacket.tr_id_transaksi_rekening,
+                        tr_timestamp_transaksi:rowDataPacket.tr_timestamp_transaksi,
+                        tr_credit:rowDataPacket.tr_credit,
+                        tr_debit:rowDataPacket.tr_debit,
+                        tr_id_transaksi:rowDataPacket.tr_id_transaksi,
+                        t_tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                        t_tanggal_modifiaksi:rowDataPacket.t_tanggal_modifiaksi,
+                        t_tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                        t_is_rutin:rowDataPacket.t_is_rutin,
+                        t_status:rowDataPacket.t_status,
+                        t_bon_sementara:rowDataPacket.t_bon_sementara
+                    }
+                })
+                resolve(transaksi)
+            })
+        })
+    }
+
+    retrieveOneTransaksiRekening(transfer){
+        return new Promise((resolve,reject)=>{
+            if(!transfer instanceof Transaksi_rekening){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            return new Promise((resolve,reject)=>{
+                const query="SELECT tr.tr_id_transaksi_rekening, tr.tr_timestamp_transaksi, tr.tr_credit, tr.tr_debit, tr.tr_id_transaksi, "+
+                    "t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, t.t_status, t.t_bon_sementara "+
+                    "FROM transaksi_rekening tr LEFT OUTER JOIN transaksi t ON tr.tr_id_transaksi=t.t_id_transaksi "+
+                    "WHERE tr.tr_id_transaksi=? "
+
+                this.mysqlConn.query(query,transfer.tr_id_transaksi,(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }else if(result.length>0){
+                        const transaksi=result.map(rowDataPacket=>{
+                            return{
+                                tr_id_transaksi_rekening:rowDataPacket.tr_id_transaksi_rekening,
+                                tr_timestamp_transaksi:rowDataPacket.tr_timestamp_transaksi,
+                                tr_credit:rowDataPacket.tr_credit,
+                                tr_debit:rowDataPacket.tr_debit,
+                                tr_id_transaksi:rowDataPacket.tr_id_transaksi,
+                                t_tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                                t_tanggal_modifiaksi:rowDataPacket.t_tanggal_modifiaksi,
+                                t_tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                                t_is_rutin:rowDataPacket.t_is_rutin,
+                                t_status:rowDataPacket.t_status,
+                                t_bon_sementara:rowDataPacket.t_bon_sementara
+                            }
+                        })
+                        resolve(transaksi)
+                    }else{
+                        reject(NO_SUCH_CONTENT)
+                    }
+                })
+            })
+        })
+    }
+
+    addTransaksiRekening(transfer){
+        return new Promise((resolve,reject)=>{
+            if(!transfer instanceof Transaksi_rekening){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="INSERT INTO (`tr_timestamp_transaksi`, `tr_credit`, `tr_debit`, `tr_id_transaksi`)"
+            this.mysqlConn.query(query,[transfer.tr_timestamp_transaksi, transfer.tr_credit, transfer.tr_debit, transfer.tr_id_transaksi],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                transfer.tr_id_transaksi_rekening=result.insertId
+                resolve(transfer)
+            })
+        })
+    }
+
+    updateTransaksiRekening(transfer){
+        return new Promise((resolve,reject)=>{
+            if(!transfer instanceof Transaksi_rekening){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE transaksi_rekening SET tr_timestamp_transaksi=?, tr_credit=?, tr_debit=?, tr_id_transaksi=? WHERE tr_id_transaksi_rekening=? "
+            this.mysqlConn.query(query,[transfer.tr_timestamp_transaksi, transfer.tr_credit, transfer.tr_debit, transfer.tr_id_transaksi, transfer.tr_id_transaksi_rekening],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                transfer.tr_id_transaksi_rekening=result.insertId
+                resolve(transfer)
+            })
+        })
+    }
+
+    deleteTransaksiRekening(transfer){
+        return new Promise((resolve,reject)=>{
+            if(!transfer instanceof Transaksi_rekening){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="DELETE FROM transaksi_rekening WHERE tr_id_transaksi_rekening=?"
+            this.mysqlConn.query(query,transfer.tr_id_transaksi_rekening,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                transfer.tr_id_transaksi_rekening=result.insertId
+                resolve(transfer)
             })
         })
     }
@@ -692,7 +954,8 @@ export class Dao{
             const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_jenis, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.td_pembebanan_id, pbb.skema_pembebanan_json "+
                 "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
                 "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori "+
-                "LEFT OUTER JOIN pembebanan p ON dt.td_pembebanan_id=p.pbb_id "
+                "LEFT OUTER JOIN pembebanan p ON dt.td_pembebanan_id=p.pbb_id "+
+                "WHERE t_is_deleted='0'"
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -705,9 +968,21 @@ export class Dao{
                         t_tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
                         t_tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
                         t_is_rutin:rowDataPacket.t_is_rutin,
-                        t_status:rowDataPacket.t_status
+                        t_status:rowDataPacket.t_status,
+                        t_bon_sementara:rowDataPacket.t_bon_sementara,
+                        td_id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
+                        td_jumlah:rowDataPacket.td_jumlah,
+                        td_id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
+                        td_jenis:rowDataPacket.td_jenis,
+                        td_bpu_attachment:rowDataPacket.td_bpu_attachment,
+                        td_debit_credit:rowDataPacket.td_debit_credit,
+                        td_nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
+                        td_file_bukti_transaksi:rowDataPacket.td_file_bukti_transaksi,
+                        td_pembebanan_id:rowDataPacket.td_pembebanan_id,
+                        skema_pembebanan_json:rowDataPacket.skema_pembebanan_json
                     }
                 })
+                resolve(transaksi)
             })
         })
     }
@@ -776,7 +1051,7 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_is_deleted`) VALUES(NOW(),NOW(),NOW(),?,'Entry di buat',?,'0')"
+            const query="INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_is_deleted`) VALUES(NOW(),NOW(),'NULL',?,'Entry di buat',?,'0')"
             this.mysqlConn.query(query, [transaksi.t_is_rutin,transaksi.t_bon_sementara], (error,result)=>{
                 if(error){
                     reject(error)
@@ -784,9 +1059,28 @@ export class Dao{
                 }
 
                 transaksi.t_id_transaksi=result.insertId
+
+                let details=[]
+                for(let i=0; i<Detil_transaksi.length; i++){
+                    details.push(new Detil_transaksi(
+                        Detil_transaksi[i].td_id_detil_transaksi,
+                        Detil_transaksi[i].t_id_transaksi,
+                        Detil_transaksi[i].td_jumlah,
+                        Detil_transaksi[i].td_id_kategori_transaksi,
+                        Detil_transaksi[i].td_jenis,
+                        Detil_transaksi[i].td_bpu_attachment,
+                        Detil_transaksi[i].td_debit_credit,
+                        Detil_transaksi[i].td_nomor_bukti_transaksi,
+                        Detil_transaksi[i].td_file_bukti_transaksi,
+                        Detil_transaksi[i].td_pembebanan_id,
+                        Detil_transaksi[i].td_is_deleted
+                    ))
+                }
+
                 const query="INSERT INTO `detil_transaksi` (`td_id_transaksi`, `td_jumlah`, `td_id_kategori_transaksi`, `td_jenis`, `td_bpu_attachment`, `td_debit_credit`, `td_nomor_bukti_transaksi`, `td_file_bukti_transaksi`, `td_pembebanan_id`, `td_is_deleted`) "+
                     "VALUES (?,?,?,?,?,?,?,'BPU',?,'0')"
-                this.mysqlConn.query(query,[transaksi.t_id_transaksi,transaksi.td_jumlah, transaksi.td_id_kategori_transaksi, transaksi.td_jenis, transaksi.td_bpu_attachment, transaksi.td_debit_credit, transaksi.td_nomor_bukti_transaksi, transaksi.td_pembebanan_id],(error,result)=>{
+
+                this.mysqlConn.query(query,details,(error,result)=>{
                     if(error){
                         reject(error)
                         return

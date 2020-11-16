@@ -70,3 +70,19 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan_kerja_dimana` (
 CREATE TABLE IF NOT EXISTS `agrofinance`.`pembebanan` (
   `pbb_id` INT(7) PRIMARY KEY AUTO_INCREMENT,
   `skema_pembebanan_json` LONGTEXT NOT NULL);
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`rekening_perusahaan` (
+  `rp_id_rekening` INT(7) PRIMARY KEY AUTO_INCREMENT,
+  `rp_nama_bank` VARCHAR(225) NOT NULL,
+  `rp_nomor_rekening` VARCHAR(225) NOT NULL,
+  `rp_saldo` VARCHAR(255) NOT NULL,
+  `rp_id_perusahaan` INT(7) NOT NULL,
+  FOREIGN KEY (`rp_id_perusahaan`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_rekening` (
+  `tr_id_transaksi_rekening` INT(7) PRIMARY KEY AUTO_INCREMENT,
+  `tr_timestamp_transaksi` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `tr_credit` TINYINT(1) NOT NULL DEFAULT 0,
+  `tr_debit` TINYINT(1) NOT NULL DEFAULT 0,
+  `tr_id_transaksi` INT(7) NOT NULL,
+  FOREIGN KEY (`tr_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE);

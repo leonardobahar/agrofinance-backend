@@ -17,7 +17,7 @@ import {
     Karyawan_kerja_dimana,
     Kategori_transaksi,
     Pembebanan,
-    Perusahaan,
+    Perusahaan, Rekening_perusahaan,
     Transaksi
 } from "./model";
 import multer from 'multer'
@@ -426,6 +426,102 @@ app.delete("/api/perusahaan/delete", (req,res)=>{
     })
 })
 
+app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
+    if(typeof req.query.id_perusahaan==='undefined'){
+        dao.retrieveRekeningPerusahaan().then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }else{
+        const rekening=new Rekening_perusahaan(null,null,null,null,req.query.rp_id_perusahaan)
+        dao.retrieveOneRekeningPerusahaan(rekening).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+            }else{
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
+            }
+        })
+    }
+})
+
+app.post("/api/rekening-perusahaan/add",(req,res)=>{
+    if(typeof req.body.nama_bank==='undefined' ||
+       typeof req.body.nomor_rekening==='undefined' ||
+       typeof req.body.saldo==='undefined' ||
+       typeof req.body.id_perusahaan==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    const rekening=new Rekening_perusahaan(null,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_perusahaan)
+    dao.retrieveOnePerusahaan(new Perusahaan(req.body.id_perusahaan,null,null)).then(result=>{
+        dao.addRekeningPerusahaan(rekening).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+        } else {
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
+    })
+})
+
+app.post("/api/rekening-perusahaan/update",(req,res)=>{
+    if(typeof req.body.nama_bank==='undefined' ||
+        typeof req.body.nomor_rekening==='undefined' ||
+        typeof req.body.saldo==='undefined' ||
+        typeof req.body.id_perusahaan==='undefined' ||
+        typeof req.body.id_rekening==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    const rekening=new Rekening_perusahaan(req.body.id_rekening,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_perusahaan)
+    dao.retrieveOneRekeningPerusahaan(new Rekening_perusahaan())
+})
+
 app.get("/api/pemebebanan/retrieve",(req,res)=>{
     if(typeof req.query.id==='undefined'){
         dao.retrievePembebanan().then(result=>{
@@ -454,8 +550,7 @@ app.get("/api/pemebebanan/retrieve",(req,res)=>{
                     success:false,
                     error:NO_SUCH_CONTENT
                 })
-            }
-            else{
+            } else{
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -850,7 +945,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
 
         console.log(req.file.filename)
 
-        const transfer=new Transaksi(null,'NOW','NOW','NOW',req.query.is_rutin,'Entry di buat',req.query.bon_sementara,
+        const transfer=new Transaksi(null,'NOW','NOW','NULL',req.query.is_rutin,'Entry di buat',req.query.bon_sementara,
             '0',null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,req.file.filename,req.query.debit_credit,req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id,'0')
 
         dao.retrieveOneKategoriTransaksi(new Kategori_transaksi(req.query.id_kategori_transaksi)).then(result=>{

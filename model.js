@@ -39,6 +39,26 @@ export class Perusahaan{
     }
 }
 
+export class Rekening_perusahaan{
+    constructor(rp_id_rekening, rp_nama_bank, rp_nomor_rekening, rp_saldo, rp_id_perusahaan) {
+        this.rp_id_rekening=rp_id_rekening
+        this.rp_nama_bank=rp_nama_bank
+        this.rp_nomor_rekening=rp_nomor_rekening
+        this.rp_saldo=rp_saldo
+        this.rp_id_perusahaan=rp_id_perusahaan
+    }
+}
+
+export class Transaksi_rekening{
+    constructor(tr_id_transaksi_rekening, tr_timestamp_transaksi, tr_credit, tr_debit, tr_id_transaksi) {
+        this.tr_id_transaksi_rekening=tr_id_transaksi_rekening
+        this.tr_timestamp_transaksi=tr_timestamp_transaksi
+        this.tr_credit=tr_credit
+        this.tr_debit=tr_debit
+        this.tr_id_transaksi=tr_id_transaksi
+    }
+}
+
 export class Transaksi{
     constructor(t_id_transaksi, t_tanggal_transaksi, t_tanggal_modifikasi, t_tanggal_realisasi, t_is_rutin,  t_status, t_bon_sementara, t_is_deleted,
                 td_id_detil_transaksi, td_jumlah, td_id_kategori_transaksi, td_jenis, td_bpu_attachment, td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, td_pembebanan_id, td_is_deleted){
@@ -51,6 +71,23 @@ export class Transaksi{
         this.t_bon_sementara=t_bon_sementara
         this.t_is_deleted=t_is_deleted
         this.td_id_detil_transaksi=td_id_detil_transaksi
+        this.td_jumlah=td_jumlah
+        this.td_id_kategori_transaksi=td_id_kategori_transaksi
+        this.td_jenis=td_jenis
+        this.td_bpu_attachment=td_bpu_attachment
+        this.td_debit_credit=td_debit_credit
+        this.td_nomor_bukti_transaksi=td_nomor_bukti_transaksi
+        this.td_file_bukti_transaksi=td_file_bukti_transaksi
+        this.td_pembebanan_id=td_pembebanan_id
+        this.td_is_deleted=td_is_deleted
+    }
+}
+
+export class Detil_transaksi{
+    constructor(td_id_detil_transaksi, td_id_transaksi, td_jumlah, td_id_kategori_transaksi, td_jenis, td_bpu_attachment,
+                td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, td_pembebanan_id, td_is_deleted) {
+        this.td_id_detil_transaksi=td_id_detil_transaksi
+        this.td_id_transaksi=td_id_transaksi
         this.td_jumlah=td_jumlah
         this.td_id_kategori_transaksi=td_id_kategori_transaksi
         this.td_jenis=td_jenis
