@@ -17,20 +17,6 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi`(
     `t_bon_sementara` VARCHAR(45) NOT NULL
 );
 
-/*
- *      {
-            id_transaksi:
-            tanggal_transaksi:
-            tanggal_modifikasi:
-            tanggal_realisasi:
-            is_rutin
-            status
-            bon_sementara:
-            detil: [{
-
-            }]
- */
-
 CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
   `td_id_detil_transaksi` INT(7) PRIMARY KEY AUTO_INCREMENT,
   `td_id_transaksi` INT(7),
