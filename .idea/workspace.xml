@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -227,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605533288420</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added connected successfully to database text">
+      <created>1605534096010</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1605534096010</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,7 +261,8 @@
     <MESSAGE value="Working on Add Transaksi. CRUD for rekening_perusahaan and transaksi_rekening are still in progress" />
     <MESSAGE value="Removed unnecessary remark from .sql file" />
     <MESSAGE value="Modified less complex addTransaksi function block, used nested promise as a solution" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified less complex addTransaksi function block, used nested promise as a solution" />
+    <MESSAGE value="Added connected successfully to database text" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added connected successfully to database text" />
   </component>
   <component name="WindowStateProjectService">
     <state x="167" y="0" key="CommitChangelistDialog2" timestamp="1605530668006">

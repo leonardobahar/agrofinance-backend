@@ -1199,9 +1199,7 @@ app.get("/api/karyawan-kerja-dimana/retrieve",(req,res)=>{
                     success:false,
                     error:NO_SUCH_CONTENT
                 })
-            }
-
-            else {
+            } else {
                 console.error(err)
                 res.status(500).send({
                     success:false,
@@ -1236,9 +1234,7 @@ app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
                         success:false,
                         error:NO_SUCH_CONTENT
                     })
-                }
-
-                else {
+                } else {
                     console.error(err)
                     res.status(500).send({
                         success:false,
@@ -1252,9 +1248,7 @@ app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
                     success:false,
                     error:NO_SUCH_CONTENT
                 })
-            }
-
-            else {
+            } else {
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -1268,9 +1262,7 @@ app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
                 success:false,
                 error:NO_SUCH_CONTENT
             })
-        }
-
-        else {
+        } else {
             console.error(error)
             res.status(500).send({
                 success:false,
@@ -1304,8 +1296,7 @@ app.post("/api/karyawan-kerja-dimana/update", (req,res)=>{
                     success:false,
                     error:ERROR_DUPLICATE_ENTRY
                 })
-            }
-            else{
+            } else{
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -1319,9 +1310,7 @@ app.post("/api/karyawan-kerja-dimana/update", (req,res)=>{
                 success:false,
                 error:NO_SUCH_CONTENT
             })
-        }
-
-        else {
+        } else {
             console.error(error)
             res.status(500).send({
                 success:false,
@@ -1360,9 +1349,7 @@ app.delete("/api/karyawan-kerja-dimana/delete",(req,res)=>{
                 success:false,
                 error:NO_SUCH_CONTENT
             })
-        }
-
-        else {
+        } else {
             console.error(error)
             res.status(500).send({
                 success:false,
