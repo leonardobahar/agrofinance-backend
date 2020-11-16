@@ -1056,7 +1056,7 @@ export class Dao{
             try {
                 let detailTransaksi = JSON.parse(transaksi.detail_transaksi.toString())
                 const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_is_deleted`) VALUES(NOW(),NOW(),'NULL',?,'Entry di buat',?,'0')"
-                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara], (error, result) => {
+                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara], async(error, result) => {
                     if (error) {
                         reject(error)
                         return
@@ -1080,9 +1080,7 @@ export class Dao{
                             0
                         )
 
-                        this.addDetailTransaksi(transactionDetailObject).then(addDetailTransaksiResult=>{
-                            transactionDetailObject = addDetailTransaksiResult
-                        }).catch(err=>{
+                        transactionDetailObject = await this.addDetailTransaksi(transactionDetailObject).catch(err=>{
                             reject(err)
                         })
 
