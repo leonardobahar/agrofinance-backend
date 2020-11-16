@@ -99,31 +99,3 @@ export class Detil_transaksi{
         this.td_is_deleted=td_is_deleted
     }
 }
-
-/*
-{
-            is_rutin
-            status
-            bon_sementara:
-            detil: [{
-                jumlah:
-                id_kategori_transaksi
-                jenis:
-                bpu_attachment
-                debit_credit
-                nomor_bukti_transaksi
-                file_bukti_transaksi
-                pembebanan_id
-            },{
-                jumlah:
-
-                id_kategori_transaksi
-                jenis:
-                bpu_attachment
-                debit_credit
-                nomor_bukti_transaksi
-                file_bukti_transaksi
-                pembebanan_id
-            }]
-}
- */

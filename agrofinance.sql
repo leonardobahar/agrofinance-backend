@@ -14,8 +14,14 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi`(
     `t_tanggal_realisasi` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     `t_is_rutin` TINYINT(1) NOT NULL DEFAULT 0,
     `t_status` VARCHAR(45) NOT NULL,
-    `t_bon_sementara` VARCHAR(45) NOT NULL
+    `t_bon_sementara` VARCHAR(45) NOT NULL,
+    `t_id_perusahaaan` INT(7),
+    FOREIGN KEY (`t_id_perusahaaan`) REFERENCES `agrofinance`.`perusahaan`(`p_id_perusahaan`)
 );
+
+/* Remove immediately */
+ALTER TABLE `agrofinance`.`transaksi` ADD `t_id_perusahaaan` INT(7), ADD
+    FOREIGN KEY (`t_id_perusahaaan`) REFERENCES `agrofinance`.`perusahaan`(`p_id_perusahaan`);
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
   `td_id_detil_transaksi` INT(7) PRIMARY KEY AUTO_INCREMENT,

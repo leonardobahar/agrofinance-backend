@@ -18,6 +18,7 @@ import {
     Perusahaan, Rekening_perusahaan,
     Transaksi, Transaksi_rekening
 } from "./model";
+import {resolveShowConfigPath} from "@babel/core/src/config/files/index-browser";
 
 export class Dao{
     constructor(host, user, password, dbname) {
@@ -1044,51 +1045,95 @@ export class Dao{
         })
     }
 
-    addTransaksi(transaksi){
-        return new Promise((resolve,reject)=>{
-            if(!transaksi instanceof Transaksi){
+    addTransaksi(transaksi) {
+        return new Promise((resolve, reject) => {
+            if (!transaksi instanceof Transaksi) {
                 reject(MISMATCH_OBJ_TYPE)
                 return
             }
 
-            const query="INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_is_deleted`) VALUES(NOW(),NOW(),'NULL',?,'Entry di buat',?,'0')"
-            this.mysqlConn.query(query, [transaksi.t_is_rutin,transaksi.t_bon_sementara], (error,result)=>{
+            try {
+                let detailTransaksi = JSON.parse(transaksi.detail_transaksi)
+                const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_is_deleted`) VALUES(NOW(),NOW(),'NULL',?,'Entry di buat',?,'0')"
+                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara], (error, result) => {
+                    if (error) {
+                        reject(error)
+                        return
+                    }
+
+                    transaksi.t_id_transaksi = result.insertId
+
+                    for (let i = 0; i < detailTransaksi.length; i++) {
+                    // BEGINNING OF DETAIL TRANSAKSI LOOP
+                        let transactionDetailObject = new Detil_transaksi(
+                            null,
+                            transaksi.t_id_transaksi,
+                            detailTransaksi[i].td_jumlah,
+                            detailTransaksi[i].td_id_kategori_transaksi,
+                            detailTransaksi[i].td_jenis,
+                            detailTransaksi[i].td_bpu_attachment,
+                            detailTransaksi[i].td_debit_credit,
+                            detailTransaksi[i].td_nomor_bukti_transaksi,
+                            detailTransaksi[i].td_file_bukti_transaksi,
+                            detailTransaksi[i].td_pembebanan_id,
+                            0
+                        )
+
+                        this.addDetailTransaksi(transactionDetailObject).then(addDetailTransaksiResult=>{
+                            transactionDetailObject = addDetailTransaksiResult
+                        }).catch(err=>{
+                            reject(err)
+                        })
+
+                        detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
+                    // END OF DETAIL TRANSAKSI LOOP
+                    }
+
+                    transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
+                    resolve(transaksi)
+
+
+                })
+            }catch(e){
+                reject(e)
+            }
+        })
+    }
+
+    addDetailTransaksi(detailTransaksiObject){
+        return new Promise((resolve, reject) => {
+            const query="INSERT INTO `detil_transaksi` (" +
+                "`td_id_transaksi`, " +
+                "`td_jumlah`, " +
+                "`td_id_kategori_transaksi`, " +
+                "`td_jenis`, " +
+                "`td_bpu_attachment`, " +
+                "`td_debit_credit`, " +
+                "`td_nomor_bukti_transaksi`, " +
+                "`td_file_bukti_transaksi`, " +
+                "`td_pembebanan_id`, " +
+                "`td_is_deleted`) "+
+                "VALUES (?,?,?,?,?,?,?,?,?,?)"
+
+            this.mysqlConn.query(query,[
+                detailTransaksiObject.td_id_transaksi,
+                detailTransaksiObject.td_jumlah,
+                detailTransaksiObject.td_id_kategori_transaksi,
+                detailTransaksiObject.td_jenis,
+                detailTransaksiObject.td_bpu_attachment,
+                detailTransaksiObject.td_debit_credit,
+                detailTransaksiObject.td_nomor_bukti_transaksi,
+                'BPU',
+                detailTransaksiObject.td_pembebanan_id,
+                0
+            ],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                transaksi.t_id_transaksi=result.insertId
-
-                let details=[]
-                for(let i=0; i<Detil_transaksi.length; i++){
-                    details.push(new Detil_transaksi(
-                        Detil_transaksi[i].td_id_detil_transaksi,
-                        Detil_transaksi[i].t_id_transaksi,
-                        Detil_transaksi[i].td_jumlah,
-                        Detil_transaksi[i].td_id_kategori_transaksi,
-                        Detil_transaksi[i].td_jenis,
-                        Detil_transaksi[i].td_bpu_attachment,
-                        Detil_transaksi[i].td_debit_credit,
-                        Detil_transaksi[i].td_nomor_bukti_transaksi,
-                        Detil_transaksi[i].td_file_bukti_transaksi,
-                        Detil_transaksi[i].td_pembebanan_id,
-                        Detil_transaksi[i].td_is_deleted
-                    ))
-                }
-
-                const query="INSERT INTO `detil_transaksi` (`td_id_transaksi`, `td_jumlah`, `td_id_kategori_transaksi`, `td_jenis`, `td_bpu_attachment`, `td_debit_credit`, `td_nomor_bukti_transaksi`, `td_file_bukti_transaksi`, `td_pembebanan_id`, `td_is_deleted`) "+
-                    "VALUES (?,?,?,?,?,?,?,'BPU',?,'0')"
-
-                this.mysqlConn.query(query,details,(error,result)=>{
-                    if(error){
-                        reject(error)
-                        return
-                    }
-
-                    transaksi.td_id_detil_transaksi=result.insertId
-                    resolve(transaksi)
-                })
+                detailTransaksiObject.td_id_detil_transaksi=result.insertId
+                resolve(detailTransaksiObject)
             })
         })
     }
