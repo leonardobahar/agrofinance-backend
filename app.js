@@ -919,8 +919,8 @@ app.post("/api/transaksi/add",async(req,res)=> {
 
     upload(req,res, async (error)=>{
 
-        if(typeof req.query.is_rutin==='undefined' ||
-            typeof req.query.bon_sementara==='undefined'){
+        if(typeof req.body.is_rutin==='undefined' ||
+            typeof req.body.bon_sementara==='undefined'){
             res.status(400).send({
                 success:false,
                 error:WRONG_BODY_FORMAT
@@ -930,8 +930,8 @@ app.post("/api/transaksi/add",async(req,res)=> {
 
         if (typeof req.file.filename==='undefined'){
 
-            const transfer=new Transaksi(null,'NOW','NOW','NULL',req.query.is_rutin,'Entry di buat',req.query.bon_sementara,
-                '0',null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,null,req.query.debit_credit,req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id,'0')
+            const transfer=new Transaksi(null,'NOW','NOW','NULL',req.body.is_rutin,'Entry di buat',req.body.bon_sementara,
+                '0',req.body.detail_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,null,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan_id,'0')
 
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({
@@ -998,8 +998,8 @@ app.post("/api/transaksi/add",async(req,res)=> {
 
             console.log(req.file.filename)
 
-            const transfer=new Transaksi(null,'NOW','NOW','NULL',req.query.is_rutin,'Entry di buat',req.query.bon_sementara,
-                '0',null,req.query.jumlah,req.query.id_kategori_transaksi,req.query.jenis,req.file.filename,req.query.debit_credit,req.query.nomor_bukti_transaksi,'BPU',req.query.pembebanan_id,'0')
+            const transfer=new Transaksi(null,'NOW','NOW','NULL',req.body.is_rutin,'Entry di buat',req.body.bon_sementara,
+                '0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.file.filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan_id,'0')
 
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({

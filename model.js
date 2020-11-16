@@ -61,7 +61,7 @@ export class Transaksi_rekening{
 
 export class Transaksi{
     constructor(t_id_transaksi, t_tanggal_transaksi, t_tanggal_modifikasi, t_tanggal_realisasi, t_is_rutin,  t_status, t_bon_sementara, t_is_deleted,
-                td_id_detil_transaksi, td_jumlah, td_id_kategori_transaksi, td_jenis, td_bpu_attachment, td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, td_pembebanan_id, td_is_deleted){
+                detail_transaksi, td_id_detil_transaksi, td_jumlah, td_id_kategori_transaksi, td_jenis, td_bpu_attachment, td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, td_pembebanan_id, td_is_deleted){
         this.t_id_transaksi=t_id_transaksi
         this.t_tanggal_transaksi=t_tanggal_transaksi
         this.t_tanggal_modifikasi=t_tanggal_modifikasi
@@ -70,6 +70,7 @@ export class Transaksi{
         this.t_status=t_status
         this.t_bon_sementara=t_bon_sementara
         this.t_is_deleted=t_is_deleted
+        this.detail_transaksi=detail_transaksi
         this.td_id_detil_transaksi=td_id_detil_transaksi
         this.td_jumlah=td_jumlah
         this.td_id_kategori_transaksi=td_id_kategori_transaksi
