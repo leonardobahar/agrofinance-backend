@@ -19,10 +19,6 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi`(
     FOREIGN KEY (`t_id_perusahaaan`) REFERENCES `agrofinance`.`perusahaan`(`p_id_perusahaan`)
 );
 
-/* Remove immediately */
-ALTER TABLE `agrofinance`.`transaksi` ADD `t_id_perusahaaan` INT(7), ADD
-    FOREIGN KEY (`t_id_perusahaaan`) REFERENCES `agrofinance`.`perusahaan`(`p_id_perusahaan`);
-
 CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
   `td_id_detil_transaksi` INT(7) PRIMARY KEY AUTO_INCREMENT,
   `td_id_transaksi` INT(7),

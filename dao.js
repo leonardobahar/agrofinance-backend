@@ -18,7 +18,6 @@ import {
     Perusahaan, Rekening_perusahaan,
     Transaksi, Transaksi_rekening
 } from "./model";
-import {resolveShowConfigPath} from "@babel/core/src/config/files/index-browser";
 
 export class Dao{
     constructor(host, user, password, dbname) {
