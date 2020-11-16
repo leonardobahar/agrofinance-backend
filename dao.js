@@ -47,6 +47,7 @@ export class Dao{
                             if(err){
                                 throw err
                             }else {
+                                console.log("CONNECTED SUCCESSFULLY TO DATABASE")
                                 resolve(1)
                             }
                         })

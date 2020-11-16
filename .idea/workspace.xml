@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Removed unnecessary remark from .sql file">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605530221808</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Modified less complex addTransaksi function block, used nested promise as a solution">
+      <created>1605533288420</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1605533288420</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +252,8 @@
     <MESSAGE value="Added new features for transaksi to add and delete from detil_transaksi. Retireve and Update endpoints are still in progress" />
     <MESSAGE value="Working on Add Transaksi. CRUD for rekening_perusahaan and transaksi_rekening are still in progress" />
     <MESSAGE value="Removed unnecessary remark from .sql file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary remark from .sql file" />
+    <MESSAGE value="Modified less complex addTransaksi function block, used nested promise as a solution" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified less complex addTransaksi function block, used nested promise as a solution" />
   </component>
   <component name="WindowStateProjectService">
     <state x="167" y="0" key="CommitChangelistDialog2" timestamp="1605530668006">
