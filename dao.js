@@ -77,17 +77,15 @@ export class Dao{
                     return
                 }
 
-                let employees=[]
-                for(let i=0; i<result.length; i++){
-                    employees.push(new Karyawan(
-                        result[i].k_id_karyawan,
-                        result[i].k_nama_lengkap,
-                        result[i].k_posisi,
-                        result[i].k_nik,
-                        result[i].k_role,
-                        result[i].k_masih_hidup
-                    ))
-                }
+                const employees=result.map(rowDataPacket=>{
+                    return{
+                        nama_lengakap:rowDataPacket.k_nama_lengkap,
+                        posisi:rowDataPacket.k_posisi,
+                        nik:rowDataPacket.k_nik,
+                        role:rowDataPacket.k_role,
+                        masih_hidup:rowDataPacket.k_masih_hidup
+                    }
+                })
                 resolve(employees)
             })
         })
@@ -108,17 +106,15 @@ export class Dao{
                 }
 
                 else if(result.length>0){
-                    let employees=[]
-                    for(let i =0;i<result.length;i++){
-                        employees.push(new Karyawan(
-                            result[i].k_id_karyawan,
-                            result[i].k_nama_lengkap,
-                            result[i].k_posisi,
-                            result[i].k_nik,
-                            result[i].k_role,
-                            result[i].k_masih_hidup
-                        ))
-                    }
+                    const employees=result.map(rowDataPacket=>{
+                        return{
+                            nama_lengakap:rowDataPacket.k_nama_lengkap,
+                            posisi:rowDataPacket.k_posisi,
+                            nik:rowDataPacket.k_nik,
+                            role:rowDataPacket.k_role,
+                            masih_hidup:rowDataPacket.k_masih_hidup
+                        }
+                    })
                     resolve(employees)
                 }
 
@@ -199,14 +195,12 @@ export class Dao{
                     return
                 }
 
-                let companies=[]
-                for(let i=0; i<result.length; i++){
-                    companies.push(new Perusahaan(
-                        result[i].p_id_perusahaan,
-                        result[i].p_nama_perusahaan,
-                        result[i].p_alamat
-                    ))
-                }
+                const companies=result.map(rowDataPacket=>{
+                    return{
+                        nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                        alamat:rowDataPacket.p_alamat
+                    }
+                })
                 resolve(companies)
             })
         })
@@ -227,14 +221,12 @@ export class Dao{
                 }
 
                 else if(result.length>0){
-                    let companies=[]
-                    for(let i =0;i<result.length;i++){
-                        companies.push(new Perusahaan(
-                            result[i].p_id_perusahaan,
-                            result[i].p_nama_perusahaan,
-                            result[i].p_alamat
-                        ))
-                    }
+                    const companies=result.map(rowDataPacket=>{
+                        return{
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                            alamat:rowDataPacket.p_alamat
+                        }
+                    })
                     resolve(companies)
                 }
 
@@ -317,13 +309,13 @@ export class Dao{
 
                 const rekening=result.map(rowDataPacket=>{
                     return{
-                        rp_id_rekening:rowDataPacket.rp_id_rekening,
-                        rp_nama_bank:rowDataPacket.rp_nama_bank,
-                        rp_nomor_rekening:rowDataPacket.rp_nomor_rekening,
-                        rp_saldo:rowDataPacket.rp_saldo,
-                        rp_id_perusahaan:rowDataPacket.rp_id_perusahaan,
-                        p_nama_perusahaan:rowDataPacket.p_nama_perusahaan,
-                        p_alamat:rowDataPacket.p_alamat
+                        id_rekening:rowDataPacket.rp_id_rekening,
+                        nama_bank:rowDataPacket.rp_nama_bank,
+                        nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                        saldo:rowDataPacket.rp_saldo,
+                        id_perusahaan:rowDataPacket.rp_id_perusahaan,
+                        nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                        alamat:rowDataPacket.p_alamat
                     }
                 })
 
@@ -341,7 +333,7 @@ export class Dao{
 
             const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
                 "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
-                "WHERE rp_id_perusahaan=? "
+                "WHERE rp.rp_id_perusahaan=?"
             this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error, result)=>{
                 if(error){
                     reject(error)
@@ -349,27 +341,43 @@ export class Dao{
                 }else if(result.length>0){
                     const rekening=result.map(rowDataPacket=>{
                         return{
-                            rp_id_rekening:rowDataPacket.rp_id_rekening,
-                            rp_nama_bank:rowDataPacket.rp_nama_bank,
-                            rp_nomor_rekening:rowDataPacket.rp_nomor_rekening,
-                            rp_saldo:rowDataPacket.rp_saldo,
-                            rp_id_perusahaan:rowDataPacket.rp_id_perusahaan,
-                            p_nama_perusahaan:rowDataPacket.p_nama_perusahaan,
-                            p_alamat:rowDataPacket.p_alamat
+                            id_rekening:rowDataPacket.rp_id_rekening,
+                            nama_bank:rowDataPacket.rp_nama_bank,
+                            nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                            saldo:rowDataPacket.rp_saldo,
+                            id_perusahaan:rowDataPacket.rp_id_perusahaan,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                            alamat:rowDataPacket.p_alamat
                         }
                     })
                     resolve(rekening)
                 }else{
                     reject(NO_SUCH_CONTENT)
                 }
-                resolve(rekening)
             })
         })
     }
 
-    /*getRekeningPerusahanId(rekening){
-        return new Promise((resolve,reject))
-    }*/
+    getRekeningPerusahanId(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT rp_id_rekening FROM rekening_perusahaan WHERE rp_id_rekening=?"
+            this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    resolve(result[0].rp_id_rekening)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
 
     addRekeningPerusahaan(rekening){
         return new Promise((resolve,reject)=>{
@@ -379,7 +387,7 @@ export class Dao{
             }
 
             const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?)"
-            this.mysqlConn.query(query,[rekening.rp_nama_bank,rekening.rp_nomor_rekening,rekening.rp_saldo,rekening.rp_id_perusahaan],(result,error)=>{
+            this.mysqlConn.query(query,[rekening.rp_nama_bank,rekening.rp_nomor_rekening,rekening.rp_saldo,rekening.rp_id_perusahaan],(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -447,17 +455,17 @@ export class Dao{
 
                 const transaksi=result.map(rowDataPacket=>{
                     return{
-                        tr_id_transaksi_rekening:rowDataPacket.tr_id_transaksi_rekening,
-                        tr_timestamp_transaksi:rowDataPacket.tr_timestamp_transaksi,
-                        tr_credit:rowDataPacket.tr_credit,
-                        tr_debit:rowDataPacket.tr_debit,
-                        tr_id_transaksi:rowDataPacket.tr_id_transaksi,
-                        t_tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
-                        t_tanggal_modifiaksi:rowDataPacket.t_tanggal_modifiaksi,
-                        t_tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
-                        t_is_rutin:rowDataPacket.t_is_rutin,
-                        t_status:rowDataPacket.t_status,
-                        t_bon_sementara:rowDataPacket.t_bon_sementara
+                        id_transaksi_rekening:rowDataPacket.tr_id_transaksi_rekening,
+                        timestamp_transaksi:rowDataPacket.tr_timestamp_transaksi,
+                        credit:rowDataPacket.tr_credit,
+                        debit:rowDataPacket.tr_debit,
+                        id_transaksi:rowDataPacket.tr_id_transaksi,
+                        tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                        tanggal_modifiaksi:rowDataPacket.t_tanggal_modifiaksi,
+                        tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                        is_rutin:rowDataPacket.t_is_rutin,
+                        status:rowDataPacket.t_status,
+                        bon_sementara:rowDataPacket.t_bon_sementara
                     }
                 })
                 resolve(transaksi)
@@ -485,17 +493,17 @@ export class Dao{
                     }else if(result.length>0){
                         const transaksi=result.map(rowDataPacket=>{
                             return{
-                                tr_id_transaksi_rekening:rowDataPacket.tr_id_transaksi_rekening,
-                                tr_timestamp_transaksi:rowDataPacket.tr_timestamp_transaksi,
-                                tr_credit:rowDataPacket.tr_credit,
-                                tr_debit:rowDataPacket.tr_debit,
-                                tr_id_transaksi:rowDataPacket.tr_id_transaksi,
-                                t_tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
-                                t_tanggal_modifiaksi:rowDataPacket.t_tanggal_modifiaksi,
-                                t_tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
-                                t_is_rutin:rowDataPacket.t_is_rutin,
-                                t_status:rowDataPacket.t_status,
-                                t_bon_sementara:rowDataPacket.t_bon_sementara
+                                id_transaksi_rekening:rowDataPacket.tr_id_transaksi_rekening,
+                                timestamp_transaksi:rowDataPacket.tr_timestamp_transaksi,
+                                credit:rowDataPacket.tr_credit,
+                                debit:rowDataPacket.tr_debit,
+                                id_transaksi:rowDataPacket.tr_id_transaksi,
+                                tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                                tanggal_modifiaksi:rowDataPacket.t_tanggal_modifiaksi,
+                                tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                                is_rutin:rowDataPacket.t_is_rutin,
+                                status:rowDataPacket.t_status,
+                                bon_sementara:rowDataPacket.t_bon_sementara
                             }
                         })
                         resolve(transaksi)
@@ -576,13 +584,12 @@ export class Dao{
                     return
                 }
 
-                let beban=[]
-                for(let i=0; i<result.length; i++){
-                    beban.push(new Perusahaan(
-                        result[i].pbb_id,
-                        result[i].skema_pembebanan_json
-                    ))
-                }
+                const beban=result.map(rowDataPacket=>{
+                    return{
+                        id:rowDataPacket.pbb_id,
+                        pembebanan_json:rowDataPacket.skema_pembebanan_json
+                    }
+                })
                 resolve(beban)
             })
         })
@@ -603,13 +610,12 @@ export class Dao{
                 }
 
                 else if(result.length>0){
-                    let beban=[]
-                    for(let i =0;i<result.length;i++){
-                        beban.push(new Pembebanan(
-                            result[i].pbb_id,
-                            result[i].skema_pembebanan_json
-                        ))
-                    }
+                    const beban=result.map(rowDataPacket=>{
+                        return{
+                            id:rowDataPacket.pbb_id,
+                            pembebanan_json:rowDataPacket.skema_pembebanan_json
+                        }
+                    })
                     resolve(beban)
                 }
 
@@ -689,13 +695,12 @@ export class Dao{
                     return
                 }
 
-                let categories=[]
-                for(let i=0; i<result.length; i++){
-                    categories.push(new Kategori_transaksi(
-                        result[i].kt_id_kategori,
-                        result[i].kt_nama_kategori
-                    ))
-                }
+                const categories=result.map(rowDataPacket=>{
+                    return{
+                        id_kategori:rowDataPacket.kt_id_kategori,
+                        nama_kategori:rowDataPacket.kt_nama_kategori
+                    }
+                })
                 resolve(categories)
             })
         })
@@ -716,13 +721,12 @@ export class Dao{
                 }
 
                 else if(result.length>0){
-                    let categories=[]
-                    for(let i =0;i<result.length;i++){
-                        categories.push(new Kategori_transaksi(
-                            result[i].kt_id_kategori,
-                            result[i].kt_nama_kategori
-                        ))
-                    }
+                    const categories=result.map(rowDataPacket=>{
+                        return{
+                            id_kategori:rowDataPacket.kt_id_kategori,
+                            nama_kategori:rowDataPacket.kt_nama_kategori
+                        }
+                    })
                     resolve(categories)
                 }
 
@@ -805,11 +809,11 @@ export class Dao{
 
                 const works=result.map(rowDataPacket=>{
                     return{
-                        kkd_id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
-                        kkd_id_karyawan:rowDataPacket.kkd_id_karyawan,
-                        kkd_nama_lengkap:rowDataPacket.k_nama_lengkap,
-                        kkd_id_perusahaan:rowDataPacket.kkd_id_perusahaan,
-                        kkd_nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                        id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
+                        id_karyawan:rowDataPacket.kkd_id_karyawan,
+                        nama_lengkap:rowDataPacket.k_nama_lengkap,
+                        id_perusahaan:rowDataPacket.kkd_id_perusahaan,
+                        nama_perusahaan:rowDataPacket.p_nama_perusahaan
                     }
                 })
                 resolve(works)
@@ -836,11 +840,11 @@ export class Dao{
                 else if(result.length>0){
                     const works=result.map(rowDataPacket=>{
                         return{
-                            kkd_id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
-                            kkd_id_karyawan:rowDataPacket.kkd_id_karyawan,
-                            kkd_nama_lengkap:rowDataPacket.k_nama_lengkap,
-                            kkd_id_perusahaan:rowDataPacket.kkd_id_perusahaan,
-                            kkd_nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                            id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
+                            id_karyawan:rowDataPacket.kkd_id_karyawan,
+                            nama_lengkap:rowDataPacket.k_nama_lengkap,
+                            id_perusahaan:rowDataPacket.kkd_id_perusahaan,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan
                         }
                     })
                     resolve(works)
@@ -873,11 +877,11 @@ export class Dao{
                 else if(result.length>0){
                     const works=result.map(rowDataPacket=>{
                         return{
-                            kkd_id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
-                            kkd_id_karyawan:rowDataPacket.kkd_id_karyawan,
-                            kkd_nama_lengkap:rowDataPacket.k_nama_lengkap,
-                            kkd_id_perusahaan:rowDataPacket.kkd_id_perusahaan,
-                            kkd_nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                            id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
+                            id_karyawan:rowDataPacket.kkd_id_karyawan,
+                            nama_lengkap:rowDataPacket.k_nama_lengkap,
+                            id_perusahaan:rowDataPacket.kkd_id_perusahaan,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan
                         }
                     })
                     resolve(works)
@@ -965,22 +969,22 @@ export class Dao{
 
                 const transaksi=result.map(rowDataPacket=>{
                     return{
-                        t_tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
-                        t_tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
-                        t_tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
-                        t_is_rutin:rowDataPacket.t_is_rutin,
-                        t_status:rowDataPacket.t_status,
-                        t_bon_sementara:rowDataPacket.t_bon_sementara,
-                        td_id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
-                        td_jumlah:rowDataPacket.td_jumlah,
-                        td_id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
-                        td_jenis:rowDataPacket.td_jenis,
-                        td_bpu_attachment:rowDataPacket.td_bpu_attachment,
-                        td_debit_credit:rowDataPacket.td_debit_credit,
-                        td_nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
-                        td_file_bukti_transaksi:rowDataPacket.td_file_bukti_transaksi,
-                        td_pembebanan_id:rowDataPacket.td_pembebanan_id,
-                        skema_pembebanan_json:rowDataPacket.skema_pembebanan_json
+                        tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                        tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
+                        tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                        is_rutin:rowDataPacket.t_is_rutin,
+                        status:rowDataPacket.t_status,
+                        bon_sementara:rowDataPacket.t_bon_sementara,
+                        id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
+                        jumlah:rowDataPacket.td_jumlah,
+                        id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
+                        jenis:rowDataPacket.td_jenis,
+                        bpu_attachment:rowDataPacket.td_bpu_attachment,
+                        debit_credit:rowDataPacket.td_debit_credit,
+                        nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
+                        file_bukti_transaksi:rowDataPacket.td_file_bukti_transaksi,
+                        pembebanan_id:rowDataPacket.td_pembebanan_id,
+                        pembebanan_json:rowDataPacket.skema_pembebanan_json
                     }
                 })
                 resolve(transaksi)
@@ -1025,6 +1029,28 @@ export class Dao{
         })
     }
 
+    getDetilTransaksiFile(transfer){
+        return new Promise((resolve,reject)=>{
+            if(!transfer instanceof Detil_transaksi){
+                const query="SELECT td_bpu_attachment FROM detil_transaksi WHERE td_id_transaksi=? "
+                this.mysqlConn.query(query,transfer.td_id_transaksi,(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }else if(result.length>0){
+                        let files=[]
+                        for(let i=0; i<result.length; i++){
+                            files.push(result[i].td_bpu_attachment)
+                        }
+                        resolve(files)
+                    }else{
+                        reject(NO_SUCH_CONTENT)
+                    }
+                })
+            }
+        })
+    }
+
     getTransaksiFile(transaksi){
         return new Promise((resolve,reject)=>{
             if(transaksi instanceof Transaksi){
@@ -1052,7 +1078,6 @@ export class Dao{
                 return
             }
 
-            console.log(transaksi.detail_transaksi)
             try {
                 let detailTransaksi = JSON.parse(transaksi.detail_transaksi.toString())
                 const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_is_deleted`) VALUES(NOW(),NOW(),'NULL',?,'Entry di buat',?,'0')"
@@ -1142,15 +1167,75 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE transaksi SET t_tnaggal_transaksi=NOW(), t_tanggal_modifikasi=NOW(), t_tanggal_realisasi=NOW(),t_is_rutin=?, t_status=?, t_bon_sementara=?"
-            this.mysqlConn.query(query, [transaksi.t_is_rutin,transaksi.t_status,transaksi.t_bon_sementara,  transaksi.t_id_transaksi], (error,result)=>{
+            try{
+                let detailTransaksi = JSON.parse(transaksi.detail_transaksi.toString())
+                const query="UPDATE transaksi SET t_tnaggal_transaksi=NOW(), t_tanggal_modifikasi=NOW(), t_tanggal_realisasi='NULL',t_is_rutin=?, t_status=?, t_bon_sementara=?"
+                this.mysqlConn.query(query, [transaksi.t_is_rutin,transaksi.t_status,transaksi.t_bon_sementara,  transaksi.t_id_transaksi], async (error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }
+
+                    transaksi.t_id_transaksi=result.t_id_transaksi
+
+                    for(let i=0; i<detailTransaksi.length; i++){
+                        let detailTransaksiObject=new Detil_transaksi(
+                            null,
+                            transaksi.t_id_transaksi,
+                            detailTransaksi[i].td_jumlah,
+                            detailTransaksi[i].td_id_kategori_transaksi,
+                            detailTransaksi[i].td_jenis,
+                            detailTransaksi[i].td_bpu_attachment,
+                            detailTransaksi[i].td_debit_credit,
+                            detailTransaksi[i].td_nomor_bukti_transaksi,
+                            detailTransaksi[i].td_file_bukti_transaksi,
+                            detailTransaksi[i].td_pembebanan_id,
+                            0
+                        )
+                        detailTransaksiObject=await this.updateDetilTransaksi(detailTransaksiObject).catch(err=>{
+                            reject(err)
+                        })
+
+                        detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
+                    }
+                    transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
+                    resolve(transaksi)
+                })
+            }catch (e){
+                reject(e)
+            }
+        })
+    }
+
+    updateDetilTransaksi(detailTransaksiObject){
+        return new Promise((resolve,reject)=>{
+            const query="UPDATE detil_transaksi SET td_jumlah=?," +
+                "td_id_kategori_transaksi=?," +
+                "td_jenis=?,"+
+                "td_bpu_attachment=?," +
+                "td_debit_credit=?, " +
+                "td_nomor_bukti_transaksi=?, " +
+                "td_file_bukti_transaksi='BPU', " +
+                "td_pembebanan_id=?, " +
+                "td_is_deleted=0 "+
+                "WHERE td_id_transaksi=?"
+
+            this.mysqlConn.query(query,[
+                detailTransaksiObject.td_jumlah,
+                detailTransaksiObject.td_id_kategori_transaksi,
+                detailTransaksiObject.td_jenis,
+                detailTransaksiObject.td_bpu_attachment,
+                detailTransaksiObject.td_debit_credit,
+                detailTransaksiObject.td_nomor_bukti_transaksi,
+                detailTransaksiObject.td_pembebanan_id,
+                detailTransaksiObject.td_id_transaksi],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                transaksi.t_id_transaksi=result.t_id_transaksi
-                resolve(transaksi)
+                detailTransaksiObject.td_id_detil_transaksi=result.insertId
+                resolve(detailTransaksiObject)
             })
         })
     }

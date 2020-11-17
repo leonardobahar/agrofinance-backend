@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Changed Retrieve">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +53,7 @@
       <recent name="C:\Users\Asus\WebstormProjects\agrofinance-backend" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -79,6 +83,8 @@
       <workItem from="1605413050014" duration="2642000" />
       <workItem from="1605441278302" duration="1580000" />
       <workItem from="1605488058873" duration="23610000" />
+      <workItem from="1605574708767" duration="7280000" />
+      <workItem from="1605587703041" duration="21289000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1602810731600</created>
@@ -234,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605537488914</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="added code formatting">
+      <created>1605537939141</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1605537939141</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,13 +276,14 @@
     <MESSAGE value="Added connected successfully to database text" />
     <MESSAGE value="Did code formatting" />
     <MESSAGE value="addes code formatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="addes code formatting" />
+    <MESSAGE value="added code formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="added code formatting" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="630" y="0" key="CommitChangelistDialog2" timestamp="1605537487846">
+    <state x="630" y="0" key="CommitChangelistDialog2" timestamp="1605539021350">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="630" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605537487846" />
+    <state x="630" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605539021350" />
     <state x="146" y="61" width="1228" height="687" key="DiffContextDialog" timestamp="1605537783439">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -286,10 +300,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="133" key="RollbackChangesDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605535460381" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605537493773">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605537942421">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605537493773" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605537942421" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605537676228">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
