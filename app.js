@@ -10,7 +10,7 @@ import {
     ERROR_FOREIGN_KEY,
     WRONG_BODY_FORMAT,
     SOMETHING_WENT_WRONG,
-    NO_SUCH_CONTENT
+    NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE
 } from "./strings";
 import {
     Detil_transaksi,
@@ -19,7 +19,7 @@ import {
     Kategori_transaksi,
     Pembebanan,
     Perusahaan, Rekening_perusahaan,
-    Transaksi
+    Transaksi, Transaksi_rekening
 } from "./model";
 import multer from 'multer'
 import path from 'path'
@@ -447,7 +447,7 @@ app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
             })
         })
     }else{
-        const rekening=new Rekening_perusahaan(null,null,null,null,req.query.rp_id_perusahaan)
+        const rekening=new Rekening_perusahaan(null,null,null,null,null,req.query.id_perusahaan)
         dao.retrieveOneRekeningPerusahaan(rekening).then(result=>{
             res.status(200).send({
                 success:true,
@@ -460,6 +460,7 @@ app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
                     error:NO_SUCH_CONTENT
                 })
             }else{
+                console.error(error)
                 res.status(500).send({
                     success:false,
                     error:SOMETHING_WENT_WRONG
@@ -473,7 +474,8 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
     if(typeof req.body.nama_bank==='undefined' ||
        typeof req.body.nomor_rekening==='undefined' ||
        typeof req.body.saldo==='undefined' ||
-       typeof req.body.id_perusahaan==='undefined'){
+       typeof req.body.rekening_utama==='undefined'||
+        typeof req.body.id_perusahaan==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -481,7 +483,7 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
         return
     }
 
-    const rekening=new Rekening_perusahaan(null,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_perusahaan)
+    const rekening=new Rekening_perusahaan(null,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.rekening_utama,req.body.id_perusahaan)
     dao.retrieveOnePerusahaan(new Perusahaan(req.body.id_perusahaan,null,null)).then(result=>{
         dao.addRekeningPerusahaan(rekening).then(result=>{
             res.status(200).send({
@@ -501,7 +503,7 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
                 success:false,
                 error:NO_SUCH_CONTENT
             })
-        } else {
+        }else{
             console.error(error)
             res.status(500).send({
                 success:false,
@@ -514,7 +516,7 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
 app.post("/api/rekening-perusahaan/update",(req,res)=>{
     if(typeof req.body.nama_bank==='undefined' ||
         typeof req.body.nomor_rekening==='undefined' ||
-        typeof req.body.saldo==='undefined' ||
+        typeof req.body.rekening_utama==='undefined' ||
         typeof req.body.id_perusahaan==='undefined' ||
         typeof req.body.id_rekening==='undefined'){
         res.status(400).send({
@@ -524,13 +526,87 @@ app.post("/api/rekening-perusahaan/update",(req,res)=>{
         return
     }
 
-    const rekening=new Rekening_perusahaan(req.body.id_rekening,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_perusahaan)
-    dao.retrieveOneRekeningPerusahaan(new Rekening_perusahaan())
+    const rekening=new Rekening_perusahaan(req.body.id_rekening,req.body.nama_bank,req.body.nomor_rekening,null,req.body.rekening_utama,req.body.id_perusahaan)
+
+    dao.getRekeningPerusahanId(new Rekening_perusahaan(req.body.id_rekening)).then(result=>{
+        dao.updateRekeningPerusahaan(rekening).then(result=>{
+            res.status(200).send({
+                result:result,
+                success:true
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                error:SOMETHING_WENT_WRONG,
+                success:false
+            })
+        })
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+        }else {
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
+    })
+
 })
 
-app.get("/api/pemebebanan/retrieve",(req,res)=>{
-    if(typeof req.query.id==='undefined'){
-        dao.retrievePembebanan().then(result=>{
+app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
+    if(typeof req.query.id_rekening==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    const rekening=new Rekening_perusahaan(req.query.id_rekening,null,null,null,null)
+    dao.getRekeningPerusahanId(new Rekening_perusahaan(req.query.id_rekening)).then(result=>{
+        dao.deleteRekeningPerusahaan(rekening).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+            }else {
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
+            }
+        })
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+        }else {
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
+    })
+})
+
+app.get("/api/transaksi-rekening/retrieve",(req,res)=>{
+    if(typeof req.query.id_transaksi==='undefined'){
+        dao.retrieveRekeningPerusahaan().then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
@@ -543,9 +619,8 @@ app.get("/api/pemebebanan/retrieve",(req,res)=>{
             })
         })
     }else{
-        const pembebanan=new Pembebanan(req.query.id,null)
-
-        dao.retrieveOnePembebanan(pembebanan).then(result=>{
+        const transfer=new Transaksi_rekening(null,null,null,null,req.query.id_transaksi)
+        dao.retrieveOneTransaksiRekening(transfer).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
@@ -556,7 +631,7 @@ app.get("/api/pemebebanan/retrieve",(req,res)=>{
                     success:false,
                     error:NO_SUCH_CONTENT
                 })
-            } else{
+            }else {
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -567,8 +642,10 @@ app.get("/api/pemebebanan/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/pemebebanan/add",(req,res)=>{
-    if(typeof req.body.pembebanan_json==='undefined'){
+app.post("/api/transaksi-rekening/add",(req,res)=>{
+    if(typeof req.body.credit==='undefined' ||
+       typeof req.body.debit==='undefined' ||
+       typeof req.body.id_transaksi==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -576,33 +653,48 @@ app.post("/api/pemebebanan/add",(req,res)=>{
         return
     }
 
-    const pembebanan=new Pembebanan(null,req.body.pembebanan_json)
-
-    dao.addPembebanan(pembebanan).then(result=>{
+    const transfer=new Transaksi_rekening(null,'NOW()',req.body.credit,req.body.debit,req.body.id_transaksi)
+    dao.addTransaksiRekening(transfer).then(result=>{
         res.status(200).send({
             success:true,
             result:result
         })
     }).catch(error=>{
-        if(error.code==='ER_DUP_ENTRY'){
-            res.status(500).send({
-                success:false,
-                error:ERROR_DUPLICATE_ENTRY
-            })
-        }
-        else{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        }
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
     })
 })
 
-app.post("/api/pemebebanan/update", (req,res)=>{
-    if(typeof req.body.id==='undefined' ||
-       typeof req.body.pembebanan_json==='undefined'){
+app.post("/api/transaksi-rekening/update",(req,res)=>{
+    if(typeof req.body.credit==='undefined' ||
+        typeof req.body.debit==='undefined' ||
+        typeof req.body.id_transaksi==='undefined' ||
+        typeof req.body.id_transaksi_rekening==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+    const transfer=new Transaksi_rekening(req.body.id_transaksi_rekening,'NOW()',req.body.credit,req.body.debit,req.body.id_transaksi)
+    dao.updateTransaksiRekening(transfer).then(result=>{
+        res.status(200).send({
+            success:true,
+            result:result
+        })
+    }).catch(error=>{
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
+app.delete("/api/transaksi-rekening/delete",(req,res)=>{
+    if(typeof req.body.id_transaksi_rekening==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -610,28 +702,11 @@ app.post("/api/pemebebanan/update", (req,res)=>{
         return
     }
 
-    const pembebanan=new Pembebanan(req.body.id,req.body.pembebanan_json)
-
-    dao.retrieveOnePembebanan(pembebanan).then(result=>{
-        dao.updatePembebanan(pembebanan).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
-            })
-        }).catch(error=>{
-            if(error.code==='ER_DUP_ENTRY'){
-                res.status(500).send({
-                    success:false,
-                    error:ERROR_DUPLICATE_ENTRY
-                })
-            }
-            else{
-                console.error(error)
-                res.status(500).send({
-                    success:false,
-                    error:SOMETHING_WENT_WRONG
-                })
-            }
+    const transfer=new Transaksi_rekening(req.body.id_transaksi_rekening,null,null,null,null)
+    dao.deleteTransaksiRekening(transfer).then(result=>{
+        res.status(200).send({
+            success:true,
+            result:result
         })
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
@@ -639,53 +714,9 @@ app.post("/api/pemebebanan/update", (req,res)=>{
                 success:false,
                 error:NO_SUCH_CONTENT
             })
-        }
-
-        else {
+        }else{
             console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        }
-    })
-})
-
-app.delete("/api/pemebebanan/delete", (req,res)=>{
-    if(typeof req.query.id==='undefined'){
-        res.status(400).send({
-            success:false,
-            error:WRONG_BODY_FORMAT
-        })
-        return
-    }
-
-    const pembebanan=new Pembebanan(req.query.id,null)
-
-    dao.retrieveOnePembebanan(pembebanan).then(result=>{
-        dao.deletePembebanan(pembebanan).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
-            })
-        }).catch(error=>{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        })
-    }).catch(error=>{
-        if(error===NO_SUCH_CONTENT){
-            res.status(204).send({
-                success:false,
-                error:NO_SUCH_CONTENT
-            })
-        }
-
-        else {
-            console.error(error)
-            res.status(500).send({
+            res.send(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
             })
@@ -926,7 +957,8 @@ app.post("/api/transaksi/add",async(req,res)=> {
     upload(req,res, async (error)=>{
 
         if(typeof req.body.is_rutin==='undefined' ||
-            typeof req.body.bon_sementara==='undefined'){
+            typeof req.body.bon_sementara==='undefined' ||
+            typeof req.body.id_perusahaan==='undefined'){
             res.status(400).send({
                 success:false,
                 error:WRONG_BODY_FORMAT
@@ -934,10 +966,10 @@ app.post("/api/transaksi/add",async(req,res)=> {
             return
         }
 
-        if (typeof req.file.filename==='undefined'){
+        if (typeof req.file==='undefined'){
 
             const transfer=new Transaksi(null,'NOW','NOW','NULL',req.body.is_rutin,'Entry di buat',req.body.bon_sementara,
-                '0',req.body.detail_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,null,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan_id,'0')
+                req.body.id_perusahaan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,null,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan,'0')
 
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({
@@ -996,16 +1028,14 @@ app.post("/api/transaksi/add",async(req,res)=> {
         }else{
             if(error instanceof multer.MulterError){
                 return res.send(error)
-            }
-
-            else if(error){
+            } else if(error){
                 return res.send(error)
             }
 
             console.log(req.file.filename)
 
             const transfer=new Transaksi(null,'NOW','NOW','NULL',req.body.is_rutin,'Entry di buat',req.body.bon_sementara,
-                '0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.file.filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan_id,'0')
+                req.body.id_perusahaan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.file.filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan,'0')
 
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({
@@ -1065,55 +1095,167 @@ app.post("/api/transaksi/add",async(req,res)=> {
     })
 })
 
-app.post("/api/transaksi/update", (req,res)=>{
+app.post("/api/transaksi/update", async(req,res)=>{
     const upload=multer({storage:storage, fileFilter:transaksiFilter}).single('attachment_transaksi')
 
-    if(typeof req.query.is_rutin==='undefined' ||
-        typeof req.query.bon_sementara==='undefined'){
-        res.status(400).send({
-            success:false,
-            error:WRONG_BODY_FORMAT
-        })
-        return
-    }
-
-    const transfer=new Transaksi(req.body.id_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.body.bpu_attachment,req.body.debit_credit,req.body.status,req.body.bon_sementara,req.body.is_rutin,
-        'NOW','NOW','NOW',req.body.nomor_bukti_transaksi,req.body.file_bukti_transaksi,req.body.pembebanan_id)
-
-    dao.retrieveOneTransaksi(transfer).then(result=>{
-        dao.updateTransaksi(transfer).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
-            })
-        }).catch(error=>{
-            if(error.code===ER_DUP_ENTRY){
-                res.status(500).send({
-                    success:false,
-                    error:ERROR_DUPLICATE_ENTRY
-                })
-            }
-            else{
-                console.error(error)
-                res.status(500).send({
-                    success:false,
-                    error:SOMETHING_WENT_WRONG
-                })
-            }
-        })
-    }).catch(error=>{
-        if(error===NO_SUCH_CONTENT){
-            res.status(204).send({
+    upload(req,res, async (error)=>{
+        if(typeof req.body.is_rutin==='undefined' ||
+            typeof req.body.bon_sementara==='undefined' ||
+            typeof req.body.id_transaksi==='undefined'){
+            res.status(400).send({
                 success:false,
-                error:NO_SUCH_CONTENT
+                error:WRONG_BODY_FORMAT
             })
+            return
         }
 
-        else {
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
+        if(req.file==='undefined'){
+            const transfer=new Transaksi(req.body.id_transaksi,'NOW','NOW','NULL',req.body.is_rutin,'Entry di buat',req.body.bon_sementara,
+                req.body.id_perusahaan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.file.filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan,'0')
+
+            dao.getDetilTransaksiFile(new Detil_transaksi(null,req.body.id_transaksi)).then(result=>{
+
+                if(result===null){
+                    dao.updateTransaksi(transfer).then(result=>{
+                        res.status(200).send({
+                            success:true,
+                            result:result
+                        })
+                    }).catch(error=>{
+                        if(error.code==='ER_DUP_ENTRY'){
+                            res.status(500).send({
+                                success:false,
+                                error:ERROR_DUPLICATE_ENTRY
+                            })
+                        }
+                        else{
+                            console.error(error)
+                            res.status(500).send({
+                                success:false,
+                                error:SOMETHING_WENT_WRONG
+                            })
+                        }
+                    })
+                }else{
+                    for(let i=0;i<result.length;i++){
+                        fs.unlinkSync('./Uploads/'+result[i].toString())
+                    }
+
+                    dao.updateTransaksi(transfer).then(result=>{
+                        res.status(200).send({
+                            success:true,
+                            result:result
+                        })
+                    }).catch(error=>{
+                        if(error.code==='ER_DUP_ENTRY'){
+                            res.status(500).send({
+                                success:false,
+                                error:ERROR_DUPLICATE_ENTRY
+                            })
+                        }
+                        else{
+                            console.error(error)
+                            res.status(500).send({
+                                success:false,
+                                error:SOMETHING_WENT_WRONG
+                            })
+                        }
+                    })
+                }
+
+            }).catch(error=>{
+                if(error===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:false,
+                        error:NO_SUCH_CONTENT
+                    })
+                }
+
+                else {
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
+            })
+        }else{
+            if(error instanceof multer.MulterError){
+                return res.send(error)
+            } else if(error){
+                return res.send(error)
+            }
+
+            console.log(req.file.filename)
+
+            const transfer=new Transaksi(req.body.id_transaksi,'NOW','NOW','NULL',req.body.is_rutin,'Entry di buat',req.body.bon_sementara,
+                req.body.id_perusahaan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.file.filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan,'0')
+
+            dao.getDetilTransaksiFile(new Detil_transaksi(null,req.body.id_transaksi)).then(result=>{
+
+                if(result===null){
+                    dao.updateTransaksi(transfer).then(result=>{
+                        res.status(200).send({
+                            success:true,
+                            result:result
+                        })
+                    }).catch(error=>{
+                        if(error.code==='ER_DUP_ENTRY'){
+                            res.status(500).send({
+                                success:false,
+                                error:ERROR_DUPLICATE_ENTRY
+                            })
+                        }
+                        else{
+                            console.error(error)
+                            res.status(500).send({
+                                success:false,
+                                error:SOMETHING_WENT_WRONG
+                            })
+                        }
+                    })
+                }else{
+                    for(let i=0;i<result.length;i++){
+                        fs.unlinkSync('./Uploads/'+result[i].toString())
+                    }
+
+                    dao.updateTransaksi(transfer).then(result=>{
+                        res.status(200).send({
+                            success:true,
+                            result:result
+                        })
+                    }).catch(error=>{
+                        if(error.code==='ER_DUP_ENTRY'){
+                            res.status(500).send({
+                                success:false,
+                                error:ERROR_DUPLICATE_ENTRY
+                            })
+                        }
+                        else{
+                            console.error(error)
+                            res.status(500).send({
+                                success:false,
+                                error:SOMETHING_WENT_WRONG
+                            })
+                        }
+                    })
+                }
+
+            }).catch(error=>{
+                if(error===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:false,
+                        error:NO_SUCH_CONTENT
+                    })
+                }
+
+                else {
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
             })
         }
     })
