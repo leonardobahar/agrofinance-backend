@@ -299,7 +299,7 @@ export class Dao{
 
     retrieveRekeningPerusahaan(){
         return new Promise((resolve,reject)=>{
-            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
+            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekenig_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
                 "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
@@ -313,6 +313,7 @@ export class Dao{
                         nama_bank:rowDataPacket.rp_nama_bank,
                         nomor_rekening:rowDataPacket.rp_nomor_rekening,
                         saldo:rowDataPacket.rp_saldo,
+                        rekening_utama:rowDataPacket.rp_rekening_utama,
                         id_perusahaan:rowDataPacket.rp_id_perusahaan,
                         nama_perusahaan:rowDataPacket.p_nama_perusahaan,
                         alamat:rowDataPacket.p_alamat
@@ -331,7 +332,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
+            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekenig_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
                 "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
                 "WHERE rp.rp_id_perusahaan=?"
             this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error, result)=>{
@@ -345,6 +346,7 @@ export class Dao{
                             nama_bank:rowDataPacket.rp_nama_bank,
                             nomor_rekening:rowDataPacket.rp_nomor_rekening,
                             saldo:rowDataPacket.rp_saldo,
+                            rekening_utama:rowDataPacket.rp_rekening_utama,
                             id_perusahaan:rowDataPacket.rp_id_perusahaan,
                             nama_perusahaan:rowDataPacket.p_nama_perusahaan,
                             alamat:rowDataPacket.p_alamat
@@ -386,8 +388,8 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?)"
-            this.mysqlConn.query(query,[rekening.rp_nama_bank,rekening.rp_nomor_rekening,rekening.rp_saldo,rekening.rp_id_perusahaan],(error,result)=>{
+            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_rekening_utama`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?, ?)"
+            this.mysqlConn.query(query,[rekening.rp_nama_bank,rekening.rp_nomor_rekening,rekening.rp_saldo,rekening.rp_rekening_utama,rekening.rp_id_perusahaan],(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -406,10 +408,10 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE rekening_perusahaan SET rp_nama_bank=?, rp_nomor_rekening=?, rp_saldo=?, rp_id_perusahaan=? "+
+            const query="UPDATE rekening_perusahaan SET rp_nama_bank=?, rp_nomor_rekening=?, rp_rekening_utama=?, rp_id_perusahaan=? "+
                 "WHERE rp_id_rekening=?"
 
-            this.mysqlConn.query(query, [rekening.rp_nama_bank, rekening.rp_nomor_rekening, rekening.rp_saldo, rekening.rp_id_perusahaan, rekening.rp_id_rekening],(error,result)=>{
+            this.mysqlConn.query(query, [rekening.rp_nama_bank, rekening.rp_nomor_rekening, rekening.rp_rekening_utama, rekening.rp_id_perusahaan, rekening.rp_id_rekening],(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -571,117 +573,6 @@ export class Dao{
 
                 transfer.tr_id_transaksi_rekening=result.insertId
                 resolve(transfer)
-            })
-        })
-    }
-
-    retrievePembebanan(){
-        return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM pembebanan"
-            this.mysqlConn.query(query, (error, result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
-
-                const beban=result.map(rowDataPacket=>{
-                    return{
-                        id:rowDataPacket.pbb_id,
-                        pembebanan_json:rowDataPacket.skema_pembebanan_json
-                    }
-                })
-                resolve(beban)
-            })
-        })
-    }
-
-    retrieveOnePembebanan(pembebanan){
-        return new Promise((resolve, reject)=>{
-            if(!pembebanan instanceof Pembebanan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="SELECT * FROM pembebanan WHERE pbb_id=?"
-            this.mysqlConn.query(query, pembebanan.pbb_id, (error, result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
-
-                else if(result.length>0){
-                    const beban=result.map(rowDataPacket=>{
-                        return{
-                            id:rowDataPacket.pbb_id,
-                            pembebanan_json:rowDataPacket.skema_pembebanan_json
-                        }
-                    })
-                    resolve(beban)
-                }
-
-                else{
-                    reject(NO_SUCH_CONTENT)
-                }
-            })
-        })
-    }
-
-    addPembebanan(pembebanan){
-        return new Promise((resolve,reject)=>{
-            if(!pembebanan instanceof Pembebanan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="INSERT INTO `pembebanan` (`skema_pembebanan_json`) VALUES(?)"
-            this.mysqlConn.query(query, pembebanan.skema_pembebanan_json, (error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
-
-                pembebanan.pbb_id=result.insertId
-                resolve(pembebanan)
-            })
-        })
-    }
-
-    updatePembebanan(pembebanan){
-        return new Promise((resolve,reject)=>{
-            if(!pembebanan instanceof Pembebanan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="UPDATE pembebanan SET skema_pembebanan_json=? WHERE pbb_id=?"
-            this.mysqlConn.query(query, [pembebanan.skema_pembebanan_json,pembebanan.pbb_id], (error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
-
-                pembebanan.pbb_id=result.pbb_id
-                resolve(pembebanan)
-            })
-        })
-    }
-
-    deletePembebanan(pembebanan){
-        return new Promise((resolve,reject)=>{
-            if(!pembebanan instanceof Pembebanan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="DELETE FROM pembebanan WHERE pbb_id=?"
-            this.mysqlConn.query(query,pembebanan.pbb_id,(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
-
-                pembebanan.pbb_id=result.pbb_id
-                resolve(pembebanan)
             })
         })
     }
@@ -1080,8 +971,9 @@ export class Dao{
 
             try {
                 let detailTransaksi = JSON.parse(transaksi.detail_transaksi.toString())
-                const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_is_deleted`) VALUES(NOW(),NOW(),'NULL',?,'Entry di buat',?,'0')"
-                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara], async(error, result) => {
+                const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_id_perusahaan`, `t_is_deleted`) "+
+                    "VALUES(NOW(),NOW(),'NULL',?,'Entry di buat',?,?,'0')"
+                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_id_perusahaan], async(error, result) => {
                     if (error) {
                         reject(error)
                         return
@@ -1101,7 +993,7 @@ export class Dao{
                             detailTransaksi[i].td_debit_credit,
                             detailTransaksi[i].td_nomor_bukti_transaksi,
                             detailTransaksi[i].td_file_bukti_transaksi,
-                            detailTransaksi[i].td_pembebanan_id,
+                            detailTransaksi[i].skema_pembebanan_json,
                             0
                         )
 
@@ -1133,7 +1025,7 @@ export class Dao{
                 "`td_debit_credit`, " +
                 "`td_nomor_bukti_transaksi`, " +
                 "`td_file_bukti_transaksi`, " +
-                "`td_pembebanan_id`, " +
+                "`skema_pembebanan_json`, " +
                 "`td_is_deleted`) "+
                 "VALUES (?,?,?,?,?,?,?,?,?,?)"
 
@@ -1146,7 +1038,7 @@ export class Dao{
                 detailTransaksiObject.td_debit_credit,
                 detailTransaksiObject.td_nomor_bukti_transaksi,
                 'BPU',
-                detailTransaksiObject.td_pembebanan_id,
+                detailTransaksiObject.skema_pembebanan_json,
                 0
             ],(error,result)=>{
                 if(error){
@@ -1169,8 +1061,9 @@ export class Dao{
 
             try{
                 let detailTransaksi = JSON.parse(transaksi.detail_transaksi.toString())
-                const query="UPDATE transaksi SET t_tnaggal_transaksi=NOW(), t_tanggal_modifikasi=NOW(), t_tanggal_realisasi='NULL',t_is_rutin=?, t_status=?, t_bon_sementara=?"
-                this.mysqlConn.query(query, [transaksi.t_is_rutin,transaksi.t_status,transaksi.t_bon_sementara,  transaksi.t_id_transaksi], async (error,result)=>{
+                const query="UPDATE transaksi SET t_tnaggal_transaksi=NOW(), t_tanggal_modifikasi=NOW(), t_tanggal_realisasi='NULL',t_is_rutin=?, t_status='Entry di Update', t_bon_sementara=?, t_id_perusahaan=?, skema_pembebanan_json=? "+
+                    "WHERE t_id_transaksi=?"
+                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_id_perusahaan,  transaksi.t_id_transaksi], async (error,result)=>{
                     if(error){
                         reject(error)
                         return

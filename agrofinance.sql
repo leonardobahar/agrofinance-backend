@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi`(
     `t_status` VARCHAR(45) NOT NULL,
     `t_bon_sementara` VARCHAR(45) NOT NULL,
     `t_id_perusahaaan` INT(7),
+    `t_is_deleted` TINYINT(1) DEFAULT 0,
     FOREIGN KEY (`t_id_perusahaaan`) REFERENCES `agrofinance`.`perusahaan`(`p_id_perusahaan`)
 );
 
@@ -29,9 +30,9 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
   `td_debit_credit` TINYINT(1) NOT NULL DEFAULT 0,
   `td_nomor_bukti_transaksi` VARCHAR(45) NOT NULL,
   `td_file_bukti_transaksi` VARCHAR(45) NOT NULL,
-  `td_pembebanan_id` INT(7) NOT NULL,
+  `skema_pembebanan_json` LONGTEXT NOT NULL,
+  `td_is_deleted` TINYINT(1) DEFAULT 0,
   FOREIGN KEY (`td_id_kategori_transaksi`) REFERENCES kategori_transaksi(`kt_id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`td_pembebanan_id`) REFERENCES pembebanan(`pbb_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`td_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE
   );
 
@@ -55,15 +56,12 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan_kerja_dimana` (
   FOREIGN KEY (`kkd_id_karyawan`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`kkd_id_perusahaan`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE);
 
-CREATE TABLE IF NOT EXISTS `agrofinance`.`pembebanan` (
-  `pbb_id` INT(7) PRIMARY KEY AUTO_INCREMENT,
-  `skema_pembebanan_json` LONGTEXT NOT NULL);
-
 CREATE TABLE IF NOT EXISTS `agrofinance`.`rekening_perusahaan` (
   `rp_id_rekening` INT(7) PRIMARY KEY AUTO_INCREMENT,
   `rp_nama_bank` VARCHAR(225) NOT NULL,
   `rp_nomor_rekening` VARCHAR(225) NOT NULL,
   `rp_saldo` VARCHAR(255) NOT NULL,
+  `rp_rekening_utama`TINYINT(1) DEFAULT 0,
   `rp_id_perusahaan` INT(7) NOT NULL,
   FOREIGN KEY (`rp_id_perusahaan`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE);
 
