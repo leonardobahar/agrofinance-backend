@@ -79,6 +79,7 @@ export class Dao{
 
                 const employees=result.map(rowDataPacket=>{
                     return{
+                        id:rowDataPacket.k_id_karyawan,
                         nama_lengakap:rowDataPacket.k_nama_lengkap,
                         posisi:rowDataPacket.k_posisi,
                         nik:rowDataPacket.k_nik,
@@ -108,6 +109,7 @@ export class Dao{
                 else if(result.length>0){
                     const employees=result.map(rowDataPacket=>{
                         return{
+                            id:rowDataPacket.k_id_karyawan,
                             nama_lengakap:rowDataPacket.k_nama_lengkap,
                             posisi:rowDataPacket.k_posisi,
                             nik:rowDataPacket.k_nik,
@@ -197,6 +199,7 @@ export class Dao{
 
                 const companies=result.map(rowDataPacket=>{
                     return{
+                        id:rowDataPacket.p_id_perusahaan,
                         nama_perusahaan:rowDataPacket.p_nama_perusahaan,
                         alamat:rowDataPacket.p_alamat
                     }
@@ -223,6 +226,7 @@ export class Dao{
                 else if(result.length>0){
                     const companies=result.map(rowDataPacket=>{
                         return{
+                            id:rowDataPacket.p_id_perusahaan,
                             nama_perusahaan:rowDataPacket.p_nama_perusahaan,
                             alamat:rowDataPacket.p_alamat
                         }
