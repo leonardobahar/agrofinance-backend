@@ -1,4 +1,5 @@
 import fs from 'fs';
+import https from 'https';
 import bodyParser from 'body-parser'
 import express from 'express'
 import dotenv from 'dotenv'
@@ -56,6 +57,11 @@ const dbname = process.env.MY_SQL_DBNAME
 const dao = new Dao(host,user,password,dbname)
 const swaggerJsDoc=require('swagger-jsdoc')
 const swaggerUi=require('swagger-ui-express')
+
+// HTTPS
+var privateKey  = fs.readFileSync('ssl/privkey.pem', 'utf8');
+var certificate = fs.readFileSync('ssl/cert.pem', 'utf8');
+
 
 //Extended: https://swagger.io/specification/#infoObject
 const swaggerOptions={
@@ -1349,3 +1355,10 @@ app.delete("/api/karyawan-kerja-dimana/delete",(req,res)=>{
 app.listen(PORT, ()=>{
     console.info(`Server serving port ${PORT}`)
 })
+
+const httpsServe = https.createServer({
+	key: privateKey,
+	cert: certificate
+},app);
+
+httpsServe.listen(8089);
