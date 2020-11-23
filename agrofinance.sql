@@ -72,3 +72,13 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_rekening` (
   `tr_debit` TINYINT(1) NOT NULL DEFAULT 0,
   `tr_id_transaksi` INT(7) NOT NULL,
   FOREIGN KEY (`tr_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`cabang_perusahaan`(
+	`cp_id_cabang` INT(7) PRIMARY KEY AUTO_INCREMENT,
+    `cp_nama_cabang` VARCHAR(225) NOT NULL,
+    `cp_perusahaan_id` INT(7) NOT NULL,
+    `cp_lokasi` VARCHAR(225) NOT NULL,
+    `cp_alamat_lengkap` VARCHAR(225) NOT NULL,
+    `cp_is_default` TINYINT(1) NOT NULL DEFAULT 0,
+    FOREIGN KEY (`cp_perusahaan_id`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE
+);

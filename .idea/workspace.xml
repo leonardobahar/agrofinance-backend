@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2020_10_42_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_2020_10_42_PM__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +86,10 @@
       <workItem from="1605488058873" duration="23610000" />
       <workItem from="1605574708767" duration="7280000" />
       <workItem from="1605587703041" duration="21624000" />
-      <workItem from="1605661407970" duration="19619000" />
+      <workItem from="1605661407970" duration="23140000" />
+      <workItem from="1605747601802" duration="599000" />
+      <workItem from="1605834348967" duration="595000" />
+      <workItem from="1606137766604" duration="1157000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1602810731600</created>
@@ -261,14 +266,20 @@
       <option name="project" value="LOCAL" />
       <updated>1605698732881</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Fixed Retrieve Karyawan and Retrieve Perusahaan">
+      <created>1605704426593</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1605704426593</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial Commit" />
     <MESSAGE value="New commit" />
     <MESSAGE value="Fixed sql syntax errors" />
     <MESSAGE value="Added a few adjustments" />
@@ -293,13 +304,14 @@
     <MESSAGE value="added code formatting" />
     <MESSAGE value="Update Transaksi still in progress. Made CRUD endpoints for rekening_perusahaan" />
     <MESSAGE value="Update Transaksi still in progress. Made new feature for CRUD endpoints for rekening_perusahaan. CRUD endpoints for transaksi_rekening still in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Transaksi still in progress. Made new feature for CRUD endpoints for rekening_perusahaan. CRUD endpoints for transaksi_rekening still in progress" />
+    <MESSAGE value="Fixed Retrieve Karyawan and Retrieve Perusahaan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Retrieve Karyawan and Retrieve Perusahaan" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="527" y="0" key="CommitChangelistDialog2" timestamp="1605698728467">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1605704425337">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="527" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605698728467" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605704425337" />
     <state x="146" y="61" width="1228" height="687" key="DiffContextDialog" timestamp="1605537783439">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -316,10 +328,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="133" key="RollbackChangesDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605535460381" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605698798610">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605704438944">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605698798610" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605704438944" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605703523411">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
