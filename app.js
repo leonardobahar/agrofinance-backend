@@ -304,7 +304,7 @@ app.get("/api/perusahaan/retrieve",(req,res)=>{
         })
     }
 })
-//nama_bank, nomor_rekening, saldo
+
 app.post("/api/perusahaan/add",(req,res)=>{
     if(typeof req.body.nama_perusahaan==='undefined' ||
         typeof req.body.alamat==='undefined' ||
@@ -611,6 +611,8 @@ app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
         }
     })
 })
+
+
 
 app.get("/api/transaksi-rekening/retrieve",(req,res)=>{
     if(typeof req.query.id_transaksi==='undefined'){

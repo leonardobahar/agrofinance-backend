@@ -601,6 +601,129 @@ export class Dao{
         })
     }
 
+    retrieveRekeningUtama(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
+                "WHERE rp.rp_rekening_utama=1"
+            this.mysqlConn.query(query,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                const rekening=result.map(rowDataPacket=>{
+                    return{
+                        id_rekening:rowDataPacket.rp_id_rekening,
+                        nama_bank:rowDataPacket.rp_nama_bank,
+                        nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                        saldo:rowDataPacket.rp_saldo,
+                        rekening_utama:rowDataPacket.rp_rekening_utama,
+                        id_perusahaan:rowDataPacket.rp_id_perusahaan,
+                        nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                        alamat:rowDataPacket.p_alamat
+                    }
+                })
+                resolve(rekening)
+            })
+        })
+    }
+
+    retrieveOneRekeningUtama(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
+                "WHERE rp_rekening_utama=1 AND rp.rp_id_perusahaan=?"
+
+            this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    const rekening=result.map(rowDataPacket=>{
+                        return{
+                            id_rekening:rowDataPacket.rp_id_rekening,
+                            nama_bank:rowDataPacket.rp_nama_bank,
+                            nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                            saldo:rowDataPacket.rp_saldo,
+                            rekening_utama:rowDataPacket.rp_rekening_utama,
+                            id_perusahaan:rowDataPacket.rp_id_perusahaan,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                            alamat:rowDataPacket.p_alamat
+                        }
+                    })
+                    resolve(rekening)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    getRekeningUtama(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_rekening_utama=1 AND rp_id_perusahaan=?"
+            this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    resolve(result[0].rp_rekening_utama)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    setRekeningUtama(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE SET rp_rekening_utama=1 WHERE rp_id_rekening=?"
+            this.mysqlConn.query(query,rekening.rp_id_rekening, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(rekening)
+            })
+        })
+    }
+
+    unsetRekeningUtama(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE SET rp_rekening_utama=0 WHERE rp_id_rekening=?"
+            this.mysqlConn.query(query,rekening.rp_id_rekening, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(rekening)
+            })
+        })
+    }
+
     retrieveTransaksiRekening(){
         return new Promise((resolve,reject)=>{
             const query="SELECT tr.tr_id_transaksi_rekening, tr.tr_timestamp_transaksi, tr.tr_credit, tr.tr_debit, tr.tr_id_transaksi, "+
