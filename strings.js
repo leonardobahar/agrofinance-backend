@@ -7,6 +7,7 @@ export const ERROR_FOREIGN_KEY="There was a foreign key error. Please check the 
 export const NO_SUCH_CONTENT="No Such Content"
 export const MISMATCH_OBJ_TYPE="Mismatch Object Type Passed"
 export const ERROR_DUPLICATE_ENTRY="Duplicate Entry Error"
+export const MAIN_ACCOUNT_EXISTS="There can only be 1 main account"
 
 //CONSTRAINTS
 export const SUCCESS="SUCCESS"

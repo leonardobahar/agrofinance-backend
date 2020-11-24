@@ -2,7 +2,7 @@ import mysqlConn from './mysql-conn'
 import fs from 'fs'
 import {
     ADMIN_VALIDATED,
-    ALL, CANCELLED, DUPLICATE_ENTRY, ERROR_DUPLICATE_ENTRY, INVALID, INVALID_FINAL,
+    ALL, CANCELLED, DUPLICATE_ENTRY, ERROR_DUPLICATE_ENTRY, INVALID, INVALID_FINAL, MAIN_ACCOUNT_EXISTS,
     MISMATCH_OBJ_TYPE,
     NO_AFFECTED_ROWS,
     NO_SUCH_CONTENT,
@@ -665,42 +665,39 @@ export class Dao{
         })
     }
 
-    getRekeningUtama(rekening){
+    getRekeningUtama(id_perusahaan){
         return new Promise((resolve,reject)=>{
-            if(!rekening instanceof Rekening_perusahaan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_rekening_utama=1 AND rp_id_perusahaan=?"
-            this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error,result)=>{
+            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_perusahaan=?"
+            this.mysqlConn.query(query, id_perusahaan, (error,result)=>{
                 if(error){
                     reject(error)
                     return
-                }else if(result.length>0){
-                    resolve(result[0].rp_rekening_utama)
-                }else{
-                    reject(NO_SUCH_CONTENT)
+                }
+
+                for(let i=0; i<result.length; i++){
+                    if(result[i].rp_rekening_utama===0){
+                        resolve(result[i].rp_rekening_utama)
+                    }else if(result[i].rp_rekening_utama===1){
+                        reject(MAIN_ACCOUNT_EXISTS)
+                    }else{
+                        reject(NO_SUCH_CONTENT)
+                    }
                 }
             })
         })
     }
 
-    setRekeningUtama(rekening){
+    setRekeningUtama(id_rekening){
         return new Promise((resolve,reject)=>{
-            if(!rekening instanceof Rekening_perusahaan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
 
-            const query="UPDATE SET rp_rekening_utama=1 WHERE rp_id_rekening=?"
-            this.mysqlConn.query(query,rekening.rp_id_rekening, (error,result)=>{
+            const query="UPDATE rekening_perusahaan SET rp_rekening_utama=1 WHERE rp_id_rekening=?"
+            this.mysqlConn.query(query,id_rekening, (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                resolve(rekening)
+                resolve(SUCCESS)
             })
         })
     }

@@ -10,7 +10,7 @@ import {
     ERROR_FOREIGN_KEY,
     WRONG_BODY_FORMAT,
     SOMETHING_WENT_WRONG,
-    NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE
+    NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE, MAIN_ACCOUNT_EXISTS
 } from "./strings";
 import {
     Cabang_perusahaan,
@@ -612,7 +612,50 @@ app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
     })
 })
 
+app.post("/api/rekening-utama/set",(req,res)=>{
+    if(typeof req.body.id_rekening==='undefined' ||
+        typeof req.body.id_perusahaan==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
 
+    dao.getRekeningUtama(req.body.id_perusahaan).then(result=>{
+        dao.setRekeningUtama(req.body.id_rekening).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+            return
+        }else if(error===MAIN_ACCOUNT_EXISTS){
+            res.status(204).send({
+                success:false,
+                error:MAIN_ACCOUNT_EXISTS
+            })
+        }else{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        }
+    })
+})
 
 app.get("/api/transaksi-rekening/retrieve",(req,res)=>{
     if(typeof req.query.id_transaksi==='undefined'){
