@@ -82,3 +82,9 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`cabang_perusahaan`(
     `cp_is_default` TINYINT(1) NOT NULL DEFAULT 0,
     FOREIGN KEY (`cp_perusahaan_id`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`list_bank`(
+    `lb_id_list` INT(7) PRIMARY KEY AUTO_INCREMENT,
+    `lb_kode_bank` VARCHAR(255) UNIQUE NOT NULL,
+    `lb_nama_bank` VARCHAR(255) UNIQUE NOT NULL
+);

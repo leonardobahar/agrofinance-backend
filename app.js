@@ -667,13 +667,14 @@ app.post("/api/rekening-utama/unset", (req,res)=>{
         return
     }
 
-    dao.getRekeningNonUtama(req.body.id_perusahaan).then(result=>{
+    dao.getRekeningUtama(req.body.id_perusahaan).then(result=>{
         dao.unsetRekeningUtama(req.body.id_rekening).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
             })
         }).catch(error=>{
+            console.error(error)
             res.status(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
