@@ -32,6 +32,17 @@ export class Perusahaan{
     }
 }
 
+export class Cabang_perusahaan{
+    constructor(cp_id_cabang, cp_nama_cabang, cp_perusahaan_id, cp_lokasi, cp_alamat_lengkap, cp_is_default) {
+        this.cp_id_cabang=cp_id_cabang
+        this.cp_nama_cabang=cp_nama_cabang
+        this.cp_perusahaan_id=cp_perusahaan_id
+        this.cp_lokasi=cp_lokasi
+        this.cp_alamat_lengkap=cp_alamat_lengkap
+        this.cp_is_default=cp_is_default
+    }
+}
+
 export class Rekening_perusahaan{
     constructor(rp_id_rekening, rp_nama_bank, rp_nomor_rekening, rp_saldo, rp_rekening_utama, rp_id_perusahaan) {
         this.rp_id_rekening=rp_id_rekening

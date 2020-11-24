@@ -10,6 +10,7 @@ import {
     SOMETHING_WENT_WRONG, SUCCESS, VALID, WRONG_BODY_FORMAT
 } from "./strings"
 import {
+    Cabang_perusahaan,
     Detil_transaksi,
     Karyawan,
     Karyawan_kerja_dimana,
@@ -241,7 +242,7 @@ export class Dao{
         })
     }
 
-    addPerusahaan(perusahaan){
+    addPerusahaan(perusahaan,nama_cabang, lokasi, alamat_lengkap, nama_bank, nomor_rekening, saldo){
         return new Promise((resolve,reject)=>{
             if(!perusahaan instanceof Perusahaan){
                 reject(MISMATCH_OBJ_TYPE)
@@ -249,14 +250,21 @@ export class Dao{
             }
 
             const query="INSERT INTO `perusahaan` (`p_nama_perusahaan`,`p_alamat`) VALUES(?,?)"
-            this.mysqlConn.query(query, [perusahaan.p_nama_perusahaan,perusahaan.p_alamat], (error,result)=>{
+            this.mysqlConn.query(query, [perusahaan.p_nama_perusahaan,perusahaan.p_alamat], async(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                perusahaan.p_id_perusahaan=result.insertId
-                resolve(perusahaan)
+                const perusahaanID=result.insertId
+                await this.addCabangPerusahaan(nama_cabang,perusahaanID,lokasi,alamat_lengkap).catch(error=>{
+                    reject(error)
+                })
+
+                await this.addRekeningPerusahaan(nama_bank,nomor_rekening,saldo,perusahaanID).catch(error=>{
+                    reject(error)
+                })
+                resolve(SUCCESS)
             })
         })
     }
@@ -297,6 +305,158 @@ export class Dao{
 
                 perusahaan.p_id_perusahaan=result.p_id_perusahaan
                 resolve(perusahaan)
+            })
+        })
+    }
+
+    retrieveCabangPerusahaan(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_perusahaan_id, p.p_nama_perusahaan, p.p_alamat, cp.cp_lokasi, cp.cp_alamat_lengkap, cp.cp_is_default "+
+                "FROM cabang_perusahaan cp LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan"
+            this.mysqlConn.query(query, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                const cabang=result.map(rowDataPcket=>{
+                    return{
+                        id_cabang:rowDataPcket.cp_id_cabang,
+                        nama_cabang:rowDataPcket.cp_nama_cabang,
+                        perusahaan_id:rowDataPcket.cp_perusahaan_id,
+                        lokasi:rowDataPcket.cp_lokasi,
+                        alamat_lengkap:rowDataPcket.cp_alamat_lengkap,
+                        default:rowDataPcket.cp_is_default
+                    }
+                })
+                resolve(cabang)
+            })
+        })
+    }
+
+    retrieveCabangPerusahaanByPerusahaanId(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_perusahaan_id, p.p_nama_perusahaan, p.p_alamat, cp.cp_lokasi, cp.cp_alamat_lengkap, cp.cp_is_default "+
+                "FROM cabang_perusahaan cp LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan "+
+                "WHERE cp.cp_perusahaan_id=? "
+            this.mysqlConn.query(query, cabang.cp_perusahaan_id, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    const cabang=result.map(rowDataPcket=>{
+                        return{
+                            id_cabang:rowDataPcket.cp_id_cabang,
+                            nama_cabang:rowDataPcket.cp_nama_cabang,
+                            perusahaan_id:rowDataPcket.cp_perusahaan_id,
+                            lokasi:rowDataPcket.cp_lokasi,
+                            alamat_lengkap:rowDataPcket.cp_alamat_lengkap,
+                            default:rowDataPcket.cp_is_default
+                        }
+                    })
+                    resolve(cabang)
+                }else {
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    getCabangPerushaanId(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT cp_id_cabang FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query, cabang.cp_id_cabang, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    resolve(result[0].cp_id_cabang)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    addCabangPerusahaan(nama_cabang, perusahaan_id, lokasi, alamat_lengkap){
+        return new Promise((resolve,reject)=>{
+            const query="INSERT INTO cabang_perusahaan (`cp_nama_cabang`, `cp_perusahaan_id`, `cp_lokasi`, `cp_alamat_lengkap`, `cp_is_default`) "+
+                "VALUES(?,?,?,?,0)"
+            this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap], (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
+    updateCabangPerusahaan(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE cabang_perusahaan SET cp_nama_cabang=?, cp_perusahaan_id=?, cp_lokasi=?, cp_alamat_lengkap=? "+
+                "WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query, [cabang.cp_nama_cabang, cabang.cp_perusahaan_id, cabang.cp_lokasi, cabang.cp_alamat_lengkap, cabang.cp_id_cabang], (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(cabang)
+            })
+        })
+    }
+
+    setDefaultCabangPerusahaan(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE cabang_perusahaan SET cp_is_default=1 WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query, [cabang.cp_id_cabang], (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(cabang)
+            })
+        })
+    }
+
+    deleteCabangPerusahaan(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="DELETE FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query, cabang.cp_id_cabang, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(cabang)
             })
         })
     }
@@ -385,22 +545,16 @@ export class Dao{
         })
     }
 
-    addRekeningPerusahaan(rekening){
+    addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_perusahaan){
         return new Promise((resolve,reject)=>{
-            if(!rekening instanceof Rekening_perusahaan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_rekening_utama`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?, ?)"
-            this.mysqlConn.query(query,[rekening.rp_nama_bank,rekening.rp_nomor_rekening,rekening.rp_saldo,rekening.rp_rekening_utama,rekening.rp_id_perusahaan],(error,result)=>{
+            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?)"
+            this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, id_perusahaan],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                rekening.rp_id_rekening=result.insertId
-                resolve(rekening)
+                resolve(SUCCESS)
             })
         })
     }

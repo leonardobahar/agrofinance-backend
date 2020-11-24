@@ -13,6 +13,7 @@ import {
     NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE
 } from "./strings";
 import {
+    Cabang_perusahaan,
     Detil_transaksi,
     Karyawan,
     Karyawan_kerja_dimana,
@@ -303,10 +304,17 @@ app.get("/api/perusahaan/retrieve",(req,res)=>{
         })
     }
 })
-
+//nama_bank, nomor_rekening, saldo
 app.post("/api/perusahaan/add",(req,res)=>{
     if(typeof req.body.nama_perusahaan==='undefined' ||
-        typeof req.body.alamat==='undefined'){
+        typeof req.body.alamat==='undefined' ||
+        typeof req.body.nama_cabang==='undefined' ||
+        typeof req.body.lokasi==='undefined' ||
+        typeof req.body.alamat_lengkap==='undefined' ||
+        typeof req.body.nama_bank==='undefined' ||
+        typeof req.body.nomor_rekening==='undefined' ||
+        typeof req.body.saldo==='undefined'
+        ){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -316,7 +324,7 @@ app.post("/api/perusahaan/add",(req,res)=>{
 
     const perusahaan=new Perusahaan(null,req.body.nama_perusahaan.toUpperCase(),req.body.alamat)
 
-    dao.addPerusahaan(perusahaan).then(result=>{
+    dao.addPerusahaan(perusahaan,req.body.nama_cabang.toUpperCase(),req.body.lokasi,req.body.alamat_lengkap,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo).then(result=>{
         res.status(200).send({
             success:true,
             result:result
@@ -470,7 +478,7 @@ app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/rekening-perusahaan/add",(req,res)=>{
+/*app.post("/api/rekening-perusahaan/add",(req,res)=>{
     if(typeof req.body.nama_bank==='undefined' ||
        typeof req.body.nomor_rekening==='undefined' ||
        typeof req.body.saldo==='undefined' ||
@@ -511,7 +519,7 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
             })
         }
     })
-})
+})*/
 
 app.post("/api/rekening-perusahaan/update",(req,res)=>{
     if(typeof req.body.nama_bank==='undefined' ||
