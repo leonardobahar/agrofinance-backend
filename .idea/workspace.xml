@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strings.js" beforeDir="false" afterPath="$PROJECT_DIR$/strings.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +89,7 @@
       <workItem from="1605747601802" duration="599000" />
       <workItem from="1605834348967" duration="595000" />
       <workItem from="1606137766604" duration="2438000" />
-      <workItem from="1606179987396" duration="23370000" />
+      <workItem from="1606179987396" duration="26263000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1602810731600</created>
@@ -295,14 +294,20 @@
       <option name="project" value="LOCAL" />
       <updated>1606211482476</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Added Set Rekening Utama">
+      <created>1606220840130</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1606220840130</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed a few issues&#10;Added CRUD for all tables" />
     <MESSAGE value="Fixed a few issues" />
     <MESSAGE value="Fixed a few issues&#10;Added and fixed CRUD for Pembebanan" />
     <MESSAGE value="Fixed All Insert and update error messages" />
@@ -327,13 +332,14 @@
     <MESSAGE value="Fixed Retrieve Karyawan and Retrieve Perusahaan added new table (cabang_perusahaan)" />
     <MESSAGE value="Modified Add Perusahaan endpoint to add perusahaan, cabang_perusahaan, and rekening_perusahaan" />
     <MESSAGE value="Added CRUD functions for rekening Utama" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added CRUD functions for rekening Utama" />
+    <MESSAGE value="Added Set Rekening Utama" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Set Rekening Utama" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1606211481565">
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1606220838986">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606211481565" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606220838986" />
     <state x="146" y="61" width="1228" height="687" key="DiffContextDialog" timestamp="1605537783439">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -350,10 +356,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="133" key="RollbackChangesDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605535460381" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606139789654">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606220941481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606139789654" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606220941481" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606181876620">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

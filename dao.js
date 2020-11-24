@@ -81,7 +81,7 @@ export class Dao{
                 const employees=result.map(rowDataPacket=>{
                     return{
                         id:rowDataPacket.k_id_karyawan,
-                        nama_lengakap:rowDataPacket.k_nama_lengkap,
+                        nama_lengkap:rowDataPacket.k_nama_lengkap,
                         posisi:rowDataPacket.k_posisi,
                         nik:rowDataPacket.k_nik,
                         role:rowDataPacket.k_role,
@@ -675,6 +675,28 @@ export class Dao{
                 }
 
                 for(let i=0; i<result.length; i++){
+                    if(result[i].rp_rekening_utama===1){
+                        resolve(result[i].rp_rekening_utama)
+                    }else if(result[i].rp_rekening_utama===0){
+                        reject(MAIN_ACCOUNT_EXISTS)
+                    }else{
+                        reject(NO_SUCH_CONTENT)
+                    }
+                }
+            })
+        })
+    }
+
+    getRekeningNonUtama(id_perusahaan){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_perusahaan=?"
+            this.mysqlConn.query(query, id_perusahaan, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                for(let i=0; i<result.length; i++){
                     if(result[i].rp_rekening_utama===0){
                         resolve(result[i].rp_rekening_utama)
                     }else if(result[i].rp_rekening_utama===1){
@@ -702,21 +724,16 @@ export class Dao{
         })
     }
 
-    unsetRekeningUtama(rekening){
+    unsetRekeningUtama(id_rekening){
         return new Promise((resolve,reject)=>{
-            if(!rekening instanceof Rekening_perusahaan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="UPDATE SET rp_rekening_utama=0 WHERE rp_id_rekening=?"
-            this.mysqlConn.query(query,rekening.rp_id_rekening, (error,result)=>{
+            const query="UPDATE rekening_perusahaan SET rp_rekening_utama=0 WHERE rp_id_rekening=?"
+            this.mysqlConn.query(query,id_rekening, (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                resolve(rekening)
+                resolve(SUCCESS)
             })
         })
     }
