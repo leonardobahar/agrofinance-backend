@@ -440,172 +440,6 @@ app.delete("/api/perusahaan/delete", (req,res)=>{
     })
 })
 
-app.get("/api/cabang-perusahaan/retrieve", (req,res)=>{
-    if(typeof req.query.id_perusahaan==='undefined'){
-        dao.retrieveCabangPerusahaan().then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
-            })
-        }).catch(error=>{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        })
-    }else{
-        const cabang=new Cabang_perusahaan(null,null,req.query.id_perusahaan,null,null,null)
-        dao.retrieveCabangPerusahaanByPerusahaanId(cabang).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
-            })
-        }).catch(error=>{
-            if(error===NO_SUCH_CONTENT){
-                res.status(204).send({
-                    success:false,
-                    error:NO_SUCH_CONTENT
-                })
-                return
-            }
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        })
-    }
-})
-
-app.post("/api/cabang-perusahaan/add",(req,res)=>{
-    if(typeof req.body.nama_cabang==='undefined'||
-        typeof req.body.perusahaan_id==='undefined' ||
-        typeof req.body.lokasi==='undefined' ||
-        typeof req.body.alamat_lengkap==='undefined'){
-        res.status(400).send({
-            success:false,
-            error:WRONG_BODY_FORMAT
-        })
-        return
-    }
-
-    dao.getPeruahaanId(new Perusahaan(req.body.perusahaan_id)).then(result=>{
-        dao.addCabangPerusahaan(req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
-            })
-        }).catch(error=>{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        })
-    }).catch(error=>{
-        if(error===NO_SUCH_CONTENT){
-            res.status(204).send({
-                success:false,
-                error:NO_SUCH_CONTENT
-            })
-            return
-        }
-
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
-    })
-})
-
-app.post("/api/cabang-perusahaan/update",(req,res)=>{
-    if(typeof req.body.id_cabang==='undefined' ||
-        typeof req.body.nama_cabang==='undefined'||
-        typeof req.body.perusahaan_id==='undefined' ||
-        typeof req.body.lokasi==='undefined' ||
-        typeof req.body.alamat_lengkap==='undefined'){
-        res.status(400).send({
-            success:false,
-            error:WRONG_BODY_FORMAT
-        })
-        return
-    }
-
-    const cabang=new Cabang_perusahaan(req.body.id_cabang,req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,null)
-
-    dao.getCabangPerushaanId(new Cabang_perusahaan(req.body.id_cabang)).then(result=>{
-        dao.updateCabangPerusahaan(cabang).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
-            })
-        }).catch(error=>{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        })
-    }).catch(error=>{
-        if(error===NO_SUCH_CONTENT){
-            res.status(204).send({
-                success:false,
-                error:NO_SUCH_CONTENT
-            })
-            return
-        }
-
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
-    })
-})
-
-app.delete("/api/cabang-perusahaan/delete",(req,res)=>{
-    if(typeof req.query.id_cabang==='undefined'){
-        res.status(400).send({
-            success:false,
-            error:WRONG_BODY_FORMAT
-        })
-        return
-    }
-
-    const cabang=new Cabang_perusahaan(req.query.id_cabang,null,null,null,null,null)
-
-    dao.getCabangPerushaanId(cabang).then(result=>{
-        dao.deleteCabangPerusahaan(cabang).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
-            })
-        }).catch(error=>{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        })
-    }).catch(error=>{
-        if(error===NO_SUCH_CONTENT){
-            res.status(204).send({
-                success:false,
-                error:NO_SUCH_CONTENT
-            })
-            return
-        }
-
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
-    })
-})
-
 app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
     if(typeof req.query.id_perusahaan==='undefined'){
         dao.retrieveRekeningPerusahaan().then(result=>{
@@ -644,10 +478,11 @@ app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/rekening-perusahaan/add",(req,res)=>{
+/*app.post("/api/rekening-perusahaan/add",(req,res)=>{
     if(typeof req.body.nama_bank==='undefined' ||
        typeof req.body.nomor_rekening==='undefined' ||
        typeof req.body.saldo==='undefined' ||
+       typeof req.body.rekening_utama==='undefined'||
         typeof req.body.id_perusahaan==='undefined'){
         res.status(400).send({
             success:false,
@@ -656,8 +491,9 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
         return
     }
 
-    dao.getPeruahaanId(new Perusahaan(req.body.id_perusahaan,null,null)).then(result=>{
-        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_perusahaan).then(result=>{
+    const rekening=new Rekening_perusahaan(null,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.rekening_utama,req.body.id_perusahaan)
+    dao.retrieveOnePerusahaan(new Perusahaan(req.body.id_perusahaan,null,null)).then(result=>{
+        dao.addRekeningPerusahaan(rekening).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
@@ -683,7 +519,7 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
             })
         }
     })
-})
+})*/
 
 app.post("/api/rekening-perusahaan/update",(req,res)=>{
     if(typeof req.body.nama_bank==='undefined' ||
