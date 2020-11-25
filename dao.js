@@ -307,7 +307,7 @@ export class Dao{
 
     retrieveRekeningPerusahaan(){
         return new Promise((resolve,reject)=>{
-            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
+            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_id_perusahaan, p.p_nama_perusahaan "+
                 "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
@@ -323,7 +323,7 @@ export class Dao{
                         rp_saldo:rowDataPacket.rp_saldo,
                         rp_id_perusahaan:rowDataPacket.rp_id_perusahaan,
                         p_nama_perusahaan:rowDataPacket.p_nama_perusahaan,
-                        p_alamat:rowDataPacket.p_alamat
+                        p_alamat:null
                     }
                 })
 
@@ -339,7 +339,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_id_perusahaan, p.p_nama_perusahaan, p.p_alamat "+
+            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_id_perusahaan, p.p_nama_perusahaan "+
                 "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
                 "WHERE rp_id_perusahaan=? "
             this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error, result)=>{
@@ -355,7 +355,7 @@ export class Dao{
                             rp_saldo:rowDataPacket.rp_saldo,
                             rp_id_perusahaan:rowDataPacket.rp_id_perusahaan,
                             p_nama_perusahaan:rowDataPacket.p_nama_perusahaan,
-                            p_alamat:rowDataPacket.p_alamat
+                            p_alamat:null
                         }
                     })
                     resolve(rekening)
