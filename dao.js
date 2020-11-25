@@ -267,6 +267,27 @@ export class Dao{
         })
     }
 
+    getPeruahaanId(perusahaan){
+        return new Promise((resolve,reject)=>{
+            if(!perusahaan instanceof Perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT p_id_perusahaan FROM perusahaan WHERE p_id_perusahaan=?"
+            this.mysqlConn.query(query,perusahaan.p_id_perusahaan,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    resolve(result[0].p_id_perusahaan)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
     addPerusahaan(perusahaan,nama_cabang, lokasi, alamat_lengkap, nama_bank, nomor_rekening, saldo){
         return new Promise((resolve,reject)=>{
             if(!perusahaan instanceof Perusahaan){
