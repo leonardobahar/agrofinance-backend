@@ -431,6 +431,50 @@ export class Dao{
         })
     }
 
+    getDefaultCabangPerusahaan(id_cabang){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT cp_is_default FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query,id_cabang,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                for(let i=0; i<result.length; i++){
+                    if(result[i].cp_is_default===1){
+                        resolve(result[i].cp_is_default)
+                    }else if(result[i].cp_is_default===0){
+                        reject(MAIN_ACCOUNT_EXISTS)
+                    }else{
+                        reject(NO_SUCH_CONTENT)
+                    }
+                }
+            })
+        })
+    }
+
+    getNonDefaultCabangPerusahaan(id_cabang){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT cp_is_default FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query,id_cabang,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                for(let i=0; i<result.length; i++){
+                    if(result[i].cp_is_default===0){
+                        resolve(result[i].cp_is_default)
+                    }else if(result[i].cp_is_default===1){
+                        reject(MAIN_ACCOUNT_EXISTS)
+                    }else{
+                        reject(NO_SUCH_CONTENT)
+                    }
+                }
+            })
+        })
+    }
+
     setDefaultCabangPerusahaan(cabang){
         return new Promise((resolve,reject)=>{
             if(!cabang instanceof Cabang_perusahaan){

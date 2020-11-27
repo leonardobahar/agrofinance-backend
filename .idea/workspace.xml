@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +99,21 @@
       <option name="project" value="LOCAL" />
       <updated>1606490357875</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added set Default Cabang Perusahaan">
+      <created>1606491185646</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1606491185646</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added unset Default Cabang Perusahaan">
+      <created>1606491345534</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606491345534</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,13 +148,15 @@
     <MESSAGE value="Error in retrievePerusahaan fixed, added field rekening utama field" />
     <MESSAGE value="Added perusahaan" />
     <MESSAGE value="Added Add Cabang Perusahaan" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Add Cabang Perusahaan" />
+    <MESSAGE value="Added set Default Cabang Perusahaan" />
+    <MESSAGE value="Added unset Default Cabang Perusahaan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added unset Default Cabang Perusahaan" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1606490356642">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1606491344368">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606490356642" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606491344368" />
     <state x="491" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606489093281" />
     <state x="100" y="88" width="1350" height="838" key="DiffContextDialog" timestamp="1606487198957">
       <screen x="0" y="0" width="1536" height="824" />
@@ -159,10 +174,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="414" y="206" key="VCS.ChangeListViewerDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606485440288" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606490365995">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606491354990">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606490365995" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606491354990" />
     <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606489094927" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606487198957">
       <screen x="0" y="0" width="1536" height="824" />

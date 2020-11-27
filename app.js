@@ -488,7 +488,7 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
         return
     }
 
-    dao.addCabangPerusahaan(req.body.nama_cabang,req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.is_cabang_utama).then(result=>{
+    dao.addCabangPerusahaan(req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.is_cabang_utama).then(result=>{
         res.status(200).send({
             success:true,
             result:result
