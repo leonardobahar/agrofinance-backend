@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="ADDED TRANSAKSI AND DETIL TRANSAKSI FEATURE TO APPEND TRANSAKSI_REKENING TABLE UPON SUCCESS">
-      <change afterPath="$PROJECT_DIR$/util.js" afterDir="false" />
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606485259062</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Instantiated util.js to accomodate additional validation">
+      <created>1606486581407</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1606486581407</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,7 +363,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed all all Transaksi Dates" />
     <MESSAGE value="Fixed all Transaksi Dates and added Retrieve Transaksi" />
     <MESSAGE value="Finalized all Transaksi dates" />
     <MESSAGE value="Fixed a few bugs. Started making crud for Detil_Transaksi" />
@@ -381,14 +387,15 @@
     <MESSAGE value="Removed p_alamat from queries" />
     <MESSAGE value="Revert &quot;Modified karyawan kerja dimana and rekening perusahaan to have cabang perusahaan foreign key and modified all their endpoints&quot;&#10;&#10;This reverts commit cbbb2f38" />
     <MESSAGE value="ADDED TRANSAKSI AND DETIL TRANSAKSI FEATURE TO APPEND TRANSAKSI_REKENING TABLE UPON SUCCESS" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADDED TRANSAKSI AND DETIL TRANSAKSI FEATURE TO APPEND TRANSAKSI_REKENING TABLE UPON SUCCESS" />
+    <MESSAGE value="Instantiated util.js to accomodate additional validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Instantiated util.js to accomodate additional validation" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="336" y="0" key="CommitChangelistDialog2" timestamp="1606485830052">
+    <state x="336" y="0" key="CommitChangelistDialog2" timestamp="1606486580954">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606225033746" />
-    <state x="336" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606485830052" />
+    <state x="336" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606486580954" />
     <state x="0" y="25" key="CommitChangelistDialog2/0.25.1680.962@0.25.1680.962" timestamp="1606314283573" />
     <state x="146" y="61" width="1228" height="687" key="DiffContextDialog" timestamp="1605537783439">
       <screen x="0" y="0" width="1536" height="824" />
@@ -406,11 +413,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="133" key="RollbackChangesDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605535460381" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606485260630">
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606486583045">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606225044564" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606485260630" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606486583045" />
     <state x="395" y="194" key="Vcs.Push.Dialog.v2/0.25.1680.962@0.25.1680.962" timestamp="1606314285360" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606181876620">
       <screen x="0" y="0" width="1536" height="824" />
