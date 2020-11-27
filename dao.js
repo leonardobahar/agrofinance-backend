@@ -401,7 +401,7 @@ export class Dao{
                 }
 
                 const id_cabang=result.insertId
-                await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang)
+                await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang, true)
                 resolve(SUCCESS)
             })
         })
@@ -574,10 +574,14 @@ export class Dao{
         })
     }
 
-    addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan){
+    addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, is_rekening_utama){
         return new Promise((resolve,reject)=>{
-            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_cabang_perusahaan`) VALUES(?, ?, ?, ?)"
-            this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, id_cabang_perusahaan],(error,result)=>{
+            if (typeof is_rekening_utama === 'undefined'){
+                is_rekening_utama = false
+            }
+
+            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_cabang_perusahaan`, `rp_rekening_utama`) VALUES(?, ?, ?, ?, ?)"
+            this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, is_rekening_utama],(error,result)=>{
                 if(error){
                     reject(error)
                     return
