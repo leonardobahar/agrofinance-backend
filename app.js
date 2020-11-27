@@ -473,6 +473,35 @@ app.get("/api/cabang_perusahaan/retrieve",(req,res)=>{
     }
 })
 
+app.post("/api/cabang-perusahaan/add",(req,res)=>{
+    if(typeof req.body.nama_cabang==='undefined' ||
+       typeof req.body.perusahaan_id==='undefined' ||
+       typeof req.body.lokasi==='undefined' ||
+       typeof req.body.alamat_lengkap==='undefined' ||
+       typeof req.body.nama_bank==='undefined' ||
+       typeof req.body.nomor_rekening==='undefined' ||
+       typeof req.body.saldo==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.addCabangPerusahaan(req.body.nama_cabang,req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.is_cabang_utama).then(result=>{
+        res.status(200).send({
+            success:true,
+            result:result
+        })
+    }).catch(error=>{
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
 app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
     if(typeof req.query.id_perusahaan==='undefined'){
         dao.retrieveRekeningPerusahaan().then(result=>{
