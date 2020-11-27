@@ -1,32 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+    <list default="true" id="8cef80eb-29d2-44c0-bb8e-e7d4e1a1a021" name="Default Changelist" comment="Retrieved lost codes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="ProjectId" id="1iqmGdncqmq9jzaDvI6fJcmMHnU" />
+  <component name="ProjectId" id="1ksLIZVhDDQTTQFBC7Jg1vwZRsX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -34,9 +20,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/employee_modules" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -44,306 +28,24 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Asus\WebstormProjects\agrofinance-backend\employee_modules" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Asus\WebstormProjects\agrofinance-backend" />
-    </key>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
-      <created>1602643402995</created>
+      <changelist id="8cef80eb-29d2-44c0-bb8e-e7d4e1a1a021" name="Default Changelist" comment="" />
+      <created>1606484272579</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1602643402995</updated>
-      <workItem from="1602643404985" duration="20760000" />
-      <workItem from="1602723477897" duration="27499000" />
-      <workItem from="1602808744661" duration="8370000" />
-      <workItem from="1602826975110" duration="15312000" />
-      <workItem from="1603151948547" duration="709000" />
-      <workItem from="1603242933958" duration="3705000" />
-      <workItem from="1604294812845" duration="7439000" />
-      <workItem from="1604366931951" duration="6814000" />
-      <workItem from="1604451544769" duration="3553000" />
-      <workItem from="1604538517179" duration="16491000" />
-      <workItem from="1604623490439" duration="7486000" />
-      <workItem from="1604883406824" duration="18198000" />
-      <workItem from="1604980356352" duration="26375000" />
-      <workItem from="1605056192026" duration="11457000" />
-      <workItem from="1605142899884" duration="17475000" />
-      <workItem from="1605229167369" duration="34067000" />
-      <workItem from="1605413050014" duration="2642000" />
-      <workItem from="1605441278302" duration="1580000" />
-      <workItem from="1605488058873" duration="23610000" />
-      <workItem from="1605574708767" duration="7280000" />
-      <workItem from="1605587703041" duration="21624000" />
-      <workItem from="1605661407970" duration="23140000" />
-      <workItem from="1605747601802" duration="599000" />
-      <workItem from="1605834348967" duration="595000" />
-      <workItem from="1606137766604" duration="2438000" />
-      <workItem from="1606179987396" duration="31176000" />
-      <workItem from="1606266480225" duration="984000" />
+      <updated>1606484272579</updated>
+      <workItem from="1606484273666" duration="2922000" />
     </task>
-    <task id="LOCAL-00001" summary="Initial Commit">
-      <created>1602810731600</created>
+    <task id="LOCAL-00001" summary="Retrieved lost codes">
+      <created>1606486681869</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1602810731600</updated>
+      <updated>1606486681869</updated>
     </task>
-    <task id="LOCAL-00002" summary="Initial Commit">
-      <created>1602811120179</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1602811120179</updated>
-    </task>
-    <task id="LOCAL-00003" summary="New commit">
-      <created>1603152010208</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1603152010208</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Fixed sql syntax errors">
-      <created>1604329434639</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1604329434639</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added a few adjustments">
-      <created>1604408667660</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1604408667660</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Fixed a few issues&#10;Added CRUD for all tables">
-      <created>1604497668159</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1604497668159</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Fixed a few issues">
-      <created>1604573427862</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1604573427862</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Fixed a few issues&#10;Added and fixed CRUD for Pembebanan">
-      <created>1604656477655</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1604656477655</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Fixed All Insert and update error messages">
-      <created>1604975882284</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1604975882284</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added new Features to CRUD for all data:&#10;-Add&#10;-Check Add for Duplicates&#10;-Retrieve&#10;-Retrieve all data&#10;-Retrieve existing data&#10;-Retrieve non existing data &#10;-Update&#10;-Update existing data&#10;-Update non existing data&#10;-Delete&#10;-Delete existing data&#10;-Delete non existing data&#10;-Delete File feature for Transaksi">
-      <created>1605002734290</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1605002734291</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Fixed all existing bugs">
-      <created>1605019508801</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1605019508801</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Fixed all all Transaksi Dates">
-      <created>1605022402756</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1605022402756</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Fixed all Transaksi Dates and added Retrieve Transaksi">
-      <created>1605083094152</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1605083094152</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Finalized all Transaksi dates">
-      <created>1605102547591</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1605102547591</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Fixed a few bugs. Started making crud for Detil_Transaksi. &#10;Both Transaksi and Detil Transaksi in both dao.js and app.js are still in progress.">
-      <created>1605196209400</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1605196209400</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Added new features for transaksi to add and delete from detil_transaksi. Retireve and Update endpoints are still in progress">
-      <created>1605278610491</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1605278610491</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Working on Add Transaksi. CRUD for rekening_perusahaan and transaksi_rekening are still in progress">
-      <created>1605529315461</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1605529315461</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Removed unnecessary remark from .sql file">
-      <created>1605530221808</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1605530221808</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Modified less complex addTransaksi function block, used nested promise as a solution">
-      <created>1605533288420</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1605533288420</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Added connected successfully to database text">
-      <created>1605534096010</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1605534096010</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Did code formatting">
-      <created>1605534137316</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1605534137316</updated>
-    </task>
-    <task id="LOCAL-00022" summary="addes code formatting">
-      <created>1605537488914</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1605537488914</updated>
-    </task>
-    <task id="LOCAL-00023" summary="added code formatting">
-      <created>1605537939141</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1605537939141</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Update Transaksi still in progress. Made CRUD endpoints for rekening_perusahaan">
-      <created>1605624437084</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1605624437084</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Update Transaksi still in progress. Made new feature for CRUD endpoints for rekening_perusahaan. CRUD endpoints for transaksi_rekening still in progress">
-      <created>1605698732881</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1605698732881</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Fixed Retrieve Karyawan and Retrieve Perusahaan">
-      <created>1605704426593</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1605704426593</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Fixed Retrieve Karyawan and Retrieve Perusahaan added new table (cabang_perusahaan)">
-      <created>1606139777315</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1606139777315</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Modified Add Perusahaan endpoint to add perusahaan, cabang_perusahaan, and rekening_perusahaan">
-      <created>1606198892234</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1606198892234</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Added CRUD functions for rekening Utama">
-      <created>1606211482475</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1606211482476</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Added Set Rekening Utama">
-      <created>1606220840130</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1606220840130</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Fixed nama lengkap typo">
-      <created>1606224036641</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1606224036641</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Added Unset rekening utama">
-      <created>1606225034943</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1606225034943</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Removed p_alamat from queries">
-      <created>1606314283698</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1606314283698</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Revert &quot;Modified karyawan kerja dimana and rekening perusahaan to have cabang perusahaan foreign key and modified all their endpoints&quot;&#10;&#10;This reverts commit cbbb2f38">
-      <created>1606483925748</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1606483925748</updated>
-    </task>
-    <task id="LOCAL-00035" summary="ADDED TRANSAKSI AND DETIL TRANSAKSI FEATURE TO APPEND TRANSAKSI_REKENING TABLE UPON SUCCESS">
-      <created>1606485259062</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1606485259062</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Instantiated util.js to accomodate additional validation">
-      <created>1606486581407</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1606486581407</updated>
-    </task>
-    <option name="localTasksCounter" value="37" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,81 +61,50 @@
       </list>
     </option>
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed all Transaksi Dates and added Retrieve Transaksi" />
-    <MESSAGE value="Finalized all Transaksi dates" />
-    <MESSAGE value="Fixed a few bugs. Started making crud for Detil_Transaksi" />
-    <MESSAGE value="Fixed a few bugs. Started making crud for Detil_Transaksi. &#10;Both Transaksi and Detil Transaksi in both dao.js and app.js are still in progress." />
-    <MESSAGE value="Added new features for transaksi to add and delete from detil_transaksi. Retireve and Update endpoints are still in progress" />
-    <MESSAGE value="Working on Add Transaksi. CRUD for rekening_perusahaan and transaksi_rekening are still in progress" />
-    <MESSAGE value="Removed unnecessary remark from .sql file" />
-    <MESSAGE value="Modified less complex addTransaksi function block, used nested promise as a solution" />
-    <MESSAGE value="Added connected successfully to database text" />
-    <MESSAGE value="Did code formatting" />
-    <MESSAGE value="addes code formatting" />
-    <MESSAGE value="added code formatting" />
-    <MESSAGE value="Update Transaksi still in progress. Made CRUD endpoints for rekening_perusahaan" />
-    <MESSAGE value="Update Transaksi still in progress. Made new feature for CRUD endpoints for rekening_perusahaan. CRUD endpoints for transaksi_rekening still in progress" />
-    <MESSAGE value="Fixed Retrieve Karyawan and Retrieve Perusahaan" />
-    <MESSAGE value="Fixed Retrieve Karyawan and Retrieve Perusahaan added new table (cabang_perusahaan)" />
-    <MESSAGE value="Modified Add Perusahaan endpoint to add perusahaan, cabang_perusahaan, and rekening_perusahaan" />
-    <MESSAGE value="Added CRUD functions for rekening Utama" />
-    <MESSAGE value="Added Set Rekening Utama" />
-    <MESSAGE value="Fixed nama lengkap typo" />
-    <MESSAGE value="Added Unset rekening utama" />
-    <MESSAGE value="Removed p_alamat from queries" />
-    <MESSAGE value="Revert &quot;Modified karyawan kerja dimana and rekening perusahaan to have cabang perusahaan foreign key and modified all their endpoints&quot;&#10;&#10;This reverts commit cbbb2f38" />
-    <MESSAGE value="ADDED TRANSAKSI AND DETIL TRANSAKSI FEATURE TO APPEND TRANSAKSI_REKENING TABLE UPON SUCCESS" />
-    <MESSAGE value="Instantiated util.js to accomodate additional validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Instantiated util.js to accomodate additional validation" />
+    <MESSAGE value="Retrieved lost codes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Retrieved lost codes" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="336" y="0" key="CommitChangelistDialog2" timestamp="1606486580954">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606225033746" />
-    <state x="336" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606486580954" />
-    <state x="0" y="25" key="CommitChangelistDialog2/0.25.1680.962@0.25.1680.962" timestamp="1606314283573" />
-    <state x="146" y="61" width="1228" height="687" key="DiffContextDialog" timestamp="1605537783439">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1606487094442">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="146" y="61" width="1228" height="687" key="DiffContextDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605537783439" />
-    <state x="593" y="314" key="Github.CreateGistDialog" timestamp="1602832864085">
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606487094442" />
+    <state x="100" y="88" width="1350" height="838" key="DiffContextDialog" timestamp="1606487198957">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="593" y="314" key="Github.CreateGistDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602832864085" />
-    <state x="147" y="65" key="MergeDialog" timestamp="1605535430485">
+    <state x="100" y="88" width="1350" height="838" key="DiffContextDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606487198957" />
+    <state x="147" y="65" key="MergeDialog" timestamp="1606486903338">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="147" y="65" key="MergeDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605535430485" />
-    <state x="542" y="133" key="RollbackChangesDialog" timestamp="1605535460381">
+    <state x="147" y="65" key="MergeDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606486903338" />
+    <state x="407" y="174" key="MultipleFileMergeDialog" timestamp="1606486903344">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="542" y="133" key="RollbackChangesDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1605535460381" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606486583045">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606225044564" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606486583045" />
-    <state x="395" y="194" key="Vcs.Push.Dialog.v2/0.25.1680.962@0.25.1680.962" timestamp="1606314285360" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606181876620">
+    <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606486903344" />
+    <state x="414" y="206" key="VCS.ChangeListViewerDialog" timestamp="1606485440288">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606181876620" />
-    <state x="486" y="314" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1602811105361">
+    <state x="414" y="206" key="VCS.ChangeListViewerDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606485440288" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606486695523">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="486" y="314" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602811105361" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1603088496815">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606486695523" />
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606487198957">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1603088496815" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1602661403016">
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606487198957" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606486875526">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1602661403016" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606486875526" />
+    <state x="530" y="311" key="git4idea.ui.GitStashDialog" timestamp="1606484844519">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="530" y="311" key="git4idea.ui.GitStashDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606484844519" />
+    <state x="540" y="98" key="svn.repositoryBrowser" timestamp="1606484259181">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="540" y="98" key="svn.repositoryBrowser/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606484259181" />
   </component>
 </project>
