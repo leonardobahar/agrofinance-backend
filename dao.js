@@ -205,7 +205,6 @@ export class Dao{
                     return{
                         id:rowDataPacket.p_id_perusahaan,
                         nama_perusahaan:rowDataPacket.p_nama_perusahaan,
-                        alamat:null,
                         id_cabang:rowDataPacket.cp_id_cabang,
                         nama_cabang:rowDataPacket.cp_nama_cabang,
                         lokasi:rowDataPacket.cp_lokasi,
@@ -229,37 +228,23 @@ export class Dao{
                 return
             }
 
-            const query=`SELECT p.p_id_perusahaan, p.p_nama_perusahaan, cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_lokasi, cp.cp_alamat_lengkap,
-                rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama
-                FROM perusahaan p LEFT OUTER JOIN cabang_perusahaan cp ON cp.cp_perusahaan_id=p.p_id_perusahaan
-                LEFT OUTER JOIN rekening_perusahaan rp ON rp.rp_id_perusahaan=p.p_id_perusahaan WHERE p.p_id_perusahaan=? `
-            this.mysqlConn.query(query, perusahaan.p_id_perusahaan, (error, result)=>{
+            const query=`SELECT * FROM perusahaan WHERE p_id_perusahaan=? `
+            this.mysqlConn.query(query, perusahaan.p_id_perusahaan, async (error, result)=>{
                 if(error){
                     reject(error)
                     return
-                }
-
-                else if(result.length>0){
-                    const companies=result.map(rowDataPacket=>{
-                        return{
-                            id:rowDataPacket.p_id_perusahaan,
-                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
-                            alamat:null,
-                            id_cabang:rowDataPacket.cp_id_cabang,
-                            nama_cabang:rowDataPacket.cp_nama_cabang,
-                            lokasi:rowDataPacket.cp_lokasi,
-                            alamat_lengkap:rowDataPacket.cp_alamat_lengkap,
-                            id_rekening:rowDataPacket.rp_id_rekening,
-                            nama_bank:rowDataPacket.rp_nama_bank,
-                            nomor_rekening:rowDataPacket.rp_nomor_rekening,
-                            saldo:rowDataPacket.rp_saldo,
-                            rekening_utama:rowDataPacket.rp_rekening_utama
-                        }
-                    })
+                } else if(result.length>0){
+                    let companies=[]
+                    for(let i=0;i<result.length;i++){
+                        companies.push(new Perusahaan(
+                            result[i].p_id_perusahaan,
+                            result[i].p_nama_perusahaan
+                        ), await this.retrieveCabangPerusahaanByPerusahaanId(result[i].p_id_perusahaan).catch(error=>{
+                            reject(error)
+                        }))
+                    }
                     resolve(companies)
-                }
-
-                else{
+                } else{
                     reject(NO_SUCH_CONTENT)
                 }
             })
@@ -273,21 +258,18 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `perusahaan` (`p_nama_perusahaan`,`p_alamat`) VALUES(?,?)"
-            this.mysqlConn.query(query, [perusahaan.p_nama_perusahaan,perusahaan.p_alamat], async(error,result)=>{
+            const query="INSERT INTO `perusahaan` (`p_nama_perusahaan`) VALUES(?)"
+            this.mysqlConn.query(query, [perusahaan.p_nama_perusahaan], async(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
                 const perusahaanID=result.insertId
-                await this.addCabangPerusahaan(nama_cabang,perusahaanID,lokasi,alamat_lengkap).catch(error=>{
+                await this.addCabangPerusahaan(nama_cabang,perusahaanID,lokasi,alamat_lengkap, nama_bank, nomor_rekening, saldo).catch(error=>{
                     reject(error)
                 })
 
-                await this.addRekeningPerusahaan(nama_bank,nomor_rekening,saldo,perusahaanID).catch(error=>{
-                    reject(error)
-                })
                 resolve(SUCCESS)
             })
         })
@@ -300,8 +282,8 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE perusahaan SET p_nama_perusahaan=?, p_alamat=? WHERE p_id_perusahaan=?"
-            this.mysqlConn.query(query, [perusahaan.p_nama_perusahaan, perusahaan.p_alamat, perusahaan.p_id_perusahaan], (error,result)=>{
+            const query="UPDATE perusahaan SET p_nama_perusahaan=?, WHERE p_id_perusahaan=?"
+            this.mysqlConn.query(query, [perusahaan.p_nama_perusahaan, perusahaan.p_id_perusahaan], (error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -358,31 +340,27 @@ export class Dao{
         })
     }
 
-    retrieveCabangPerusahaanByPerusahaanId(cabang){
+    retrieveCabangPerusahaanByPerusahaanId(perusahaan_id){
         return new Promise((resolve,reject)=>{
-            if(!cabang instanceof Cabang_perusahaan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="SELECT cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_perusahaan_id, p.p_nama_perusahaan, cp.cp_lokasi, cp.cp_alamat_lengkap, cp.cp_is_default "+
-                "FROM cabang_perusahaan cp LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan "+
-                "WHERE cp.cp_perusahaan_id=? "
-            this.mysqlConn.query(query, cabang.cp_perusahaan_id, (error,result)=>{
+            const query="SELECT * FROM cabang_perusahaan WHERE cp_perusahaan_id=? "
+            this.mysqlConn.query(query, perusahaan_id, async (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }else if(result.length>0){
-                    const cabang=result.map(rowDataPcket=>{
-                        return{
-                            id_cabang:rowDataPcket.cp_id_cabang,
-                            nama_cabang:rowDataPcket.cp_nama_cabang,
-                            perusahaan_id:rowDataPcket.cp_perusahaan_id,
-                            lokasi:rowDataPcket.cp_lokasi,
-                            alamat_lengkap:rowDataPcket.cp_alamat_lengkap,
-                            default:rowDataPcket.cp_is_default
-                        }
-                    })
+                    let cabang=[]
+                    for(let i=0; i<result.length; i++){
+                        cabang.push(new Cabang_perusahaan(
+                            result[i].cp_id_cabang,
+                            result[i].cp_nama_cabang,
+                            result[i].cp_perusahaan_id,
+                            result[i].cp_lokasi,
+                            result[i].cp_alamat_lengkap,
+                            result[i].cp_is_default
+                        ),await this.getRekeningPerusahaanByCabangId(result[i].cp_id_cabang).catch(error=>{
+                            reject(error)
+                        }))
+                    }
                     resolve(cabang)
                 }else {
                     reject(NO_SUCH_CONTENT)
@@ -412,16 +390,18 @@ export class Dao{
         })
     }
 
-    addCabangPerusahaan(nama_cabang, perusahaan_id, lokasi, alamat_lengkap){
+    addCabangPerusahaan(nama_cabang, perusahaan_id, lokasi, alamat_lengkap, nama_bank, nomor_rekening, saldo){
         return new Promise((resolve,reject)=>{
             const query="INSERT INTO cabang_perusahaan (`cp_nama_cabang`, `cp_perusahaan_id`, `cp_lokasi`, `cp_alamat_lengkap`, `cp_is_default`) "+
                 "VALUES(?,?,?,?,0)"
-            this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap], (error,result)=>{
+            this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap], async(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
+                const id_cabang=result.insertId
+                await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang)
                 resolve(SUCCESS)
             })
         })
@@ -487,8 +467,8 @@ export class Dao{
 
     retrieveRekeningPerusahaan(){
         return new Promise((resolve,reject)=>{
-            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekenig_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan, "+
-                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "
+            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama, rp.rp_id_cabang_perusahaan, cp.cp_nama_cabang "+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN cabang_perusahaan cp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -502,9 +482,8 @@ export class Dao{
                         nomor_rekening:rowDataPacket.rp_nomor_rekening,
                         saldo:rowDataPacket.rp_saldo,
                         rekening_utama:rowDataPacket.rp_rekening_utama,
-                        id_perusahaan:rowDataPacket.rp_id_perusahaan,
-                        nama_perusahaan:rowDataPacket.p_nama_perusahaan,
-                        alamat:null
+                        id_cabang:rowDataPacket.rp_id_cabang_perusahaan,
+                        nama_cabang:rowDataPacket.cp_nama_cabang
                     }
                 })
 
@@ -520,10 +499,10 @@ export class Dao{
                 return
             }
 
-            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekenig_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan"+
-                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
-                "WHERE rp.rp_id_perusahaan=?"
-            this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error, result)=>{
+            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekenig_utama, rp.rp_id_cabang_perusahaan, cp.cp_nama_cabang"+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN cabang_perusahaan cp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang "+
+                "WHERE rp.rp_id_cabang_perusahaan=?"
+            this.mysqlConn.query(query, rekening.rp_id_cabang_perusahaan, (error, result)=>{
                 if(error){
                     reject(error)
                     return
@@ -535,11 +514,37 @@ export class Dao{
                             nomor_rekening:rowDataPacket.rp_nomor_rekening,
                             saldo:rowDataPacket.rp_saldo,
                             rekening_utama:rowDataPacket.rp_rekening_utama,
-                            id_perusahaan:rowDataPacket.rp_id_perusahaan,
-                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
-                            alamat:null
+                            id_cabang:rowDataPacket.cp_id_cabang,
+                            nama_cabang:rowDataPacket.cp_nama_cabang
                         }
                     })
+                    resolve(rekening)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    getRekeningPerusahaanByCabangId(id_cabang_perusahaan){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT * FROM rekening_perusahaan WHERE rp_rekening_utama=1 AND rp_id_cabang_perusahaan=?"
+            this.mysqlConn.query(query,id_cabang_perusahaan,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    let rekening=[]
+                    for(let i=0; i<result.length; i++){
+                        rekening.push(new Rekening_perusahaan(
+                            result[i].rp_id_rekening,
+                            result[i].rp_nama_bank,
+                            result[i].rp_nomor_rekening,
+                            result[i].rp_saldo,
+                            result[i].rp_rekening_utama,
+                            result[i].rp_id_cabang_perusahaan
+                        ))
+                    }
                     resolve(rekening)
                 }else{
                     reject(NO_SUCH_CONTENT)
@@ -569,10 +574,10 @@ export class Dao{
         })
     }
 
-    addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_perusahaan){
+    addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan){
         return new Promise((resolve,reject)=>{
-            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?)"
-            this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, id_perusahaan],(error,result)=>{
+            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_cabang_perusahaan`) VALUES(?, ?, ?, ?)"
+            this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, id_cabang_perusahaan],(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -590,10 +595,10 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE rekening_perusahaan SET rp_nama_bank=?, rp_nomor_rekening=?, rp_rekening_utama=?, rp_id_perusahaan=? "+
+            const query="UPDATE rekening_perusahaan SET rp_nama_bank=?, rp_nomor_rekening=?, rp_rekening_utama=?, rp_id_cabang_perusahaan=? "+
                 "WHERE rp_id_rekening=?"
 
-            this.mysqlConn.query(query, [rekening.rp_nama_bank, rekening.rp_nomor_rekening, rekening.rp_rekening_utama, rekening.rp_id_perusahaan, rekening.rp_id_rekening],(error,result)=>{
+            this.mysqlConn.query(query, [rekening.rp_nama_bank, rekening.rp_nomor_rekening, rekening.rp_rekening_utama, rekening.rp_id_cabang_perusahaan, rekening.rp_id_rekening],(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -627,8 +632,8 @@ export class Dao{
 
     retrieveRekeningUtama(){
         return new Promise((resolve,reject)=>{
-            const query="SELECT rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan "+
-                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
+            const query="SELECT rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama, rp.rp_id_cabang_perusahaan, cp.cp_nama_cabang "+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN cabang_perusahaan cp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang "+
                 "WHERE rp.rp_rekening_utama=1"
             this.mysqlConn.query(query,(error,result)=>{
                 if(error){
@@ -643,8 +648,8 @@ export class Dao{
                         nomor_rekening:rowDataPacket.rp_nomor_rekening,
                         saldo:rowDataPacket.rp_saldo,
                         rekening_utama:rowDataPacket.rp_rekening_utama,
-                        id_perusahaan:rowDataPacket.rp_id_perusahaan,
-                        nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                        id_cabang:rowDataPacket.rp_id_cabang_perusahaan,
+                        nama_cabang:rowDataPacket.cp_nama_cabang,
                         alamat:null
                     }
                 })
@@ -660,11 +665,11 @@ export class Dao{
                 return
             }
 
-            const query="SELECT rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan "+
-                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
-                "WHERE rp_rekening_utama=1 AND rp.rp_id_perusahaan=?"
+            const query="SELECT rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama, rp.rp_id_cabang_perusahaan, cp.cp_nama_cabang "+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN cabang_perusahaan cp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang_perusahaan "+
+                "WHERE rp_rekening_utama=1 AND rp.rp_id_cabang_perusahaan=?"
 
-            this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error,result)=>{
+            this.mysqlConn.query(query, rekening.rp_id_cabang_perusahaan, (error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -676,9 +681,8 @@ export class Dao{
                             nomor_rekening:rowDataPacket.rp_nomor_rekening,
                             saldo:rowDataPacket.rp_saldo,
                             rekening_utama:rowDataPacket.rp_rekening_utama,
-                            id_perusahaan:rowDataPacket.rp_id_perusahaan,
-                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
-                            alamat:null
+                            id_cabang:rowDataPacket.rp_id_cabang_perusahaan,
+                            nama_cabang:rowDataPacket.cp_nama_cabang
                         }
                     })
                     resolve(rekening)
@@ -689,10 +693,10 @@ export class Dao{
         })
     }
 
-    getRekeningUtama(id_perusahaan){
+    getRekeningUtama(id_cabang){
         return new Promise((resolve,reject)=>{
-            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_perusahaan=?"
-            this.mysqlConn.query(query, id_perusahaan, (error,result)=>{
+            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_cabang_perusahaan=?"
+            this.mysqlConn.query(query, id_cabang, (error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -711,10 +715,10 @@ export class Dao{
         })
     }
 
-    getRekeningNonUtama(id_perusahaan){
+    getRekeningNonUtama(id_cabang){
         return new Promise((resolve,reject)=>{
-            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_perusahaan=?"
-            this.mysqlConn.query(query, id_perusahaan, (error,result)=>{
+            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_cabang_perusahaan=?"
+            this.mysqlConn.query(query, id_cabang, (error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -1009,8 +1013,8 @@ export class Dao{
 
     retrieveKaryawanKerjaDimana(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd.kkd_id_karyawan=ka.k_id_karyawan "+
-                "LEFT OUTER JOIN perusahaan p ON kkd.kkd_id_perusahaan=p.p_id_perusahaan "
+            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_cabang_perusahaan, cp.cp_nama_cabang FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd.kkd_id_karyawan=ka.k_id_karyawan "+
+                "LEFT OUTER JOIN cabang_perusahaan cp ON kkd.kkd_id_perusahaan=cp.cp_id_cabang "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -1022,8 +1026,8 @@ export class Dao{
                         id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
                         id_karyawan:rowDataPacket.kkd_id_karyawan,
                         nama_lengkap:rowDataPacket.k_nama_lengkap,
-                        id_perusahaan:rowDataPacket.kkd_id_perusahaan,
-                        nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                        id_cabang:rowDataPacket.kkd_id_cabang_perusahaan,
+                        nama_cabang:rowDataPacket.cp_nama_cabang
                     }
                 })
                 resolve(works)
@@ -1038,8 +1042,8 @@ export class Dao{
                 return
             }
 
-            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd_id_karyawan=ka.k_id_karyawan "+
-                "LEFT OUTER JOIN perusahaan p ON kkd.kkd_id_perusahaan=p.p_id_perusahaan "+
+            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_cabang_perusahaan, cp.cp_nama_cabang FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd.kkd_id_karyawan=ka.k_id_karyawan "+
+                "LEFT OUTER JOIN cabang_perusahaan cp ON kkd.kkd_id_cabang_perusahaan=cp.cp_id_cabang "+
                 "WHERE kkd.kkd_id_karyawan=?"
             this.mysqlConn.query(query, kerja.kkd_id_karyawan, (error, result)=>{
                 if(error){
@@ -1053,8 +1057,8 @@ export class Dao{
                             id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
                             id_karyawan:rowDataPacket.kkd_id_karyawan,
                             nama_lengkap:rowDataPacket.k_nama_lengkap,
-                            id_perusahaan:rowDataPacket.kkd_id_perusahaan,
-                            nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                            id_cabang:rowDataPacket.kkd_id_cabang_perusahaan,
+                            nama_cabang:rowDataPacket.cp_nama_cabang
                         }
                     })
                     resolve(works)
@@ -1075,8 +1079,8 @@ export class Dao{
                 return
             }
 
-            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd_id_karyawan=ka.k_id_karyawan "+
-                "LEFT OUTER JOIN perusahaan p ON kkd.kkd_id_perusahaan=p.p_id_perusahaan "+
+            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_cabang_perusahaan, cp.cp_nama_cabang FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd.kkd_id_karyawan=ka.k_id_karyawan "+
+                "LEFT OUTER JOIN cabang_perusahaan cp ON kkd.kkd_id_cabang_perusahaan=cp.cp_id_cabang "+
                 "WHERE kkd.kkd_id_karyawan_kerja_dimana=?"
             this.mysqlConn.query(query, kerja.kkd_id_karyawan_kerja_dimana, (error, result)=>{
                 if(error){
@@ -1090,8 +1094,8 @@ export class Dao{
                             id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
                             id_karyawan:rowDataPacket.kkd_id_karyawan,
                             nama_lengkap:rowDataPacket.k_nama_lengkap,
-                            id_perusahaan:rowDataPacket.kkd_id_perusahaan,
-                            nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                            id_cabang:rowDataPacket.kkd_id_cabang_perusahaan,
+                            nama_cabang:rowDataPacket.cp_nama_cabang
                         }
                     })
                     resolve(works)
@@ -1111,8 +1115,8 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `karyawan_kerja_dimana` (`kkd_id_karyawan`,`kkd_id_perusahaan`) VALUES(?,?)"
-            this.mysqlConn.query(query, [kerja.kkd_id_karyawan,kerja.kkd_id_perusahaan], (error,result)=>{
+            const query="INSERT INTO `karyawan_kerja_dimana` (`kkd_id_karyawan`,`kkd_id_cabang_perusahaan`) VALUES(?,?)"
+            this.mysqlConn.query(query, [kerja.kkd_id_karyawan,kerja.kkd_id_cabang_perusahaan], (error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -1131,8 +1135,8 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE karyawan_kerja_dimana SET kkd_id_karyawan=?, kkd_id_perusahaan=? WHERE kkd_id_karyawan_kerja_dimana=?"
-            this.mysqlConn.query(query, [kerja.kkd_id_karyawan,kerja.kkd_id_perusahaan,kerja.kkd_id_karyawan_kerja_dimana], (error,result)=>{
+            const query="UPDATE karyawan_kerja_dimana SET kkd_id_karyawan=?, kkd_id_cabang_perusahaan=? WHERE kkd_id_karyawan_kerja_dimana=?"
+            this.mysqlConn.query(query, [kerja.kkd_id_karyawan,kerja.kkd_id_cabang_perusahaan,kerja.kkd_id_karyawan_kerja_dimana], (error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -1301,7 +1305,7 @@ export class Dao{
                     transaksi.t_id_transaksi = result.insertId
 
                     for (let i = 0; i < detailTransaksi.length; i++) {
-                    // BEGINNING OF DETAIL TRANSAKSI LOOP
+                        // BEGINNING OF DETAIL TRANSAKSI LOOP
                         let transactionDetailObject = new Detil_transaksi(
                             null,
                             transaksi.t_id_transaksi,
@@ -1321,7 +1325,7 @@ export class Dao{
                         })
 
                         detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
-                    // END OF DETAIL TRANSAKSI LOOP
+                        // END OF DETAIL TRANSAKSI LOOP
                     }
 
                     transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
@@ -1401,14 +1405,14 @@ export class Dao{
                             detailTransaksi[i].td_debit_credit,
                             detailTransaksi[i].td_nomor_bukti_transaksi,
                             detailTransaksi[i].td_file_bukti_transaksi,
-                            detailTransaksi[i].td_pembebanan_id,
+                            detailTransaksi[i].skema_pembebanan_json,
                             0
                         )
                         detailTransaksiObject=await this.updateDetilTransaksi(detailTransaksiObject).catch(err=>{
                             reject(err)
                         })
 
-                        detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
+                        detailTransaksi[i].td_id_detil_transaksi = detailTransaksiObject.td_id_detil_transaksi
                     }
                     transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
                     resolve(transaksi)
@@ -1428,7 +1432,7 @@ export class Dao{
                 "td_debit_credit=?, " +
                 "td_nomor_bukti_transaksi=?, " +
                 "td_file_bukti_transaksi='BPU', " +
-                "td_pembebanan_id=?, " +
+                "skema_pembebanan_json=?, " +
                 "td_is_deleted=0 "+
                 "WHERE td_id_transaksi=?"
 
@@ -1439,7 +1443,7 @@ export class Dao{
                 detailTransaksiObject.td_bpu_attachment,
                 detailTransaksiObject.td_debit_credit,
                 detailTransaksiObject.td_nomor_bukti_transaksi,
-                detailTransaksiObject.td_pembebanan_id,
+                detailTransaksiObject.skema_pembebanan_json,
                 detailTransaksiObject.td_id_transaksi],(error,result)=>{
                 if(error){
                     reject(error)
