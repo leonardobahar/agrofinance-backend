@@ -445,7 +445,26 @@ export class Dao{
                     return
                 }
 
-                resolve(cabang)
+                resolve(SUCCESS)
+            })
+        })
+    }
+
+    unsetDefaultCabangPerusahaan(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE cabang_perusahaan SET cp_is_default=0 WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query, [cabang.cp_id_cabang], (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
             })
         })
     }
