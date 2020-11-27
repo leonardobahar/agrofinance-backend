@@ -436,7 +436,41 @@ app.delete("/api/perusahaan/delete", (req,res)=>{
 })
 
 app.get("/api/cabang_perusahaan/retrieve",(req,res)=>{
+    if(typeof req.query.perusahaan_id==='undefined'){
+        dao.retrieveCabangPerusahaan().then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }else {
+        dao.retrieveCabangPerusahaanByPerusahaanId(req.query.perusahaan_id).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }
 
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }
 })
 
 app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
