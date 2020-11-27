@@ -1325,6 +1325,10 @@ export class Dao{
                     }
 
                     transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
+
+                    // TRANSAKSI AND DETIL TRANSAKSI HAS BEEN SUCCESSFUL THEREFORE APPEND TRANSAKSI_REKENING TABLE
+                    transaksi.transaksi_rekening = await this.addTransaksiRekening(new Transaksi_rekening(null, "NOW", null, null, result.insertId))
+
                     resolve(transaksi)
                 })
             }catch(e){
