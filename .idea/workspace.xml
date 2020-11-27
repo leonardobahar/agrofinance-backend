@@ -78,7 +78,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606488175825</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Error in retrievePerusahaan fixed, added field rekening utama field">
+      <created>1606488940726</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606488940727</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,14 +117,15 @@
     <MESSAGE value="Retrieved lost codes" />
     <MESSAGE value="Remarked add transaksi page" />
     <MESSAGE value="Attempt to fix error in retrievePerusahaan" />
-    <option name="LAST_COMMIT_MESSAGE" value="Attempt to fix error in retrievePerusahaan" />
+    <MESSAGE value="Error in retrievePerusahaan fixed, added field rekening utama field" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error in retrievePerusahaan fixed, added field rekening utama field" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="491" y="0" key="CommitChangelistDialog2" timestamp="1606488175181">
+    <state x="491" y="0" key="CommitChangelistDialog2" timestamp="1606488940064">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606487094442" />
-    <state x="491" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606488175181" />
+    <state x="491" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606488940064" />
     <state x="100" y="88" width="1350" height="838" key="DiffContextDialog" timestamp="1606487198957">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -134,11 +142,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="414" y="206" key="VCS.ChangeListViewerDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606485440288" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606488179149">
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606488941765">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606486695523" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606488179149" />
+    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606488941765" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606487198957">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
