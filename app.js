@@ -525,6 +525,29 @@ app.post("/api/cabang-perusahaan/set",(req,res)=>{
     })
 })
 
+app.post("/api/cabang-perusahaan/unset",(req,res)=>{
+    if(typeof req.body.id_cabang==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.unsetDefaultCabangPerusahaan(req.body.id_cabang).then(result=>{
+        res.status(200).send({
+            success:true,
+            result:result
+        })
+    }).catch(error=>{
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
 app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
     if(typeof req.query.id_perusahaan==='undefined'){
         dao.retrieveRekeningPerusahaan().then(result=>{
