@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`perusahaan` (
   `p_id_perusahaan` INT(7) PRIMARY KEY AUTO_INCREMENT,
-  `p_nama_perusahaan` VARCHAR(255) NOT NULL);
+  `p_nama_perusahaan` VARCHAR(255) NOT NULL,
+  `p_alamat` TEXT NOT NULL);
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan` (
   `k_id_karyawan` INT(7) PRIMARY KEY AUTO_INCREMENT,
@@ -47,6 +48,30 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan` (
   `k_nik` VARCHAR(255) UNIQUE NOT NULL,
   `k_role` VARCHAR(45) NOT NULL,
   `k_masih_hidup` TINYINT(1) NULL);
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan_kerja_dimana` (
+  `kkd_id_karyawan_kerja_dimana` INT(7) PRIMARY KEY AUTO_INCREMENT,
+  `kkd_id_karyawan` INT(7) NOT NULL,
+  `kkd_id_perusahaan` INT(7) NOT NULL,
+  FOREIGN KEY (`kkd_id_karyawan`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`kkd_id_perusahaan`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`rekening_perusahaan` (
+  `rp_id_rekening` INT(7) PRIMARY KEY AUTO_INCREMENT,
+  `rp_nama_bank` VARCHAR(225) NOT NULL,
+  `rp_nomor_rekening` VARCHAR(225) NOT NULL,
+  `rp_saldo` VARCHAR(255) NOT NULL,
+  `rp_rekening_utama`TINYINT(1) DEFAULT 0,
+  `rp_id_perusahaan` INT(7) NOT NULL,
+  FOREIGN KEY (`rp_id_perusahaan`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE);
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_rekening` (
+  `tr_id_transaksi_rekening` INT(7) PRIMARY KEY AUTO_INCREMENT,
+  `tr_timestamp_transaksi` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `tr_credit` TINYINT(1) NOT NULL DEFAULT 0,
+  `tr_debit` TINYINT(1) NOT NULL DEFAULT 0,
+  `tr_id_transaksi` INT(7) NOT NULL,
+  FOREIGN KEY (`tr_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`cabang_perusahaan`(
 	`cp_id_cabang` INT(7) PRIMARY KEY AUTO_INCREMENT,
@@ -57,30 +82,6 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`cabang_perusahaan`(
     `cp_is_default` TINYINT(1) NOT NULL DEFAULT 0,
     FOREIGN KEY (`cp_perusahaan_id`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan_kerja_dimana` (
-  `kkd_id_karyawan_kerja_dimana` INT(7) PRIMARY KEY AUTO_INCREMENT,
-  `kkd_id_karyawan` INT(7) NOT NULL,
-  `kkd_id_cabang_perusahaan` INT(7) NOT NULL,
-  FOREIGN KEY (`kkd_id_karyawan`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`kkd_id_cabang_perusahaan`) REFERENCES cabang_perusahaan(`cp_id_cabang`) ON DELETE CASCADE ON UPDATE CASCADE);
-
-CREATE TABLE IF NOT EXISTS `agrofinance`.`rekening_perusahaan` (
-  `rp_id_rekening` INT(7) PRIMARY KEY AUTO_INCREMENT,
-  `rp_nama_bank` VARCHAR(225) NOT NULL,
-  `rp_nomor_rekening` VARCHAR(225) NOT NULL,
-  `rp_saldo` VARCHAR(255) NOT NULL,
-  `rp_rekening_utama`TINYINT(1) DEFAULT 0,
-  `rp_id_cabang_perusahaan` INT(7) NOT NULL,
-  FOREIGN KEY (`rp_id_cabang_perusahaan`) REFERENCES cabang_perusahaan(`cp_id_cabang`) ON DELETE CASCADE ON UPDATE CASCADE);
-
-CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_rekening` (
-  `tr_id_transaksi_rekening` INT(7) PRIMARY KEY AUTO_INCREMENT,
-  `tr_timestamp_transaksi` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `tr_credit` TINYINT(1) NOT NULL DEFAULT 0,
-  `tr_debit` TINYINT(1) NOT NULL DEFAULT 0,
-  `tr_id_transaksi` INT(7) NOT NULL,
-  FOREIGN KEY (`tr_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`list_bank`(
     `lb_id_list` INT(7) PRIMARY KEY AUTO_INCREMENT,

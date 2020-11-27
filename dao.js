@@ -2,14 +2,23 @@ import mysqlConn from './mysql-conn'
 import fs from 'fs'
 import {
     ADMIN_VALIDATED,
-    ALL, CANCELLED, DUPLICATE_ENTRY, ERROR_DUPLICATE_ENTRY, INVALID, INVALID_FINAL,
+    ALL, CANCELLED, DUPLICATE_ENTRY, ERROR_DUPLICATE_ENTRY, INVALID, INVALID_FINAL, MAIN_ACCOUNT_EXISTS,
     MISMATCH_OBJ_TYPE,
     NO_AFFECTED_ROWS,
     NO_SUCH_CONTENT,
     ONLY_WITH_VENDORS, ORDER_PROCESSING,
     SOMETHING_WENT_WRONG, SUCCESS, VALID, WRONG_BODY_FORMAT
 } from "./strings"
-import {Karyawan, Karyawan_kerja_dimana, Kategori_transaksi, Pembebanan, Perusahaan, Transaksi} from "./model";
+import {
+    Cabang_perusahaan,
+    Detil_transaksi,
+    Karyawan,
+    Karyawan_kerja_dimana,
+    Kategori_transaksi,
+    Pembebanan,
+    Perusahaan, Rekening_perusahaan,
+    Transaksi, Transaksi_rekening
+} from "./model";
 
 export class Dao{
     constructor(host, user, password, dbname) {
@@ -32,12 +41,13 @@ export class Dao{
                 this.mysqlConn.connect(err=>{
                     if(err){
                         console.error('error when connecting to db:', err)
-                        setTimeout(handleConnection(), 2000)
+                        setTimeout(handleConnection, 2000)
                     }else{
                         this.mysqlConn.query(this._initSqlStmt, (err, res, fields)=>{
                             if(err){
                                 throw err
                             }else {
+                                console.log("CONNECTED SUCCESSFULLY TO DATABASE")
                                 resolve(1)
                             }
                         })
@@ -49,7 +59,8 @@ export class Dao{
                     if(err.code === 'PROTOCOL_CONNECTION_LOST'){
                         handleConnection()
                     }else {
-                        throw err
+                        console.error(err)
+                        handleConnection()
                     }
                 })
             })
@@ -67,17 +78,16 @@ export class Dao{
                     return
                 }
 
-                let employees=[]
-                for(let i=0; i<result.length; i++){
-                    employees.push(new Karyawan(
-                        result[i].k_id_karyawan,
-                        result[i].k_nama_lengkap,
-                        result[i].k_posisi,
-                        result[i].k_nik,
-                        result[i].k_role,
-                        result[i].k_masih_hidup
-                    ))
-                }
+                const employees=result.map(rowDataPacket=>{
+                    return{
+                        id:rowDataPacket.k_id_karyawan,
+                        nama_lengkap:rowDataPacket.k_nama_lengkap,
+                        posisi:rowDataPacket.k_posisi,
+                        nik:rowDataPacket.k_nik,
+                        role:rowDataPacket.k_role,
+                        masih_hidup:rowDataPacket.k_masih_hidup
+                    }
+                })
                 resolve(employees)
             })
         })
@@ -85,6 +95,11 @@ export class Dao{
 
     retrieveOneKaryawan(karyawan){
         return new Promise((resolve, reject)=>{
+            if(!karyawan instanceof Karyawan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
             const query="SELECT * FROM karyawan WHERE k_id_karyawan=?"
             this.mysqlConn.query(query, karyawan.k_id_karyawan, (error, result)=>{
                 if(error){
@@ -92,18 +107,23 @@ export class Dao{
                     return
                 }
 
-                let employees=[]
-                for(let i =0;i<result.length;i++){
-                    employees.push(new Karyawan(
-                        result[i].k_id_karyawan,
-                        result[i].k_nama_lengkap,
-                        result[i].k_posisi,
-                        result[i].k_nik,
-                        result[i].k_role,
-                        result[i].k_masih_hidup
-                    ))
+                else if(result.length>0){
+                    const employees=result.map(rowDataPacket=>{
+                        return{
+                            id:rowDataPacket.k_id_karyawan,
+                            nama_lengakap:rowDataPacket.k_nama_lengkap,
+                            posisi:rowDataPacket.k_posisi,
+                            nik:rowDataPacket.k_nik,
+                            role:rowDataPacket.k_role,
+                            masih_hidup:rowDataPacket.k_masih_hidup
+                        }
+                    })
+                    resolve(employees)
                 }
-                resolve(employees)
+
+                else {
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
@@ -116,13 +136,13 @@ export class Dao{
             }
 
             const query="INSERT INTO `karyawan` (`k_nama_lengkap`,`k_posisi`, `k_nik`, `k_role`, `k_masih_hidup`) VALUES(?,?,?,?,?)"
-            this.mysqlConn.query(query, [karyawan.k_nama_lengkap, karyawan.k_posisi, karyawan.k_nik, karyawan.k_role], (error,result)=>{
+            this.mysqlConn.query(query, [karyawan.k_nama_lengkap, karyawan.k_posisi, karyawan.k_nik, karyawan.k_role, karyawan.k_masih_hidup], (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                karyawan.k_nama_lengkap=result.k_nama_lengkap
+                karyawan.k_id_karyawan=result.insertId
                 resolve(karyawan)
 
             })
@@ -156,7 +176,7 @@ export class Dao{
                 return
             }
 
-            const query="DELETE * FROM karyawan WHERE k_id_karyawan=?"
+            const query="DELETE FROM karyawan WHERE k_id_karyawan=?"
             this.mysqlConn.query(query,karyawan.k_id_karyawan,(error,result)=>{
                 if(error){
                     reject(error)
@@ -171,21 +191,32 @@ export class Dao{
 
     retrievePerusahaan(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM perusahaan"
+            const query=`SELECT p.p_id_perusahaan, p.p_nama_perusahaan, cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_lokasi, cp.cp_alamat_lengkap,
+                rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama
+                FROM perusahaan p LEFT OUTER JOIN cabang_perusahaan cp ON cp.cp_perusahaan_id=p.p_id_perusahaan
+                LEFT OUTER JOIN rekening_perusahaan rp ON rp.rp_id_perusahaan=p.p_id_perusahaan;`
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                let companies=[]
-                for(let i=0; i<result.length; i++){
-                    companies.push(new Perusahaan(
-                        result[i].p_id_perusahaan,
-                        result[i].p_nama_perusahaan,
-                        result[i].p_alamat
-                    ))
-                }
+                const companies=result.map(rowDataPacket=>{
+                    return{
+                        id:rowDataPacket.p_id_perusahaan,
+                        nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                        alamat:null,
+                        id_cabang:rowDataPacket.cp_id_cabang,
+                        nama_cabang:rowDataPacket.cp_nama_cabang,
+                        lokasi:rowDataPacket.cp_lokasi,
+                        alamat_lengkap:rowDataPacket.cp_alamat_lengkap,
+                        id_rekening:rowDataPacket.rp_id_rekening,
+                        nama_bank:rowDataPacket.rp_nama_bank,
+                        nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                        saldo:rowDataPacket.rp_saldo,
+                        rekening_utama:rowDataPacket.rp_rekening_utama
+                    }
+                })
                 resolve(companies)
             })
         })
@@ -193,27 +224,49 @@ export class Dao{
 
     retrieveOnePerusahaan(perusahaan){
         return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM perusahaan WHERE p_id_perusahaan=?"
+            if(!perusahaan instanceof Perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query=`SELECT p.p_id_perusahaan, p.p_nama_perusahaan, cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_lokasi, cp.cp_alamat_lengkap,
+                rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama
+                FROM perusahaan p LEFT OUTER JOIN cabang_perusahaan cp ON cp.cp_perusahaan_id=p.p_id_perusahaan
+                LEFT OUTER JOIN rekening_perusahaan rp ON rp.rp_id_perusahaan=p.p_id_perusahaan WHERE p.p_id_perusahaan=? `
             this.mysqlConn.query(query, perusahaan.p_id_perusahaan, (error, result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                let companies=[]
-                for(let i =0;i<result.length;i++){
-                    companies.push(new Perusahaan(
-                        result[i].p_id_perusahaan,
-                        result[i].p_nama_perusahaan,
-                        result[i].p_alamat
-                    ))
+                else if(result.length>0){
+                    const companies=result.map(rowDataPacket=>{
+                        return{
+                            id:rowDataPacket.p_id_perusahaan,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                            alamat:null,
+                            id_cabang:rowDataPacket.cp_id_cabang,
+                            nama_cabang:rowDataPacket.cp_nama_cabang,
+                            lokasi:rowDataPacket.cp_lokasi,
+                            alamat_lengkap:rowDataPacket.cp_alamat_lengkap,
+                            id_rekening:rowDataPacket.rp_id_rekening,
+                            nama_bank:rowDataPacket.rp_nama_bank,
+                            nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                            saldo:rowDataPacket.rp_saldo,
+                            rekening_utama:rowDataPacket.rp_rekening_utama
+                        }
+                    })
+                    resolve(companies)
                 }
-                resolve(companies)
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
 
-    addPerusahaan(perusahaan){
+    addPerusahaan(perusahaan,nama_cabang, lokasi, alamat_lengkap, nama_bank, nomor_rekening, saldo){
         return new Promise((resolve,reject)=>{
             if(!perusahaan instanceof Perusahaan){
                 reject(MISMATCH_OBJ_TYPE)
@@ -221,14 +274,21 @@ export class Dao{
             }
 
             const query="INSERT INTO `perusahaan` (`p_nama_perusahaan`,`p_alamat`) VALUES(?,?)"
-            this.mysqlConn.query(query, [perusahaan.p_nama_perusahaan,perusahaan.p_alamat], (error,result)=>{
+            this.mysqlConn.query(query, [perusahaan.p_nama_perusahaan,perusahaan.p_alamat], async(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                perusahaan.p_nama_perusahaan=result.p_nama_perusahaan
-                resolve(perusahaan)
+                const perusahaanID=result.insertId
+                await this.addCabangPerusahaan(nama_cabang,perusahaanID,lokasi,alamat_lengkap).catch(error=>{
+                    reject(error)
+                })
+
+                await this.addRekeningPerusahaan(nama_bank,nomor_rekening,saldo,perusahaanID).catch(error=>{
+                    reject(error)
+                })
+                resolve(SUCCESS)
             })
         })
     }
@@ -260,7 +320,7 @@ export class Dao{
                 return
             }
 
-            const query="DELETE * FROM perusahaan WHERE p_id_perusahaan=?"
+            const query="DELETE FROM perusahaan WHERE p_id_perusahaan=?"
             this.mysqlConn.query(query,perusahaan.p_id_perusahaan,(error,result)=>{
                 if(error){
                     reject(error)
@@ -273,104 +333,565 @@ export class Dao{
         })
     }
 
-    retrievePembebanan(){
-        return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM pembebanan"
+    retrieveCabangPerusahaan(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_perusahaan_id, p.p_nama_perusahaan, cp.cp_lokasi, cp.cp_alamat_lengkap, cp.cp_is_default "+
+                "FROM cabang_perusahaan cp LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan"
+            this.mysqlConn.query(query, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                const cabang=result.map(rowDataPcket=>{
+                    return{
+                        id_cabang:rowDataPcket.cp_id_cabang,
+                        nama_cabang:rowDataPcket.cp_nama_cabang,
+                        perusahaan_id:rowDataPcket.cp_perusahaan_id,
+                        lokasi:rowDataPcket.cp_lokasi,
+                        alamat_lengkap:rowDataPcket.cp_alamat_lengkap,
+                        default:rowDataPcket.cp_is_default
+                    }
+                })
+                resolve(cabang)
+            })
+        })
+    }
+
+    retrieveCabangPerusahaanByPerusahaanId(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_perusahaan_id, p.p_nama_perusahaan, cp.cp_lokasi, cp.cp_alamat_lengkap, cp.cp_is_default "+
+                "FROM cabang_perusahaan cp LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan "+
+                "WHERE cp.cp_perusahaan_id=? "
+            this.mysqlConn.query(query, cabang.cp_perusahaan_id, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    const cabang=result.map(rowDataPcket=>{
+                        return{
+                            id_cabang:rowDataPcket.cp_id_cabang,
+                            nama_cabang:rowDataPcket.cp_nama_cabang,
+                            perusahaan_id:rowDataPcket.cp_perusahaan_id,
+                            lokasi:rowDataPcket.cp_lokasi,
+                            alamat_lengkap:rowDataPcket.cp_alamat_lengkap,
+                            default:rowDataPcket.cp_is_default
+                        }
+                    })
+                    resolve(cabang)
+                }else {
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    getCabangPerushaanId(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT cp_id_cabang FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query, cabang.cp_id_cabang, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    resolve(result[0].cp_id_cabang)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    addCabangPerusahaan(nama_cabang, perusahaan_id, lokasi, alamat_lengkap){
+        return new Promise((resolve,reject)=>{
+            const query="INSERT INTO cabang_perusahaan (`cp_nama_cabang`, `cp_perusahaan_id`, `cp_lokasi`, `cp_alamat_lengkap`, `cp_is_default`) "+
+                "VALUES(?,?,?,?,0)"
+            this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap], (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
+    updateCabangPerusahaan(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE cabang_perusahaan SET cp_nama_cabang=?, cp_perusahaan_id=?, cp_lokasi=?, cp_alamat_lengkap=? "+
+                "WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query, [cabang.cp_nama_cabang, cabang.cp_perusahaan_id, cabang.cp_lokasi, cabang.cp_alamat_lengkap, cabang.cp_id_cabang], (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(cabang)
+            })
+        })
+    }
+
+    setDefaultCabangPerusahaan(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE cabang_perusahaan SET cp_is_default=1 WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query, [cabang.cp_id_cabang], (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(cabang)
+            })
+        })
+    }
+
+    deleteCabangPerusahaan(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="DELETE FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query, cabang.cp_id_cabang, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(cabang)
+            })
+        })
+    }
+
+    retrieveRekeningPerusahaan(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekenig_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan, "+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                let beban=[]
+                const rekening=result.map(rowDataPacket=>{
+                    return{
+                        id_rekening:rowDataPacket.rp_id_rekening,
+                        nama_bank:rowDataPacket.rp_nama_bank,
+                        nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                        saldo:rowDataPacket.rp_saldo,
+                        rekening_utama:rowDataPacket.rp_rekening_utama,
+                        id_perusahaan:rowDataPacket.rp_id_perusahaan,
+                        nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                        alamat:null
+                    }
+                })
+
+                resolve(rekening)
+            })
+        })
+    }
+
+    retrieveOneRekeningPerusahaan(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekenig_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan"+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
+                "WHERE rp.rp_id_perusahaan=?"
+            this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error, result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    const rekening=result.map(rowDataPacket=>{
+                        return{
+                            id_rekening:rowDataPacket.rp_id_rekening,
+                            nama_bank:rowDataPacket.rp_nama_bank,
+                            nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                            saldo:rowDataPacket.rp_saldo,
+                            rekening_utama:rowDataPacket.rp_rekening_utama,
+                            id_perusahaan:rowDataPacket.rp_id_perusahaan,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                            alamat:null
+                        }
+                    })
+                    resolve(rekening)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    getRekeningPerusahanId(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT rp_id_rekening FROM rekening_perusahaan WHERE rp_id_rekening=?"
+            this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    resolve(result[0].rp_id_rekening)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_perusahaan){
+        return new Promise((resolve,reject)=>{
+            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?)"
+            this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, id_perusahaan],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
+    updateRekeningPerusahaan(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE rekening_perusahaan SET rp_nama_bank=?, rp_nomor_rekening=?, rp_rekening_utama=?, rp_id_perusahaan=? "+
+                "WHERE rp_id_rekening=?"
+
+            this.mysqlConn.query(query, [rekening.rp_nama_bank, rekening.rp_nomor_rekening, rekening.rp_rekening_utama, rekening.rp_id_perusahaan, rekening.rp_id_rekening],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                rekening.rp_id_rekening=result.insertId
+                resolve(rekening)
+            })
+        })
+    }
+
+    deleteRekeningPerusahaan(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="DELETE FROM rekening_perusahaan WHERE rp_id_rekening=?"
+            this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                rekening.rp_id_rekening=result.insertId
+                resolve(rekening)
+            })
+        })
+    }
+
+    retrieveRekeningUtama(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan "+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
+                "WHERE rp.rp_rekening_utama=1"
+            this.mysqlConn.query(query,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                const rekening=result.map(rowDataPacket=>{
+                    return{
+                        id_rekening:rowDataPacket.rp_id_rekening,
+                        nama_bank:rowDataPacket.rp_nama_bank,
+                        nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                        saldo:rowDataPacket.rp_saldo,
+                        rekening_utama:rowDataPacket.rp_rekening_utama,
+                        id_perusahaan:rowDataPacket.rp_id_perusahaan,
+                        nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                        alamat:null
+                    }
+                })
+                resolve(rekening)
+            })
+        })
+    }
+
+    retrieveOneRekeningUtama(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama, rp.rp_id_perusahaan, p.p_nama_perusahaan "+
+                "FROM rekening_perusahaan rp LEFT OUTER JOIN perusahaan p ON rp.rp_id_perusahaan=p.p_id_perusahaan "+
+                "WHERE rp_rekening_utama=1 AND rp.rp_id_perusahaan=?"
+
+            this.mysqlConn.query(query, rekening.rp_id_perusahaan, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    const rekening=result.map(rowDataPacket=>{
+                        return{
+                            id_rekening:rowDataPacket.rp_id_rekening,
+                            nama_bank:rowDataPacket.rp_nama_bank,
+                            nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                            saldo:rowDataPacket.rp_saldo,
+                            rekening_utama:rowDataPacket.rp_rekening_utama,
+                            id_perusahaan:rowDataPacket.rp_id_perusahaan,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                            alamat:null
+                        }
+                    })
+                    resolve(rekening)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    getRekeningUtama(id_perusahaan){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_perusahaan=?"
+            this.mysqlConn.query(query, id_perusahaan, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
                 for(let i=0; i<result.length; i++){
-                    beban.push(new Perusahaan(
-                        result[i].pbb_id,
-                        result[i].skema_pembebanan_json
-                    ))
+                    if(result[i].rp_rekening_utama===1){
+                        resolve(result[i].rp_rekening_utama)
+                    }else if(result[i].rp_rekening_utama===0){
+                        reject(MAIN_ACCOUNT_EXISTS)
+                    }else{
+                        reject(NO_SUCH_CONTENT)
+                    }
                 }
-                resolve(beban)
             })
         })
     }
 
-    retrieveOnePembebanan(pembanan){
-        return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM pembebanan WHERE pbb_id=?"
-            this.mysqlConn.query(query, pembebanan.pbb_id, (error, result)=>{
+    getRekeningNonUtama(id_perusahaan){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_perusahaan=?"
+            this.mysqlConn.query(query, id_perusahaan, (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                let beban=[]
-                for(let i =0;i<result.length;i++){
-                    beban.push(new Pembebanan(
-                        result[i].pbb_id,
-                        result[i].skema_pembebanan_json
-                    ))
+                for(let i=0; i<result.length; i++){
+                    if(result[i].rp_rekening_utama===0){
+                        resolve(result[i].rp_rekening_utama)
+                    }else if(result[i].rp_rekening_utama===1){
+                        reject(MAIN_ACCOUNT_EXISTS)
+                    }else{
+                        reject(NO_SUCH_CONTENT)
+                    }
                 }
-                resolve(beban)
             })
         })
     }
 
-    addPembebanan(pembebanan){
+    setRekeningUtama(id_rekening){
         return new Promise((resolve,reject)=>{
-            if(!pembenan instanceof Pembebanan){
+
+            const query="UPDATE rekening_perusahaan SET rp_rekening_utama=1 WHERE rp_id_rekening=?"
+            this.mysqlConn.query(query,id_rekening, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
+    unsetRekeningUtama(id_rekening){
+        return new Promise((resolve,reject)=>{
+            const query="UPDATE rekening_perusahaan SET rp_rekening_utama=0 WHERE rp_id_rekening=?"
+            this.mysqlConn.query(query,id_rekening, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
+    retrieveTransaksiRekening(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT tr.tr_id_transaksi_rekening, tr.tr_timestamp_transaksi, tr.tr_credit, tr.tr_debit, tr.tr_id_transaksi, "+
+                "t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, t.t_status, t.t_bon_sementara "+
+                "FROM transaksi_rekening tr LEFT OUTER JOIN transaksi t ON tr.tr_id_transaksi=t.t_id_transaksi"
+
+            this.mysqlConn.query(query,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                const transaksi=result.map(rowDataPacket=>{
+                    return{
+                        id_transaksi_rekening:rowDataPacket.tr_id_transaksi_rekening,
+                        timestamp_transaksi:rowDataPacket.tr_timestamp_transaksi,
+                        credit:rowDataPacket.tr_credit,
+                        debit:rowDataPacket.tr_debit,
+                        id_transaksi:rowDataPacket.tr_id_transaksi,
+                        tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                        tanggal_modifiaksi:rowDataPacket.t_tanggal_modifiaksi,
+                        tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                        is_rutin:rowDataPacket.t_is_rutin,
+                        status:rowDataPacket.t_status,
+                        bon_sementara:rowDataPacket.t_bon_sementara
+                    }
+                })
+                resolve(transaksi)
+            })
+        })
+    }
+
+    retrieveOneTransaksiRekening(transfer){
+        return new Promise((resolve,reject)=>{
+            if(!transfer instanceof Transaksi_rekening){
                 reject(MISMATCH_OBJ_TYPE)
                 return
             }
 
-            const query="INSERT INTO `pembebanan` (`skema_pembebanan_json`) VALUES(?)"
-            this.mysqlConn.query(query, pembebanan.skema_pembebanan_json, (error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
+            return new Promise((resolve,reject)=>{
+                const query="SELECT tr.tr_id_transaksi_rekening, tr.tr_timestamp_transaksi, tr.tr_credit, tr.tr_debit, tr.tr_id_transaksi, "+
+                    "t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, t.t_status, t.t_bon_sementara "+
+                    "FROM transaksi_rekening tr LEFT OUTER JOIN transaksi t ON tr.tr_id_transaksi=t.t_id_transaksi "+
+                    "WHERE tr.tr_id_transaksi=? "
 
-                pembebanan.skema_pembebanan_json=result.skema_pembebanan_json
-                resolve(pembebanan)
+                this.mysqlConn.query(query,transfer.tr_id_transaksi,(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }else if(result.length>0){
+                        const transaksi=result.map(rowDataPacket=>{
+                            return{
+                                id_transaksi_rekening:rowDataPacket.tr_id_transaksi_rekening,
+                                timestamp_transaksi:rowDataPacket.tr_timestamp_transaksi,
+                                credit:rowDataPacket.tr_credit,
+                                debit:rowDataPacket.tr_debit,
+                                id_transaksi:rowDataPacket.tr_id_transaksi,
+                                tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                                tanggal_modifiaksi:rowDataPacket.t_tanggal_modifiaksi,
+                                tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                                is_rutin:rowDataPacket.t_is_rutin,
+                                status:rowDataPacket.t_status,
+                                bon_sementara:rowDataPacket.t_bon_sementara
+                            }
+                        })
+                        resolve(transaksi)
+                    }else{
+                        reject(NO_SUCH_CONTENT)
+                    }
+                })
             })
         })
     }
 
-    updatePembebanan(pembebanan){
+    addTransaksiRekening(transfer){
         return new Promise((resolve,reject)=>{
-            if(!pembebanan instanceof Pembebanan){
+            if(!transfer instanceof Transaksi_rekening){
                 reject(MISMATCH_OBJ_TYPE)
                 return
             }
 
-            const query="UPDATE pembebanan SET skema_pembebanan_json=? WHERE pbb_id=?"
-            this.mysqlConn.query(query, [pembebanan.skema_pembebanan_json,pembebanan.pbb_id], (error,result)=>{
+            const query="INSERT INTO (`tr_timestamp_transaksi`, `tr_credit`, `tr_debit`, `tr_id_transaksi`)"
+            this.mysqlConn.query(query,[transfer.tr_timestamp_transaksi, transfer.tr_credit, transfer.tr_debit, transfer.tr_id_transaksi],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                pembebanan.pbb_id=result.pbb_id
-                resolve(pembebanan)
+                transfer.tr_id_transaksi_rekening=result.insertId
+                resolve(transfer)
             })
         })
     }
 
-    deletePembebanan(pembebanan){
+    updateTransaksiRekening(transfer){
         return new Promise((resolve,reject)=>{
-            if(!pembebanan instanceof Pembebanan){
+            if(!transfer instanceof Transaksi_rekening){
                 reject(MISMATCH_OBJ_TYPE)
                 return
             }
 
-            const query="DELETE * FROM pembebanan WHERE pbb_id=?"
-            this.mysqlConn.query(query,pembebanan.pbb_id,(error,result)=>{
+            const query="UPDATE transaksi_rekening SET tr_timestamp_transaksi=?, tr_credit=?, tr_debit=?, tr_id_transaksi=? WHERE tr_id_transaksi_rekening=? "
+            this.mysqlConn.query(query,[transfer.tr_timestamp_transaksi, transfer.tr_credit, transfer.tr_debit, transfer.tr_id_transaksi, transfer.tr_id_transaksi_rekening],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                pembebanan.pbb_id=result.pbb_id
-                resolve(pembebanan)
+                transfer.tr_id_transaksi_rekening=result.insertId
+                resolve(transfer)
+            })
+        })
+    }
+
+    deleteTransaksiRekening(transfer){
+        return new Promise((resolve,reject)=>{
+            if(!transfer instanceof Transaksi_rekening){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="DELETE FROM transaksi_rekening WHERE tr_id_transaksi_rekening=?"
+            this.mysqlConn.query(query,transfer.tr_id_transaksi_rekening,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                transfer.tr_id_transaksi_rekening=result.insertId
+                resolve(transfer)
             })
         })
     }
@@ -384,13 +905,12 @@ export class Dao{
                     return
                 }
 
-                let categories=[]
-                for(let i=0; i<result.length; i++){
-                    categories.push(new Kategori_transaksi(
-                        result[i].kt_id_kategori,
-                        result[i].kt_nama_kategori
-                    ))
-                }
+                const categories=result.map(rowDataPacket=>{
+                    return{
+                        id_kategori:rowDataPacket.kt_id_kategori,
+                        nama_kategori:rowDataPacket.kt_nama_kategori
+                    }
+                })
                 resolve(categories)
             })
         })
@@ -398,6 +918,11 @@ export class Dao{
 
     retrieveOneKategoriTransaksi(kategori){
         return new Promise((resolve, reject)=>{
+            if(!kategori instanceof  Kategori_transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
             const query="SELECT * FROM kategori_transaksi WHERE kt_id_kategori=?"
             this.mysqlConn.query(query, kategori.kt_id_kategori, (error, result)=>{
                 if(error){
@@ -405,14 +930,19 @@ export class Dao{
                     return
                 }
 
-                let categories=[]
-                for(let i =0;i<result.length;i++){
-                    categories.push(new Kategori_transaksi(
-                        result[i].kt_id_kategori,
-                        result[i].kt_name_kategori
-                    ))
+                else if(result.length>0){
+                    const categories=result.map(rowDataPacket=>{
+                        return{
+                            id_kategori:rowDataPacket.kt_id_kategori,
+                            nama_kategori:rowDataPacket.kt_nama_kategori
+                        }
+                    })
+                    resolve(categories)
                 }
-                resolve(categories)
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
@@ -424,14 +954,14 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `kategori` (`kategori_transaksi`) VALUES(?)"
+            const query="INSERT INTO `kategori_transaksi` (`kt_nama_kategori`) VALUES(?)"
             this.mysqlConn.query(query, kategori.kt_nama_kategori, (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                kategori.kt_nama_kategori=result.kt_nama_kategori
+                kategori.kt_id_kategori=result.insertId
                 resolve(kategori)
             })
         })
@@ -464,7 +994,7 @@ export class Dao{
                 return
             }
 
-            const query="DELETE * FROM kategori_transaksi WHERE kt_id_kategori=?"
+            const query="DELETE FROM kategori_transaksi WHERE kt_id_kategori=?"
             this.mysqlConn.query(query,kategori.kt_id_kategori,(error,result)=>{
                 if(error){
                     reject(error)
@@ -479,21 +1009,23 @@ export class Dao{
 
     retrieveKaryawanKerjaDimana(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM karyawan_kerja_dimana k LEFT OUTER JOIN karyawan ka ON k.kkd_id_karyawan=ka.k_id_karyawan"
+            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd.kkd_id_karyawan=ka.k_id_karyawan "+
+                "LEFT OUTER JOIN perusahaan p ON kkd.kkd_id_perusahaan=p.p_id_perusahaan "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                let works=[]
-                for(let i=0; i<result.length; i++){
-                    works.push(new Karyawan_kerja_dimana(
-                        result[i].kkd_id_karyawan_kerja_dimana,
-                        result[i].kkd_id_karyawan,
-                        result[i].kkd_id_perusahaan
-                    ))
-                }
+                const works=result.map(rowDataPacket=>{
+                    return{
+                        id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
+                        id_karyawan:rowDataPacket.kkd_id_karyawan,
+                        nama_lengkap:rowDataPacket.k_nama_lengkap,
+                        id_perusahaan:rowDataPacket.kkd_id_perusahaan,
+                        nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                    }
+                })
                 resolve(works)
             })
         })
@@ -501,22 +1033,73 @@ export class Dao{
 
     retrieveOneKaryawanKerjaDimana(kerja){
         return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM karyawan_kerja_dimana OUTER JOIN karyawan ka ON k.kkd_id_karyawan=ka.k_id_karyawan WHERE kkd_id_karyawan_kerja_dimana=?"
+            if(!kerja instanceof Karyawan_kerja_dimana){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd_id_karyawan=ka.k_id_karyawan "+
+                "LEFT OUTER JOIN perusahaan p ON kkd.kkd_id_perusahaan=p.p_id_perusahaan "+
+                "WHERE kkd.kkd_id_karyawan=?"
+            this.mysqlConn.query(query, kerja.kkd_id_karyawan, (error, result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                else if(result.length>0){
+                    const works=result.map(rowDataPacket=>{
+                        return{
+                            id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
+                            id_karyawan:rowDataPacket.kkd_id_karyawan,
+                            nama_lengkap:rowDataPacket.k_nama_lengkap,
+                            id_perusahaan:rowDataPacket.kkd_id_perusahaan,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                        }
+                    })
+                    resolve(works)
+                }
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    //By kkd_id_karyawan_kerja_dimana
+    getKaryawanKerjaDimanaByID(kerja){
+        return new Promise((resolve, reject)=>{
+            if(!kerja instanceof Karyawan_kerja_dimana){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_perusahaan, p.p_nama_perusahaan FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd_id_karyawan=ka.k_id_karyawan "+
+                "LEFT OUTER JOIN perusahaan p ON kkd.kkd_id_perusahaan=p.p_id_perusahaan "+
+                "WHERE kkd.kkd_id_karyawan_kerja_dimana=?"
             this.mysqlConn.query(query, kerja.kkd_id_karyawan_kerja_dimana, (error, result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                let works=[]
-                for(let i=0; i<result.length; i++){
-                    works.push(new Karyawan_kerja_dimana(
-                        result[i].kkd_id_karyawan_kerja_dimana,
-                        result[i].kkd_id_karyawan,
-                        result[i].kkd_id_perusahaan
-                    ))
+                else if(result.length>0){
+                    const works=result.map(rowDataPacket=>{
+                        return{
+                            id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
+                            id_karyawan:rowDataPacket.kkd_id_karyawan,
+                            nama_lengkap:rowDataPacket.k_nama_lengkap,
+                            id_perusahaan:rowDataPacket.kkd_id_perusahaan,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan
+                        }
+                    })
+                    resolve(works)
                 }
-                resolve(works)
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
@@ -535,7 +1118,7 @@ export class Dao{
                     return
                 }
 
-                kerja.kkd_id_karyawan=result.kkd_id_karyawan
+                kerja.kkd_id_karyawan_kerja_dimana=result.insertId
                 resolve(kerja)
             })
         })
@@ -568,7 +1151,7 @@ export class Dao{
                 return
             }
 
-            const query="DELETE * FROM karyawan_kerja_dimana WHERE kkd_id_karyawan_kerja_dimana=?"
+            const query="DELETE FROM karyawan_kerja_dimana WHERE kkd_id_karyawan_kerja_dimana=?"
             this.mysqlConn.query(query,kerja.kkd_id_karyawan_kerja_dimana,(error,result)=>{
                 if(error){
                     reject(error)
@@ -583,40 +1166,49 @@ export class Dao{
 
     retrieveTransaksi(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM transaksi"
+            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_jenis, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.td_pembebanan_id, pbb.skema_pembebanan_json "+
+                "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
+                "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori "+
+                "LEFT OUTER JOIN pembebanan p ON dt.td_pembebanan_id=p.pbb_id "+
+                "WHERE t_is_deleted='0'"
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                let transactions=[]
-                for(let i=0; i<transactions.length; i++){
-                    transactions.push(new Transaksi(
-                        result[i].t_id_transaksi,
-                        result[i].t_jumlah,
-                        result[i].t_id_kategori_transaksi,
-                        result[i].t_jenis,
-                        result[i].t_bpu_attachment,
-                        result[i].t_debit_card,
-                        result[i].t_status,
-                        result[i].t_bon_sementara,
-                        result[i].t_is_rutin,
-                        result[i].t_tanggal_transaksi,
-                        result[i].t_tanggal_modifikasi,
-                        result[i].t_tanggal_realisi,
-                        result[i].t_nomor_bukti_transaksi,
-                        result[i].t_file_bukti_transaksi,
-                        result[i].t_pembebanan_id
-                    ))
-                }
-                resolve(transactions)
+                const transaksi=result.map(rowDataPacket=>{
+                    return{
+                        tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                        tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
+                        tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                        is_rutin:rowDataPacket.t_is_rutin,
+                        status:rowDataPacket.t_status,
+                        bon_sementara:rowDataPacket.t_bon_sementara,
+                        id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
+                        jumlah:rowDataPacket.td_jumlah,
+                        id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
+                        jenis:rowDataPacket.td_jenis,
+                        bpu_attachment:rowDataPacket.td_bpu_attachment,
+                        debit_credit:rowDataPacket.td_debit_credit,
+                        nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
+                        file_bukti_transaksi:rowDataPacket.td_file_bukti_transaksi,
+                        pembebanan_id:rowDataPacket.td_pembebanan_id,
+                        pembebanan_json:rowDataPacket.skema_pembebanan_json
+                    }
+                })
+                resolve(transaksi)
             })
         })
     }
 
     retrieveOneTransaksi(transaksi){
         return new Promise((resolve, reject)=>{
+            if(!transaksi instanceof Transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
             const query="SELECT * FROM transaksi WHERE t_id_transaksi=?"
             this.mysqlConn.query(query, transaksi.t_id_transaksi, (error, result)=>{
                 if(error){
@@ -624,48 +1216,157 @@ export class Dao{
                     return
                 }
 
-                let transactions=[]
-                for(let i=0; i<transactions.length; i++){
-                    transactions.push(new Transaksi(
-                        result[i].t_id_transaksi,
-                        result[i].t_jumlah,
-                        result[i].t_id_kategori_transaksi,
-                        result[i].t_jenis,
-                        result[i].t_bpu_attachment,
-                        result[i].t_debit_card,
-                        result[i].t_status,
-                        result[i].t_bon_sementara,
-                        result[i].t_is_rutin,
-                        result[i].t_tanggal_transaksi,
-                        result[i].t_tanggal_modifikasi,
-                        result[i].t_tanggal_realisi,
-                        result[i].t_nomor_bukti_transaksi,
-                        result[i].t_file_bukti_transaksi,
-                        result[i].t_pembebanan_id
-                    ))
+                else if(result.length>0){
+                    let transaksi=[]
+                    for(let i=0; i<result.length; i++){
+                        transaksi.push(new Transaksi(
+                            result[i].t_id_transaksi,
+                            result[i].t_tanggal_transaksi,
+                            result[i].t_tanggal_modifikasi,
+                            result[i].t_tanggal_realisasi,
+                            result[i].t_is_rutin,
+                            result[i].t_status,
+                            result[i].t_bon_sementara
+                        ))
+                    }
+                    resolve(transaksi)
                 }
-                resolve(transactions)
+
+                else{
+                    reject(NO_SUCH_CONTENT)
+                }
             })
         })
     }
 
-    addTransaksi(transaksi){
+    getDetilTransaksiFile(transfer){
         return new Promise((resolve,reject)=>{
-            if(!transaksi instanceof Transaksi){
+            if(!transfer instanceof Detil_transaksi){
+                const query="SELECT td_bpu_attachment FROM detil_transaksi WHERE td_id_transaksi=? "
+                this.mysqlConn.query(query,transfer.td_id_transaksi,(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }else if(result.length>0){
+                        let files=[]
+                        for(let i=0; i<result.length; i++){
+                            files.push(result[i].td_bpu_attachment)
+                        }
+                        resolve(files)
+                    }else{
+                        reject(NO_SUCH_CONTENT)
+                    }
+                })
+            }
+        })
+    }
+
+    getTransaksiFile(transaksi){
+        return new Promise((resolve,reject)=>{
+            if(transaksi instanceof Transaksi){
+                const query="SELECT td_bpu_attachment FROM detil_transaksi WHERE td_id_transaksi=?"
+                this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    } else if(result.length>0){
+                        resolve(result[0].td_bpu_attachment)
+                    } else {
+                        reject(NO_SUCH_CONTENT)
+                    }
+                })
+            }else{
+                reject(MISMATCH_OBJ_TYPE)
+            }
+        })
+    }
+
+    addTransaksi(transaksi) {
+        return new Promise((resolve, reject) => {
+            if (!transaksi instanceof Transaksi) {
                 reject(MISMATCH_OBJ_TYPE)
                 return
             }
 
-            const query="INSERT INTO `transaksi` (`t_jumlah`,`t_id_kategori_transaksi`,`t_jenis`, `t_bpu_attachment`, `t_debit_card`, `t_status`, `t_bon_sementara`, `t_is_rutin`, `t_tangaal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_nomor_bukti_transaksi`, `t_file_bukti_transaksi`, `t_pembebanan_id`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-            this.mysqlConn.query(query, [transaksi.t_jumlah,transaksi.t_id_kategori_transaksi,transaksi.t_jenis,transaksi.t_bpu_attachment,transaksi.t_debit_card,transaksi.t_status,transaksi.t_bon_sementara,
-                    transaksi.t_is_rutin,transaksi.t_tanggal_transaksi,transaksi.t_tanggal_modifikasi,transaksi.t_tanggal_realisi,transaksi.t_nomor_bukti_transaksi,transaksi.t_file_bukti_transaksi,transaksi.t_pembebanan_id], (error,result)=>{
+            try {
+                let detailTransaksi = JSON.parse(transaksi.detail_transaksi.toString())
+                const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_id_perusahaan`, `t_is_deleted`) "+
+                    "VALUES(NOW(),NOW(),'NULL',?,'Entry di buat',?,?,'0')"
+                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_id_perusahaan], async(error, result) => {
+                    if (error) {
+                        reject(error)
+                        return
+                    }
+
+                    transaksi.t_id_transaksi = result.insertId
+
+                    for (let i = 0; i < detailTransaksi.length; i++) {
+                    // BEGINNING OF DETAIL TRANSAKSI LOOP
+                        let transactionDetailObject = new Detil_transaksi(
+                            null,
+                            transaksi.t_id_transaksi,
+                            detailTransaksi[i].td_jumlah,
+                            detailTransaksi[i].td_id_kategori_transaksi,
+                            detailTransaksi[i].td_jenis,
+                            detailTransaksi[i].td_bpu_attachment,
+                            detailTransaksi[i].td_debit_credit,
+                            detailTransaksi[i].td_nomor_bukti_transaksi,
+                            detailTransaksi[i].td_file_bukti_transaksi,
+                            detailTransaksi[i].skema_pembebanan_json,
+                            0
+                        )
+
+                        transactionDetailObject = await this.addDetailTransaksi(transactionDetailObject).catch(err=>{
+                            reject(err)
+                        })
+
+                        detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
+                    // END OF DETAIL TRANSAKSI LOOP
+                    }
+
+                    transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
+                    resolve(transaksi)
+                })
+            }catch(e){
+                reject(e)
+            }
+        })
+    }
+
+    addDetailTransaksi(detailTransaksiObject){
+        return new Promise((resolve, reject) => {
+            const query="INSERT INTO `detil_transaksi` (" +
+                "`td_id_transaksi`, " +
+                "`td_jumlah`, " +
+                "`td_id_kategori_transaksi`, " +
+                "`td_jenis`, " +
+                "`td_bpu_attachment`, " +
+                "`td_debit_credit`, " +
+                "`td_nomor_bukti_transaksi`, " +
+                "`td_file_bukti_transaksi`, " +
+                "`skema_pembebanan_json`, " +
+                "`td_is_deleted`) "+
+                "VALUES (?,?,?,?,?,?,?,?,?,?)"
+
+            this.mysqlConn.query(query,[
+                detailTransaksiObject.td_id_transaksi,
+                detailTransaksiObject.td_jumlah,
+                detailTransaksiObject.td_id_kategori_transaksi,
+                detailTransaksiObject.td_jenis,
+                detailTransaksiObject.td_bpu_attachment,
+                detailTransaksiObject.td_debit_credit,
+                detailTransaksiObject.td_nomor_bukti_transaksi,
+                'BPU',
+                detailTransaksiObject.skema_pembebanan_json,
+                0
+            ],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                transaksi.t_jumlah=result.t_jumlah
-                resolve(transaksi)
+                detailTransaksiObject.td_id_detil_transaksi=result.insertId
+                resolve(detailTransaksiObject)
             })
         })
     }
@@ -677,16 +1378,76 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE transaksi SET t_jumlah=?, t_id_kategori_transaksi=?, t_jenis=?, t_bpu_attachment=?, t_debit_card=?, t_status=?, t_bon_sementara=?, t_is_rutin=?, t_tnaggal_transaksi=?, t_tanggal_modifikasi=?, t_tanggal_realisasi=?, t_nomor_bukti_transaksi=?, t_file_bukti_transaksi=?, t_pembebanan_id=? WHERE t_id_transaksi=?"
-            this.mysqlConn.query(query, [transaksi.t_jumlah,transaksi.t_id_kategori_transaksi,transaksi.t_jenis,transaksi.t_bpu_attachment,transaksi.t_debit_card,transaksi.t_status,transaksi.t_bon_sementara,
-                transaksi.t_is_rutin,transaksi.t_tanggal_transaksi,transaksi.t_tanggal_modifikasi,transaksi.t_tanggal_realisi,transaksi.t_nomor_bukti_transaksi,transaksi.t_file_bukti_transaksi,transaksi.t_pembebanan_id, transaksi.t_id_transaksi], (error,result)=>{
+            try{
+                let detailTransaksi = JSON.parse(transaksi.detail_transaksi.toString())
+                const query="UPDATE transaksi SET t_tnaggal_transaksi=NOW(), t_tanggal_modifikasi=NOW(), t_tanggal_realisasi='NULL',t_is_rutin=?, t_status='Entry di Update', t_bon_sementara=?, t_id_perusahaan=?, skema_pembebanan_json=? "+
+                    "WHERE t_id_transaksi=?"
+                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_id_perusahaan,  transaksi.t_id_transaksi], async (error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }
+
+                    transaksi.t_id_transaksi=result.t_id_transaksi
+
+                    for(let i=0; i<detailTransaksi.length; i++){
+                        let detailTransaksiObject=new Detil_transaksi(
+                            null,
+                            transaksi.t_id_transaksi,
+                            detailTransaksi[i].td_jumlah,
+                            detailTransaksi[i].td_id_kategori_transaksi,
+                            detailTransaksi[i].td_jenis,
+                            detailTransaksi[i].td_bpu_attachment,
+                            detailTransaksi[i].td_debit_credit,
+                            detailTransaksi[i].td_nomor_bukti_transaksi,
+                            detailTransaksi[i].td_file_bukti_transaksi,
+                            detailTransaksi[i].td_pembebanan_id,
+                            0
+                        )
+                        detailTransaksiObject=await this.updateDetilTransaksi(detailTransaksiObject).catch(err=>{
+                            reject(err)
+                        })
+
+                        detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
+                    }
+                    transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
+                    resolve(transaksi)
+                })
+            }catch (e){
+                reject(e)
+            }
+        })
+    }
+
+    updateDetilTransaksi(detailTransaksiObject){
+        return new Promise((resolve,reject)=>{
+            const query="UPDATE detil_transaksi SET td_jumlah=?," +
+                "td_id_kategori_transaksi=?," +
+                "td_jenis=?,"+
+                "td_bpu_attachment=?," +
+                "td_debit_credit=?, " +
+                "td_nomor_bukti_transaksi=?, " +
+                "td_file_bukti_transaksi='BPU', " +
+                "td_pembebanan_id=?, " +
+                "td_is_deleted=0 "+
+                "WHERE td_id_transaksi=?"
+
+            this.mysqlConn.query(query,[
+                detailTransaksiObject.td_jumlah,
+                detailTransaksiObject.td_id_kategori_transaksi,
+                detailTransaksiObject.td_jenis,
+                detailTransaksiObject.td_bpu_attachment,
+                detailTransaksiObject.td_debit_credit,
+                detailTransaksiObject.td_nomor_bukti_transaksi,
+                detailTransaksiObject.td_pembebanan_id,
+                detailTransaksiObject.td_id_transaksi],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                transaksi.t_id_transaksi=result.t_id_transaksi
-                resolve(transaksi)
+                detailTransaksiObject.td_id_detil_transaksi=result.insertId
+                resolve(detailTransaksiObject)
             })
         })
     }
@@ -698,45 +1459,17 @@ export class Dao{
                 return
             }
 
-            const query="DELETE * FROM transaksi WHERE t_id_transaksi=?"
-            this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
+            const query="UPDATE transaksi SET t_is_deleted=1 WHERE t_id_transaksi=?; "+
+                "UPDATE detil_transaksi SET td_is_deleted=1 WHERE td_id_transaksi=?"
+            this.mysqlConn.query(query,[transaksi.t_id_transaksi,transaksi.t_id_transaksi],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
                 transaksi.t_id_transaksi=result.t_id_transaksi
-                resolve(result)
+                resolve(transaksi)
             })
         })
     }
-
-   /* bindKaryawanToPerusahaan(karyawan,perusahaan){
-        return new Promise((resolve,reject)=>{
-            if(karyawan instanceof Karyawan && perusahaan instanceof Perusahaan){
-                const checkQuery="SELECT kkd_id_karyawan_kerja_dimana FROM karyawan_kerja_dimana WHERE kkd_id_karyawan=?, kkd_id_perusahaan=? "
-                this.mysqlConn.query(checkQuery, [karyawan.kkd_id_karyawan,perusahaan.kkd_id_perusahaan],(err,res)=>{
-                    if(res.length>1){
-                        reject(ERROR_DUPLICATE_ENTRY)
-                        return
-                    }
-
-                    const query="INSERT INTO `karyawan_kerja_dimana` (`kkd_id_karyawan`, `kkd_id_perusahaan`) VALUES(?, ?)"
-                    this.mysqlConn.query(query, [karyawan.kkd_id_karyawan,perusahaan.kkd_id_perusahaan], (err,res)=>{
-                        if(err){
-                            reject(err)
-                            return
-                        }
-
-                        resolve(SUCCESS)
-                    })
-                })
-            }
-
-            else {
-                reject(MISMATCH_OBJ_TYPE)
-            }
-        })
-    }*/
-    
 }
