@@ -548,6 +548,49 @@ app.post("/api/cabang-perusahaan/unset",(req,res)=>{
     })
 })
 
+app.post("/api/cabang-perushaan/update",(req,res)=>{
+    if(typeof req.body.id_cabang==='undefined' ||
+       typeof req.body.nama_cabang==='undefined' ||
+       typeof req.body.perusahaan_id==='undefined' ||
+       typeof req.body.lokasi==='undefined' ||
+       typeof req.body.alamat_lengkap==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    const cabang=new Cabang_perusahaan(req.body.id_cabang,req.body.nama_cabang,req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,null)
+    dao.getCabangPerushaanId(new Cabang_perusahaan(req.query.id_cabang)).then(result=>{
+        dao.updateCabangPerusahaan(cabang).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+            return
+        }
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
 app.delete("/api/cabang-perusahaan/delete",(req,res)=>{
     if(typeof req.query.id_cabang==='undefined'){
         res.status(400).send({

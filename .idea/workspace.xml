@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,12 +50,14 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8cef80eb-29d2-44c0-bb8e-e7d4e1a1a021" name="Default Changelist" comment="" />
+      <changelist id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
       <created>1606484272579</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606484272579</updated>
       <workItem from="1606484273666" duration="2922000" />
+      <workItem from="1606552271262" duration="602000" />
+      <workItem from="1606655232611" duration="2903000" />
     </task>
     <task id="LOCAL-00001" summary="Retrieved lost codes">
       <created>1606486681869</created>
@@ -119,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606492575877</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added delete cabang perusahaan">
+      <created>1606493172402</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1606493172402</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,13 +167,14 @@
     <MESSAGE value="Added set Default Cabang Perusahaan" />
     <MESSAGE value="Added unset Default Cabang Perusahaan" />
     <MESSAGE value="Added 2 function blocks (get default and get non default cabang perusahaan" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 2 function blocks (get default and get non default cabang perusahaan" />
+    <MESSAGE value="Added delete cabang perusahaan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added delete cabang perusahaan" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1606492574779">
+    <state x="115" y="0" key="CommitChangelistDialog2" timestamp="1606493171083">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606492574779" />
+    <state x="115" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606493171083" />
     <state x="491" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606489093281" />
     <state x="100" y="88" width="1350" height="838" key="DiffContextDialog" timestamp="1606487198957">
       <screen x="0" y="0" width="1536" height="824" />
@@ -181,19 +192,19 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="414" y="206" key="VCS.ChangeListViewerDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606485440288" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606492587132">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606493179273">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606492587132" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606493179273" />
     <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606489094927" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606487198957">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606487198957" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606486875526">
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606657456109">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606486875526" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606657456109" />
     <state x="530" y="311" key="git4idea.ui.GitStashDialog" timestamp="1606484844519">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
