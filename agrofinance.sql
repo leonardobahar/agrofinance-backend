@@ -20,8 +20,10 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi`(
     `t_status` VARCHAR(45) NOT NULL,
     `t_bon_sementara` VARCHAR(45) NOT NULL,
     `t_id_perusahaan` INT(7),
+    `t_id_karyawan` INT(7),
     `t_is_deleted` TINYINT(1) DEFAULT 0,
-    FOREIGN KEY (`t_id_perusahaan`) REFERENCES `agrofinance`.`perusahaan`(`p_id_perusahaan`)
+    FOREIGN KEY (`t_id_perusahaan`) REFERENCES `agrofinance`.`perusahaan`(`p_id_perusahaan`),
+    FOREIGN KEY (`t_id_karyawan`) REFERENCES `agrofinance`.`karyawan`(`k_id_karyawan`)
 );
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
@@ -32,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
   `td_jenis` VARCHAR(45) NOT NULL DEFAULT 'KAS',
   `td_bpu_attachment` VARCHAR(45) NOT NULL,
   `td_debit_credit` TINYINT(1) NOT NULL DEFAULT 0,
-  `td_nomor_bukti_transaksi` VARCHAR(45) NOT NULL,
+  `td_nomor_bukti_transaksi` VARCHAR(45) UNIQUE NOT NULL,
   `td_file_bukti_transaksi` VARCHAR(45) NOT NULL,
   `skema_pembebanan_json` LONGTEXT NOT NULL,
   `td_is_deleted` TINYINT(1) DEFAULT 0,
