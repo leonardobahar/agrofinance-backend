@@ -1392,7 +1392,7 @@ app.post("/api/transaksi/approve",(req,res)=>{
         return
     }
 
-    const transfer=new Transaksi(req.query.id_transaksi,null,null,null,null,null,null,null,null,
+    const transfer=new Transaksi(req.body.id_transaksi,null,null,null,null,null,null,null,null,
         null, null,null,null,null,null)
 
     dao.getTransaksiID(transfer).then(result=>{
@@ -1433,7 +1433,7 @@ app.post("/api/transaksi/reject",(req,res)=>{
         return
     }
 
-    const transfer=new Transaksi(req.query.id_transaksi,null,null,null,null,null,null,null,null,
+    const transfer=new Transaksi(req.body.id_transaksi,null,null,null,null,null,null,null,null,
         null, null,null,null,null,null)
 
     dao.getTransaksiID(transfer).then(result=>{

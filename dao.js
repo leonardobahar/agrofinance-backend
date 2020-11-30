@@ -1333,6 +1333,25 @@ export class Dao{
         })
     }
 
+    getTransaksiStatus(transfer){
+        return new Promise((resolve,reject)=>{
+            if(!transfer instanceof Transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT t_status FROM transaksi WHERE t_id_transaksi=?"
+            this.mysqlConn.query(query,transfer.t_id_transaksi,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.t_status !='Approved' || result.t_status !='Rejected'){
+                    resolve(transfer)
+                }
+            })
+        })
+    }
+
     getDetilTransaksiFile(transfer){
         return new Promise((resolve,reject)=>{
             if(!transfer instanceof Detil_transaksi){
