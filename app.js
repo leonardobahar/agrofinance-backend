@@ -106,13 +106,47 @@ app.get("/api/karyawan/retrieve",(req,res)=>{
             })
         })
     }else{
-        const employee=new Karyawan(req.query.id_karyawan,null,null,null,null,null)
+        const employee = new Karyawan(req.query.id_karyawan,null,null,null,null,null);
 
-        dao.retrieveOneKaryawan(employee).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
-            })
+        dao.retrieveOneKaryawan(employee).then(async result => {
+            console.log(result);
+            const karyawanPerusahaan = new Karyawan_kerja_dimana(null, result[0].id, null);
+
+            try {
+                const karyawanWithCabangRes = await dao.retrieveOneKaryawanKerjaDimana(karyawanPerusahaan);
+
+                const cabangIds = karyawanWithCabangRes.map(karyawanWithCabang => karyawanWithCabang.id_cabang);
+
+                const data = [{
+                    ...result[0],
+                    cabang_ids: cabangIds
+                }]
+
+                res.status(200).send({
+                    success: true,
+                    result: data
+                })
+
+            } catch(error) {
+                if(error === NO_SUCH_CONTENT) {
+                    const data = [{
+                        ...result[0],
+                        cabang_ids: []
+                    }]
+        
+                    res.status(200).send({
+                        success: true,
+                        result: data
+                    })
+                } else {
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
+            }
+            
         }).catch(error=>{
             if(error===NO_SUCH_CONTENT){
                 res.status(204).send({
