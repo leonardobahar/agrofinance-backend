@@ -131,12 +131,13 @@ app.get("/api/karyawan/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/karyawan/add",(req,res)=>{
+app.post("/api/karyawan/add", (req,res)=>{
     if(typeof req.body.nama_lengkap==='undefined' ||
         typeof req.body.posisi==='undefined' ||
         typeof req.body.nik==='undefined' ||
         typeof req.body.role==='undefined' ||
-        typeof req.body.masih_hidup==='undefined'){
+        typeof req.body.masih_hidup==='undefined' ||
+        typeof req.body.cabang_ids==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -146,7 +147,19 @@ app.post("/api/karyawan/add",(req,res)=>{
 
     const employee=new Karyawan(null,req.body.nama_lengkap.toUpperCase(),req.body.posisi.toUpperCase(), req.body.nik, req.body.role.toUpperCase(), req.body.masih_hidup.toUpperCase())
 
-    dao.addKaryawan(employee).then(result=>{
+    dao.addKaryawan(employee).then(async result=>{
+        const karyawanId = result.k_id_karyawan;
+
+        const karyawanPerusahaanRes = req.body.cabang_ids.map(cabangId => {
+            const karyawanPerusahaan = new Karyawan_kerja_dimana(null, karyawanId, cabangId);
+
+            return dao.addKaryawan_kerja_dimana(karyawanPerusahaan)
+        })
+
+        const karyawanPerusahaanValues = await Promise.all(karyawanPerusahaanRes)
+            .then(values => values)
+            .catch(errors => console.error(errors));
+
         res.status(200).send({
             success:true,
             result:result
