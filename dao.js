@@ -1431,7 +1431,7 @@ export class Dao{
                                 detailTransaksi[i].td_jumlah,
                                 detailTransaksi[i].td_id_kategori_transaksi,
                                 detailTransaksi[i].td_jenis,
-                                detailTransaksi[i].td_bpu_attachment,
+                                transaksi.td_bpu_attachment,
                                 detailTransaksi[i].td_debit_credit,
                                 detailTransaksi[i].td_nomor_bukti_transaksi,
                                 detailTransaksi[i].td_file_bukti_transaksi,
@@ -1461,7 +1461,6 @@ export class Dao{
         })
     }
 
-    //test
     addDetailTransaksi(detailTransaksiObject){
         return new Promise((resolve, reject) => {
             const query="INSERT INTO `detil_transaksi` (" +

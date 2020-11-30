@@ -1251,13 +1251,13 @@ app.post("/api/transaksi/add",async(req,res)=> {
             return
         }
 
-        if (typeof req.file.filename==='undefined'){
+        if (typeof req.file==='undefined'){
 
             const transfer=new Transaksi(null,'NOW','NOW',
                 'NULL',req.body.is_rutin, 'Entry di buat',req.body.bon_sementara,
                 req.body.id_perusahaan,'0',req.body.detail_transaksi,
                 null,req.body.jumlah,req.body.id_kategori_transaksi,
-                req.body.jenis,null,req.body.debit_credit,req.body.nomor_bukti_transaksi,
+                req.body.jenis,'No Attachment',req.body.debit_credit,req.body.nomor_bukti_transaksi,
                 'BPU',req.body.pembebanan,'0', null)
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({
