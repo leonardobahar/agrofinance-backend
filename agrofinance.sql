@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_perusahaan`(
     `tp_id_tranasaksi_perusahaan` INT(7) PRIMARY KEY AUTO_INCREMENT,
     `tp_id_perusahaan` INT(7) NOT NULL,
     `tp_id_transaksi` INT(7) NOT NULL,
-    `tp_timestamp_transaksi` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+    `tp_timestamp_transaksi` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`tp_id_perusahaan`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`tp_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE
 );
