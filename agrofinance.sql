@@ -87,3 +87,19 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`list_bank`(
     `lb_kode_bank` VARCHAR(255) UNIQUE NOT NULL,
     `lb_nama_bank` VARCHAR(255) UNIQUE NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_karyawan`(
+    `tk_id_transaksi_karyawan` INT(7) PRIMARY KEY AUTO_INCREMENT,
+    `tk_id_karyawan` INT(7) NOT NULL,
+    `tk_id_transaksi` INT(7) NOT NULL,
+    FOREIGN KEY (`tk_id_karyawan`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`tk_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_perusahaan`(
+    `tp_id_tranasaksi_perusahaan` INT(7) PRIMARY KEY AUTO_INCREMENT,
+    `tp_id_perusahaan` INT(7) NOT NULL,
+    `tp_id_transaksi` INT(7) NOT NULL,
+    FOREIGN KEY (`tp_id_perusahaan`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`tp_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE
+);
