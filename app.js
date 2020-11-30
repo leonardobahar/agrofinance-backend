@@ -221,7 +221,8 @@ app.post("/api/karyawan/update", (req,res)=>{
         typeof req.body.posisi==='undefined' ||
         typeof req.body.nik==='undefined' ||
         typeof req.body.role==='undefined' ||
-        typeof req.body.masih_hidup==='undefined'){
+        typeof req.body.masih_hidup==='undefined' ||
+        typeof req.body.cabang_ids==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -231,13 +232,65 @@ app.post("/api/karyawan/update", (req,res)=>{
 
     const employee=new Karyawan(req.body.id_karyawan, req.body.nama_lengkap.toUpperCase(), req.body.posisi.toUpperCase(), req.body.nik, req.body.role.toUpperCase(), req.body.masih_hidup.toUpperCase())
 
-    dao.retrieveOneKaryawan(employee).then(result=>{
-        dao.updateKaryawan(employee).then(result=>{
+    dao.retrieveOneKaryawan(employee).then(async result=>{
+        try {
+            const updateKaryawanValues = await dao.updateKaryawan(employee)
+
+            const { id: karyawanId } = result[0];
+            const karyawanWithCabang = new Karyawan_kerja_dimana(null, karyawanId, null);
+
+            const upsertCabangIds = req.body.cabang_ids;
+            let existingCabangIds = [];
+
+            try {
+                const karyawanKerjaDimana = await dao.retrieveOneKaryawanKerjaDimana(karyawanWithCabang);
+                existingCabangIds = karyawanKerjaDimana.map(karyawanWithCabang => karyawanWithCabang.id_cabang);
+            } catch(error) {
+                console.log(error);
+                if(error !== NO_SUCH_CONTENT) {
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                } 
+            }
+
+            const cabangIdsToAdd = upsertCabangIds.filter(cabangId => !existingCabangIds.includes(cabangId));
+            const addKaryawanKerjaDimanaRes = cabangIdsToAdd.map(cabangId => 
+                dao.addKaryawan_kerja_dimana(new Karyawan_kerja_dimana(null, karyawanId, cabangId))
+            )
+
+            const addKaryawanKerjaDimanaValues = await Promise.all(addKaryawanKerjaDimanaRes)
+                .then(values => values)
+                .catch(error => {
+                    console.error(error);
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    });   
+                })
+
+            const cabangIdsToDelete = existingCabangIds.filter(cabangId => !upsertCabangIds.includes(cabangId));
+            const deleteKaryawanKerjaDimanaRes = cabangIdsToDelete.map(cabangId => 
+                dao.deleteKaryawanKerjaDimanaByKaryawanAndCabangIDs(new Karyawan_kerja_dimana(null, karyawanId, cabangId))
+            )
+
+            const deleteKaryawanKerjaDimanaValues = await Promise.all(deleteKaryawanKerjaDimanaRes)
+                .then(values => values)
+                .catch(error => {
+                    console.error(error);
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    });
+                })
+
             res.status(200).send({
-                success:true,
-                result:result
+                success: true
             })
-        }).catch(error=>{
+        
+        } catch(error) {
             if(error.code==='ER_DUP_ENTRY'){
                 res.status(500).send({
                     success:false,
@@ -251,7 +304,9 @@ app.post("/api/karyawan/update", (req,res)=>{
                     error:SOMETHING_WENT_WRONG
                 })
             }
-        })
+        }
+
+
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({

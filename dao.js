@@ -1249,6 +1249,28 @@ export class Dao{
         })
     }
 
+    deleteKaryawanKerjaDimanaByKaryawanAndCabangIDs(kerja) {
+        return new Promise((resolve,reject) => {
+            if (!kerja instanceof Karyawan_kerja_dimana) {
+                reject(MISMATCH_OBJ_TYPE);
+                return;
+            }
+
+            const { kkd_id_karyawan, kkd_id_cabang_perusahaan } = kerja;
+            const query = "DELETE FROM karyawan_kerja_dimana WHERE kkd_id_karyawan=? AND kkd_id_cabang_perusahaan=?";
+            const values = [kkd_id_karyawan, kkd_id_cabang_perusahaan];
+            this.mysqlConn.query(query, values, (error, result) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+
+                kerja.kkd_id_karyawan_kerja_dimana = result.kkd_id_karyawan_kerja_dimana;
+                resolve(kerja);
+            })
+        })
+    }
+
     retrieveTransaksi(){
         return new Promise((resolve, reject)=>{
             const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_jenis, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.td_pembebanan_id, pbb.skema_pembebanan_json "+
