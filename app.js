@@ -1424,6 +1424,46 @@ app.post("/api/transaksi/approve",(req,res)=>{
     })
 })
 
+app.post("/api/transaksi/reject",(req,res)=>{
+    if(typeof req.body.id_transaksi==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    const transfer=new Transaksi(req.query.id_transaksi,null,null,null,null,null,null,null,null,
+        null, null,null,null,null,null)
+
+    dao.getTransaksiID(transfer).then(result=>{
+        dao.rejectTransaksi(transfer).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:WRONG_BODY_FORMAT
+            })
+            return
+        }
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
 
 app.delete("/api/transaksi/delete", (req,res)=>{
     if(typeof req.query.id_transaksi==='undefined'){
