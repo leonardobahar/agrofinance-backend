@@ -1461,6 +1461,7 @@ export class Dao{
         })
     }
 
+    //test
     addDetailTransaksi(detailTransaksiObject){
         return new Promise((resolve, reject) => {
             const query="INSERT INTO `detil_transaksi` (" +
