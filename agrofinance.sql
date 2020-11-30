@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan_kerja_dimana` (
 CREATE TABLE IF NOT EXISTS `agrofinance`.`rekening_perusahaan` (
   `rp_id_rekening` INT(7) PRIMARY KEY AUTO_INCREMENT,
   `rp_nama_bank` VARCHAR(225) NOT NULL,
-  `rp_nomor_rekening` VARCHAR(225) NOT NULL,
+  `rp_nomor_rekening` VARCHAR(225) UNIQUE NOT NULL,
   `rp_saldo` VARCHAR(255) NOT NULL,
   `rp_rekening_utama`TINYINT(1) DEFAULT 0,
   `rp_id_cabang_perusahaan` INT(7) NOT NULL,
