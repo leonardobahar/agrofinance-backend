@@ -21,7 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +61,7 @@
       <workItem from="1606484273666" duration="2922000" />
       <workItem from="1606552271262" duration="602000" />
       <workItem from="1606655232611" duration="3226000" />
-      <workItem from="1606702165704" duration="24280000" />
+      <workItem from="1606702165704" duration="25081000" />
     </task>
     <task id="LOCAL-00001" summary="Retrieved lost codes">
       <created>1606486681869</created>
@@ -194,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606743594607</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Edited sql file">
+      <created>1606744264709</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1606744264709</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,13 +251,14 @@
     <MESSAGE value="Fixed minor bug in Approve and Reject Transaksi" />
     <MESSAGE value="test" />
     <MESSAGE value="Fixed Add Transaksi minor bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Add Transaksi minor bug" />
+    <MESSAGE value="Edited sql file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited sql file" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="398" y="0" key="CommitChangelistDialog2" timestamp="1606743593472">
+    <state x="398" y="0" key="CommitChangelistDialog2" timestamp="1606744263103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="398" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606743593472" />
+    <state x="398" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606744263103" />
     <state x="491" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606489093281" />
     <state x="120" y="-24" width="1350" height="838" maximized="true" key="DiffContextDialog" timestamp="1606743730765">
       <screen x="0" y="0" width="1536" height="824" />
@@ -275,10 +285,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606487198957" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606743647333">
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606744248653">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606743647333" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606744248653" />
     <state x="530" y="311" key="git4idea.ui.GitStashDialog" timestamp="1606484844519">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
