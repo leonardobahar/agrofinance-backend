@@ -561,8 +561,8 @@ app.post("/api/cabang-perushaan/update",(req,res)=>{
         return
     }
 
-    const cabang=new Cabang_perusahaan(req.body.id_cabang,req.body.nama_cabang,req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,null)
-    dao.getCabangPerushaanId(new Cabang_perusahaan(req.query.id_cabang)).then(result=>{
+    const cabang=new Cabang_perusahaan(req.body.id_cabang,req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,null)
+    dao.getCabangPerushaanId(new Cabang_perusahaan(req.body.id_cabang)).then(result=>{
         dao.updateCabangPerusahaan(cabang).then(result=>{
             res.status(200).send({
                 success:true,
@@ -1251,7 +1251,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
             return
         }
 
-        if (typeof req.file==='undefined'){
+        if (typeof req.file.filename==='undefined'){
 
             const transfer=new Transaksi(null,'NOW','NOW',
                 'NULL',req.body.is_rutin, 'Entry di buat',req.body.bon_sementara,

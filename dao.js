@@ -1364,9 +1364,11 @@ export class Dao{
             }
 
             try {
+                //const checkQuery = "SELECT * FROM transaksi_perusahaan WHERE tp_id_perusahaan=? AND tp_id_transaksi=? "
+
                 let detailTransaksi = JSON.parse(transaksi.detail_transaksi.toString())
                 const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_id_perusahaan`, `t_is_deleted`) "+
-                    "VALUES(NOW(),NOW(),'NULL',?,'Entry di buat',?,?,'0')"
+                    "VALUES(NOW(),NOW(),'NULL',?,'Entry di buat',?,?,0)"
                 this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_id_perusahaan], async(error, result) => {
                     if (error) {
                         reject(error)
@@ -1374,6 +1376,16 @@ export class Dao{
                     }
 
                     transaksi.t_id_transaksi = result.insertId
+
+                    const tp_query="INSERT INTO `transaksi_perusahaan` (`tp_id_perusahaan`, `tp_id_transaksi`) VALUES(?, ?)"
+                    this.mysqlConn.query(tp_query,[transaksi.t_id_perusahaan,transaksi.t_id_transaksi], (error,result)=>{
+                        if(error){
+                            reject(error)
+                            return
+                        }
+
+                        resolve(SUCCESS)
+                    })
 
                     for (let i = 0; i < detailTransaksi.length; i++) {
                         // BEGINNING OF DETAIL TRANSAKSI LOOP
