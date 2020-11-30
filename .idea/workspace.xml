@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +59,7 @@
       <workItem from="1606484273666" duration="2922000" />
       <workItem from="1606552271262" duration="602000" />
       <workItem from="1606655232611" duration="3226000" />
-      <workItem from="1606702165704" duration="26858000" />
+      <workItem from="1606702165704" duration="28282000" />
     </task>
     <task id="LOCAL-00001" summary="Retrieved lost codes">
       <created>1606486681869</created>
@@ -207,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606745159895</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added unique to rp_nomor_rekening column in sql file">
+      <created>1606747082029</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1606747082029</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,18 +265,19 @@
     <MESSAGE value="Fixed Add Transaksi minor bug" />
     <MESSAGE value="Edited sql file" />
     <MESSAGE value="Edited Add Transaksi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited Add Transaksi" />
+    <MESSAGE value="Added unique to rp_nomor_rekening column in sql file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added unique to rp_nomor_rekening column in sql file" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="398" y="0" key="CommitChangelistDialog2" timestamp="1606745158498">
+    <state x="398" y="0" key="CommitChangelistDialog2" timestamp="1606747081045">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="398" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606745158498" />
+    <state x="398" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606747081045" />
     <state x="491" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606489093281" />
-    <state x="120" y="-24" width="1350" height="838" maximized="true" key="DiffContextDialog" timestamp="1606746054493">
+    <state x="120" y="-24" width="1350" height="838" maximized="true" key="DiffContextDialog" timestamp="1606748214036">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="120" y="-24" width="1350" height="838" maximized="true" key="DiffContextDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606746054493" />
+    <state x="120" y="-24" width="1350" height="838" maximized="true" key="DiffContextDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606748214036" />
     <state x="147" y="65" key="MergeDialog" timestamp="1606486903338">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -281,19 +290,19 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="414" y="206" key="VCS.ChangeListViewerDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606485440288" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606745168867">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606747092881">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606745168867" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606747092881" />
     <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606489094927" />
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606487198957">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606487198957" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606746427146">
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606748079351">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606746427146" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606748079351" />
     <state x="530" y="311" key="git4idea.ui.GitStashDialog" timestamp="1606484844519">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
