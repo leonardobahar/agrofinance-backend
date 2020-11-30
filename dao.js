@@ -1314,25 +1314,47 @@ export class Dao{
         })
     }
 
+    getTransaksiID(transfer){
+        return new Promise((resolve,reject)=>{
+            if(!transfer instanceof Transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT t_id_transaksi FROM transaksi WHERE t_id_transaksi=? "
+            this.mysqlConn.query(query, transfer.t_id_transaksi, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(transfer)
+            })
+        })
+    }
+
     getDetilTransaksiFile(transfer){
         return new Promise((resolve,reject)=>{
             if(!transfer instanceof Detil_transaksi){
-                const query="SELECT td_bpu_attachment FROM detil_transaksi WHERE td_id_transaksi=? "
-                this.mysqlConn.query(query,transfer.td_id_transaksi,(error,result)=>{
-                    if(error){
-                        reject(error)
-                        return
-                    }else if(result.length>0){
-                        let files=[]
-                        for(let i=0; i<result.length; i++){
-                            files.push(result[i].td_bpu_attachment)
-                        }
-                        resolve(files)
-                    }else{
-                        reject(NO_SUCH_CONTENT)
-                    }
-                })
+                reject(MISMATCH_OBJ_TYPE)
+                return
             }
+
+            const query="SELECT td_bpu_attachment FROM detil_transaksi WHERE td_id_transaksi=? "
+            this.mysqlConn.query(query,transfer.td_id_transaksi,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    let files=[]
+                    for(let i=0; i<result.length; i++){
+                        files.push(result[i].td_bpu_attachment)
+                    }
+                    resolve(files)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
         })
     }
 
