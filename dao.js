@@ -1439,7 +1439,7 @@ export class Dao{
             const query="SELECT dt.skema_pembebanan_json FROM detil_transaksi dt "+
                 "LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
                 "WHERE t.t_id_karyawan=?"
-            this.mysqlConn.query(query,id_karyawan,(error,result)=>{
+            this.mysqlConn.query(query,[id_karyawan],(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -1599,7 +1599,6 @@ export class Dao{
                     reject(error)
                     return
                 }
-
                 resolve(SUCCESS)
             })
         })
