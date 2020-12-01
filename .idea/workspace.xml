@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -266,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606833566135</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Added extra line to fix null parameter of is_rekening_utama">
+      <created>1606833698181</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1606833698181</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,7 +303,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added perusahaan" />
     <MESSAGE value="Added Add Cabang Perusahaan" />
     <MESSAGE value="Added set Default Cabang Perusahaan" />
     <MESSAGE value="Added unset Default Cabang Perusahaan" />
@@ -320,17 +327,34 @@
     <MESSAGE value="Fixed Retrieve Karyawan bug" />
     <MESSAGE value="Fixed Set Rekening Utama default error" />
     <MESSAGE value="Fixed rekening utama declared as true on every insert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed rekening utama declared as true on every insert" />
+    <MESSAGE value="Added extra line to fix null parameter of is_rekening_utama" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added extra line to fix null parameter of is_rekening_utama" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="391" y="97" key="CommitChangelistDialog2" timestamp="1606833566007">
+    <state x="391" y="97" key="CommitChangelistDialog2" timestamp="1606833698061">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="391" y="97" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1606833566007" />
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1606833567519">
+    <state x="391" y="97" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1606833698061" />
+    <state width="1638" height="255" key="GridCell.Tab.0.bottom" timestamp="1606833743038">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1606833567519" />
+    <state width="1638" height="255" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1606833743038" />
+    <state width="1638" height="255" key="GridCell.Tab.0.center" timestamp="1606833743037">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="255" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1606833743037" />
+    <state width="1638" height="255" key="GridCell.Tab.0.left" timestamp="1606833743036">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="255" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1606833743036" />
+    <state width="1638" height="255" key="GridCell.Tab.0.right" timestamp="1606833743038">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="255" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1606833743038" />
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1606833699567">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1606833699567" />
     <state x="641" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606831699710">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

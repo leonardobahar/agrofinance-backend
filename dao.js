@@ -195,7 +195,7 @@ export class Dao{
             const query=`SELECT p.p_id_perusahaan, p.p_nama_perusahaan, cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_lokasi, cp.cp_alamat_lengkap, cp.cp_is_default,
                 rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama
                 FROM perusahaan p LEFT OUTER JOIN cabang_perusahaan cp ON cp.cp_perusahaan_id=p.p_id_perusahaan
-                LEFT OUTER JOIN rekening_perusahaan rp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang;`
+                LEFT OUTER JOIN rekening_perusahaan rp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang WHERE rp.rp_rekening_utama=1;`
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -215,7 +215,7 @@ export class Dao{
                         nomor_rekening:rowDataPacket.rp_nomor_rekening,
                         saldo:rowDataPacket.rp_saldo,
                         rekening_utama:rowDataPacket.rp_rekening_utama,
-                        default: rowDataPacket.cp_is_default
+                        default_cabang: rowDataPacket.cp_is_default
                     }
                 })
                 resolve(companies)
