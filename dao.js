@@ -418,18 +418,26 @@ export class Dao{
             if (typeof is_cabang_utama === 'undefined' || is_cabang_utama === null){
                 is_cabang_utama=false
             }
-            const query="INSERT INTO cabang_perusahaan (`cp_nama_cabang`, `cp_perusahaan_id`, `cp_lokasi`, `cp_alamat_lengkap`, `cp_is_default`) "+
-                "VALUES(?,?,?,?,?)"
-            this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap, is_cabang_utama], async(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
+
+            this.getDefaultCabangPerusahaan(perusahaan_id).then(cabangUtamaId=>{
+                if (cabangUtamaId===NO_MAIN_AACOUNT){
+                    is_cabang_utama = true
+                }else{
+                    is_cabang_utama = false
                 }
 
-                const id_cabang=result.insertId
-                await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang, is_cabang_utama)
-                resolve(SUCCESS)
+                const query="INSERT INTO cabang_perusahaan (`cp_nama_cabang`, `cp_perusahaan_id`, `cp_lokasi`, `cp_alamat_lengkap`, `cp_is_default`) "+
+                    "VALUES(?,?,?,?,?)"
+                this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap, is_cabang_utama], async(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }
+                    await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang, is_cabang_utama)
+                    resolve(SUCCESS)
+                })
             })
+
         })
     }
 
@@ -453,9 +461,9 @@ export class Dao{
         })
     }
 
-    getDefaultCabangPerusahaan(id_cabang){
+    getDefaultCabangPerusahaan(id_perusahaan){
         return new Promise((resolve,reject)=>{
-            const query="SELECT cp_is_default FROM cabang_perusahaan WHERE cp_is_default=1 AND cp_id_cabang=?"
+            const query="SELECT cp_is_default FROM cabang_perusahaan WHERE cp_is_default=1 AND cp_id_perusahaan=?"
             this.mysqlConn.query(query,id_cabang,(error,result)=>{
                 if(error){
                     reject(error)
