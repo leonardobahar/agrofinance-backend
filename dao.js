@@ -268,11 +268,11 @@ export class Dao{
                 }
 
                 const perusahaanID=result.insertId
-                await this.addCabangPerusahaan(nama_cabang,perusahaanID,lokasi,alamat_lengkap, nama_bank, nomor_rekening, saldo, true).catch(error=>{
+                await this.addCabangPerusahaan(nama_cabang,perusahaanID,lokasi,alamat_lengkap, nama_bank, nomor_rekening, saldo, true).then(addCabangPerusahaanResult=>{
+                    resolve(SUCCESS)
+                }).catch(error=>{
                     reject(error)
                 })
-
-                resolve(SUCCESS)
             })
         })
     }

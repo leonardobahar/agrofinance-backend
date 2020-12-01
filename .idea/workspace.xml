@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -321,7 +322,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606836684600</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Udah pasti pas">
+      <created>1606836798713</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1606836798713</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +358,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added unset Default Cabang Perusahaan" />
     <MESSAGE value="Added 2 function blocks (get default and get non default cabang perusahaan" />
     <MESSAGE value="Added delete cabang perusahaan" />
     <MESSAGE value="Added update cabang perusahaan" />
@@ -375,16 +382,17 @@
     <MESSAGE value="Added extra line to fix null parameter of is_rekening_utama" />
     <MESSAGE value="Fixed cabang utama problem hopefully" />
     <MESSAGE value="Fixed idcabang not defined" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed idcabang not defined" />
+    <MESSAGE value="Udah pasti pas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Udah pasti pas" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="391" y="97" key="CommitChangelistDialog2" timestamp="1606836684482">
+    <state x="391" y="97" key="CommitChangelistDialog2" timestamp="1606836798590">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="391" y="97" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1606836684482" />
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1606836685846">
+    <state x="391" y="97" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1606836798590" />
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1606836800004">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1606836685846" />
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1606836800004" />
   </component>
 </project>
