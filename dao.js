@@ -435,7 +435,7 @@ export class Dao{
                         return
                     }
                     const id_cabang = result.insertId
-                    await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang, is_cabang_utama)
+                    await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang, true)
                     resolve(SUCCESS)
                 })
             })

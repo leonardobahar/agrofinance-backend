@@ -314,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606836595236</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Fixed idcabang not defined">
+      <created>1606836684600</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1606836684600</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,7 +350,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added set Default Cabang Perusahaan" />
     <MESSAGE value="Added unset Default Cabang Perusahaan" />
     <MESSAGE value="Added 2 function blocks (get default and get non default cabang perusahaan" />
     <MESSAGE value="Added delete cabang perusahaan" />
@@ -368,16 +374,17 @@
     <MESSAGE value="Fixed rekening utama declared as true on every insert" />
     <MESSAGE value="Added extra line to fix null parameter of is_rekening_utama" />
     <MESSAGE value="Fixed cabang utama problem hopefully" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed cabang utama problem hopefully" />
+    <MESSAGE value="Fixed idcabang not defined" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed idcabang not defined" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="391" y="97" key="CommitChangelistDialog2" timestamp="1606836595118">
+    <state x="391" y="97" key="CommitChangelistDialog2" timestamp="1606836684482">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="391" y="97" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1606836595118" />
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1606836596420">
+    <state x="391" y="97" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1606836684482" />
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1606836685846">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1606836596420" />
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1606836685846" />
   </component>
 </project>
