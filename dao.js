@@ -465,7 +465,7 @@ export class Dao{
     getDefaultCabangPerusahaan(id_perusahaan){
         return new Promise((resolve,reject)=>{
             const query="SELECT cp_is_default FROM cabang_perusahaan WHERE cp_is_default=1 AND cp_id_perusahaan=?"
-            this.mysqlConn.query(query,id_perusahaan,(error,result)=>{
+            this.mysqlConn.query(query,[id_perusahaan],(error,result)=>{
                 if(error){
                     reject(error)
                     return
