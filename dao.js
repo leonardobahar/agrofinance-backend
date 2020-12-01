@@ -420,15 +420,13 @@ export class Dao{
                 is_cabang_utama=false
             }
 
-            if (perusahaan_id!==null){
-                const resultOfCabangUtamaDefaultExisted = await this.getDefaultCabangPerusahaan(perusahaan_id).catch(err=>{
-                    reject(err)
-                })
-                if (resultOfCabangUtamaDefaultExisted===NO_MAIN_AACOUNT){
-                    is_cabang_utama = true
-                }else{
-                    is_cabang_utama = false
-                }
+            const resultOfCabangUtamaDefaultExisted = await this.getDefaultCabangPerusahaan(perusahaan_id).catch(err=>{
+                reject(err)
+            })
+            if (resultOfCabangUtamaDefaultExisted===NO_MAIN_AACOUNT){
+                is_cabang_utama = true
+            }else{
+                is_cabang_utama = false
             }
 
             const query="INSERT INTO cabang_perusahaan (`cp_nama_cabang`, `cp_perusahaan_id`, `cp_lokasi`, `cp_alamat_lengkap`, `cp_is_default`) "+
