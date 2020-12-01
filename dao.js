@@ -4,7 +4,7 @@ import {
     ADMIN_VALIDATED,
     ALL, CANCELLED, DUPLICATE_ENTRY, ERROR_DUPLICATE_ENTRY, INVALID, INVALID_FINAL, MAIN_ACCOUNT_EXISTS,
     MISMATCH_OBJ_TYPE,
-    NO_AFFECTED_ROWS,
+    NO_AFFECTED_ROWS, NO_MAIN_AACOUNT,
     NO_SUCH_CONTENT,
     ONLY_WITH_VENDORS, ORDER_PROCESSING,
     SOMETHING_WENT_WRONG, SUCCESS, VALID, WRONG_BODY_FORMAT
@@ -434,7 +434,7 @@ export class Dao{
 
     getDefaultCabangPerusahaan(id_cabang){
         return new Promise((resolve,reject)=>{
-            const query="SELECT cp_is_default FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            const query="SELECT cp_is_default FROM cabang_perusahaan WHERE cp_is_default=1 AND cp_id_cabang=?"
             this.mysqlConn.query(query,id_cabang,(error,result)=>{
                 if(error){
                     reject(error)
@@ -445,7 +445,7 @@ export class Dao{
                     if(result[i].cp_is_default===1){
                         resolve(result[i].cp_is_default)
                     }else if(result[i].cp_is_default===0){
-                        reject(MAIN_ACCOUNT_EXISTS)
+                        reject(NO_MAIN_AACOUNT)
                     }else{
                         reject(NO_SUCH_CONTENT)
                     }
@@ -456,7 +456,7 @@ export class Dao{
 
     getNonDefaultCabangPerusahaan(id_cabang){
         return new Promise((resolve,reject)=>{
-            const query="SELECT cp_is_default FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            const query="SELECT cp_is_default FROM cabang_perusahaan WHERE cp_is_default=0 AND cp_id_cabang=?"
             this.mysqlConn.query(query,id_cabang,(error,result)=>{
                 if(error){
                     reject(error)
@@ -504,6 +504,20 @@ export class Dao{
 
             const query="UPDATE cabang_perusahaan SET cp_is_default=0 WHERE cp_id_cabang=?"
             this.mysqlConn.query(query, [cabang.cp_id_cabang], (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
+    unsetDefaultCabangPerusahaanWithPerusahaanId(id_perusahaan){
+        return new Promise((resolve,reject)=>{
+            const query="UPDATE cabang_perusahaan SET cp_is_default=0 WHERE cp_is_default=1 AND cp_perusahaan_id=?"
+            this.mysqlConn.query(query, id_perusahaan, (error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -729,7 +743,7 @@ export class Dao{
             })
         })
     }
-//test
+
     retrieveOneRekeningUtama(rekening){
         return new Promise((resolve,reject)=>{
             if(!rekening instanceof Rekening_perusahaan){

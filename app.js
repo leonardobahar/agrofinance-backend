@@ -614,6 +614,7 @@ app.post("/api/cabang-perusahaan/set",(req,res)=>{
     }
 
     dao.getCabangPerushaanId(new Cabang_perusahaan(req.body.id_cabang)).then(result=>{
+
         dao.setDefaultCabangPerusahaan(new Cabang_perusahaan(req.body.id_cabang)).then(result=>{
             res.status(200).send({
                 success:true,

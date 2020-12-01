@@ -8,6 +8,7 @@ export const NO_SUCH_CONTENT="No Such Content"
 export const MISMATCH_OBJ_TYPE="Mismatch Object Type Passed"
 export const ERROR_DUPLICATE_ENTRY="Duplicate Entry Error"
 export const MAIN_ACCOUNT_EXISTS="There can only be 1 main account"
+export const NO_MAIN_AACOUNT="No main account."
 
 //CONSTRAINTS
 export const SUCCESS="SUCCESS"
