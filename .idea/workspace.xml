@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,6 +45,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -58,7 +61,7 @@
       <workItem from="1606655232611" duration="3226000" />
       <workItem from="1606702165704" duration="31748000" />
       <workItem from="1606797918917" duration="19857000" />
-      <workItem from="1606829233918" duration="1303000" />
+      <workItem from="1606829233918" duration="2191000" />
     </task>
     <task id="LOCAL-00001" summary="Retrieved lost codes">
       <created>1606486681869</created>
@@ -249,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606830333008</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Fixed Set Rekening Utama default error">
+      <created>1606830656955</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1606830656955</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +288,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Attempt to fix error in retrievePerusahaan" />
     <MESSAGE value="Error in retrievePerusahaan fixed, added field rekening utama field" />
     <MESSAGE value="Added perusahaan" />
     <MESSAGE value="Added Add Cabang Perusahaan" />
@@ -303,6 +312,7 @@
     <MESSAGE value="Fixed Set and Unset Cabang Utama bug" />
     <MESSAGE value="Modified parts of retrieve karyawan to retrieve karyawan's pembebanan_json (still in progress)" />
     <MESSAGE value="Fixed Retrieve Karyawan bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Retrieve Karyawan bug" />
+    <MESSAGE value="Fixed Set Rekening Utama default error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Set Rekening Utama default error" />
   </component>
 </project>

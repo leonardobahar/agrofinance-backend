@@ -729,7 +729,7 @@ export class Dao{
             })
         })
     }
-
+//test
     retrieveOneRekeningUtama(rekening){
         return new Promise((resolve,reject)=>{
             if(!rekening instanceof Rekening_perusahaan){
