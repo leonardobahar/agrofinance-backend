@@ -400,11 +400,12 @@ export class Dao{
             }
 
             const query="SELECT cp_perusahaan_id FROM cabang_perusahaan WHERE cp_id_cabang=?"
-            this.mysqlConn.query(query, cabang.cp_id_cabang, (error,result)=>{
+            this.mysqlConn.query(query, cabang.cp_id_cabang, async (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }else if(result.length>0){
+                    await this.unsetDefaultCabangPerusahaanWithPerusahaanId(result[0].cp_perusahaan_id)
                     resolve(result[0].cp_perusahaan_id)
                 }else{
                     reject(NO_SUCH_CONTENT)

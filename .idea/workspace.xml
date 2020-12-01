@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -295,14 +295,7 @@
       <option name="project" value="LOCAL" />
       <updated>1606835434630</updated>
     </task>
-    <task id="LOCAL-00034" summary="Marilah bercabang-cabang">
-      <created>1606835586800</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1606835586800</updated>
-    </task>
-    <option name="localTasksCounter" value="35" />
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -331,6 +324,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Add Cabang Perusahaan" />
     <MESSAGE value="Added set Default Cabang Perusahaan" />
     <MESSAGE value="Added unset Default Cabang Perusahaan" />
     <MESSAGE value="Added 2 function blocks (get default and get non default cabang perusahaan" />
@@ -355,21 +349,16 @@
     <MESSAGE value="Fixed Set Rekening Utama default error" />
     <MESSAGE value="Fixed rekening utama declared as true on every insert" />
     <MESSAGE value="Added extra line to fix null parameter of is_rekening_utama" />
-    <MESSAGE value="Marilah bercabang-cabang" />
-    <option name="LAST_COMMIT_MESSAGE" value="Marilah bercabang-cabang" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added extra line to fix null parameter of is_rekening_utama" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="391" y="97" key="CommitChangelistDialog2" timestamp="1606835586669">
+    <state x="391" y="97" key="CommitChangelistDialog2" timestamp="1606835434513">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="391" y="97" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1606835586669" />
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1606835591986">
+    <state x="391" y="97" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1606835434513" />
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1606835436014">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1606835591985" />
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1606835778267">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1606835778267" />
+    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1606835436014" />
   </component>
 </project>
