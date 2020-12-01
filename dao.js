@@ -420,7 +420,7 @@ export class Dao{
             }
             const query="INSERT INTO cabang_perusahaan (`cp_nama_cabang`, `cp_perusahaan_id`, `cp_lokasi`, `cp_alamat_lengkap`, `cp_is_default`) "+
                 "VALUES(?,?,?,?,?)"
-            this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap, is_cabang_utama], async(error,result)=>{
+            this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap, null], async(error,result)=>{
                 if(error){
                     reject(error)
                     return
