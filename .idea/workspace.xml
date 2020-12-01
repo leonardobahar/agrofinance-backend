@@ -61,7 +61,8 @@
       <workItem from="1606552271262" duration="602000" />
       <workItem from="1606655232611" duration="3226000" />
       <workItem from="1606702165704" duration="31748000" />
-      <workItem from="1606797918917" duration="14334000" />
+      <workItem from="1606797918917" duration="19857000" />
+      <workItem from="1606829233918" duration="1002000" />
     </task>
     <task id="LOCAL-00001" summary="Retrieved lost codes">
       <created>1606486681869</created>
@@ -238,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606751262693</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Modified parts of retrieve karyawan to retrieve karyawan's pembebanan_json (still in progress)">
+      <created>1606818439938</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1606818439938</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,7 +275,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Retrieved lost codes" />
     <MESSAGE value="Remarked add transaksi page" />
     <MESSAGE value="Attempt to fix error in retrievePerusahaan" />
     <MESSAGE value="Error in retrievePerusahaan fixed, added field rekening utama field" />
@@ -292,50 +299,7 @@
     <MESSAGE value="Fixed Cabang Utama field error" />
     <MESSAGE value="Fixed Set and Unset Cabang Utama" />
     <MESSAGE value="Fixed Set and Unset Cabang Utama bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Set and Unset Cabang Utama bug" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="398" y="0" key="CommitChangelistDialog2" timestamp="1606751260822">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="398" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606751260822" />
-    <state x="491" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1606489093281" />
-    <state x="120" y="-24" width="1350" height="838" maximized="true" key="DiffContextDialog" timestamp="1606798272331">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="120" y="-24" width="1350" height="838" maximized="true" key="DiffContextDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606798272331" />
-    <state x="147" y="65" key="MergeDialog" timestamp="1606486903338">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="147" y="65" key="MergeDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606486903338" />
-    <state x="407" y="174" key="MultipleFileMergeDialog" timestamp="1606486903344">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606486903344" />
-    <state x="414" y="206" key="VCS.ChangeListViewerDialog" timestamp="1606485440288">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="414" y="206" key="VCS.ChangeListViewerDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606485440288" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606751275833">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606751275833" />
-    <state x="451" y="183" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606489094927" />
-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606487198957">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606487198957" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606803136603">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606803136603" />
-    <state x="530" y="311" key="git4idea.ui.GitStashDialog" timestamp="1606484844519">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="530" y="311" key="git4idea.ui.GitStashDialog/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606484844519" />
-    <state x="540" y="98" key="svn.repositoryBrowser" timestamp="1606484259181">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="540" y="98" key="svn.repositoryBrowser/0.0.1536.824/1920.0.1366.728@0.0.1536.824" timestamp="1606484259181" />
+    <MESSAGE value="Modified parts of retrieve karyawan to retrieve karyawan's pembebanan_json (still in progress)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified parts of retrieve karyawan to retrieve karyawan's pembebanan_json (still in progress)" />
   </component>
 </project>

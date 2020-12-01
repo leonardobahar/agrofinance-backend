@@ -71,10 +71,7 @@ export class Dao{
 
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT tk.tk_id_karyawan, k.k_nama_lengkap, k.k_posisi, k.k_nik, k.k_role, k.k_masih_hidup, td.skema_pembebanan_json "+
-                "FROM transaksi_karyawan tk LEFT OUTER JOIN karyawan k ON tk.tk_id_karyawan=k.k_id_karyawan "+
-                "LEFT OUTER JOIN transaksi t ON tk.tk_id_transaksi=t.t_id_transaksi "+
-                "LEFT OUTER JOIN detil_transaksi td ON t_id_transaksi=td_id_transaksi "
+            const query="SELECT * FROM karyawan "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -88,8 +85,7 @@ export class Dao{
                         posisi:rowDataPacket.k_posisi,
                         nik:rowDataPacket.k_nik,
                         role:rowDataPacket.k_role,
-                        masih_hidup:rowDataPacket.k_masih_hidup,
-                        pembebanan:rowDataPacket.skema_pembebanan_json
+                        masih_hidup:rowDataPacket.k_masih_hidup
                     }
                 })
                 resolve(employees)
@@ -115,15 +111,13 @@ export class Dao{
                     let employees=[]
                     for(let i=0; i<result.length; i++){
                         employees.push(new Karyawan(
-                            result[i].id_karyawan,
+                            result[i].k_id_karyawan,
                             result[i].k_nama_lengkap,
                             result[i].k_posisi,
                             result[i].k_nik,
                             result[i].k_role,
                             result[i].k_masih_hidup
-                        ), await this.getPembebananJsonByKaryawanId(result[i].id_karyawan).catch(error=>{
-                            reject(error)
-                        }))
+                        ))
                     }
                     resolve(employees)
                 }
@@ -1437,7 +1431,7 @@ export class Dao{
     getPembebananJsonByKaryawanId(id_karyawan){
         return new Promise((resolve,reject)=>{
             const query="SELECT dt.skema_pembebanan_json FROM detil_transaksi dt "+
-                "LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
+                "LEFT OUTER JOIN transaksi t ON t.t_id_transaksi=dt.td_id_transaksi "+
                 "WHERE t.t_id_karyawan=?"
             this.mysqlConn.query(query,id_karyawan,(error,result)=>{
                 if(error){
