@@ -415,29 +415,30 @@ export class Dao{
     }
 
     addCabangPerusahaan(nama_cabang, perusahaan_id, lokasi, alamat_lengkap, nama_bank, nomor_rekening, saldo, is_cabang_utama){
-        return new Promise((resolve,reject)=>{
+        return new Promise(async(resolve,reject)=>{
             if (typeof is_cabang_utama === 'undefined' || is_cabang_utama === null){
                 is_cabang_utama=false
             }
 
-            this.getDefaultCabangPerusahaan(perusahaan_id).then(cabangUtamaId=>{
-                if (cabangUtamaId===NO_MAIN_AACOUNT){
+            if (perusahaan_id!==null){
+                const resultOfCabangUtamaDefaultExisted = await this.getDefaultCabangPerusahaan(perusahaan_id)
+                if (resultOfCabangUtamaDefaultExisted===NO_MAIN_AACOUNT){
                     is_cabang_utama = true
                 }else{
                     is_cabang_utama = false
                 }
+            }
 
-                const query="INSERT INTO cabang_perusahaan (`cp_nama_cabang`, `cp_perusahaan_id`, `cp_lokasi`, `cp_alamat_lengkap`, `cp_is_default`) "+
-                    "VALUES(?,?,?,?,?)"
-                this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap, is_cabang_utama], async(error,result)=>{
-                    if(error){
-                        reject(error)
-                        return
-                    }
-                    const id_cabang = result.insertId
-                    await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang, true)
-                    resolve(SUCCESS)
-                })
+            const query="INSERT INTO cabang_perusahaan (`cp_nama_cabang`, `cp_perusahaan_id`, `cp_lokasi`, `cp_alamat_lengkap`, `cp_is_default`) "+
+                "VALUES(?,?,?,?,?)"
+            this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap, is_cabang_utama], async(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+                const id_cabang = result.insertId
+                await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang, true)
+                resolve(SUCCESS)
             })
 
         })
