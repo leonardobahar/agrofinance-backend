@@ -644,7 +644,7 @@ export class Dao{
 
     addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, is_rekening_utama){
         return new Promise((resolve,reject)=>{
-            if (typeof is_rekening_utama === 'undefined'){
+            if (typeof is_rekening_utama === 'undefined' || typeof is_rekening_utama === null){
                 is_rekening_utama = false
             }
 
