@@ -71,7 +71,10 @@ export class Dao{
 
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM karyawan"
+            const query="SELECT tk.tk_id_karyawan, k.k_nama_lengkap, k.k_posisi, k.k_nik, k.k_role, k.k_masih_hidup, td.skema_pembebanan_json "+
+                "FROM transaksi_karyawan tk LEFT OUTER JOIN karyawan k ON tk.tk_id_karyawan=k.k_id_karyawan "+
+                "LEFT OUTER JOIN transaksi t ON tk.tk_id_transaksi=t.t_id_transaksi "+
+                "LEFT OUTER JOIN detil_transaksi td ON t_id_transaksi=td_id_transaksi "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -85,7 +88,8 @@ export class Dao{
                         posisi:rowDataPacket.k_posisi,
                         nik:rowDataPacket.k_nik,
                         role:rowDataPacket.k_role,
-                        masih_hidup:rowDataPacket.k_masih_hidup
+                        masih_hidup:rowDataPacket.k_masih_hidup,
+                        pembebanan:rowDataPacket.skema_pembebanan_json
                     }
                 })
                 resolve(employees)
@@ -101,23 +105,26 @@ export class Dao{
             }
 
             const query="SELECT * FROM karyawan WHERE k_id_karyawan=?"
-            this.mysqlConn.query(query, karyawan.k_id_karyawan, (error, result)=>{
+            this.mysqlConn.query(query, karyawan.k_id_karyawan, async(error, result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
                 else if(result.length>0){
-                    const employees=result.map(rowDataPacket=>{
-                        return{
-                            id:rowDataPacket.k_id_karyawan,
-                            nama_lengakap:rowDataPacket.k_nama_lengkap,
-                            posisi:rowDataPacket.k_posisi,
-                            nik:rowDataPacket.k_nik,
-                            role:rowDataPacket.k_role,
-                            masih_hidup:rowDataPacket.k_masih_hidup
-                        }
-                    })
+                    let employees=[]
+                    for(let i=0; i<result.length; i++){
+                        employees.push(new Karyawan(
+                            result[i].id_karyawan,
+                            result[i].k_nama_lengkap,
+                            result[i].k_posisi,
+                            result[i].k_nik,
+                            result[i].k_role,
+                            result[i].k_masih_hidup
+                        ), await this.getPembebananJsonByKaryawanId(result[i].id_karyawan).catch(error=>{
+                            reject(error)
+                        }))
+                    }
                     resolve(employees)
                 }
 
@@ -1273,10 +1280,9 @@ export class Dao{
 
     retrieveTransaksi(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_jenis, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.td_pembebanan_id, pbb.skema_pembebanan_json "+
+            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_jenis, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.skema_pembebanan_json "+
                 "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
                 "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori "+
-                "LEFT OUTER JOIN pembebanan p ON dt.td_pembebanan_id=p.pbb_id "+
                 "WHERE t_is_deleted='0'"
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
@@ -1300,7 +1306,6 @@ export class Dao{
                         debit_credit:rowDataPacket.td_debit_credit,
                         nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
                         file_bukti_transaksi:rowDataPacket.td_file_bukti_transaksi,
-                        pembebanan_id:rowDataPacket.td_pembebanan_id,
                         pembebanan_json:rowDataPacket.skema_pembebanan_json
                     }
                 })
@@ -1426,6 +1431,48 @@ export class Dao{
             }else{
                 reject(MISMATCH_OBJ_TYPE)
             }
+        })
+    }
+
+    getPembebananJsonByKaryawanId(id_karyawan){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT dt.skema_pembebanan_json FROM detil_transaksi dt "+
+                "LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
+                "WHERE t.t_id_karyawan=?"
+            this.mysqlConn.query(query,id_karyawan,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    let pembebanan=[]
+                    for(let i=0; i<result.length; i++){
+                        pembebanan.push(
+                            result[i].skema_pembebanan_json
+                        )
+                    }
+                    resolve(pembebanan)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    getPembebananJsonByPerusahaanId(id_perusahaan){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT dt.skema_pembebanan_json FROM detil_transaksi dt "+
+                "LEFT OUTER JOIN transaksi t ON td_id_transaksi=t_id_transaksi "+
+                "WHERE t.t_id_perusahaan=?"
+            this.mysqlConn.query(query,id_perusahaan,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    resolve(result[0].skema_pembebanan_json)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
         })
     }
 

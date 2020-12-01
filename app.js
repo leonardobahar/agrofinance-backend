@@ -179,7 +179,7 @@ app.post("/api/karyawan/add", (req,res)=>{
         return
     }
 
-    const employee=new Karyawan(null,req.body.nama_lengkap.toUpperCase(),req.body.posisi.toUpperCase(), req.body.nik, req.body.role.toUpperCase(), req.body.masih_hidup.toUpperCase())
+    const employee=new Karyawan(null,req.body.nama_lengkap.toUpperCase(),req.body.posisi.toUpperCase(), req.body.nik, req.body.role.toUpperCase(), req.body.masih_hidup)
 
     dao.addKaryawan(employee).then(async result=>{
         const karyawanId = result.k_id_karyawan;
