@@ -330,34 +330,4 @@
     <MESSAGE value="Added extra line to fix null parameter of is_rekening_utama" />
     <option name="LAST_COMMIT_MESSAGE" value="Added extra line to fix null parameter of is_rekening_utama" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="391" y="97" key="CommitChangelistDialog2" timestamp="1606833698061">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="391" y="97" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1606833698061" />
-    <state width="1638" height="255" key="GridCell.Tab.0.bottom" timestamp="1606833743038">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1638" height="255" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1606833743038" />
-    <state width="1638" height="255" key="GridCell.Tab.0.center" timestamp="1606833743037">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1638" height="255" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1606833743037" />
-    <state width="1638" height="255" key="GridCell.Tab.0.left" timestamp="1606833743036">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1638" height="255" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1606833743036" />
-    <state width="1638" height="255" key="GridCell.Tab.0.right" timestamp="1606833743038">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1638" height="255" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1606833743038" />
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2" timestamp="1606833699567">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="440" y="262" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1606833699567" />
-    <state x="641" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606831699710">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="641" y="443" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1606831699710" />
-  </component>
 </project>

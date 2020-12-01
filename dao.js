@@ -392,6 +392,27 @@ export class Dao{
         })
     }
 
+    getPerusahaanIdCabang(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT cp_perusahaan_id FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            this.mysqlConn.query(query, cabang.cp_id_cabang, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    resolve(result[0].cp_perusahaan_id)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
     addCabangPerusahaan(nama_cabang, perusahaan_id, lokasi, alamat_lengkap, nama_bank, nomor_rekening, saldo, is_cabang_utama){
         return new Promise((resolve,reject)=>{
             if (typeof is_cabang_utama === 'undefined'){
