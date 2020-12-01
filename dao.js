@@ -421,7 +421,9 @@ export class Dao{
             }
 
             if (perusahaan_id!==null){
-                const resultOfCabangUtamaDefaultExisted = await this.getDefaultCabangPerusahaan(perusahaan_id)
+                const resultOfCabangUtamaDefaultExisted = await this.getDefaultCabangPerusahaan(perusahaan_id).catch(err=>{
+                    reject(err)
+                })
                 if (resultOfCabangUtamaDefaultExisted===NO_MAIN_AACOUNT){
                     is_cabang_utama = true
                 }else{
@@ -437,7 +439,9 @@ export class Dao{
                     return
                 }
                 const id_cabang = result.insertId
-                await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang, true)
+                await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang, true).catch(err=>{
+                    reject(err)
+                })
                 resolve(SUCCESS)
             })
 
