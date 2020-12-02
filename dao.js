@@ -414,7 +414,7 @@ export class Dao{
             }
 
             if (typeof cabang.cp_is_default === 'undefined' || cabang.cp_is_default === null){
-                cabang.cp_is_default=false
+                cabang.cp_is_default=0
             }
 
             if(cabang.cp_is_default===true){
