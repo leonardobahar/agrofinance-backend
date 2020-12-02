@@ -622,10 +622,12 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
         return
     }
 
-    dao.addCabangPerusahaan(req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,null).then(result=>{
-        res.status(200).send({
-            success:true,
-            result:result
+    dao.addCabangPerusahaan(new Cabang_perusahaan(null,req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,null)).then(result=>{
+        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,result.cp_id_cabang,0).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
         })
     }).catch(error=>{
         console.error(error)

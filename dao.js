@@ -681,8 +681,10 @@ export class Dao{
 
     addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, is_rekening_utama){
         return new Promise((resolve,reject)=>{
-            if (typeof is_rekening_utama === 'undefined' || typeof is_rekening_utama === null){
-                is_rekening_utama = false
+            if (typeof is_rekening_utama === 'undefined' || is_rekening_utama === null){
+                is_rekening_utama = 0
+            }else if(typeof is_rekening_utama === true){
+                is_rekening_utama=1
             }
 
             const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_cabang_perusahaan`, `rp_rekening_utama`) VALUES(?, ?, ?, ?, ?)"
