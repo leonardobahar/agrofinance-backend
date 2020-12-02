@@ -422,10 +422,42 @@ app.post("/api/perusahaan/add",(req,res)=>{
 
     const perusahaan=new Perusahaan(null,req.body.nama_perusahaan.toUpperCase())
 
-    dao.addPerusahaan(perusahaan,req.body.nama_cabang.toUpperCase(),req.body.lokasi,req.body.alamat_lengkap,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo).then(result=>{
-        res.status(200).send({
-            success:true,
-            result:result
+    dao.addPerusahaan(perusahaan,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo).then(result=>{
+        dao.addCabangPerusahaan(new Cabang_perusahaan(null,req.body.nama_cabang.toUpperCase(),result.p_id_perusahaan,req.body.lokasi,req.body.alamat_lengkap,true)).then(result=>{
+            dao.addRekeningPerusahaan(req.body.nama_bank.toUpperCase(),req.body.nomor_rekening,req.body.saldo,result.cp_id_cabang,true).then(result=>{
+                res.status(200).send({
+                    success:true,
+                    result:result
+                })
+            }).catch(error=>{
+                if(error.code==='ER_DUP_ENTRY'){
+                    res.status(500).send({
+                        success:false,
+                        error:ERROR_DUPLICATE_ENTRY
+                    })
+                }
+                else{
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
+            })
+        }).catch(error=>{
+            if(error.code==='ER_DUP_ENTRY'){
+                res.status(500).send({
+                    success:false,
+                    error:ERROR_DUPLICATE_ENTRY
+                })
+            }
+            else{
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
+            }
         })
     }).catch(error=>{
         if(error.code==='ER_DUP_ENTRY'){

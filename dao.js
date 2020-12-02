@@ -105,9 +105,7 @@ export class Dao{
                 if(error){
                     reject(error)
                     return
-                }
-
-                else if(result.length>0){
+                } else if(result.length>0){
                     let employees=[]
                     for(let i=0; i<result.length; i++){
                         employees.push(new Karyawan(
@@ -120,9 +118,7 @@ export class Dao{
                         ))
                     }
                     resolve(employees)
-                }
-
-                else {
+                } else {
                     reject(NO_SUCH_CONTENT)
                 }
             })
@@ -253,7 +249,7 @@ export class Dao{
         })
     }
 
-    addPerusahaan(perusahaan,nama_cabang, lokasi, alamat_lengkap, nama_bank, nomor_rekening, saldo){
+    addPerusahaan(perusahaan){
         return new Promise((resolve,reject)=>{
             if(!perusahaan instanceof Perusahaan){
                 reject(MISMATCH_OBJ_TYPE)
@@ -267,12 +263,8 @@ export class Dao{
                     return
                 }
 
-                const perusahaanID=result.insertId
-                await this.addCabangPerusahaan(nama_cabang,perusahaanID,lokasi,alamat_lengkap, nama_bank, nomor_rekening, saldo, true).then(addCabangPerusahaanResult=>{
-                    resolve(SUCCESS)
-                }).catch(error=>{
-                    reject(error)
-                })
+                perusahaan.p_id_perusahaan=result.insertId
+                resolve(perusahaan)
             })
         })
     }
@@ -414,33 +406,30 @@ export class Dao{
         })
     }
 
-    addCabangPerusahaan(nama_cabang, perusahaan_id, lokasi, alamat_lengkap, nama_bank, nomor_rekening, saldo, is_cabang_utama){
+    addCabangPerusahaan(cabang){
         return new Promise(async(resolve,reject)=>{
-            if (typeof is_cabang_utama === 'undefined' || is_cabang_utama === null){
-                is_cabang_utama=false
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
             }
 
-            const resultOfCabangUtamaDefaultExisted = await this.getDefaultCabangPerusahaan(perusahaan_id).catch(err=>{
-                reject(err)
-            })
-            if (resultOfCabangUtamaDefaultExisted===NO_MAIN_AACOUNT){
-                is_cabang_utama = true
-            }else{
-                is_cabang_utama = false
+            if (typeof cabang.cp_is_default === 'undefined' || cabang.cp_is_default === null){
+                cabang.cp_is_default=false
+            }
+
+            if(cabang.cp_is_default===true){
+                cabang.cp_is_default===1
             }
 
             const query="INSERT INTO cabang_perusahaan (`cp_nama_cabang`, `cp_perusahaan_id`, `cp_lokasi`, `cp_alamat_lengkap`, `cp_is_default`) "+
                 "VALUES(?,?,?,?,?)"
-            this.mysqlConn.query(query, [nama_cabang, perusahaan_id, lokasi, alamat_lengkap, is_cabang_utama], async(error,result)=>{
+            this.mysqlConn.query(query, [cabang.cp_nama_cabang, cabang.cp_perusahaan_id, cabang.cp_lokasi, cabang.cp_alamat_lengkap, cabang.cp_is_default], async(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
-                const id_cabang = result.insertId
-                await this.addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang, true).catch(err=>{
-                    reject(err)
-                })
-                resolve(SUCCESS)
+                cabang.cp_id_cabang=result.insertId
+                resolve(cabang)
             })
 
         })
