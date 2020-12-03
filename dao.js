@@ -679,22 +679,23 @@ export class Dao{
         })
     }
 
-    addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, is_rekening_utama){
+    addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, id_perusahaan, is_rekening_utama){
         return new Promise((resolve,reject)=>{
             if (typeof is_rekening_utama === 'undefined' || is_rekening_utama === null){
                 is_rekening_utama = 0
-            }else if(typeof is_rekening_utama === true){
+            }else if(is_rekening_utama === true){
                 is_rekening_utama=1
             }
 
-            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_id_cabang_perusahaan`, `rp_rekening_utama`) VALUES(?, ?, ?, ?, ?)"
-            this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, is_rekening_utama],(error,result)=>{
+            console.log(is_rekening_utama)
+            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_rekening_utama`, `rp_id_cabang_perusahaan`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?, ?, ?)"
+            this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, is_rekening_utama, id_cabang_perusahaan, id_perusahaan],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                resolve(id_cabang_perusahaan)
+                resolve(SUCCESS)
             })
         })
     }
@@ -877,13 +878,15 @@ export class Dao{
         })
     }
 
-    unsetRekeningUtamaByCabangPerusahaanId(id_cabang_perusahaan){
+    unsetRekeningUtamaByPerusahaanId(id_perusahaan){
         return new Promise((resolve,reject)=>{
-            const query="UPDATE rekening_perusahaan SET rp_rekening_utama=0 WHERE rp_rekening_utama=1 AND rp_id_cabang_perusahaan=?"
-            this.mysqlConn.query(query,id_cabang_perusahaan,(error,result)=>{
+            const query="UPDATE rekening_perusahaan SET rp_rekening_utama=0 WHERE rp_rekening_utama=1 AND rp_id_perusahaan=?"
+            this.mysqlConn.query(query,id_perusahaan,(error,result)=>{
                 if(error){
                     reject(error)
                     return
+                }else{
+                    reject(NO_MAIN_AACOUNT)
                 }
 
                 resolve(SUCCESS)

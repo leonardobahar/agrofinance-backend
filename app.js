@@ -10,7 +10,7 @@ import {
     ERROR_FOREIGN_KEY,
     WRONG_BODY_FORMAT,
     SOMETHING_WENT_WRONG,
-    NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE, MAIN_ACCOUNT_EXISTS
+    NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE, MAIN_ACCOUNT_EXISTS, NO_MAIN_AACOUNT
 } from "./strings";
 import {
     Cabang_perusahaan,
@@ -424,7 +424,7 @@ app.post("/api/perusahaan/add",(req,res)=>{
 
     dao.addPerusahaan(perusahaan,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo).then(result=>{
         dao.addCabangPerusahaan(new Cabang_perusahaan(null,req.body.nama_cabang.toUpperCase(),result.p_id_perusahaan,req.body.lokasi,req.body.alamat_lengkap,true)).then(result=>{
-            dao.addRekeningPerusahaan(req.body.nama_bank.toUpperCase(),req.body.nomor_rekening,req.body.saldo,result.cp_id_cabang,true).then(result=>{
+            dao.addRekeningPerusahaan(req.body.nama_bank.toUpperCase(),req.body.nomor_rekening,req.body.saldo,result.cp_id_cabang,result.cp_perusahaan_id,true).then(result=>{
                 res.status(200).send({
                     success:true,
                     result:result
@@ -623,8 +623,8 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
     }
 
     dao.addCabangPerusahaan(new Cabang_perusahaan(null,req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,null)).then(result=>{
-        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,result.cp_id_cabang,true).then(result=>{
-            dao.unsetRekeningUtamaByCabangPerusahaanId(result.cp_id_cabang).then(result=>{
+        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,result.cp_id_cabang,req.body.perusahaan_id,true).then(result=>{
+            dao.unsetRekeningUtamaByPerusahaanId(req.body.perusahaan_id).then(result=>{
                 res.status(200).send({
                     success:true,
                     result:result
@@ -636,8 +636,12 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
                         error:NO_SUCH_CONTENT
                     })
                     return
+                }else if(error===NO_MAIN_AACOUNT){
+                    res.status(200).send({
+                        success:true,
+                        result:result
+                    })
                 }
-
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -877,7 +881,7 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
     }
 
     dao.getCabangPerushaanId(new Cabang_perusahaan(req.body.id_cabang_perusahaan,null,null,null,null,null)).then(result=>{
-        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_cabang_perusahaan, null).then(result=>{
+        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_cabang_perusahaan, result.perusahaan_id,null).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
@@ -908,7 +912,6 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
 app.post("/api/rekening-perusahaan/update",(req,res)=>{
     if(typeof req.body.nama_bank==='undefined' ||
         typeof req.body.nomor_rekening==='undefined' ||
-        typeof req.body.rekening_utama==='undefined' ||
         typeof req.body.id_cabang_perusahaan==='undefined' ||
         typeof req.body.id_rekening==='undefined'){
         res.status(400).send({
@@ -918,7 +921,7 @@ app.post("/api/rekening-perusahaan/update",(req,res)=>{
         return
     }
 
-    const rekening=new Rekening_perusahaan(req.body.id_rekening,req.body.nama_bank,req.body.nomor_rekening,null,req.body.rekening_utama,req.body.id_cabang_perusahaan)
+    const rekening=new Rekening_perusahaan(req.body.id_rekening,req.body.nama_bank,req.body.nomor_rekening,null,null,req.body.id_cabang_perusahaan)
 
     dao.getRekeningPerusahanId(new Rekening_perusahaan(req.body.id_rekening)).then(result=>{
         dao.updateRekeningPerusahaan(rekening).then(result=>{

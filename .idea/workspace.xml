@@ -21,9 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +64,7 @@
       <workItem from="1606702165704" duration="31748000" />
       <workItem from="1606797918917" duration="19857000" />
       <workItem from="1606829233918" duration="2191000" />
-      <workItem from="1606965875255" duration="6476000" />
+      <workItem from="1606965875255" duration="18047000" />
     </task>
     <task id="LOCAL-00001" summary="Retrieved lost codes">
       <created>1606486681869</created>
@@ -374,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606918817037</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Edited sql syntax for rekening_perusahaan">
+      <created>1606989762165</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1606989762165</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -403,7 +410,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified some parts of Add Transaksi(Still being tested)" />
     <MESSAGE value="Modified Add Transaksi, added approveTransaksi and rejectTransaksi functions to dao.js" />
     <MESSAGE value="Added Approve Transaksi endpoint" />
     <MESSAGE value="Added Reject Transaksi endpoint" />
@@ -428,6 +434,7 @@
     <MESSAGE value="Might've fixed Add Cabang Perusahaan(Through add perusahaan) issue" />
     <MESSAGE value="Fixed Add Cabang Perusahaan" />
     <MESSAGE value="Fixed Add Cabang Perusahaan and Rekening Utama" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Add Cabang Perusahaan and Rekening Utama" />
+    <MESSAGE value="Edited sql syntax for rekening_perusahaan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited sql syntax for rekening_perusahaan" />
   </component>
 </project>
