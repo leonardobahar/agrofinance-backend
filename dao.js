@@ -694,7 +694,7 @@ export class Dao{
                     return
                 }
 
-                resolve(SUCCESS)
+                resolve(id_cabang_perusahaan)
             })
         })
     }
@@ -867,6 +867,20 @@ export class Dao{
         return new Promise((resolve,reject)=>{
             const query="UPDATE rekening_perusahaan SET rp_rekening_utama=0 WHERE rp_id_rekening=?"
             this.mysqlConn.query(query,id_rekening, (error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
+    unsetRekeningUtamaByCabangPerusahaanId(id_cabang_perusahaan){
+        return new Promise((resolve,reject)=>{
+            const query="UPDATE rekening_perusahaan SET rp_rekening_utama=0 WHERE rp_rekening_utama=1 AND rp_id_cabang_perusahaan=?"
+            this.mysqlConn.query(query,id_cabang_perusahaan,(error,result)=>{
                 if(error){
                     reject(error)
                     return

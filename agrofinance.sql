@@ -74,7 +74,9 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`rekening_perusahaan` (
   `rp_saldo` VARCHAR(255) NOT NULL,
   `rp_rekening_utama`TINYINT(1) DEFAULT 0,
   `rp_id_cabang_perusahaan` INT(7) NOT NULL,
-  FOREIGN KEY (`rp_id_cabang_perusahaan`) REFERENCES cabang_perusahaan(`cp_id_cabang`) ON DELETE CASCADE ON UPDATE CASCADE);
+  `rp_id_perusahaan` INT(7) NOT NULL,
+  FOREIGN KEY (`rp_id_cabang_perusahaan`) REFERENCES cabang_perusahaan(`cp_id_cabang`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`rp_id_perusahaan`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_rekening` (
   `tr_id_transaksi_rekening` INT(7) PRIMARY KEY AUTO_INCREMENT,

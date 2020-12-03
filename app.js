@@ -624,9 +624,31 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
 
     dao.addCabangPerusahaan(new Cabang_perusahaan(null,req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,null)).then(result=>{
         dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,result.cp_id_cabang,true).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
+            dao.unsetRekeningUtamaByCabangPerusahaanId(result.cp_id_cabang).then(result=>{
+                res.status(200).send({
+                    success:true,
+                    result:result
+                })
+            }).catch(error=>{
+                if(error===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:false,
+                        error:NO_SUCH_CONTENT
+                    })
+                    return
+                }
+
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
             })
         })
     }).catch(error=>{
@@ -855,7 +877,7 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
     }
 
     dao.getCabangPerushaanId(new Cabang_perusahaan(req.body.id_cabang_perusahaan,null,null,null,null,null)).then(result=>{
-        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_cabang_perusahaan, false).then(result=>{
+        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_cabang_perusahaan, null).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
