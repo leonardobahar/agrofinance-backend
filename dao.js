@@ -687,7 +687,6 @@ export class Dao{
                 is_rekening_utama=1
             }
 
-            console.log(is_rekening_utama)
             const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_rekening_utama`, `rp_id_cabang_perusahaan`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?, ?, ?)"
             this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, is_rekening_utama, id_cabang_perusahaan, id_perusahaan],(error,result)=>{
                 if(error){
@@ -880,13 +879,11 @@ export class Dao{
 
     unsetRekeningUtamaByPerusahaanId(id_perusahaan){
         return new Promise((resolve,reject)=>{
-            const query="UPDATE rekening_perusahaan SET rp_rekening_utama=0 WHERE rp_rekening_utama=1 AND rp_id_perusahaan=?"
+            const query="UPDATE rekening_perusahaan SET rp_rekening_utama=0 WHERE rp_id_perusahaan=?"
             this.mysqlConn.query(query,id_perusahaan,(error,result)=>{
                 if(error){
                     reject(error)
                     return
-                }else{
-                    reject(NO_MAIN_AACOUNT)
                 }
 
                 resolve(SUCCESS)

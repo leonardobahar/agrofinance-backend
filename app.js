@@ -635,8 +635,9 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
     }
 
     dao.addCabangPerusahaan(new Cabang_perusahaan(null,req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,null)).then(result=>{
+        const cabangId=result.cp_id_cabang
         dao.unsetRekeningUtamaByPerusahaanId(req.body.perusahaan_id).then(result=>{
-            dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,result.cp_id_cabang,req.body.perusahaan_id,true).then(result=>{
+            dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,cabangId,req.body.perusahaan_id,true).then(result=>{
                 res.status(200).send({
                     success:true,
                     result:result
@@ -655,6 +656,11 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
                     error:NO_SUCH_CONTENT
                 })
                 return
+            }else if(error===NO_MAIN_AACOUNT){
+                res.status(200).send({
+                    success:true,
+                    result:result
+                })
             }
             console.error(error)
             res.status(500).send({
@@ -1531,7 +1537,8 @@ app.post("/api/transaksi/add",async(req,res)=> {
             console.log(req.file.filename)
 
             const transfer=new Transaksi(null,'NOW','NOW','NULL',req.body.is_rutin,'Pending',req.body.bon_sementara,
-                req.body.id_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,req.file.filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan,'0')
+                req.body.id_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,
+                req.file.filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan,'0')
 
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({
