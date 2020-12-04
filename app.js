@@ -109,7 +109,6 @@ app.get("/api/karyawan/retrieve",(req,res)=>{
         const employee = new Karyawan(req.query.id_karyawan,null,null,null,null,null);
 
         dao.retrieveOneKaryawan(employee).then(async result => {
-            console.log(result);
             const karyawanPerusahaan = new Karyawan_kerja_dimana(null, result[0].k_id_karyawan, null);
 
             try {
@@ -182,6 +181,19 @@ app.post("/api/karyawan/add", (req,res)=>{
     const employee=new Karyawan(null,req.body.nama_lengkap.toUpperCase(),req.body.posisi.toUpperCase(), req.body.nik, req.body.role.toUpperCase(), req.body.masih_hidup)
 
     dao.addKaryawan(employee).then(async result=>{
+        dao.addKaryawan_kerja_dimana(new Karyawan_kerja_dimana(null,result.k_id_karyawan,req.body.cabang_ids)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+        /*
         const karyawanId = result.k_id_karyawan;
 
         const karyawanPerusahaanRes = req.body.cabang_ids.map(cabangId => {
@@ -197,7 +209,7 @@ app.post("/api/karyawan/add", (req,res)=>{
         res.status(200).send({
             success:true,
             result:result
-        })
+        })*/
     }).catch(error=>{
         if(error.code==='ER_DUP_ENTRY'){
             res.status(500).send({
@@ -1820,7 +1832,7 @@ app.post("/api/karyawan-kerja-dimana/update", (req,res)=>{
 
     const kkd=new Karyawan_kerja_dimana(req.body.id_karyawan_kerja_dimana,req.body.id_karyawan,req.body.id_cabang)
     dao.getKaryawanKerjaDimanaByID(kkd).then(result=>{
-        dao.retrieveOneKaryawanKerjaDimana(kkd).then(result=>{
+        dao.getCabangPerushaanId(new Cabang_perusahaan(req.body.id_cabang,null,null,null,null,null)).then(result=>{
             dao.updateKaryawan_kerja_dimana(kkd).then(result=>{
                 res.status(200).send({
                     success:true,

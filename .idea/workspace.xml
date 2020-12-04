@@ -22,6 +22,7 @@
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +63,8 @@
       <workItem from="1606702165704" duration="31748000" />
       <workItem from="1606797918917" duration="19857000" />
       <workItem from="1606829233918" duration="2191000" />
-      <workItem from="1606965875255" duration="18986000" />
+      <workItem from="1606965875255" duration="19686000" />
+      <workItem from="1607053654746" duration="7379000" />
     </task>
     <task id="LOCAL-00001" summary="Retrieved lost codes">
       <created>1606486681869</created>
@@ -386,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607005962359</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Add Cabang's Add rekening still in progress due to technical difficulties, Add Perusahaan's Add Cabang and Add Rekening is fully functioning">
+      <created>1607006870357</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1607006870357</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,7 +424,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Approve Transaksi endpoint" />
     <MESSAGE value="Added Reject Transaksi endpoint" />
     <MESSAGE value="Fixed minor bug in Approve and Reject Transaksi" />
     <MESSAGE value="test" />
@@ -440,6 +448,7 @@
     <MESSAGE value="Fixed Add Cabang Perusahaan and Rekening Utama" />
     <MESSAGE value="Edited sql syntax for rekening_perusahaan" />
     <MESSAGE value="Modified Add Perusahaan's Add Rekening" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified Add Perusahaan's Add Rekening" />
+    <MESSAGE value="Add Cabang's Add rekening still in progress due to technical difficulties, Add Perusahaan's Add Cabang and Add Rekening is fully functioning" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Cabang's Add rekening still in progress due to technical difficulties, Add Perusahaan's Add Cabang and Add Rekening is fully functioning" />
   </component>
 </project>

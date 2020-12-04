@@ -1142,7 +1142,7 @@ export class Dao{
     retrieveKaryawanKerjaDimana(){
         return new Promise((resolve, reject)=>{
             const query="SELECT kkd.kkd_id_karyawan_kerja_dimana, kkd.kkd_id_karyawan, ka.k_nama_lengkap, kkd.kkd_id_cabang_perusahaan, cp.cp_nama_cabang FROM karyawan_kerja_dimana kkd LEFT OUTER JOIN karyawan ka ON kkd.kkd_id_karyawan=ka.k_id_karyawan "+
-                "LEFT OUTER JOIN cabang_perusahaan cp ON kkd.kkd_id_perusahaan=cp.cp_id_cabang "
+                "LEFT OUTER JOIN cabang_perusahaan cp ON kkd.kkd_id_cabang_perusahaan=cp.cp_id_cabang "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
