@@ -248,7 +248,7 @@ app.post("/api/karyawan/update", (req,res)=>{
         try {
             const updateKaryawanValues = await dao.updateKaryawan(employee)
 
-            const { id: karyawanId } = result[0];
+            const { k_id_karyawan: karyawanId } = result[0];
             const karyawanWithCabang = new Karyawan_kerja_dimana(null, karyawanId, null);
 
             const upsertCabangIds = req.body.cabang_ids;
