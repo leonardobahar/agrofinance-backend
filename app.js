@@ -893,8 +893,8 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
         return
     }
 
-    dao.getCabangPerushaanId(new Cabang_perusahaan(req.body.id_cabang_perusahaan,null,null,null,null,null)).then(result=>{
-        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_cabang_perusahaan, result.perusahaan_id,null).then(result=>{
+    dao.retrieveOneCabangPerusahaan(new Cabang_perusahaan(req.body.id_cabang_perusahaan)).then(result=>{
+        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_cabang_perusahaan, result[0].cp_perusahaan_id,null).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result

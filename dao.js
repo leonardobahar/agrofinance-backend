@@ -334,6 +334,37 @@ export class Dao{
         })
     }
 
+    retrieveOneCabangPerusahaan(cabang){
+        return new Promise((resolve,reject)=>{
+            if(!cabang instanceof Cabang_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+            const query="SELECT * FROM cabang_perusahaan WHERE cp_id_cabang=? "
+            this.mysqlConn.query(query,cabang.cp_id_cabang,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    let branches=[]
+                    for(let i=0; i<result.length; i++){
+                        branches.push(new Cabang_perusahaan(
+                            result[i].cp_id_cabang,
+                            result[i].cp_nama_cabang,
+                            result[i].cp_perusahaan_id,
+                            result[i].cp_lokasi,
+                            result[i].cp_alamat_lengkap,
+                            result[i].cp_is_default
+                        ))
+                    }
+                    resolve(branches)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
     retrieveCabangPerusahaanByPerusahaanId(perusahaan_id){
         return new Promise((resolve,reject)=>{
             const query="SELECT * FROM cabang_perusahaan WHERE cp_perusahaan_id=? "
