@@ -1563,7 +1563,7 @@ export class Dao{
             try {
                 let detailTransaksi = JSON.parse(transaksi.detail_transaksi.toString())
                 const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_rekening_penanggung_utama`, `t_id_cabang_perusahaan`, `t_id_karyawan`, `t_is_deleted`) "+
-                    "VALUES(NOW(),NOW(),'NULL',?,'Pending',?,?,?,0)"
+                    "VALUES(NOW(),NOW(),'NULL',?,'Pending',?,?,?,?,0)"
                 this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_rekening_penanggung_utama, transaksi.t_id_cabang_perusahaan, transaksi.t_id_karyawan],(error, result) => {
                     if (error) {
                         reject(error)
@@ -1636,7 +1636,7 @@ export class Dao{
                 "`td_file_bukti_transaksi`, " +
                 "`skema_pembebanan_json`, " +
                 "`td_is_deleted`) "+
-                "VALUES (?,?,?,?,?,?,?,?,?,?)"
+                "VALUES (?,?,?,?,?,?,?,?,?)"
 
             this.mysqlConn.query(query,[
                 detailTransaksiObject.td_id_transaksi,
