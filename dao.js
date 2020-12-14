@@ -710,6 +710,27 @@ export class Dao{
         })
     }
 
+    getNonDefaultRekening(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_rekening_utama=0 AND rp_id_rekening=?"
+            this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.rp_rekening_utama===0){
+                    resolve(rekening)
+                }else{
+                    reject(NO_MAIN_AACOUNT)
+                }
+            })
+        })
+    }
+
     addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, id_perusahaan, is_rekening_utama){
         return new Promise((resolve,reject)=>{
             if (typeof is_rekening_utama === 'undefined' || is_rekening_utama === null){
@@ -759,7 +780,7 @@ export class Dao{
                 return
             }
 
-            const query="DELETE FROM rekening_perusahaan WHERE rp_id_rekening=?"
+            const query="DELETE FROM rekening_perusahaan WHERE rp_id_rekening=? "
             this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
                 if(error){
                     reject(error)
