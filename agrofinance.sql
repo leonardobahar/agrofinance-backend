@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
   `td_id_kategori_transaksi` INT(7) NOT NULL,
   `td_bpu_attachment` VARCHAR(45) NOT NULL,
   `td_debit_credit` TINYINT(1) NOT NULL DEFAULT 0,
-  `td_nomor_bukti_transaksi` VARCHAR(45) UNIQUE NOT NULL,
+  `td_nomor_bukti_transaksi` VARCHAR(45) NOT NULL,
   `td_file_bukti_transaksi` VARCHAR(45) NOT NULL,
   `skema_pembebanan_json` LONGTEXT NOT NULL,
   `td_is_deleted` TINYINT(1) DEFAULT 0,
