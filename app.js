@@ -976,7 +976,8 @@ app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
     }
 
     const rekening=new Rekening_perusahaan(req.query.id_rekening,null,null,null,null)
-    dao.getDefaultOrNonDefaultRekening(new Rekening_perusahaan(req.query.id_rekening)).then(result=>{
+    dao.getDefaultOrNonDefaultRekening(rekening).then(result=>{
+        console.log(result[0].rp_rekening_utama)
         if(result[0].rp_rekening_utama===0){
             dao.deleteRekeningPerusahaan(rekening).then(result=>{
                 res.status(200).send({

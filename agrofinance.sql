@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
   `td_id_transaksi` INT(7),
   `td_jumlah` FLOAT NOT NULL,
   `td_id_kategori_transaksi` INT(7) NOT NULL,
-  `td_jenis` VARCHAR(45) NOT NULL DEFAULT 'KAS',
   `td_bpu_attachment` VARCHAR(45) NOT NULL,
   `td_debit_credit` TINYINT(1) NOT NULL DEFAULT 0,
   `td_nomor_bukti_transaksi` VARCHAR(45) UNIQUE NOT NULL,

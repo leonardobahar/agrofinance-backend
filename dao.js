@@ -723,7 +723,6 @@ export class Dao{
                     reject(error)
                     return
                 }else if(result.length>0){
-                    console.log(result[0].rp_rekening_utama)
                     resolve(result[0].rp_rekening_utama)
                 }else{
                     reject(NO_MAIN_AACOUNT)
