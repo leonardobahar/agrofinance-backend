@@ -976,7 +976,7 @@ app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
     }
 
     const rekening=new Rekening_perusahaan(req.query.id_rekening,null,null,null,null)
-    dao.getRekeningPerusahanId(new Rekening_perusahaan(req.query.id_rekening)).then(result=>{
+    dao.getNonDefaultRekening(new Rekening_perusahaan(req.query.id_rekening)).then(result=>{
         dao.deleteRekeningPerusahaan(rekening).then(result=>{
             res.status(200).send({
                 success:true,
@@ -988,7 +988,12 @@ app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
                     success:false,
                     error:NO_SUCH_CONTENT
                 })
-            }else {
+            }else if(error===NO_MAIN_AACOUNT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+            } else {
                 console.error(error)
                 res.status(500).send({
                     success:false,

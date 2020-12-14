@@ -717,12 +717,13 @@ export class Dao{
                 return
             }
 
-            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_rekening_utama=0 AND rp_id_rekening=?"
+            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_rekening=?"
             this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
                 if(error){
                     reject(error)
                     return
-                }else if(result.rp_rekening_utama===0){
+                }else if(result.length>0){
+                    rekening.rp_rekening_utama===result.rp_rekening_utama
                     resolve(rekening)
                 }else{
                     reject(NO_MAIN_AACOUNT)

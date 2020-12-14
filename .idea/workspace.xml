@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,14 +73,7 @@
       <workItem from="1607397176404" duration="729000" />
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
-      <workItem from="1607915677773" duration="15894000" />
-    </task>
-    <task id="LOCAL-00008" summary="Added unset Default Cabang Perusahaan">
-      <created>1606491345534</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1606491345534</updated>
+      <workItem from="1607915677773" duration="16924000" />
     </task>
     <task id="LOCAL-00009" summary="Added 2 function blocks (get default and get non default cabang perusahaan">
       <created>1606492575877</created>
@@ -417,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607930934236</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Added new function">
+      <created>1607943989523</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1607943989523</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -446,7 +447,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Set and Unset Cabang Utama bug" />
     <MESSAGE value="Modified parts of retrieve karyawan to retrieve karyawan's pembebanan_json (still in progress)" />
     <MESSAGE value="Fixed Retrieve Karyawan bug" />
     <MESSAGE value="Fixed Set Rekening Utama default error" />
@@ -471,6 +471,7 @@
     <MESSAGE value="Modified Transaksi endpoints. (Changed req.body.rekening_penanggung_utama to id_rekening)" />
     <MESSAGE value="Fixed Add Transaksi bug" />
     <MESSAGE value="Modified Retrieve Transaksi endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified Retrieve Transaksi endpoint" />
+    <MESSAGE value="Added new function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new function" />
   </component>
 </project>
