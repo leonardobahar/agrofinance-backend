@@ -21,8 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,14 +74,7 @@
       <workItem from="1607397176404" duration="729000" />
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
-      <workItem from="1607915677773" duration="4919000" />
-    </task>
-    <task id="LOCAL-00002" summary="Remarked add transaksi page">
-      <created>1606487455511</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1606487455511</updated>
+      <workItem from="1607915677773" duration="5603000" />
     </task>
     <task id="LOCAL-00003" summary="Attempt to fix error in retrievePerusahaan">
       <created>1606488175825</created>
@@ -418,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607612563989</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Modified Transaksi table and added transaksi_cabang_perusahaan table">
+      <created>1607922657522</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1607922657523</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,7 +448,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Add Transaksi minor bug" />
     <MESSAGE value="Edited sql file" />
     <MESSAGE value="Edited Add Transaksi" />
     <MESSAGE value="Added unique to rp_nomor_rekening column in sql file" />
@@ -472,6 +472,7 @@
     <MESSAGE value="Fixed add Perusahaan's bug" />
     <MESSAGE value="Fixed add Cabang Perusahaan's Add Transaksi bug" />
     <MESSAGE value="Fixed add rekening bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed add rekening bug" />
+    <MESSAGE value="Modified Transaksi table and added transaksi_cabang_perusahaan table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified Transaksi table and added transaksi_cabang_perusahaan table" />
   </component>
 </project>

@@ -1563,9 +1563,9 @@ export class Dao{
 
             try {
                 let detailTransaksi = JSON.parse(transaksi.detail_transaksi.toString())
-                const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_id_perusahaan`, `t_id_karyawan`, `t_is_deleted`) "+
+                const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_rekening_penanggung_utama`, `t_id_cabang_perusahaan`, `t_id_karyawan`, `t_is_deleted`) "+
                     "VALUES(NOW(),NOW(),'NULL',?,'Pending',?,?,?,0)"
-                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_id_perusahaan, transaksi.t_id_karyawan],(error, result) => {
+                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_rekening_penanggung_utama, transaksi.t_id_cabang_perusahaan, transaksi.t_id_karyawan],(error, result) => {
                     if (error) {
                         reject(error)
                         return
@@ -1573,8 +1573,8 @@ export class Dao{
 
                     transaksi.t_id_transaksi = result.insertId
 
-                    const tp_query="INSERT INTO `transaksi_perusahaan` (`tp_id_perusahaan`, `tp_id_transaksi`) VALUES(?, ?)"
-                    this.mysqlConn.query(tp_query,[transaksi.t_id_perusahaan,transaksi.t_id_transaksi],(error,result)=>{
+                    const tp_query="INSERT INTO `transaksi_cabang_perusahaan` (`tp_id_cabang_perusahaan`, `tp_id_transaksi`) VALUES(?, ?)"
+                    this.mysqlConn.query(tp_query,[transaksi.t_id_cabang_perusahaan,transaksi.t_id_transaksi],(error,result)=>{
                         if(error){
                             reject(error)
                             return
