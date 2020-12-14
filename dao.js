@@ -739,8 +739,8 @@ export class Dao{
                 is_rekening_utama=1
             }
 
-            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_rekening_utama`, `rp_id_cabang_perusahaan`, `rp_id_perusahaan`) VALUES(?, ?, ?, ?, ?, ?)"
-            this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, is_rekening_utama, id_cabang_perusahaan, id_perusahaan],(error,result)=>{
+            const query="INSERT INTO `rekening_perusahaan` (`rp_nama_bank`, `rp_nomor_rekening`, `rp_saldo`, `rp_rekening_utama`, `rp_id_cabang_perusahaan`) VALUES(?, ?, ?, ?, ?)"
+            this.mysqlConn.query(query,[nama_bank, nomor_rekening, saldo, is_rekening_utama, id_cabang_perusahaan],(error,result)=>{
                 if(error){
                     reject(error)
                     return
