@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,14 +72,7 @@
       <workItem from="1607397176404" duration="729000" />
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
-      <workItem from="1607915677773" duration="24547000" />
-    </task>
-    <task id="LOCAL-00011" summary="Added update cabang perusahaan">
-      <created>1606659286673</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1606659286673</updated>
+      <workItem from="1607915677773" duration="25630000" />
     </task>
     <task id="LOCAL-00012" summary="Added create table statements for transaksi_karyawan and transaksi_perusahaan">
       <created>1606704930368</created>
@@ -419,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607951713645</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Modified sql file">
+      <created>1607955536520</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1607955536520</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,7 +446,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Set Rekening Utama default error" />
     <MESSAGE value="Fixed rekening utama declared as true on every insert" />
     <MESSAGE value="Added extra line to fix null parameter of is_rekening_utama" />
     <MESSAGE value="Fixed cabang utama problem hopefully" />
@@ -473,6 +470,7 @@
     <MESSAGE value="Added new function" />
     <MESSAGE value="Modifying Delete Rekening (Still in progress)" />
     <MESSAGE value="Modified getDefaultOrNonDefaultRekening function. New Delete feature still in progress." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified getDefaultOrNonDefaultRekening function. New Delete feature still in progress." />
+    <MESSAGE value="Modified sql file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified sql file" />
   </component>
 </project>
