@@ -710,7 +710,7 @@ export class Dao{
         })
     }
 
-    getNonDefaultRekening(rekening){
+    getDefaultOrNonDefaultRekening(rekening){
         return new Promise((resolve,reject)=>{
             if(!rekening instanceof Rekening_perusahaan){
                 reject(MISMATCH_OBJ_TYPE)
@@ -723,8 +723,8 @@ export class Dao{
                     reject(error)
                     return
                 }else if(result.length>0){
-                    rekening.rp_rekening_utama===result.rp_rekening_utama
-                    resolve(rekening)
+                    console.log(result[0].rp_rekening_utama)
+                    resolve(result[0].rp_rekening_utama)
                 }else{
                     reject(NO_MAIN_AACOUNT)
                 }

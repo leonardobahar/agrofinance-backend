@@ -976,31 +976,33 @@ app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
     }
 
     const rekening=new Rekening_perusahaan(req.query.id_rekening,null,null,null,null)
-    dao.getNonDefaultRekening(new Rekening_perusahaan(req.query.id_rekening)).then(result=>{
-        dao.deleteRekeningPerusahaan(rekening).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
+    dao.getDefaultOrNonDefaultRekening(new Rekening_perusahaan(req.query.id_rekening)).then(result=>{
+        if(result[0].rp_rekening_utama===0){
+            dao.deleteRekeningPerusahaan(rekening).then(result=>{
+                res.status(200).send({
+                    success:true,
+                    result:result
+                })
+            }).catch(error=>{
+                if(error===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:false,
+                        error:NO_SUCH_CONTENT
+                    })
+                }else {
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
             })
-        }).catch(error=>{
-            if(error===NO_SUCH_CONTENT){
-                res.status(204).send({
-                    success:false,
-                    error:NO_SUCH_CONTENT
-                })
-            }else if(error===NO_MAIN_AACOUNT){
-                res.status(204).send({
-                    success:false,
-                    error:NO_SUCH_CONTENT
-                })
-            } else {
-                console.error(error)
-                res.status(500).send({
-                    success:false,
-                    error:SOMETHING_WENT_WRONG
-                })
-            }
-        })
+        }else{
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+        }
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({

@@ -73,14 +73,7 @@
       <workItem from="1607397176404" duration="729000" />
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
-      <workItem from="1607915677773" duration="16924000" />
-    </task>
-    <task id="LOCAL-00009" summary="Added 2 function blocks (get default and get non default cabang perusahaan">
-      <created>1606492575877</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1606492575877</updated>
+      <workItem from="1607915677773" duration="20939000" />
     </task>
     <task id="LOCAL-00010" summary="Added delete cabang perusahaan">
       <created>1606493172402</created>
@@ -418,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607943989523</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Modifying Delete Rekening (Still in progress)">
+      <created>1607945051426</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1607945051426</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,7 +447,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified parts of retrieve karyawan to retrieve karyawan's pembebanan_json (still in progress)" />
     <MESSAGE value="Fixed Retrieve Karyawan bug" />
     <MESSAGE value="Fixed Set Rekening Utama default error" />
     <MESSAGE value="Fixed rekening utama declared as true on every insert" />
@@ -472,6 +471,7 @@
     <MESSAGE value="Fixed Add Transaksi bug" />
     <MESSAGE value="Modified Retrieve Transaksi endpoint" />
     <MESSAGE value="Added new function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new function" />
+    <MESSAGE value="Modifying Delete Rekening (Still in progress)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modifying Delete Rekening (Still in progress)" />
   </component>
 </project>
