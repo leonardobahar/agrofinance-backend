@@ -66,7 +66,7 @@ export class Transaksi_rekening{
 
 export class Transaksi{
     constructor(t_id_transaksi, t_tanggal_transaksi, t_tanggal_modifikasi, t_tanggal_realisasi, t_is_rutin,  t_status, t_bon_sementara, t_rekening_penanggung_utama, t_id_cabang_perusahaan, t_id_karyawan, t_is_deleted,
-                detail_transaksi, td_id_detil_transaksi, td_jumlah, td_id_kategori_transaksi, td_jenis, td_bpu_attachment, td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, skema_pembebanan_json, td_is_deleted){
+                detail_transaksi, td_id_detil_transaksi, td_jumlah, td_id_kategori_transaksi, td_bpu_attachment, td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, skema_pembebanan_json, td_is_deleted){
         this.t_id_transaksi=t_id_transaksi
         this.t_tanggal_transaksi=t_tanggal_transaksi
         this.t_tanggal_modifikasi=t_tanggal_modifikasi
@@ -82,7 +82,6 @@ export class Transaksi{
         this.td_id_detil_transaksi=td_id_detil_transaksi
         this.td_jumlah=td_jumlah
         this.td_id_kategori_transaksi=td_id_kategori_transaksi
-        this.td_jenis=td_jenis
         this.td_bpu_attachment=td_bpu_attachment
         this.td_debit_credit=td_debit_credit
         this.td_nomor_bukti_transaksi=td_nomor_bukti_transaksi
@@ -93,13 +92,12 @@ export class Transaksi{
 }
 
 export class Detil_transaksi{
-    constructor(td_id_detil_transaksi, td_id_transaksi, td_jumlah, td_id_kategori_transaksi, td_jenis, td_bpu_attachment,
+    constructor(td_id_detil_transaksi, td_id_transaksi, td_jumlah, td_id_kategori_transaksi, td_bpu_attachment,
                 td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, skema_pembebanan_json, td_is_deleted) {
         this.td_id_detil_transaksi=td_id_detil_transaksi
         this.td_id_transaksi=td_id_transaksi
         this.td_jumlah=td_jumlah
         this.td_id_kategori_transaksi=td_id_kategori_transaksi
-        this.td_jenis=td_jenis
         this.td_bpu_attachment=td_bpu_attachment
         this.td_debit_credit=td_debit_credit
         this.td_nomor_bukti_transaksi=td_nomor_bukti_transaksi

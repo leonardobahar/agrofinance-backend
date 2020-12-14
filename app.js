@@ -1470,7 +1470,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
                 'NULL',req.body.is_rutin, 'Pending',req.body.bon_sementara, req.body.rekening_penanggung_utama,
                 req.body.id_cabang_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,
                 null,req.body.jumlah,req.body.id_kategori_transaksi,
-                req.body.jenis,'No Attachment',req.body.debit_credit,req.body.nomor_bukti_transaksi,
+                'No Attachment',req.body.debit_credit,req.body.nomor_bukti_transaksi,
                 'BPU',req.body.pembebanan,'0', null)
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({
@@ -1536,7 +1536,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
             console.log(req.file.filename)
 
             const transfer=new Transaksi(null,'NOW','NOW','NULL',req.body.is_rutin,'Pending',req.body.bon_sementara, req.body.rekening_penanggung_utama,
-                req.body.id_cabang_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,req.body.jenis,
+                req.body.id_cabang_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,
                 req.file.filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan,'0')
 
             dao.addTransaksi(transfer).then(result=>{

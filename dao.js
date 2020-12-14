@@ -1358,7 +1358,7 @@ export class Dao{
 
     retrieveTransaksi(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_jenis, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.skema_pembebanan_json "+
+            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.skema_pembebanan_json "+
                 "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
                 "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori "+
                 "WHERE t_is_deleted='0'"
@@ -1379,7 +1379,6 @@ export class Dao{
                         id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
                         jumlah:rowDataPacket.td_jumlah,
                         id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
-                        jenis:rowDataPacket.td_jenis,
                         bpu_attachment:rowDataPacket.td_bpu_attachment,
                         debit_credit:rowDataPacket.td_debit_credit,
                         nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
@@ -1594,7 +1593,6 @@ export class Dao{
                                     transaksi.t_id_transaksi,
                                     detailTransaksi[i].td_jumlah,
                                     detailTransaksi[i].td_id_kategori_transaksi,
-                                    detailTransaksi[i].td_jenis,
                                     transaksi.td_bpu_attachment,
                                     detailTransaksi[i].td_debit_credit,
                                     detailTransaksi[i].td_nomor_bukti_transaksi,
@@ -1632,7 +1630,6 @@ export class Dao{
                 "`td_id_transaksi`, " +
                 "`td_jumlah`, " +
                 "`td_id_kategori_transaksi`, " +
-                "`td_jenis`, " +
                 "`td_bpu_attachment`, " +
                 "`td_debit_credit`, " +
                 "`td_nomor_bukti_transaksi`, " +
@@ -1645,7 +1642,6 @@ export class Dao{
                 detailTransaksiObject.td_id_transaksi,
                 detailTransaksiObject.td_jumlah,
                 detailTransaksiObject.td_id_kategori_transaksi,
-                detailTransaksiObject.td_jenis,
                 detailTransaksiObject.td_bpu_attachment,
                 detailTransaksiObject.td_debit_credit,
                 detailTransaksiObject.td_nomor_bukti_transaksi,
