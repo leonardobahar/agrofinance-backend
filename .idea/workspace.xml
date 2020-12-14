@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,14 +72,7 @@
       <workItem from="1607397176404" duration="729000" />
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
-      <workItem from="1607915677773" duration="6254000" />
-    </task>
-    <task id="LOCAL-00004" summary="Error in retrievePerusahaan fixed, added field rekening utama field">
-      <created>1606488940726</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1606488940727</updated>
+      <workItem from="1607915677773" duration="7234000" />
     </task>
     <task id="LOCAL-00005" summary="Added perusahaan">
       <created>1606489093899</created>
@@ -416,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607923242144</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Modified Transaksi endpoints and functions. (Removed Jenis Transaksi column)">
+      <created>1607924753640</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1607924753640</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,7 +446,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Edited Add Transaksi" />
     <MESSAGE value="Added unique to rp_nomor_rekening column in sql file" />
     <MESSAGE value="Fixed Cabang Utama field error" />
     <MESSAGE value="Fixed Set and Unset Cabang Utama" />
@@ -470,6 +470,7 @@
     <MESSAGE value="Fixed add rekening bug" />
     <MESSAGE value="Modified Transaksi table and added transaksi_cabang_perusahaan table" />
     <MESSAGE value="Modified Add Transaksi endpoints and Transaksi functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified Add Transaksi endpoints and Transaksi functions" />
+    <MESSAGE value="Modified Transaksi endpoints and functions. (Removed Jenis Transaksi column)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified Transaksi endpoints and functions. (Removed Jenis Transaksi column)" />
   </component>
 </project>

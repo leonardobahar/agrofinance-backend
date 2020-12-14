@@ -1454,7 +1454,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
 
         if(typeof req.body.is_rutin==='undefined' ||
             typeof req.body.bon_sementara==='undefined' ||
-            typeof req.body.rekening_penanggung_utama==='undefined' ||
+            typeof req.body.id_rekening==='undefined' ||
             typeof req.body.id_cabang_perusahaan==='undefined' ||
             typeof req.body.id_karyawan==='undefined'){
             res.status(400).send({
@@ -1467,7 +1467,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
         if (typeof req.file==='undefined'){
 
             const transfer=new Transaksi(null,'NOW','NOW',
-                'NULL',req.body.is_rutin, 'Pending',req.body.bon_sementara, req.body.rekening_penanggung_utama,
+                'NULL',req.body.is_rutin, 'Pending',req.body.bon_sementara, req.body.id_rekening,
                 req.body.id_cabang_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,
                 null,req.body.jumlah,req.body.id_kategori_transaksi,
                 'No Attachment',req.body.debit_credit,req.body.nomor_bukti_transaksi,
@@ -1535,7 +1535,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
 
             console.log(req.file.filename)
 
-            const transfer=new Transaksi(null,'NOW','NOW','NULL',req.body.is_rutin,'Pending',req.body.bon_sementara, req.body.rekening_penanggung_utama,
+            const transfer=new Transaksi(null,'NOW','NOW','NULL',req.body.is_rutin,'Pending',req.body.bon_sementara, req.body.id_rekening,
                 req.body.id_cabang_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,
                 req.file.filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan,'0')
 
