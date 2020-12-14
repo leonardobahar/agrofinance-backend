@@ -72,14 +72,7 @@
       <workItem from="1607397176404" duration="729000" />
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
-      <workItem from="1607915677773" duration="8352000" />
-    </task>
-    <task id="LOCAL-00006" summary="Added Add Cabang Perusahaan">
-      <created>1606490357875</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1606490357875</updated>
+      <workItem from="1607915677773" duration="11779000" />
     </task>
     <task id="LOCAL-00007" summary="Added set Default Cabang Perusahaan">
       <created>1606491185646</created>
@@ -417,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607926554895</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Fixed Add Transaksi bug">
+      <created>1607927643137</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1607927643137</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -446,7 +446,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Cabang Utama field error" />
     <MESSAGE value="Fixed Set and Unset Cabang Utama" />
     <MESSAGE value="Fixed Set and Unset Cabang Utama bug" />
     <MESSAGE value="Modified parts of retrieve karyawan to retrieve karyawan's pembebanan_json (still in progress)" />
@@ -471,6 +470,7 @@
     <MESSAGE value="Modified Add Transaksi endpoints and Transaksi functions" />
     <MESSAGE value="Modified Transaksi endpoints and functions. (Removed Jenis Transaksi column)" />
     <MESSAGE value="Modified Transaksi endpoints. (Changed req.body.rekening_penanggung_utama to id_rekening)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified Transaksi endpoints. (Changed req.body.rekening_penanggung_utama to id_rekening)" />
+    <MESSAGE value="Fixed Add Transaksi bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Add Transaksi bug" />
   </component>
 </project>

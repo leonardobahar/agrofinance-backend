@@ -1358,9 +1358,15 @@ export class Dao{
 
     retrieveTransaksi(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifiaksi, t.t_tanggal_realisasi, t.t_is_rutin, dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.skema_pembebanan_json "+
+            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifikasi, t.t_tanggal_realisasi, t.t_is_rutin, t.t_status, " +
+                "t.t_rekening_penanggung_utama, rp.rp_nomor_rekening, t.t_id_cabang_perusahaan, cp.cp_nama_cabang, p.p_nama_perusahaan, t.t_id_karyawan, k.k_nama_lengkap, " +
+                "dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.skema_pembebanan_json "+
                 "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
-                "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori "+
+                "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori " +
+                "LEFT OUTER JOIN rekening_perusahaan rp ON t.t_rekening_penanggung_utama=rp.rp_id_rekening "+
+                "LEFT OUTER JOIN cabang_perusahaan cp ON t.t_id_cabang_perusahaan=cp.cp_id_cabang " +
+                "LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan " +
+                "LEFT OUTER JOIN karyawan k ON t.t_id_karyawan=k.k_id_karyawan " +
                 "WHERE t_is_deleted='0'"
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
@@ -1370,6 +1376,13 @@ export class Dao{
 
                 const transaksi=result.map(rowDataPacket=>{
                     return{
+                        id_karyawan:rowDataPacket.k_id_karyawan,
+                        nama_karyawan:rowDataPacket.k_nama_lengkap,
+                        id_rekening:rowDataPacket.t_rekening_penanggung_utama,
+                        nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                        id_cabang:rowDataPacket.t_id_cabang_perusahaan,
+                        nama_cabang:rowDataPacket.cp_nama_cabang,
+                        nama_perusahaan:rowDataPacket.p_nama_perusahaan,
                         tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
                         tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
                         tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
@@ -1398,7 +1411,16 @@ export class Dao{
                 return
             }
 
-            const query="SELECT * FROM transaksi WHERE t_id_transaksi=?"
+            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifikasi, t.t_tanggal_realisasi, t.t_is_rutin, t.t_status, " +
+                "t.t_rekening_penanggung_utama, rp.rp_nomor_rekening, t.t_id_cabang_perusahaan, cp.cp_nama_cabang, p.p_nama_perusahaan, t.t_id_karyawan, k.k_nama_lengkap, " +
+                "dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.skema_pembebanan_json "+
+                "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
+                "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori " +
+                "LEFT OUTER JOIN rekening_perusahaan rp ON t.t_rekening_penanggung_utama=rp.rp_id_rekening "+
+                "LEFT OUTER JOIN cabang_perusahaan cp ON t.t_id_cabang_perusahaan=cp.cp_id_cabang " +
+                "LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan " +
+                "LEFT OUTER JOIN karyawan k ON t.t_id_karyawan=k.k_id_karyawan " +
+                "WHERE t_id_transaksi=?"
             this.mysqlConn.query(query, transaksi.t_id_transaksi, (error, result)=>{
                 if(error){
                     reject(error)
@@ -1406,18 +1428,31 @@ export class Dao{
                 }
 
                 else if(result.length>0){
-                    let transaksi=[]
-                    for(let i=0; i<result.length; i++){
-                        transaksi.push(new Transaksi(
-                            result[i].t_id_transaksi,
-                            result[i].t_tanggal_transaksi,
-                            result[i].t_tanggal_modifikasi,
-                            result[i].t_tanggal_realisasi,
-                            result[i].t_is_rutin,
-                            result[i].t_status,
-                            result[i].t_bon_sementara
-                        ))
-                    }
+                    const transaksi=result.map(rowDataPacket=>{
+                        return{
+                            id_karyawan:rowDataPacket.k_id_karyawan,
+                            nama_karyawan:rowDataPacket.k_nama_lengkap,
+                            id_rekening:rowDataPacket.t_rekening_penanggung_utama,
+                            nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                            id_cabang:rowDataPacket.t_id_cabang_perusahaan,
+                            nama_cabang:rowDataPacket.cp_nama_cabang,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                            tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                            tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
+                            tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                            is_rutin:rowDataPacket.t_is_rutin,
+                            status:rowDataPacket.t_status,
+                            bon_sementara:rowDataPacket.t_bon_sementara,
+                            id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
+                            jumlah:rowDataPacket.td_jumlah,
+                            id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
+                            bpu_attachment:rowDataPacket.td_bpu_attachment,
+                            debit_credit:rowDataPacket.td_debit_credit,
+                            nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
+                            file_bukti_transaksi:rowDataPacket.td_file_bukti_transaksi,
+                            pembebanan_json:rowDataPacket.skema_pembebanan_json
+                        }
+                    })
                     resolve(transaksi)
                 }
 
