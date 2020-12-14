@@ -21,8 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +31,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1ksLIZVhDDQTTQFBC7Jg1vwZRsX" />
   <component name="ProjectViewState">
@@ -70,14 +71,9 @@
       <workItem from="1607302940006" duration="207000" />
       <workItem from="1607303161651" duration="2499000" />
       <workItem from="1607397176404" duration="729000" />
-      <workItem from="1607598686562" duration="4807000" />
-    </task>
-    <task id="LOCAL-00001" summary="Retrieved lost codes">
-      <created>1606486681869</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1606486681869</updated>
+      <workItem from="1607598686562" duration="6307000" />
+      <workItem from="1607656805421" duration="9527000" />
+      <workItem from="1607915677773" duration="4919000" />
     </task>
     <task id="LOCAL-00002" summary="Remarked add transaksi page">
       <created>1606487455511</created>
@@ -415,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607087732825</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Fixed add rekening bug">
+      <created>1607612563989</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1607612563989</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +447,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
     <MESSAGE value="Fixed Add Transaksi minor bug" />
     <MESSAGE value="Edited sql file" />
     <MESSAGE value="Edited Add Transaksi" />
@@ -469,6 +471,7 @@
     <MESSAGE value="Add Cabang's Add rekening still in progress due to technical difficulties, Add Perusahaan's Add Cabang and Add Rekening is fully functioning" />
     <MESSAGE value="Fixed add Perusahaan's bug" />
     <MESSAGE value="Fixed add Cabang Perusahaan's Add Transaksi bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed add Cabang Perusahaan's Add Transaksi bug" />
+    <MESSAGE value="Fixed add rekening bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed add rekening bug" />
   </component>
 </project>

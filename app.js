@@ -1345,8 +1345,6 @@ app.post("/api/kategori-transaksi/update", (req,res)=>{
             })
         }
     })
-
-
 })
 
 app.delete("/api/kategori-transaksi/delete", (req,res)=>{
@@ -1714,9 +1712,7 @@ app.delete("/api/transaksi/delete", (req,res)=>{
                 success:false,
                 error:NO_SUCH_CONTENT
             })
-        }
-
-        else {
+        } else {
             console.error(error)
             res.status(500).send({
                 success:false,
