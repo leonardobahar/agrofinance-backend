@@ -74,14 +74,7 @@
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
       <workItem from="1607915677773" duration="35637000" />
-      <workItem from="1608001234098" duration="14285000" />
-    </task>
-    <task id="LOCAL-00018" summary="test">
-      <created>1606742321306</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1606742321306</updated>
+      <workItem from="1608001234098" duration="20744000" />
     </task>
     <task id="LOCAL-00019" summary="Fixed Add Transaksi minor bug">
       <created>1606743594607</created>
@@ -419,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608014309819</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="remodified Update Transaksi endpoint. (Still in progress)">
+      <created>1608018278854</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1608018278854</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,7 +448,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Might've fixed Add Cabang Perusahaan(Through add perusahaan) issue" />
     <MESSAGE value="Fixed Add Cabang Perusahaan" />
     <MESSAGE value="Fixed Add Cabang Perusahaan and Rekening Utama" />
     <MESSAGE value="Edited sql syntax for rekening_perusahaan" />
@@ -473,6 +472,7 @@
     <MESSAGE value="Added Update Detil Transaksi function" />
     <MESSAGE value="Added Update Detil Transaksi endpoint" />
     <MESSAGE value="Modified Update Transaksi endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified Update Transaksi endpoint" />
+    <MESSAGE value="remodified Update Transaksi endpoint. (Still in progress)" />
+    <option name="LAST_COMMIT_MESSAGE" value="remodified Update Transaksi endpoint. (Still in progress)" />
   </component>
 </project>

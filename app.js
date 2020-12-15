@@ -1628,7 +1628,19 @@ app.post("/api/transaksi/update",(req,res)=>{
         if(typeof req.file==='undefined'){
             dao.updateTransaksi(req.body.is_rutin,req.body.bon_sementara,req.body.id_rekening,req.body.id_cabang,req.body.id_karyawan,req.body.id_transaksi).then(result=>{
                 dao.updateDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,
-                    'No Attachment', req.body.debit_credit, req.body.nomor_bukti_transaksi,null,req.body.skema_pembebanan_json,null))
+                    'No Attachment', req.body.debit_credit, req.body.nomor_bukti_transaksi,null,req.body.skema_pembebanan_json,null)).then(result=>{
+                        res.status(200).send({
+                            success:true,
+                            result:result
+                        })
+                }).catch(error=>{
+                    if(error){
+                        res.status(500).send({
+                            success:false,
+                            error:SOMETHING_WENT_WRONG
+                        })
+                    }
+                })
             }).catch(error=>{
                 if(error){
                     res.status(500).send({
@@ -1646,7 +1658,7 @@ app.post("/api/transaksi/update",(req,res)=>{
 
             dao.updateTransaksi(req.body.is_rutin,req.body.bon_sementara,req.body.id_rekening,req.body.id_cabang,req.body.id_karyawan,req.body.id_transaksi).then(result=>{
                 dao.updateDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,
-                    req.file.filename, req.body.debit_credit, req.body.nomor_bukti_transaksi,req.body.file_bukti_trnsaksi,req.body.skema_pembebanan_json,null))
+                    req.file.filename, req.body.debit_credit, req.body.nomor_bukti_transaksi,null,req.body.skema_pembebanan_json,null))
             }).catch(error=>{
                 if(error){
                     res.status(500).send({
