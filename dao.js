@@ -1397,6 +1397,7 @@ export class Dao{
 
                 const transaksi=result.map(rowDataPacket=>{
                     return{
+                        id_transaksi:rowDataPacket.td_id_transaksi,
                         id_karyawan:rowDataPacket.k_id_karyawan,
                         nama_karyawan:rowDataPacket.k_nama_lengkap,
                         id_rekening:rowDataPacket.t_rekening_penanggung_utama,
