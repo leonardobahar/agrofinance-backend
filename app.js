@@ -1641,6 +1641,12 @@ app.post("/api/transaksi/update",(req,res)=>{
                 }
             })
         }else{
+            if(error instanceof multer.MulterError){
+                return res.send(error)
+            } else if(error){
+                return res.send(error)
+            }
+
             dao.updateTransaksi(req.body.is_rutin,req.body.bon_sementara,req.body.id_rekening,req.body.id_cabang,req.body.id_karyawan,req.body.id_transaksi).then(result=>{
                 dao.updateDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,
                     req.file.filename, req.body.debit_credit, req.body.nomor_bukti_transaksi,req.body.file_bukti_trnsaksi,req.body.skema_pembebanan_json,null))
