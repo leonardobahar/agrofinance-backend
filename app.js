@@ -436,7 +436,7 @@ app.post("/api/perusahaan/add",(req,res)=>{
 
     dao.addPerusahaan(perusahaan,req.body.nama_bank,req.body.nomor_rekening,req.body.saldo).then(result=>{
         dao.addCabangPerusahaan(new Cabang_perusahaan(null,req.body.nama_cabang.toUpperCase(),result.p_id_perusahaan,req.body.lokasi,req.body.alamat_lengkap,true)).then(result=>{
-            dao.addRekeningPerusahaan(req.body.nama_bank.toUpperCase(),req.body.nomor_rekening,req.body.saldo,result.cp_id_cabang,result.cp_perusahaan_id,true).then(result=>{
+            dao.addRekeningPerusahaan(req.body.nama_bank.toUpperCase(),req.body.nomor_rekening,req.body.saldo,result.cp_id_cabang,true).then(result=>{
                 res.status(200).send({
                     success:true,
                     result:result
@@ -637,7 +637,7 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
     dao.addCabangPerusahaan(new Cabang_perusahaan(null,req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,null)).then(result=>{
         const cabangId=result.cp_id_cabang
         dao.unsetRekeningUtamaByPerusahaanId(req.body.perusahaan_id).then(result=>{
-            dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,cabangId,req.body.perusahaan_id,true).then(result=>{
+            dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,cabangId,true).then(result=>{
                 res.status(200).send({
                     success:true,
                     result:result
@@ -894,7 +894,7 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
     }
 
     dao.retrieveOneCabangPerusahaan(new Cabang_perusahaan(req.body.id_cabang_perusahaan)).then(result=>{
-        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_cabang_perusahaan, result[0].cp_perusahaan_id,null).then(result=>{
+        dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,req.body.id_cabang_perusahaan, null).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
@@ -963,7 +963,6 @@ app.post("/api/rekening-perusahaan/update",(req,res)=>{
             })
         }
     })
-
 })
 
 app.delete("/api/rekening-perusahaan/delete",(req,res)=>{

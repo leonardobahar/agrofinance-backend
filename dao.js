@@ -731,7 +731,7 @@ export class Dao{
         })
     }
 
-    addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, id_perusahaan, is_rekening_utama){
+    addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, is_rekening_utama){
         return new Promise((resolve,reject)=>{
             if (typeof is_rekening_utama === 'undefined' || is_rekening_utama === null){
                 is_rekening_utama = 0
@@ -1713,6 +1713,17 @@ export class Dao{
                 detailTransaksiObject.td_id_detil_transaksi=result.insertId
                 resolve(detailTransaksiObject)
             })
+        })
+    }
+
+    updateTransaksi(transaksi){
+        return new Promise((resolve,reject)=>{
+            if(!transaksi instanceof Transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+
         })
     }
 

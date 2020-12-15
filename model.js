@@ -43,14 +43,13 @@ export class Cabang_perusahaan{
 }
 
 export class Rekening_perusahaan{
-    constructor(rp_id_rekening, rp_nama_bank, rp_nomor_rekening, rp_saldo, rp_rekening_utama, rp_id_cabang_perusahaan, rp_perusahaan_id) {
+    constructor(rp_id_rekening, rp_nama_bank, rp_nomor_rekening, rp_saldo, rp_rekening_utama, rp_id_cabang_perusahaan) {
         this.rp_id_rekening=rp_id_rekening
         this.rp_nama_bank=rp_nama_bank
         this.rp_nomor_rekening=rp_nomor_rekening
         this.rp_saldo=rp_saldo
         this.rp_rekening_utama=rp_rekening_utama
         this.rp_id_cabang_perusahaan=rp_id_cabang_perusahaan
-        this.rp_perusahaan_id=rp_perusahaan_id
     }
 }
 
