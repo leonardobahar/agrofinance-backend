@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,14 +73,7 @@
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
       <workItem from="1607915677773" duration="35637000" />
-      <workItem from="1608001234098" duration="20744000" />
-    </task>
-    <task id="LOCAL-00019" summary="Fixed Add Transaksi minor bug">
-      <created>1606743594607</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1606743594607</updated>
+      <workItem from="1608001234098" duration="22199000" />
     </task>
     <task id="LOCAL-00020" summary="Edited sql file">
       <created>1606744264709</created>
@@ -419,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608018278854</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Remodified Update Transaksi endpoint. (Update Detil Transaksi still in progress due to technical difficulties)">
+      <created>1608036171737</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1608036171737</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,7 +447,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Add Cabang Perusahaan" />
     <MESSAGE value="Fixed Add Cabang Perusahaan and Rekening Utama" />
     <MESSAGE value="Edited sql syntax for rekening_perusahaan" />
     <MESSAGE value="Modified Add Perusahaan's Add Rekening" />
@@ -473,6 +471,7 @@
     <MESSAGE value="Added Update Detil Transaksi endpoint" />
     <MESSAGE value="Modified Update Transaksi endpoint" />
     <MESSAGE value="remodified Update Transaksi endpoint. (Still in progress)" />
-    <option name="LAST_COMMIT_MESSAGE" value="remodified Update Transaksi endpoint. (Still in progress)" />
+    <MESSAGE value="Remodified Update Transaksi endpoint. (Update Detil Transaksi still in progress due to technical difficulties)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remodified Update Transaksi endpoint. (Update Detil Transaksi still in progress due to technical difficulties)" />
   </component>
 </project>

@@ -1741,8 +1741,8 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE detil_transaksi SET td_jumlah=?, td_id_kategori_transaksi=? td_bpu_attachment=?, td_debit_credit=?, " +
-                "td_nomor_bukti_transaksi=?, skema_pembebanan_json=?" +
+            const query="UPDATE detil_transaksi SET td_jumlah=?, td_id_kategori_transaksi=?, td_bpu_attachment=?, td_debit_credit=?, " +
+                "td_nomor_bukti_transaksi=?, skema_pembebanan_json=? " +
                 "WHERE td_id_detil_transaksi=? "
             this.mysqlConn.query(query,[
                 detailTransaksiObject.td_jumlah,
@@ -1754,6 +1754,7 @@ export class Dao{
                 detailTransaksiObject.td_id_detil_transaksi
             ],(error,result)=>{
                 if(error){
+                    console.log(error)
                     reject(error)
                     return
                 }
