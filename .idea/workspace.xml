@@ -73,14 +73,7 @@
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
       <workItem from="1607915677773" duration="35637000" />
-      <workItem from="1608001234098" duration="4343000" />
-    </task>
-    <task id="LOCAL-00014" summary="Modified Add Transaksi, added approveTransaksi and rejectTransaksi functions to dao.js">
-      <created>1606729278833</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1606729278833</updated>
+      <workItem from="1608001234098" duration="6179000" />
     </task>
     <task id="LOCAL-00015" summary="Added Approve Transaksi endpoint">
       <created>1606732694831</created>
@@ -418,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608002582268</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Added Update Transaksi function">
+      <created>1608005652855</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1608005652855</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,7 +447,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed cabang utama problem hopefully" />
     <MESSAGE value="Fixed idcabang not defined" />
     <MESSAGE value="Udah pasti pas" />
     <MESSAGE value="Attempt to fix addcabang perusahaan" />
@@ -472,6 +471,7 @@
     <MESSAGE value="Modified sql file" />
     <MESSAGE value="Fixed Add Transaction bug" />
     <MESSAGE value="Updated sql file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated sql file" />
+    <MESSAGE value="Added Update Transaksi function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Update Transaksi function" />
   </component>
 </project>

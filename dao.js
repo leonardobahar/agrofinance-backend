@@ -1729,8 +1729,13 @@ export class Dao{
                     "t_bon_sementara=?, t_rekening_penanggung_utama=?, t_id_cabang_perusahaan=?, t_id_karyawan=?" +
                     "WHERE t_id_transaksi=? "
 
-                this.mysqlConn.query(query,[transaksi.t_is_rutin,transaksi.t_bon_sementara,transaksi.t_rekening_penanggung_utama,
-                    transaksi.t_id_cabang_perusahaan,transaksi.t_id_karyawan,transaksi.t_id_transaksi],(error,result)=>{
+                this.mysqlConn.query(query,[
+                    transaksi.t_is_rutin,
+                    transaksi.t_bon_sementara,
+                    transaksi.t_rekening_penanggung_utama,
+                    transaksi.t_id_cabang_perusahaan,
+                    transaksi.t_id_karyawan,
+                    transaksi.t_id_transaksi],async (error,result)=>{
                     if(error){
                         reject(error)
                         return
@@ -1749,6 +1754,10 @@ export class Dao{
                             detailTransaksi[i].skema_pembebanan_json,
                             0
                         )
+
+                        transactiondetailObject=await this.updateDetilTransaksi(transactiondetailObject).catch(error=>{
+                            reject(error)
+                        })
                     }
 
                     transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
@@ -1757,6 +1766,29 @@ export class Dao{
             }catch (e){
                 reject(e)
             }
+        })
+    }
+
+    updateDetilTransaksi(detailTransaksiObject){
+        return new Promise((resolve,reject)=>{
+            const query="UPDATE detil_transaksi SET td_jumlah=?, td_id_kategori_transaksi=? td_bpu_attachment=?, td_debit_credit=?, " +
+                "td_nomor_bukti_transaksi=?, td_file_bukti_transaksi=?, skema_pembebanan_json=? "
+            this.mysqlConn.query(query,[
+                detailTransaksiObject.td_jumlah,
+                detailTransaksiObject.td_id_kategori_transaksi,
+                detailTransaksiObject.td_bpu_attachment,
+                detailTransaksiObject.td_debit_credit,
+                detailTransaksiObject.td_nomor_bukti_transaksi,
+                'BPU',
+                detailTransaksiObject.skema_pembebanan_json
+            ],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(detailTransaksiObject)
+            })
         })
     }
 
