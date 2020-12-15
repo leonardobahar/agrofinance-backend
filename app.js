@@ -1604,6 +1604,58 @@ app.post("/api/transaksi/add",async(req,res)=> {
     })
 })
 
+app.post("/api/transaksi/update",(req,res)=>{
+    const upload=multer({storage:storage, fileFilter:transaksiFilter}).single('attachment_transaksi')
+
+    upload(req,res,async (error)=>{
+        if(typeof req.body.is_rutin==='undefined' ||
+            typeof req.body.bon_sementara==='undefined' ||
+            typeof req.body.id_rekening==='undefined' ||
+            typeof req.body.id_cabang==='undefined' ||
+            typeof req.body.id_karyawan==='undefined' ||
+            typeof req.body.id_transaksi==='undefined' ||
+            typeof req.body.jumlah==='undefined' ||
+            typeof req.body.id_kategori_transaksi==='undefined' ||
+            typeof req.body.debit_credit==='undefined' ||
+            typeof req.body.nomor_bukti_transaksi==='undefined' ||
+            typeof req.body.file_bukti_trnsaksi==='undefined' ||
+            typeof req.body.skema_pembebanan_json==='undefined' ||
+            typeof req.body.id_detil_transaksi==='undefined'){
+            res.status(400).send({
+                success:false,
+                error:WRONG_BODY_FORMAT
+            })
+            return
+        }
+
+        if(typeof req.file==='undefined'){
+            dao.updateTransaksi(req.body.is_rutin,req.body.bon_sementara,req.body.id_rekening,req.body.id_cabang,req.body.id_karyawan,req.body.id_transaksi).then(result=>{
+                dao.updateDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,
+                    'No Attachment', req.body.debit_credit, req.body.nomor_bukti_transaksi,req.body.file_bukti_trnsaksi,req.body.skema_pembebanan_json,null))
+            }).catch(error=>{
+                if(error){
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
+            })
+        }else{
+            dao.updateTransaksi(req.body.is_rutin,req.body.bon_sementara,req.body.id_rekening,req.body.id_cabang,req.body.id_karyawan,req.body.id_transaksi).then(result=>{
+                dao.updateDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,
+                    req.file.filename, req.body.debit_credit, req.body.nomor_bukti_transaksi,req.body.file_bukti_trnsaksi,req.body.skema_pembebanan_json,null))
+            }).catch(error=>{
+                if(error){
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
+            })
+        }
+    })
+})
+
 app.post("/api/transaksi/approve",(req,res)=>{
     if(typeof req.body.id_transaksi==='undefined'){
         res.status(400).send({

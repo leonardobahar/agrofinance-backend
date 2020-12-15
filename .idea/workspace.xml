@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,14 +74,7 @@
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
       <workItem from="1607915677773" duration="35637000" />
-      <workItem from="1608001234098" duration="6179000" />
-    </task>
-    <task id="LOCAL-00015" summary="Added Approve Transaksi endpoint">
-      <created>1606732694831</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1606732694831</updated>
+      <workItem from="1608001234098" duration="10547000" />
     </task>
     <task id="LOCAL-00016" summary="Added Reject Transaksi endpoint">
       <created>1606732784795</created>
@@ -418,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608005652855</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Added Update Detil Transaksi function">
+      <created>1608007721383</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1608007721383</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,7 +448,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed idcabang not defined" />
     <MESSAGE value="Udah pasti pas" />
     <MESSAGE value="Attempt to fix addcabang perusahaan" />
     <MESSAGE value="Might've fixed Add Cabang Perusahaan(Through add perusahaan) issue" />
@@ -472,6 +472,7 @@
     <MESSAGE value="Fixed Add Transaction bug" />
     <MESSAGE value="Updated sql file" />
     <MESSAGE value="Added Update Transaksi function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Update Transaksi function" />
+    <MESSAGE value="Added Update Detil Transaksi function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Update Detil Transaksi function" />
   </component>
 </project>
