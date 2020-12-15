@@ -1617,7 +1617,7 @@ export class Dao{
             }
 
             try {
-                let detailTransaksi = transaksi.detail_transaksi;
+                let detailTransaksi = JSON.parse(transaksi.detail_transaksi);
                 const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_rekening_penanggung_utama`, `t_id_cabang_perusahaan`, `t_id_karyawan`, `t_is_deleted`) "+
                     "VALUES(NOW(),NOW(),NULL,?,'Pending',?,?,?,?,0)"
                 this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_rekening_penanggung_utama, transaksi.t_id_cabang_perusahaan, transaksi.t_id_karyawan],(error, result) => {
@@ -1742,7 +1742,7 @@ export class Dao{
             }
 
             const query="UPDATE detil_transaksi SET td_jumlah=?, td_id_kategori_transaksi=? td_bpu_attachment=?, td_debit_credit=?, " +
-                "td_nomor_bukti_transaksi=?, td_file_bukti_transaksi=?, skema_pembebanan_json=? " +
+                "td_nomor_bukti_transaksi=?, skema_pembebanan_json=? " +
                 "WHERE td_id_detil_transaksi=? "
             this.mysqlConn.query(query,[
                 detailTransaksiObject.td_jumlah,
@@ -1750,7 +1750,6 @@ export class Dao{
                 detailTransaksiObject.td_bpu_attachment,
                 detailTransaksiObject.td_debit_credit,
                 detailTransaksiObject.td_nomor_bukti_transaksi,
-                'BPU',
                 detailTransaksiObject.skema_pembebanan_json,
                 detailTransaksiObject.td_id_detil_transaksi
             ],(error,result)=>{

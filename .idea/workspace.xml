@@ -74,21 +74,7 @@
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
       <workItem from="1607915677773" duration="35637000" />
-      <workItem from="1608001234098" duration="10547000" />
-    </task>
-    <task id="LOCAL-00016" summary="Added Reject Transaksi endpoint">
-      <created>1606732784795</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1606732784795</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Fixed minor bug in Approve and Reject Transaksi">
-      <created>1606738432691</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1606738432691</updated>
+      <workItem from="1608001234098" duration="14285000" />
     </task>
     <task id="LOCAL-00018" summary="test">
       <created>1606742321306</created>
@@ -419,7 +405,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608007721383</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Added Update Detil Transaksi endpoint">
+      <created>1608014126294</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1608014126294</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Modified Update Transaksi endpoint">
+      <created>1608014309819</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1608014309819</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,8 +448,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Udah pasti pas" />
-    <MESSAGE value="Attempt to fix addcabang perusahaan" />
     <MESSAGE value="Might've fixed Add Cabang Perusahaan(Through add perusahaan) issue" />
     <MESSAGE value="Fixed Add Cabang Perusahaan" />
     <MESSAGE value="Fixed Add Cabang Perusahaan and Rekening Utama" />
@@ -473,6 +471,8 @@
     <MESSAGE value="Updated sql file" />
     <MESSAGE value="Added Update Transaksi function" />
     <MESSAGE value="Added Update Detil Transaksi function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Update Detil Transaksi function" />
+    <MESSAGE value="Added Update Detil Transaksi endpoint" />
+    <MESSAGE value="Modified Update Transaksi endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified Update Transaksi endpoint" />
   </component>
 </project>

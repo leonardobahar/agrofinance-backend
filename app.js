@@ -1394,8 +1394,6 @@ app.delete("/api/kategori-transaksi/delete", (req,res)=>{
             })
         }
     })
-
-
 })
 
 const storage=multer.diskStorage({
@@ -1618,7 +1616,6 @@ app.post("/api/transaksi/update",(req,res)=>{
             typeof req.body.id_kategori_transaksi==='undefined' ||
             typeof req.body.debit_credit==='undefined' ||
             typeof req.body.nomor_bukti_transaksi==='undefined' ||
-            typeof req.body.file_bukti_trnsaksi==='undefined' ||
             typeof req.body.skema_pembebanan_json==='undefined' ||
             typeof req.body.id_detil_transaksi==='undefined'){
             res.status(400).send({
@@ -1631,7 +1628,7 @@ app.post("/api/transaksi/update",(req,res)=>{
         if(typeof req.file==='undefined'){
             dao.updateTransaksi(req.body.is_rutin,req.body.bon_sementara,req.body.id_rekening,req.body.id_cabang,req.body.id_karyawan,req.body.id_transaksi).then(result=>{
                 dao.updateDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,
-                    'No Attachment', req.body.debit_credit, req.body.nomor_bukti_transaksi,req.body.file_bukti_trnsaksi,req.body.skema_pembebanan_json,null))
+                    'No Attachment', req.body.debit_credit, req.body.nomor_bukti_transaksi,null,req.body.skema_pembebanan_json,null))
             }).catch(error=>{
                 if(error){
                     res.status(500).send({
