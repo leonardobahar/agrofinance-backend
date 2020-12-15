@@ -1723,7 +1723,40 @@ export class Dao{
                 return
             }
 
+            try{
+                let detailTransaksi=transaksi.detail_transaksi
+                const query="UPDATE transaksi SET t_tanggal_transaksi=NOW(), t_tanggal_modifikasi=NOW(), t_is_rutin=?, " +
+                    "t_bon_sementara=?, t_rekening_penanggung_utama=?, t_id_cabang_perusahaan=?, t_id_karyawan=?" +
+                    "WHERE t_id_transaksi=? "
 
+                this.mysqlConn.query(query,[transaksi.t_is_rutin,transaksi.t_bon_sementara,transaksi.t_rekening_penanggung_utama,
+                    transaksi.t_id_cabang_perusahaan,transaksi.t_id_karyawan,transaksi.t_id_transaksi],(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }
+
+                    for(let i=0; i<detailTransaksi.length; i++){
+                        let transactiondetailObject=new Detil_transaksi(
+                            detailTransaksi[i].td_id_detil_transaksi,
+                            transaksi.t_id_transaksi,
+                            detailTransaksi[i].td_jumlah,
+                            detailTransaksi[i].td_id_kategori_transaksi,
+                            transaksi.td_bpu_attachment,
+                            detailTransaksi[i].td_debit_credit,
+                            detailTransaksi[i].td_nomor_bukti_transaksi,
+                            detailTransaksi[i].td_file_bukti_transaksi,
+                            detailTransaksi[i].skema_pembebanan_json,
+                            0
+                        )
+                    }
+
+                    transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
+                    resolve(transaksi)
+                })
+            }catch (e){
+                reject(e)
+            }
         })
     }
 

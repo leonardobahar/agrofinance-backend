@@ -21,10 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,14 +73,7 @@
       <workItem from="1607598686562" duration="6307000" />
       <workItem from="1607656805421" duration="9527000" />
       <workItem from="1607915677773" duration="35637000" />
-      <workItem from="1608001234098" duration="1233000" />
-    </task>
-    <task id="LOCAL-00013" summary="Modified some parts of Add Transaksi(Still being tested)">
-      <created>1606718945118</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1606718945118</updated>
+      <workItem from="1608001234098" duration="4343000" />
     </task>
     <task id="LOCAL-00014" summary="Modified Add Transaksi, added approveTransaksi and rejectTransaksi functions to dao.js">
       <created>1606729278833</created>
@@ -421,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607956492084</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Updated sql file">
+      <created>1608002582268</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1608002582268</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,7 +447,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added extra line to fix null parameter of is_rekening_utama" />
     <MESSAGE value="Fixed cabang utama problem hopefully" />
     <MESSAGE value="Fixed idcabang not defined" />
     <MESSAGE value="Udah pasti pas" />
@@ -475,6 +471,7 @@
     <MESSAGE value="Modified getDefaultOrNonDefaultRekening function. New Delete feature still in progress." />
     <MESSAGE value="Modified sql file" />
     <MESSAGE value="Fixed Add Transaction bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Add Transaction bug" />
+    <MESSAGE value="Updated sql file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated sql file" />
   </component>
 </project>
