@@ -1740,7 +1740,6 @@ export class Dao{
                     }
 
                     for (let i = 0; i < detailTransaksi.length; i++) {
-                        // BEGINNING OF DETAIL TRANSAKSI LOOP
                         let transactionDetailObject = new Detil_transaksi(
                             detailTransaksi[i].td_id_detil_transaksi,
                             transaksi.t_id_transaksi,
@@ -1759,7 +1758,6 @@ export class Dao{
                         })
 
                         detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
-                        // END OF DETAIL TRANSAKSI LOOP
                     }
 
                     transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
