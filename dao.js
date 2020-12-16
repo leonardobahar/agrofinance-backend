@@ -1703,7 +1703,7 @@ export class Dao{
                 detailTransaksiObject.td_bpu_attachment,
                 detailTransaksiObject.td_debit_credit,
                 detailTransaksiObject.td_nomor_bukti_transaksi,
-                'BPU',
+                detailTransaksiObject.td_file_bukti_transaksi,
                 detailTransaksiObject.skema_pembebanan_json,
                 0
             ],(error,result)=>{
@@ -1756,7 +1756,6 @@ export class Dao{
                 detailTransaksiObject.td_id_detil_transaksi
             ],(error,result)=>{
                 if(error){
-                    console.log(error)
                     reject(error)
                     return
                 }

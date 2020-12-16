@@ -1403,7 +1403,7 @@ const storage=multer.diskStorage({
     }
 })
 
-const transaksiFilter=(req,file,cb)=>{
+const uploadFilter=(req,file,cb)=>{
     if(!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF|doc|docx|pdf|txt|xls|csv|xlsx)$/)){
         req.fileValidationError='Only jpg, png, gif, doc, pdf, txt, xls, csv files are allowed!';
         return cb(new Error('Only jpg, png, gif, doc, pdf, txt, xls, csv files are allowed!'), false)
@@ -1453,10 +1453,9 @@ app.get("/api/transaksi/retrieve",(req,res)=>{
 })
 
 app.post("/api/transaksi/add",async(req,res)=> {
-    const upload=multer({storage:storage, fileFilter:transaksiFilter}).single('attachment_transaksi')
+    const upload=multer({storage:storage, fileFilter:uploadFilter}).array('attachment_transaksi',3)
 
     upload(req,res, async (error)=>{
-
         if(typeof req.body.is_rutin==='undefined' ||
             typeof req.body.bon_sementara==='undefined' ||
             typeof req.body.id_rekening==='undefined' ||
@@ -1476,7 +1475,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
                 req.body.id_cabang_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,
                 null,req.body.jumlah,req.body.id_kategori_transaksi,
                 'No Attachment',req.body.debit_credit,req.body.nomor_bukti_transaksi,
-                'BPU',req.body.pembebanan,'0', null)
+                'No Attachment',req.body.pembebanan,'0', null)
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({
                     success:true,
@@ -1542,7 +1541,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
 
             const transfer=new Transaksi(null,'NOW','NOW','NULL',req.body.is_rutin,'Pending',req.body.bon_sementara, req.body.id_rekening,
                 req.body.id_cabang_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,
-                req.file.filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.pembebanan,'0')
+                req.file.filename[0],req.body.debit_credit,req.body.nomor_bukti_transaksi,req.file.filename[1],req.body.pembebanan,'0')
 
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({
