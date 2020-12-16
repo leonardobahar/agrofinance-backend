@@ -1753,7 +1753,7 @@ export class Dao{
                             0
                         )
 
-                        transactionDetailObject = await this.addDetailTransaksi(transactionDetailObject).catch(err=>{
+                        transactionDetailObject = await this.updateDetilTransaksi(transactionDetailObject).catch(err=>{
                             reject(err)
                         })
 
@@ -1777,7 +1777,7 @@ export class Dao{
             }
 
             const query="UPDATE detil_transaksi SET td_jumlah=?, td_id_kategori_transaksi=?, td_bpu_attachment=?, td_debit_credit=?, " +
-                "td_nomor_bukti_transaksi=?, skema_pembebanan_json=? " +
+                "td_nomor_bukti_transaksi=?, td_file_bukti_transaksi=?, skema_pembebanan_json=? " +
                 "WHERE td_id_detil_transaksi=? "
             this.mysqlConn.query(query,[
                 detailTransaksiObject.td_jumlah,
@@ -1785,6 +1785,7 @@ export class Dao{
                 detailTransaksiObject.td_bpu_attachment,
                 detailTransaksiObject.td_debit_credit,
                 detailTransaksiObject.td_nomor_bukti_transaksi,
+                detailTransaksiObject.td_file_bukti_transaksi,
                 detailTransaksiObject.skema_pembebanan_json,
                 detailTransaksiObject.td_id_detil_transaksi
             ],(error,result)=>{
