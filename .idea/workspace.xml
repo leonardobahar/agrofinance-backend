@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,21 +74,7 @@
       <workItem from="1607656805421" duration="9527000" />
       <workItem from="1607915677773" duration="35637000" />
       <workItem from="1608001234098" duration="27902000" />
-      <workItem from="1608090016636" duration="13497000" />
-    </task>
-    <task id="LOCAL-00025" summary="Fixed Set and Unset Cabang Utama bug">
-      <created>1606751262693</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1606751262693</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Modified parts of retrieve karyawan to retrieve karyawan's pembebanan_json (still in progress)">
-      <created>1606818439938</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1606818439938</updated>
+      <workItem from="1608090016636" duration="14964000" />
     </task>
     <task id="LOCAL-00027" summary="Fixed Retrieve Karyawan bug">
       <created>1606830333008</created>
@@ -419,7 +405,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608128225815</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Re-modified Update Transaksi endpoint. (Still in Progress)">
+      <created>1608128863122</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1608128863123</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Re-modified Update Transaksi function. (Still in Progress)">
+      <created>1608129085006</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1608129085006</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,8 +448,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed add Cabang Perusahaan's Add Transaksi bug" />
-    <MESSAGE value="Fixed add rekening bug" />
     <MESSAGE value="Modified Transaksi table and added transaksi_cabang_perusahaan table" />
     <MESSAGE value="Modified Add Transaksi endpoints and Transaksi functions" />
     <MESSAGE value="Modified Transaksi endpoints and functions. (Removed Jenis Transaksi column)" />
@@ -473,6 +471,8 @@
     <MESSAGE value="Add Transaksi modification still in progress" />
     <MESSAGE value="Re-modified Add Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Update Transaksi" />
+    <MESSAGE value="Re-modified Update Transaksi endpoint. (Still in Progress)" />
+    <MESSAGE value="Re-modified Update Transaksi function. (Still in Progress)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Update Transaksi function. (Still in Progress)" />
   </component>
 </project>

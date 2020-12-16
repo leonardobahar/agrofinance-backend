@@ -1603,7 +1603,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
 })
 
 app.post("/api/transaksi/update",(req,res)=>{
-    const upload=multer({storage:storage, fileFilter:transaksiFilter}).single('attachment_transaksi')
+    const upload=multer({storage:storage, fileFilter:uploadFilter}).single('attachment_transaksi')
 
     upload(req,res,async (error)=>{
         if(typeof req.body.is_rutin==='undefined' ||
@@ -1611,13 +1611,7 @@ app.post("/api/transaksi/update",(req,res)=>{
             typeof req.body.id_rekening==='undefined' ||
             typeof req.body.id_cabang==='undefined' ||
             typeof req.body.id_karyawan==='undefined' ||
-            typeof req.body.id_transaksi==='undefined' ||
-            typeof req.body.jumlah==='undefined' ||
-            typeof req.body.id_kategori_transaksi==='undefined' ||
-            typeof req.body.debit_credit==='undefined' ||
-            typeof req.body.nomor_bukti_transaksi==='undefined' ||
-            typeof req.body.skema_pembebanan_json==='undefined' ||
-            typeof req.body.id_detil_transaksi==='undefined'){
+            typeof req.body.id_transaksi==='undefined'){
             res.status(400).send({
                 success:false,
                 error:WRONG_BODY_FORMAT
