@@ -1654,7 +1654,7 @@ export class Dao{
                                     transaksi.td_bpu_attachment,
                                     detailTransaksi[i].td_debit_credit,
                                     detailTransaksi[i].td_nomor_bukti_transaksi,
-                                    detailTransaksi[i].td_file_bukti_transaksi,
+                                    transaksi.td_file_bukti_transaksi,
                                     detailTransaksi[i].skema_pembebanan_json,
                                     0
                                 )
