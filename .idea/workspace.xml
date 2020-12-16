@@ -19,10 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Add Transaksi modification still in progress">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,14 +74,7 @@
       <workItem from="1607656805421" duration="9527000" />
       <workItem from="1607915677773" duration="35637000" />
       <workItem from="1608001234098" duration="27902000" />
-      <workItem from="1608090016636" duration="10151000" />
-    </task>
-    <task id="LOCAL-00022" summary="Added unique to rp_nomor_rekening column in sql file">
-      <created>1606747082029</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1606747082029</updated>
+      <workItem from="1608090016636" duration="11138000" />
     </task>
     <task id="LOCAL-00023" summary="Fixed Cabang Utama field error">
       <created>1606748455734</created>
@@ -420,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608113205776</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Add Transaksi modification still in progress">
+      <created>1608125524817</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1608125524817</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,7 +448,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified Add Perusahaan's Add Rekening" />
     <MESSAGE value="Add Cabang's Add rekening still in progress due to technical difficulties, Add Perusahaan's Add Cabang and Add Rekening is fully functioning" />
     <MESSAGE value="Fixed add Perusahaan's bug" />
     <MESSAGE value="Fixed add Cabang Perusahaan's Add Transaksi bug" />
@@ -474,6 +472,7 @@
     <MESSAGE value="Remodified Update Transaksi endpoint. (Update Detil Transaksi still in progress due to technical difficulties)" />
     <MESSAGE value="Fixed Update Transaction bug" />
     <MESSAGE value="Modifying Add Transaksi to be able to upload 2 files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifying Add Transaksi to be able to upload 2 files" />
+    <MESSAGE value="Add Transaksi modification still in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Transaksi modification still in progress" />
   </component>
 </project>
