@@ -1718,21 +1718,56 @@ export class Dao{
         })
     }
 
-    updateTransaksi(is_rutin, bon_sementara, id_rekening, id_cabang, id_karyawan, id_transaksi){
+    updateTransaksi(transaksi){
         return new Promise((resolve,reject)=>{
 
-            const query="UPDATE transaksi SET t_tanggal_transaksi=NOW(), t_tanggal_modifikasi=NOW(), t_is_rutin=?, t_bon_sementara=?," +
-                "t_rekening_penanggung_utama=?, t_id_cabang_perusahaan=?, t_id_karyawan=? " +
-                "WHERE t_id_transaksi=? "
+            if(!transaksi instanceof Transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
 
-            this.mysqlConn.query(query,[is_rutin, bon_sementara, id_rekening, id_cabang, id_karyawan, id_transaksi],(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
+            try{
+                let detailTransaksi = JSON.parse(transaksi.detail_transaksi);
+                const query="UPDATE transaksi SET t_tanggal_transaksi=NOW(), t_tanggal_modifikasi=NOW(), t_is_rutin=?, t_bon_sementara=?," +
+                    "t_rekening_penanggung_utama=?, t_id_cabang_perusahaan=?, t_id_karyawan=? " +
+                    "WHERE t_id_transaksi=? "
 
-                resolve(SUCCESS)
-            })
+                this.mysqlConn.query(query,[transaksi.t_is_rutin,transaksi.t_bon_sementara,transaksi.t_bon_sementara,
+                    transaksi.t_rekening_penanggung_utama,transaksi.t_id_cabang_perusahaan,transaksi.t_id_karyawan,transaksi.t_id_transaksi],async (error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }
+
+                    for (let i = 0; i < detailTransaksi.length; i++) {
+                        // BEGINNING OF DETAIL TRANSAKSI LOOP
+                        let transactionDetailObject = new Detil_transaksi(
+                            detailTransaksi[i].td_id_detil_transaksi,
+                            transaksi.t_id_transaksi,
+                            detailTransaksi[i].td_jumlah,
+                            detailTransaksi[i].td_id_kategori_transaksi,
+                            transaksi.td_bpu_attachment,
+                            detailTransaksi[i].td_debit_credit,
+                            detailTransaksi[i].td_nomor_bukti_transaksi,
+                            transaksi.td_file_bukti_transaksi,
+                            detailTransaksi[i].skema_pembebanan_json,
+                            0
+                        )
+
+                        transactionDetailObject = await this.addDetailTransaksi(transactionDetailObject).catch(err=>{
+                            reject(err)
+                        })
+
+                        detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
+                        // END OF DETAIL TRANSAKSI LOOP
+                    }
+
+                    transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
+                    resolve(transaksi)
+                })
+            }catch (e){
+                reject(e)
+            }
         })
     }
 
