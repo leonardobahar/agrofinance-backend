@@ -22,7 +22,6 @@
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,14 +75,7 @@
       <workItem from="1607915677773" duration="35637000" />
       <workItem from="1608001234098" duration="27902000" />
       <workItem from="1608090016636" duration="18507000" />
-      <workItem from="1608174399499" duration="5709000" />
-    </task>
-    <task id="LOCAL-00028" summary="Fixed Set Rekening Utama default error">
-      <created>1606830656955</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1606830656955</updated>
+      <workItem from="1608174399499" duration="9292000" />
     </task>
     <task id="LOCAL-00029" summary="Fixed rekening utama declared as true on every insert">
       <created>1606833566135</created>
@@ -421,7 +413,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608130503881</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Update Transaksi bug fixed">
+      <created>1608181018850</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1608181018850</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,7 +449,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified Add Transaksi endpoints and Transaksi functions" />
     <MESSAGE value="Modified Transaksi endpoints and functions. (Removed Jenis Transaksi column)" />
     <MESSAGE value="Modified Transaksi endpoints. (Changed req.body.rekening_penanggung_utama to id_rekening)" />
     <MESSAGE value="Fixed Add Transaksi bug" />
@@ -475,6 +473,7 @@
     <MESSAGE value="Re-modified Update Transaksi endpoint. (Still in Progress)" />
     <MESSAGE value="Re-modified Update Transaksi function. (Still in Progress)" />
     <MESSAGE value="Re-modified Update Transaksi endpoint and function. (Still in progress)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Update Transaksi endpoint and function. (Still in progress)" />
+    <MESSAGE value="Update Transaksi bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Transaksi bug fixed" />
   </component>
 </project>
