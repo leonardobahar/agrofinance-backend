@@ -1628,7 +1628,8 @@ app.post("/api/transaksi/update",(req,res)=>{
 
             dao.retrieveOneTransaksi(new Transaksi(req.body.id_transaksi)).then(result=>{
                 dao.getTransaksiFile(new Transaksi(req.body.id_transaksi)).then(result=>{
-                    if(result.toString()==='undefined'){
+                    if(result[0].toString()==='undefined' &&
+                       result[1].toString()==='undefined'){
                         dao.updateTransaksi(transfer).then(result=>{
                             res.status(200).send({
                                 success:true,
@@ -1646,7 +1647,8 @@ app.post("/api/transaksi/update",(req,res)=>{
                         return
                     }
 
-                    fs.unlinkSync('./Uploads/'+result.toString())
+                    fs.unlinkSync('./Uploads/'+result[0].toString())
+                    fs.unlinkSync('./Uploads/'+result[1].toString())
 
                     dao.updateTransaksi(transfer).then(result=>{
                         res.status(200).send({
@@ -1662,20 +1664,6 @@ app.post("/api/transaksi/update",(req,res)=>{
                             })
                         }
                     })
-                })
-                dao.updateTransaksi(transfer).then(result=>{
-                    res.status(200).send({
-                        success:true,
-                        result:result
-                    })
-                }).catch(error=>{
-                    if(error){
-                        console.error(error)
-                        res.status(500).send({
-                            success:false,
-                            error:SOMETHING_WENT_WRONG
-                        })
-                    }
                 })
             }).catch(error=>{
                 if(error===NO_SUCH_CONTENT){
@@ -1703,18 +1691,43 @@ app.post("/api/transaksi/update",(req,res)=>{
                 req.body.detail_transaksi,req.body.id_detil_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.files[0].filename,
                 req.body.debit_credit,req.body.nomor_bukti_transaksi,req.files[1].filename,req.body.skema_pembebanan_json,0)
             dao.retrieveOneTransaksi(new Transaksi(req.body.id_transaksi)).then(result=>{
-                dao.updateTransaksi(transfer).then(result=>{
-                    res.status(200).send({
-                        success:true,
-                        result:result
-                    })
-                }).catch(error=>{
-                    if(error){
-                        res.status(500).send({
-                            success:false,
-                            error:SOMETHING_WENT_WRONG
+                dao.getTransaksiFile(new Transaksi(req.body.id_transaksi)).then(result=>{
+                    if(result[0].toString()==='undefined' &&
+                        result[1].toString()==='undefined'){
+                        dao.updateTransaksi(transfer).then(result=>{
+                            res.status(200).send({
+                                success:true,
+                                result:result
+                            })
+                        }).catch(error=>{
+                            if(error){
+                                console.error(error)
+                                res.status(500).send({
+                                    success:false,
+                                    error:SOMETHING_WENT_WRONG
+                                })
+                            }
                         })
+                        return
                     }
+
+                    fs.unlinkSync('./Uploads/'+result[0].toString())
+                    fs.unlinkSync('./Uploads/'+result[1].toString())
+
+                    dao.updateTransaksi(transfer).then(result=>{
+                        res.status(200).send({
+                            success:true,
+                            result:result
+                        })
+                    }).catch(error=>{
+                        if(error){
+                            console.error(error)
+                            res.status(500).send({
+                                success:false,
+                                error:SOMETHING_WENT_WRONG
+                            })
+                        }
+                    })
                 })
             }).catch(error=>{
                 if(error===NO_SUCH_CONTENT){

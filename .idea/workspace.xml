@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,14 +74,7 @@
       <workItem from="1607915677773" duration="35637000" />
       <workItem from="1608001234098" duration="27902000" />
       <workItem from="1608090016636" duration="18507000" />
-      <workItem from="1608174399499" duration="15633000" />
-    </task>
-    <task id="LOCAL-00033" summary="Added extra line to fix null parameter of is_rekening_utama">
-      <created>1606835434630</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1606835434630</updated>
+      <workItem from="1608174399499" duration="16261000" />
     </task>
     <task id="LOCAL-00034" summary="Fixed cabang utama problem hopefully">
       <created>1606836340940</created>
@@ -421,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608209190830</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Re-modified Get Transaksi File function">
+      <created>1608211564914</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1608211564914</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -450,7 +448,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified Retrieve Transaksi endpoint" />
     <MESSAGE value="Added new function" />
     <MESSAGE value="Modifying Delete Rekening (Still in progress)" />
     <MESSAGE value="Modified getDefaultOrNonDefaultRekening function. New Delete feature still in progress." />
@@ -475,6 +472,7 @@
     <MESSAGE value="Modified Update Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi to Upload 2 files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Update Transaksi to Upload 2 files" />
+    <MESSAGE value="Re-modified Get Transaksi File function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Get Transaksi File function" />
   </component>
 </project>
