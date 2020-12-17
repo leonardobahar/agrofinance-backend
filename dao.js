@@ -1728,12 +1728,13 @@ export class Dao{
 
             try{
                 let detailTransaksi = JSON.parse(transaksi.detail_transaksi);
-                const query="UPDATE transaksi SET t_tanggal_transaksi=NOW(), t_tanggal_modifikasi=NOW(), t_is_rutin=?, t_bon_sementara=?," +
+                const query="UPDATE transaksi SET t_tanggal_transaksi=NOW(), t_tanggal_modifikasi=NOW(), t_is_rutin=?, t_bon_sementara=?, " +
                     "t_rekening_penanggung_utama=?, t_id_cabang_perusahaan=?, t_id_karyawan=? " +
-                    "WHERE t_id_transaksi=? "
+                    "WHERE t_id_transaksi= ?"
 
-                this.mysqlConn.query(query,[transaksi.t_is_rutin,transaksi.t_bon_sementara,transaksi.t_bon_sementara,
-                    transaksi.t_rekening_penanggung_utama,transaksi.t_id_cabang_perusahaan,transaksi.t_id_karyawan,transaksi.t_id_transaksi],async (error,result)=>{
+                const queryRes = this.mysqlConn.query(query,[transaksi.t_is_rutin,transaksi.t_bon_sementara,
+                    transaksi.t_rekening_penanggung_utama, transaksi.t_id_cabang_perusahaan, transaksi.t_id_karyawan,
+                    transaksi.t_id_transaksi],async (error,result)=>{
                     if(error){
                         reject(error)
                         return
@@ -1763,6 +1764,7 @@ export class Dao{
                     transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
                     resolve(transaksi)
                 })
+                console.log(queryRes.sql)
             }catch (e){
                 reject(e)
             }
@@ -1794,7 +1796,8 @@ export class Dao{
                     return
                 }
 
-                resolve(SUCCESS)
+                //console.log(result)
+                resolve(detailTransaksiObject)
             })
         })
     }
