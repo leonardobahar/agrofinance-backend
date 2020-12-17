@@ -1760,7 +1760,7 @@ export class Dao{
                             0
                         )
 
-                        transactionDetailObject = await this.updateDetilTransaksi(transactionDetailObject).catch(err=>{
+                        transactionDetailObject = await this.addDetailTransaksi(transactionDetailObject).catch(err=>{
                             reject(err)
                         })
 
@@ -1776,7 +1776,7 @@ export class Dao{
         })
     }
 
-    updateDetilTransaksi(detailTransaksiObject){
+   /* updateDetilTransaksi(detailTransaksiObject){
         return new Promise((resolve,reject)=>{
             if(!detailTransaksiObject instanceof Detil_transaksi){
                 reject(MISMATCH_OBJ_TYPE)
@@ -1805,7 +1805,7 @@ export class Dao{
                 resolve(detailTransaksiObject)
             })
         })
-    }
+    }*/
 
     approveTransaksi(transaksi){
         return new Promise((resolve,reject)=>{
