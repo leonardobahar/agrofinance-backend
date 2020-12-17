@@ -1732,7 +1732,7 @@ export class Dao{
                     "t_rekening_penanggung_utama=?, t_id_cabang_perusahaan=?, t_id_karyawan=? " +
                     "WHERE t_id_transaksi= ?"
 
-                const queryRes = this.mysqlConn.query(query,[transaksi.t_is_rutin,transaksi.t_bon_sementara,
+                this.mysqlConn.query(query,[transaksi.t_is_rutin,transaksi.t_bon_sementara,
                     transaksi.t_rekening_penanggung_utama, transaksi.t_id_cabang_perusahaan, transaksi.t_id_karyawan,
                     transaksi.t_id_transaksi],async (error,result)=>{
                     if(error){
@@ -1764,7 +1764,6 @@ export class Dao{
                     transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
                     resolve(transaksi)
                 })
-                console.log(queryRes.sql)
             }catch (e){
                 reject(e)
             }

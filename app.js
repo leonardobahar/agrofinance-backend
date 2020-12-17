@@ -1626,7 +1626,7 @@ app.post("/api/transaksi/update",(req,res)=>{
                 req.body.detail_transaksi,req.body.id_detil_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,'No Attachment',
                 req.body.debit_credit,req.body.nomor_bukti_transaksi,'No Attachment',req.body.skema_pembebanan_json,0)
 
-            dao.getTransaksiID(new Transaksi(req.body.id_transaksi)).then(result=>{
+            dao.retrieveOneTransaksi(new Transaksi(req.body.id_transaksi)).then(result=>{
                 dao.updateTransaksi(transfer).then(result=>{
                     res.status(200).send({
                         success:true,
@@ -1666,7 +1666,7 @@ app.post("/api/transaksi/update",(req,res)=>{
                 req.body.is_rutin,'Modified',req.body.bon_sementara,req.body.id_rekening,req.body.id_cabang,req.body.id_karyawan,0,
                 req.body.detail_transaksi,req.body.id_detil_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.file.filename,
                 req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.skema_pembebanan_json,0)
-            dao.getTransaksiID(new Transaksi(req.body.id_transaksi)).then(result=>{
+            dao.retrieveOneTransaksi(new Transaksi(req.body.id_transaksi)).then(result=>{
                 dao.updateTransaksi(transfer).then(result=>{
                     res.status(200).send({
                         success:true,
