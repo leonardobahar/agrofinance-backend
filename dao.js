@@ -1864,4 +1864,23 @@ export class Dao{
             })
         })
     }
+
+    deleteDetilTransaksi(detil){
+        return new Promise((resolve,reject)=>{
+            if(!detil instanceof Detil_transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="DELETE FROM detil_transaksi WHERE td_id_detil_transaksi=? "
+            this.mysqlConn.query(query, detil.td_id_detil_transaksi,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(detil)
+            })
+        })
+    }
 }
