@@ -1627,6 +1627,42 @@ app.post("/api/transaksi/update",(req,res)=>{
                 req.body.debit_credit,req.body.nomor_bukti_transaksi,'No Attachment',req.body.skema_pembebanan_json,0)
 
             dao.retrieveOneTransaksi(new Transaksi(req.body.id_transaksi)).then(result=>{
+                dao.getTransaksiFile(new Transaksi(req.body.id_transaksi)).then(result=>{
+                    if(result.toString()==='undefined'){
+                        dao.updateTransaksi(transfer).then(result=>{
+                            res.status(200).send({
+                                success:true,
+                                result:result
+                            })
+                        }).catch(error=>{
+                            if(error){
+                                console.error(error)
+                                res.status(500).send({
+                                    success:false,
+                                    error:SOMETHING_WENT_WRONG
+                                })
+                            }
+                        })
+                        return
+                    }
+
+                    fs.unlinkSync('./Uploads/'+result.toString())
+
+                    dao.updateTransaksi(transfer).then(result=>{
+                        res.status(200).send({
+                            success:true,
+                            result:result
+                        })
+                    }).catch(error=>{
+                        if(error){
+                            console.error(error)
+                            res.status(500).send({
+                                success:false,
+                                error:SOMETHING_WENT_WRONG
+                            })
+                        }
+                    })
+                })
                 dao.updateTransaksi(transfer).then(result=>{
                     res.status(200).send({
                         success:true,

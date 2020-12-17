@@ -1552,13 +1552,19 @@ export class Dao{
     getTransaksiFile(transaksi){
         return new Promise((resolve,reject)=>{
             if(transaksi instanceof Transaksi){
-                const query="SELECT td_bpu_attachment FROM detil_transaksi WHERE td_id_transaksi=?"
+                const query="SELECT td_bpu_attachment, td_file_bukti_transaksi FROM detil_transaksi WHERE td_id_transaksi=?"
                 this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
                     if(error){
                         reject(error)
                         return
                     } else if(result.length>0){
-                        resolve(result[0].td_bpu_attachment)
+                        const attachment=result.map(rowDataPacket=>{
+                            return{
+                                BPU_Attachment:rowDataPacket.td_bpu_attachment,
+                                File_Bukti_Transaksi:rowDataPacket.td_file_bukti_transaksi
+                            }
+                        })
+                        resolve(attachment)
                     } else {
                         reject(NO_SUCH_CONTENT)
                     }
