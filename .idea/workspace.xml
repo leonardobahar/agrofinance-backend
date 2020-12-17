@@ -20,8 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,14 +74,7 @@
       <workItem from="1607915677773" duration="35637000" />
       <workItem from="1608001234098" duration="27902000" />
       <workItem from="1608090016636" duration="18507000" />
-      <workItem from="1608174399499" duration="12516000" />
-    </task>
-    <task id="LOCAL-00031" summary="Added extra line to fix null parameter of is_rekening_utama">
-      <created>1606835124796</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1606835124796</updated>
+      <workItem from="1608174399499" duration="13748000" />
     </task>
     <task id="LOCAL-00032" summary="Added extra line to fix null parameter of is_rekening_utama">
       <created>1606835385799</created>
@@ -420,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608207031409</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Re-modified Update Transaksi">
+      <created>1608207384247</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1608207384248</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,13 +466,13 @@
     <MESSAGE value="Modifying Add Transaksi to be able to upload 2 files" />
     <MESSAGE value="Add Transaksi modification still in progress" />
     <MESSAGE value="Re-modified Add Transaksi" />
-    <MESSAGE value="Re-modified Update Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi endpoint. (Still in Progress)" />
     <MESSAGE value="Re-modified Update Transaksi function. (Still in Progress)" />
     <MESSAGE value="Re-modified Update Transaksi endpoint and function. (Still in progress)" />
     <MESSAGE value="Update Transaksi bug fixed" />
     <MESSAGE value="Modified Add Transaksi to Upload 2 files" />
     <MESSAGE value="Modified Update Transaksi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified Update Transaksi" />
+    <MESSAGE value="Re-modified Update Transaksi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Update Transaksi" />
   </component>
 </project>

@@ -1603,7 +1603,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
 })
 
 app.post("/api/transaksi/update",(req,res)=>{
-    const upload=multer({storage:storage, fileFilter:uploadFilter}).single('attachment_transaksi')
+    const upload=multer({storage:storage, fileFilter:uploadFilter}).array('attachment_transaksi',2)
 
     upload(req,res,async (error)=>{
         if(typeof req.body.is_rutin==='undefined' ||
@@ -1619,7 +1619,7 @@ app.post("/api/transaksi/update",(req,res)=>{
             return
         }
 
-        if(typeof req.file==='undefined'){
+        if(typeof req.files==='undefined'){
 
             const transfer=new Transaksi(req.body.id_transaksi,'NOW()','NOW()',null,
                 req.body.is_rutin,'Modified',req.body.bon_sementara,req.body.id_rekening,req.body.id_cabang,req.body.id_karyawan,0,
@@ -1664,8 +1664,8 @@ app.post("/api/transaksi/update",(req,res)=>{
 
             const transfer=new Transaksi(req.body.id_transaksi,'NOW()','NOW()',null,
                 req.body.is_rutin,'Modified',req.body.bon_sementara,req.body.id_rekening,req.body.id_cabang,req.body.id_karyawan,0,
-                req.body.detail_transaksi,req.body.id_detil_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.file.filename,
-                req.body.debit_credit,req.body.nomor_bukti_transaksi,'BPU',req.body.skema_pembebanan_json,0)
+                req.body.detail_transaksi,req.body.id_detil_transaksi,req.body.jumlah,req.body.id_kategori_transaksi,req.files[0].filename,
+                req.body.debit_credit,req.body.nomor_bukti_transaksi,req.files[1].filename,req.body.skema_pembebanan_json,0)
             dao.retrieveOneTransaksi(new Transaksi(req.body.id_transaksi)).then(result=>{
                 dao.updateTransaksi(transfer).then(result=>{
                     res.status(200).send({
