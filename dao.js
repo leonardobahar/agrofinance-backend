@@ -1558,13 +1558,14 @@ export class Dao{
                         reject(error)
                         return
                     } else if(result.length>0){
-                        const attachment=result.map(rowDataPacket=>{
-                            return{
-                                BPU_Attachment:rowDataPacket.td_bpu_attachment,
-                                File_Bukti_Transaksi:rowDataPacket.td_file_bukti_transaksi
-                            }
-                        })
-                        resolve(attachment)
+                        let attachments=[]
+                        for(let i=0; i<result.length; i++){
+                            attachments.push(
+                                result[i].td_bpu_attachment,
+                                result[i].td_file_bukti_transaksi
+                            )
+                        }
+                        resolve(attachments)
                     } else {
                         reject(NO_SUCH_CONTENT)
                     }
@@ -1776,7 +1777,15 @@ export class Dao{
         })
     }
 
-   /* updateDetilTransaksi(detailTransaksiObject){
+    debitSaldo(){
+
+    }
+
+    creditSaldo(){
+
+    }
+   /* Delete this block only if you are permitted to.
+   updateDetilTransaksi(detailTransaksiObject){
         return new Promise((resolve,reject)=>{
             if(!detailTransaksiObject instanceof Detil_transaksi){
                 reject(MISMATCH_OBJ_TYPE)

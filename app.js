@@ -1619,7 +1619,7 @@ app.post("/api/transaksi/update",(req,res)=>{
             return
         }
 
-        if(typeof req.files==='undefined'){
+        if(typeof req.files[0]==='undefined' && typeof req.files[1]==='undefined'){
 
             const transfer=new Transaksi(req.body.id_transaksi,'NOW()','NOW()',null,
                 req.body.is_rutin,'Modified',req.body.bon_sementara,req.body.id_rekening,req.body.id_cabang,req.body.id_karyawan,0,
@@ -1628,8 +1628,8 @@ app.post("/api/transaksi/update",(req,res)=>{
 
             dao.retrieveOneTransaksi(new Transaksi(req.body.id_transaksi)).then(result=>{
                 dao.getTransaksiFile(new Transaksi(req.body.id_transaksi)).then(result=>{
-                    if(result[0].toString()==='undefined' &&
-                       result[1].toString()==='undefined'){
+                    if(result[0]==='undefined' &&
+                       result[1]==='undefined'){
                         dao.deleteDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi)).then(result=>{
                             dao.updateTransaksi(transfer).then(result=>{
                                 res.status(200).send({
@@ -1655,8 +1655,10 @@ app.post("/api/transaksi/update",(req,res)=>{
                         return
                     }
 
-                    fs.unlinkSync('./Uploads/'+result[0].toString())
-                    fs.unlinkSync('./Uploads/'+result[1].toString())
+                    console.log(result[0])
+                    console.log(result[1])
+                    fs.unlinkSync('./Uploads/'+result[0])
+                    fs.unlinkSync('./Uploads/'+result[1])
 
                     dao.deleteDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi)).then(result=>{
                         dao.updateTransaksi(transfer).then(result=>{
@@ -1708,8 +1710,8 @@ app.post("/api/transaksi/update",(req,res)=>{
                 req.body.debit_credit,req.body.nomor_bukti_transaksi,req.files[1].filename,req.body.skema_pembebanan_json,0)
             dao.retrieveOneTransaksi(new Transaksi(req.body.id_transaksi)).then(result=>{
                 dao.getTransaksiFile(new Transaksi(req.body.id_transaksi)).then(result=>{
-                    if(result[0].toString()==='undefined' &&
-                        result[1].toString()==='undefined'){
+                    if(result[0]==='undefined' &&
+                        result[1]==='undefined'){
                         dao.deleteDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi)).then(result=>{
                             dao.updateTransaksi(transfer).then(result=>{
                                 res.status(200).send({
@@ -1734,8 +1736,8 @@ app.post("/api/transaksi/update",(req,res)=>{
                         return
                     }
 
-                    fs.unlinkSync('./Uploads/'+result[0].toString())
-                    fs.unlinkSync('./Uploads/'+result[1].toString())
+                    fs.unlinkSync('./Uploads/'+result[0])
+                    fs.unlinkSync('./Uploads/'+result[1])
 
                     dao.deleteDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi)).then(result=>{
                         dao.updateTransaksi(transfer).then(result=>{
