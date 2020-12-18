@@ -1614,8 +1614,8 @@ app.post("/api/transaksi/update",(req,res)=>{
 
             dao.retrieveOneTransaksi(new Transaksi(req.body.id_transaksi)).then(result=>{
                 dao.getTransaksiFile(new Transaksi(req.body.id_transaksi)).then(result=>{
-                    if(result[0]==='undefined' &&
-                       result[1]==='undefined'){
+                    if(result[0]==='No Attachment' &&
+                       result[1]==='No Attachment'){
                         dao.deleteDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi)).then(result=>{
                             dao.updateTransaksi(transfer).then(result=>{
                                 res.status(200).send({
@@ -1696,8 +1696,8 @@ app.post("/api/transaksi/update",(req,res)=>{
                 req.body.debit_credit,req.body.nomor_bukti_transaksi,req.files[1].filename,req.body.skema_pembebanan_json,0)
             dao.retrieveOneTransaksi(new Transaksi(req.body.id_transaksi)).then(result=>{
                 dao.getTransaksiFile(new Transaksi(req.body.id_transaksi)).then(result=>{
-                    if(result[0]==='undefined' &&
-                        result[1]==='undefined'){
+                    if(result[0]==='No Attachment' &&
+                        result[1]==='No Attachment'){
                         dao.deleteDetilTransaksi(new Detil_transaksi(req.body.id_detil_transaksi)).then(result=>{
                             dao.updateTransaksi(transfer).then(result=>{
                                 res.status(200).send({
@@ -1863,6 +1863,21 @@ app.delete("/api/transaksi/delete", (req,res)=>{
 
     dao.getTransaksiFile(transfer).then(result=>{
 
+        if(result[0]==='No Attachment' && result[1]==='No Attachment'){
+            dao.deleteTransaksi(transfer).then(result=>{
+                res.status(200).send({
+                    success:true,
+                    result:result
+                })
+            }).catch(error=>{
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
+            })
+            return
+        }
         fs.unlinkSync('./Uploads/'+result[0])
         fs.unlinkSync('./Uploads/'+result[1])
 
