@@ -1774,7 +1774,7 @@ export class Dao{
             }
 
             const query="UPDATE rekening_perusahaan SET rp_saldo=rp_saldo+? WHERE rp_id_rekening=? "
-            this.mysqlConn.query(query,[rekening.rp_id_rekening,rekening.rp_saldo],(error,result)=>{
+            this.mysqlConn.query(query,[rekening.rp_saldo,rekening.rp_id_rekening],(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -1785,8 +1785,23 @@ export class Dao{
         })
     }
 
-    creditSaldo(){
+    creditSaldo(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
 
+            const query="UPDATE rekening_perusahaan SET rp_saldo=rp_saldo+? WHERE rp_id_rekening=? "
+            this.mysqlConn.query(query,[rekening.rp_saldo,rekening.rp_id_rekening],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(rekening)
+            })
+        })
     }
 
    /* Delete this block only if you are permitted to.

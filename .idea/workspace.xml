@@ -84,13 +84,7 @@
       <workItem from="1608090016636" duration="18507000" />
       <workItem from="1608174399499" duration="22683000" />
       <workItem from="1608258132062" duration="2203000" />
-    </task>
-    <task id="LOCAL-00046" summary="Modified Add Perusahaan's Add Rekening">
-      <created>1607005962359</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1607005962359</updated>
+      <workItem from="1608298781103" duration="383000" />
     </task>
     <task id="LOCAL-00047" summary="Add Cabang's Add rekening still in progress due to technical difficulties, Add Perusahaan's Add Cabang and Add Rekening is fully functioning">
       <created>1607006870357</created>
@@ -428,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608282620067</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Added debitSaldo function block">
+      <created>1608297523255</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1608297523255</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,7 +458,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Update Transaction bug" />
     <MESSAGE value="Modifying Add Transaksi to be able to upload 2 files" />
     <MESSAGE value="Add Transaksi modification still in progress" />
     <MESSAGE value="Re-modified Add Transaksi" />
@@ -482,6 +482,7 @@
     <MESSAGE value="Re-modified Update Transaksi. (still in progress)" />
     <MESSAGE value="Fixed Update Transaksi bug" />
     <MESSAGE value="Added getDebitCredit function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added getDebitCredit function block" />
+    <MESSAGE value="Added debitSaldo function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added debitSaldo function block" />
   </component>
 </project>
