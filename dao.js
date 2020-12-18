@@ -69,6 +69,18 @@ export class Dao{
         handleConnection()
     }
 
+    login(username, password){
+        return new Promise((resolve, reject)=>{
+            const query = "SELECT * FROM `user` WHERE `username` = ? AND `password` = ?"
+            this.mysqlConn.query(query, (error, result)=>{
+                if (error){
+                    reject(error)
+                    return
+                }
+            })
+        })
+    }
+
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
             const query="SELECT * FROM karyawan "
