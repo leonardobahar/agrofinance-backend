@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
   `td_debit_credit` TINYINT(1) NOT NULL DEFAULT 0,
   `td_nomor_bukti_transaksi` VARCHAR(45) NOT NULL,
   `td_file_bukti_transaksi` VARCHAR(45) NOT NULL,
+  `skema_pembebanan_json` LONGTEXT,
   `td_is_deleted` TINYINT(1) DEFAULT 0,
   `td_is_pembebanan_karyawan` TINYINT(1) NOT NULL DEFAULT 0,
   `td_is_pembebanan_cabang` TINYINT(1) NOT NULL DEFAULT 0,

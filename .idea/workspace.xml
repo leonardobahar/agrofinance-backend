@@ -22,6 +22,7 @@
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,14 +86,7 @@
       <workItem from="1608090016636" duration="18507000" />
       <workItem from="1608174399499" duration="22683000" />
       <workItem from="1608258132062" duration="2203000" />
-      <workItem from="1608298781103" duration="5447000" />
-    </task>
-    <task id="LOCAL-00050" summary="Fixed add rekening bug">
-      <created>1607612563989</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1607612563989</updated>
+      <workItem from="1608298781103" duration="7052000" />
     </task>
     <task id="LOCAL-00051" summary="Modified Transaksi table and added transaksi_cabang_perusahaan table">
       <created>1607922657522</created>
@@ -430,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608302953776</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="Re-modified detil_transaksi table structure">
+      <created>1608304471496</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1608304471496</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +460,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Update Transaksi endpoint. (Still in Progress)" />
     <MESSAGE value="Re-modified Update Transaksi function. (Still in Progress)" />
     <MESSAGE value="Re-modified Update Transaksi endpoint and function. (Still in progress)" />
     <MESSAGE value="Update Transaksi bug fixed" />
@@ -484,6 +484,7 @@
     <MESSAGE value="Added creditSaldo function block" />
     <MESSAGE value="Modified Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Modified detil_transaksi table structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified detil_transaksi table structure" />
+    <MESSAGE value="Re-modified detil_transaksi table structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified detil_transaksi table structure" />
   </component>
 </project>

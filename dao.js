@@ -1650,7 +1650,7 @@ export class Dao{
                             detailTransaksi[i].td_nomor_bukti_transaksi,
                             transaksi.td_file_bukti_transaksi,
                             detailTransaksi[i].skema_pembebanan_json,
-                            0
+                            0,0
                         )
 
                         transactionDetailObject = await this.addDetailTransaksi(transactionDetailObject).catch(err=>{
@@ -1684,9 +1684,10 @@ export class Dao{
                 "`td_debit_credit`, " +
                 "`td_nomor_bukti_transaksi`, " +
                 "`td_file_bukti_transaksi`, " +
-                "`skema_pembebanan_json`, " +
-                "`td_is_deleted`) "+
-                "VALUES (?,?,?,?,?,?,?,?,?)"
+                "`td_is_deleted`," +
+                "`is_pembebanan_karyawan`," +
+                "`is_pembebanan_cabang`) "+
+                "VALUES (?,?,?,?,?,?,?,?,?,?)"
 
             this.mysqlConn.query(query,[
                 detailTransaksiObject.td_id_transaksi,
@@ -1696,8 +1697,9 @@ export class Dao{
                 detailTransaksiObject.td_debit_credit,
                 detailTransaksiObject.td_nomor_bukti_transaksi,
                 detailTransaksiObject.td_file_bukti_transaksi,
-                detailTransaksiObject.skema_pembebanan_json,
-                0
+                0,
+                detailTransaksiObject.td_is_pembebanan_karyawan,
+                detailTransaksiObject.td_is_pembebanan_cabang
             ],(error,result)=>{
                 if(error){
                     reject(error)

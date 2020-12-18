@@ -92,7 +92,7 @@ export class Transaksi{
 
 export class Detil_transaksi{
     constructor(td_id_detil_transaksi, td_id_transaksi, td_jumlah, td_id_kategori_transaksi, td_bpu_attachment,
-                td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, pembebanan_karyawan, td_is_deleted) {
+                td_debit_credit, td_nomor_bukti_transaksi, td_file_bukti_transaksi, skema_pembebanan_json, td_is_deleted, td_is_pembebanan_karyawan, td_is_pembebanan_cabang) {
         this.td_id_detil_transaksi=td_id_detil_transaksi
         this.td_id_transaksi=td_id_transaksi
         this.td_jumlah=td_jumlah
@@ -101,8 +101,9 @@ export class Detil_transaksi{
         this.td_debit_credit=td_debit_credit
         this.td_nomor_bukti_transaksi=td_nomor_bukti_transaksi
         this.td_file_bukti_transaksi=td_file_bukti_transaksi
-        this.pembebanan_karyawan=pembebanan_karyawan
         this.td_is_deleted=td_is_deleted
+        this.td_is_pembebanan_karyawan=td_is_pembebanan_karyawan
+        this.td_is_pembebanan_cabang=td_is_pembebanan_cabang
     }
 }
 
