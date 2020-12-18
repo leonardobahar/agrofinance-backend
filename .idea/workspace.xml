@@ -22,6 +22,7 @@
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,14 +85,7 @@
       <workItem from="1608090016636" duration="18507000" />
       <workItem from="1608174399499" duration="22683000" />
       <workItem from="1608258132062" duration="2203000" />
-      <workItem from="1608298781103" duration="3809000" />
-    </task>
-    <task id="LOCAL-00049" summary="Fixed add Cabang Perusahaan's Add Transaksi bug">
-      <created>1607087732825</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1607087732825</updated>
+      <workItem from="1608298781103" duration="5447000" />
     </task>
     <task id="LOCAL-00050" summary="Fixed add rekening bug">
       <created>1607612563989</created>
@@ -429,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608301897116</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Modified detil_transaksi table structure">
+      <created>1608302953776</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1608302953776</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,7 +459,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Add Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi endpoint. (Still in Progress)" />
     <MESSAGE value="Re-modified Update Transaksi function. (Still in Progress)" />
     <MESSAGE value="Re-modified Update Transaksi endpoint and function. (Still in progress)" />
@@ -483,6 +483,7 @@
     <MESSAGE value="Added debitSaldo function block" />
     <MESSAGE value="Added creditSaldo function block" />
     <MESSAGE value="Modified Approve Transaksi. (Still in progress)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified Approve Transaksi. (Still in progress)" />
+    <MESSAGE value="Modified detil_transaksi table structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified detil_transaksi table structure" />
   </component>
 </project>
