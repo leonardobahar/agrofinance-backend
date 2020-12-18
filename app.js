@@ -1747,11 +1747,44 @@ app.post("/api/transaksi/approve",(req,res)=>{
     const transfer=new Transaksi(req.body.id_transaksi,null,null,null,null,null,null,null,null,
         null, null,null,null,null,null)
 
-    dao.getTransaksiID(transfer).then(result=>{
+    dao.retrieveOneTransaksi(transfer).then(result=>{
+        const id_rekening=result.t_rekening_penanggung_utama
         dao.approveTransaksi(transfer).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
+            dao.getDebitCreditTransaksi(new Detil_transaksi(null,req.body.id_transaksi)).then(result=>{
+                if(result.td_debit_credit===0){
+                    dao.debitSaldo(new Rekening_perusahaan(id_rekening)).then(result=>{
+
+                    }).catch(error=>{
+                        console.error(error)
+                        res.status(500).send({
+                            success:false,
+                            error:SOMETHING_WENT_WRONG
+                        })
+                    })
+                }else if(result.td_debit_credit===1){
+                    dao.creditSaldo(new Rekening_perusahaan(id_rekening)).then(result=>{
+
+                    }).catch(error=>{
+                        console.error(error)
+                        res.status(500).send({
+                            success:false,
+                            error:SOMETHING_WENT_WRONG
+                        })
+                    })
+                }
+            }).catch(error=>{
+                if(error===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:false,
+                        error:NO_SUCH_CONTENT
+                    })
+                    return
+                }
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
             })
         }).catch(error=>{
             console.error(error)

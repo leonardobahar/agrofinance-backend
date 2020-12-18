@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,14 +84,7 @@
       <workItem from="1608090016636" duration="18507000" />
       <workItem from="1608174399499" duration="22683000" />
       <workItem from="1608258132062" duration="2203000" />
-      <workItem from="1608298781103" duration="383000" />
-    </task>
-    <task id="LOCAL-00047" summary="Add Cabang's Add rekening still in progress due to technical difficulties, Add Perusahaan's Add Cabang and Add Rekening is fully functioning">
-      <created>1607006870357</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1607006870357</updated>
+      <workItem from="1608298781103" duration="2884000" />
     </task>
     <task id="LOCAL-00048" summary="Fixed add Perusahaan's bug">
       <created>1607074689515</created>
@@ -429,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608297523255</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Added creditSaldo function block">
+      <created>1608299338958</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1608299338958</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,7 +458,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modifying Add Transaksi to be able to upload 2 files" />
     <MESSAGE value="Add Transaksi modification still in progress" />
     <MESSAGE value="Re-modified Add Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi endpoint. (Still in Progress)" />
@@ -483,6 +482,7 @@
     <MESSAGE value="Fixed Update Transaksi bug" />
     <MESSAGE value="Added getDebitCredit function block" />
     <MESSAGE value="Added debitSaldo function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added debitSaldo function block" />
+    <MESSAGE value="Added creditSaldo function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added creditSaldo function block" />
   </component>
 </project>
