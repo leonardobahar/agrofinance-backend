@@ -62,33 +62,6 @@ var privateKey  = fs.readFileSync('ssl/privkey.pem', 'utf8');
 var certificate = fs.readFileSync('ssl/cert.pem', 'utf8');
 
 
-//Extended: https://swagger.io/specification/#infoObject
-const swaggerOptions={
-    swaggerDefinition: {
-        info:{
-            title:"Agrofinance API",
-            description:"Agrofinance Project",
-            contact:{
-                name:"CodeDoc Software Solution"
-            },
-            servers:["http://localhost:8088"]
-        }
-    },
-    apis:["app.js"]
-}
-
-const swaggerDocs=swaggerJsDoc(swaggerOptions)
-app.use("/api-docs",swaggerUi.serve, swaggerUi.setup(swaggerDocs))
-
-/**
- * @swagger
- * /karyawan:
- * get:
- *   description: Use to get all Karyawan(Employees) data
- *   responses:
- *   '200':
- *     description: A successful response
- */
 app.get("/api/karyawan/retrieve",(req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
