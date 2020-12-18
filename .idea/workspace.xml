@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,13 +85,6 @@
       <workItem from="1608090016636" duration="18507000" />
       <workItem from="1608174399499" duration="22683000" />
       <workItem from="1608258132062" duration="2203000" />
-    </task>
-    <task id="LOCAL-00042" summary="Might've fixed Add Cabang Perusahaan(Through add perusahaan) issue">
-      <created>1606893740035</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1606893740035</updated>
     </task>
     <task id="LOCAL-00043" summary="Fixed Add Cabang Perusahaan">
       <created>1606917598863</created>
@@ -425,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608266613416</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Re-modified Update and Delete Transaksi. (Update Transaksi still in progress)">
+      <created>1608267005149</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1608267005149</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,7 +458,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Update Detil Transaksi endpoint" />
     <MESSAGE value="Modified Update Transaksi endpoint" />
     <MESSAGE value="remodified Update Transaksi endpoint. (Still in progress)" />
     <MESSAGE value="Remodified Update Transaksi endpoint. (Update Detil Transaksi still in progress due to technical difficulties)" />
@@ -479,6 +482,7 @@
     <MESSAGE value="Removed swagger import added jwt import" />
     <MESSAGE value="Cleaned up swagger codes" />
     <MESSAGE value="Re-modified Add Transaksi endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Add Transaksi endpoint" />
+    <MESSAGE value="Re-modified Update and Delete Transaksi. (Update Transaksi still in progress)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Update and Delete Transaksi. (Update Transaksi still in progress)" />
   </component>
 </project>

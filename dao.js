@@ -1524,31 +1524,6 @@ export class Dao{
         })
     }
 
-    getDetilTransaksiFile(transfer){
-        return new Promise((resolve,reject)=>{
-            if(!transfer instanceof Detil_transaksi){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="SELECT td_bpu_attachment FROM detil_transaksi WHERE td_id_transaksi=? "
-            this.mysqlConn.query(query,transfer.td_id_transaksi,(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }else if(result.length>0){
-                    let files=[]
-                    for(let i=0; i<result.length; i++){
-                        files.push(result[i].td_bpu_attachment)
-                    }
-                    resolve(files)
-                }else{
-                    reject(NO_SUCH_CONTENT)
-                }
-            })
-        })
-    }
-
     getTransaksiFile(transaksi){
         return new Promise((resolve,reject)=>{
             if(transaksi instanceof Transaksi){
@@ -1745,11 +1720,15 @@ export class Dao{
                             0
                         )
 
-                        transactionDetailObject = await this.addDetailTransaksi(transactionDetailObject).catch(err=>{
+                        detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
+
+                        transactionDetailObject = await this.deleteDetilTransaksi(new Detil_transaksi(detailTransaksi[i].td_id_detil_transaksi)).then(result=>{
+                            this.addDetailTransaksi(transactionDetailObject).catch(err=>{
+                                reject(err)
+                            })
+                        }).catch(err=>{
                             reject(err)
                         })
-
-                        detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
                     }
 
                     transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
