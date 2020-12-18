@@ -72,10 +72,13 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`detil_transaksi` (
   `td_debit_credit` TINYINT(1) NOT NULL DEFAULT 0,
   `td_nomor_bukti_transaksi` VARCHAR(45) NOT NULL,
   `td_file_bukti_transaksi` VARCHAR(45) NOT NULL,
-  `skema_pembebanan_json` LONGTEXT NOT NULL,
+  `pembebanan_karyawan` INT(7),
+  `pembebanan_cabang` INT(7),
   `td_is_deleted` TINYINT(1) DEFAULT 0,
   FOREIGN KEY (`td_id_kategori_transaksi`) REFERENCES kategori_transaksi(`kt_id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`td_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`td_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`pembebanan_karyawan`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`pembebanan_cabang`) REFERENCES cabang_perusahaan(`cp_id_cabang`) ON DELETE CASCADE ON UPDATE CASCADE
   );
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_rekening` (
