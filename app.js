@@ -1863,7 +1863,8 @@ app.delete("/api/transaksi/delete", (req,res)=>{
 
     dao.getTransaksiFile(transfer).then(result=>{
 
-        fs.unlinkSync('./Uploads/'+result.toString())
+        fs.unlinkSync('./Uploads/'+result[0])
+        fs.unlinkSync('./Uploads/'+result[1])
 
         dao.deleteTransaksi(transfer).then(result=>{
             res.status(200).send({

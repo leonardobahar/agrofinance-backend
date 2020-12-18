@@ -1443,7 +1443,7 @@ export class Dao{
                 "LEFT OUTER JOIN cabang_perusahaan cp ON t.t_id_cabang_perusahaan=cp.cp_id_cabang " +
                 "LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan " +
                 "LEFT OUTER JOIN karyawan k ON t.t_id_karyawan=k.k_id_karyawan " +
-                "WHERE t_id_transaksi=?"
+                "WHERE t_is_deleted='0' AND t_id_transaksi=?"
             this.mysqlConn.query(query, transaksi.t_id_transaksi, (error, result)=>{
                 if(error){
                     reject(error)
@@ -1629,7 +1629,7 @@ export class Dao{
                 let detailTransaksi = JSON.parse(transaksi.detail_transaksi);
                 const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_rekening_penanggung_utama`, `t_id_cabang_perusahaan`, `t_id_karyawan`, `t_is_deleted`) "+
                     "VALUES(NOW(),NOW(),NULL,?,'Pending',?,?,?,?,0)"
-                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_rekening_penanggung_utama, transaksi.t_id_cabang_perusahaan, transaksi.t_id_karyawan],(error, result) => {
+                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_rekening_penanggung_utama, transaksi.t_id_cabang_perusahaan, transaksi.t_id_karyawan],async (error, result) => {
                     if (error) {
                         reject(error)
                         return
@@ -1637,51 +1637,35 @@ export class Dao{
 
                     transaksi.t_id_transaksi = result.insertId
 
-                    const tp_query="INSERT INTO `transaksi_cabang_perusahaan` (`tp_id_cabang_perusahaan`, `tp_id_transaksi`) VALUES(?, ?)"
-                    this.mysqlConn.query(tp_query,[transaksi.t_id_cabang_perusahaan,transaksi.t_id_transaksi],(error,result)=>{
-                        if(error){
-                            reject(error)
-                            return
-                        }
+                    for (let i = 0; i < detailTransaksi.length; i++) {
+                        // BEGINNING OF DETAIL TRANSAKSI LOOP
+                        let transactionDetailObject = new Detil_transaksi(
+                            null,
+                            transaksi.t_id_transaksi,
+                            detailTransaksi[i].td_jumlah,
+                            detailTransaksi[i].td_id_kategori_transaksi,
+                            transaksi.td_bpu_attachment,
+                            detailTransaksi[i].td_debit_credit,
+                            detailTransaksi[i].td_nomor_bukti_transaksi,
+                            transaksi.td_file_bukti_transaksi,
+                            detailTransaksi[i].skema_pembebanan_json,
+                            0
+                        )
 
-                        const tk_query="INSERT INTO `transaksi_karyawan` (`tk_id_karyawan`, `tk_id_transaksi`) VALUES(?, ?)"
-                        this.mysqlConn.query(tk_query,[transaksi.t_id_karyawan,transaksi.t_id_transaksi], async(error,result)=>{
-                            if(error){
-                                reject(error)
-                                return
-                            }
-
-                            for (let i = 0; i < detailTransaksi.length; i++) {
-                                // BEGINNING OF DETAIL TRANSAKSI LOOP
-                                let transactionDetailObject = new Detil_transaksi(
-                                    null,
-                                    transaksi.t_id_transaksi,
-                                    detailTransaksi[i].td_jumlah,
-                                    detailTransaksi[i].td_id_kategori_transaksi,
-                                    transaksi.td_bpu_attachment,
-                                    detailTransaksi[i].td_debit_credit,
-                                    detailTransaksi[i].td_nomor_bukti_transaksi,
-                                    transaksi.td_file_bukti_transaksi,
-                                    detailTransaksi[i].skema_pembebanan_json,
-                                    0
-                                )
-
-                                transactionDetailObject = await this.addDetailTransaksi(transactionDetailObject).catch(err=>{
-                                    reject(err)
-                                })
-
-                                detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
-                                // END OF DETAIL TRANSAKSI LOOP
-                            }
-
-                            transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
-
-                            // TRANSAKSI AND DETIL TRANSAKSI HAS BEEN SUCCESSFUL THEREFORE APPEND TRANSAKSI_REKENING TABLE
-                            //transaksi.transaksi_rekening = await this.addTransaksiRekening(new Transaksi_rekening(null, "NOW", null, null, result.insertId))
-
-                            resolve(transaksi)
+                        transactionDetailObject = await this.addDetailTransaksi(transactionDetailObject).catch(err=>{
+                            reject(err)
                         })
-                    })
+
+                        detailTransaksi[i].td_id_detil_transaksi = transactionDetailObject.td_id_detil_transaksi
+                        // END OF DETAIL TRANSAKSI LOOP
+                    }
+
+                    transaksi.detail_transaksi = JSON.stringify(detailTransaksi)
+
+                    // TRANSAKSI AND DETIL TRANSAKSI HAS BEEN SUCCESSFUL THEREFORE APPEND TRANSAKSI_REKENING TABLE
+                    //transaksi.transaksi_rekening = await this.addTransaksiRekening(new Transaksi_rekening(null, "NOW", null, null, result.insertId))
+
+                    resolve(transaksi)
                 })
             }catch(e){
                 reject(e)
@@ -1881,6 +1865,7 @@ export class Dao{
                 return
             }
 
+            console.log(detil.td_id_detil_transaksi)
             const query="DELETE FROM detil_transaksi WHERE td_id_detil_transaksi=? "
             this.mysqlConn.query(query, detil.td_id_detil_transaksi,(error,result)=>{
                 if(error){
