@@ -1616,7 +1616,6 @@ app.post("/api/transaksi/update",(req,res)=>{
                 dao.getTransaksiFile(new Transaksi(req.body.id_transaksi)).then(result=>{
                     if(result[0]==='No Attachment' &&
                        result[1]==='No Attachment'){
-                        console.log(req.body.id_detil_transaksi)
                         dao.updateTransaksi(transfer).then(result=>{
                             res.status(200).send({
                                 success:true,
