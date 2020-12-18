@@ -1766,8 +1766,23 @@ export class Dao{
         })
     }
 
-    debitSaldo(){
+    debitSaldo(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
 
+            const query="UPDATE rekening_perusahaan SET rp_saldo=rp_saldo+? WHERE rp_id_rekening=? "
+            this.mysqlConn.query(query,[rekening.rp_id_rekening,rekening.rp_saldo],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(rekening)
+            })
+        })
     }
 
     creditSaldo(){
