@@ -56,8 +56,6 @@ const user = process.env.MY_SQL_USER
 const password = typeof process.env.MY_SQL_PASSWORD === 'undefined' ? '' : process.env.MY_SQL_PASSWORD
 const dbname = process.env.MY_SQL_DBNAME
 const dao = new Dao(host,user,password,dbname)
-const swaggerJsDoc=require('swagger-jsdoc')
-const swaggerUi=require('swagger-ui-express')
 
 // HTTPS
 var privateKey  = fs.readFileSync('ssl/privkey.pem', 'utf8');
