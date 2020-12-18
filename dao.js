@@ -1551,7 +1551,7 @@ export class Dao{
         })
     }
 
-    getPembebananJsonByKaryawanId(id_karyawan){
+    /*getPembebananJsonByKaryawanId(id_karyawan){
         return new Promise((resolve,reject)=>{
             const query="SELECT dt.skema_pembebanan_json FROM detil_transaksi dt "+
                 "LEFT OUTER JOIN transaksi t ON t.t_id_transaksi=dt.td_id_transaksi "+
@@ -1586,6 +1586,32 @@ export class Dao{
                     return
                 }else if(result.length>0){
                     resolve(result[0].skema_pembebanan_json)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }*/
+
+    getDebitCreditTransaksi(detil){
+        return new Promise((resolve,reject)=>{
+            if(!detil instanceof Detil_transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT td_debit_credit FROM detil_transaksi WHERE td_id_transaksi=?"
+            this.mysqlConn.query(query,detil.td_id_transaksi,(error,result)=>{
+                if(error){
+                    reject(error)
+                }else if(result.length>0){
+                    let type=[]
+                    for(let i=0; i<result.length; i++){
+                        type.push(
+                            result[i].td_debit_credit
+                        )
+                    }
+                    resolve(type)
                 }else{
                     reject(NO_SUCH_CONTENT)
                 }
@@ -1747,6 +1773,7 @@ export class Dao{
     creditSaldo(){
 
     }
+
    /* Delete this block only if you are permitted to.
    updateDetilTransaksi(detailTransaksiObject){
         return new Promise((resolve,reject)=>{
