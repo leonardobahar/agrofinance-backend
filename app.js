@@ -24,6 +24,7 @@ import {
 } from "./model";
 import multer from 'multer'
 import path from 'path'
+import jwt from "jsonwebtoken";
 
 dotenv.config()
 
@@ -61,6 +62,20 @@ const dao = new Dao(host,user,password,dbname)
 var privateKey  = fs.readFileSync('ssl/privkey.pem', 'utf8');
 var certificate = fs.readFileSync('ssl/cert.pem', 'utf8');
 
+// JWT
+const authenticateToken = (req, res, next)=>{
+    // Gather the jwt access token from the request header
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    if (token == null) return res.sendStatus(401) // if there isn't any token
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err ,user) => {
+        console.log(err)
+        if (err) return res.sendStatus(403)
+        req.user = user
+        next() // pass the execution off to whatever request the client intended
+    })
+}
 
 app.get("/api/karyawan/retrieve",(req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){

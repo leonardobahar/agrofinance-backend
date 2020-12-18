@@ -19,13 +19,24 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Remove swagger dependencies">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Cleaned up swagger codes">
+      <change afterPath="$PROJECT_DIR$/generate-jwt-token.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt-util.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -75,21 +86,7 @@
       <workItem from="1608001234098" duration="27902000" />
       <workItem from="1608090016636" duration="18507000" />
       <workItem from="1608174399499" duration="22683000" />
-      <workItem from="1608258132062" duration="954000" />
-    </task>
-    <task id="LOCAL-00039" summary="Udah pasti pas">
-      <created>1606837511552</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1606837511552</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Attempt to fix addcabang perusahaan">
-      <created>1606837785947</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1606837785947</updated>
+      <workItem from="1608258132062" duration="2203000" />
     </task>
     <task id="LOCAL-00041" summary="Attempt to fix addcabang perusahaan">
       <created>1606837917354</created>
@@ -420,7 +417,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608258272942</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Removed swagger import added jwt import">
+      <created>1608261228889</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1608261228889</updated>
+    </task>
+    <task id="LOCAL-00089" summary="Cleaned up swagger codes">
+      <created>1608261272560</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1608261272560</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -449,8 +460,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated sql file" />
-    <MESSAGE value="Added Update Transaksi function" />
     <MESSAGE value="Added Update Detil Transaksi function" />
     <MESSAGE value="Added Update Detil Transaksi endpoint" />
     <MESSAGE value="Modified Update Transaksi endpoint" />
@@ -474,6 +483,8 @@
     <MESSAGE value="Re-modified Update Transaksi endpoint. (Still in progress)" />
     <MESSAGE value="Re-modified Update Transaksi function block." />
     <MESSAGE value="Remove swagger dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove swagger dependencies" />
+    <MESSAGE value="Removed swagger import added jwt import" />
+    <MESSAGE value="Cleaned up swagger codes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up swagger codes" />
   </component>
 </project>

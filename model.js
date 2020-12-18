@@ -105,3 +105,14 @@ export class Detil_transaksi{
         this.td_is_deleted=td_is_deleted
     }
 }
+
+export class User{
+    constructor(user_id, username, email, password, role, is_blocked) {
+        this.user_id = user_id
+        this.username = username
+        this.email = email
+        this.password = password
+        this.role = role
+        this.is_blocked = is_blocked
+    }
+}
