@@ -77,6 +77,22 @@ export class Dao{
                     reject(error)
                     return
                 }
+
+                resolve(new User(result.id, result.username, result.email, result.password, result.role, result.is_blocked))
+            })
+        })
+    }
+
+    addUserToken(token_id, user_id, expired_time){
+        return new Promise((resolve,reject)=>{
+            const query = "INSERT INTO `user_token`(`token_id`, `user_id`, `expired_timestamp`) VALUES (?, ?, ?)";
+            this.mysqlConn.query(query, (error, result)=>{
+                if (error){
+                    reject(error)
+                    return
+                }
+
+                resolve(token_id)
             })
         })
     }
