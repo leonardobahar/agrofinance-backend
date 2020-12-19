@@ -101,6 +101,7 @@ export class Detil_transaksi{
         this.td_debit_credit=td_debit_credit
         this.td_nomor_bukti_transaksi=td_nomor_bukti_transaksi
         this.td_file_bukti_transaksi=td_file_bukti_transaksi
+        this.skema_pembebanan_json=skema_pembebanan_json
         this.td_is_deleted=td_is_deleted
         this.td_is_pembebanan_karyawan=td_is_pembebanan_karyawan
         this.td_is_pembebanan_cabang=td_is_pembebanan_cabang

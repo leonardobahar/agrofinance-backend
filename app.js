@@ -1454,14 +1454,14 @@ app.post("/api/transaksi/add",async(req,res)=> {
             return
         }
 
-        if (typeof req.files==='undefined'){
+        if (typeof req.files[0]==='undefined' && typeof req.files[1]==='undefined'){
 
             const transfer=new Transaksi(null,'NOW','NOW',
                 'NULL',req.body.is_rutin, 'Pending',req.body.bon_sementara, req.body.id_rekening,
                 req.body.id_cabang_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,
                 null,req.body.jumlah,req.body.id_kategori_transaksi,
                 'No Attachment',req.body.debit_credit,req.body.nomor_bukti_transaksi,
-                'No Attachment',req.body.pembebanan,'0', null)
+                'No Attachment',req.body.pembebanan,'0')
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({
                     success:true,
