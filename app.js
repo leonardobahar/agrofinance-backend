@@ -1762,25 +1762,29 @@ app.post("/api/transaksi/approve",(req,res)=>{
             dao.approveTransaksi(transfer).then(result=>{
                 dao.getDebitCreditTransaksi(new Detil_transaksi(null,req.body.id_transaksi)).then(result=>{
                     if(result.td_debit_credit===0){
-                        dao.debitSaldo(new Rekening_perusahaan(id_rekening,)).then(result=>{
+                        for(let i=0; i<values.length; i++){
+                            dao.debitSaldo(new Rekening_perusahaan(id_rekening,null,null,values[i].td_jumlah)).then(result=>{
 
-                        }).catch(error=>{
-                            console.error(error)
-                            res.status(500).send({
-                                success:false,
-                                error:SOMETHING_WENT_WRONG
+                            }).catch(error=>{
+                                console.error(error)
+                                res.status(500).send({
+                                    success:false,
+                                    error:SOMETHING_WENT_WRONG
+                                })
                             })
-                        })
+                        }
                     }else if(result.td_debit_credit===1){
-                        dao.creditSaldo(new Rekening_perusahaan(id_rekening)).then(result=>{
+                        for(let i=0; i<values.length; i++){
+                            dao.creditSaldo(new Rekening_perusahaan(id_rekening,null,null,values[i].td_jumlah)).then(result=>{
 
-                        }).catch(error=>{
-                            console.error(error)
-                            res.status(500).send({
-                                success:false,
-                                error:SOMETHING_WENT_WRONG
+                            }).catch(error=>{
+                                console.error(error)
+                                res.status(500).send({
+                                    success:false,
+                                    error:SOMETHING_WENT_WRONG
+                                })
                             })
-                        })
+                        }
                     }
                 }).catch(error=>{
                     if(error===NO_SUCH_CONTENT){

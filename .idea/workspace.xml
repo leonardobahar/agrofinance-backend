@@ -84,14 +84,7 @@
       <workItem from="1608174399499" duration="22683000" />
       <workItem from="1608258132062" duration="2203000" />
       <workItem from="1608298781103" duration="7598000" />
-      <workItem from="1608348726686" duration="7417000" />
-    </task>
-    <task id="LOCAL-00054" summary="Modified Transaksi endpoints. (Changed req.body.rekening_penanggung_utama to id_rekening)">
-      <created>1607926554895</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1607926554895</updated>
+      <workItem from="1608348726686" duration="8207000" />
     </task>
     <task id="LOCAL-00055" summary="Fixed Add Transaksi bug">
       <created>1607927643137</created>
@@ -429,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608359001472</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Re modified Approve Transaksi. (Still in progress)">
+      <created>1608360360165</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1608360360165</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,7 +458,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update Transaksi bug fixed" />
     <MESSAGE value="Modified Add Transaksi to Upload 2 files" />
     <MESSAGE value="Modified Update Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi" />
@@ -483,6 +482,7 @@
     <MESSAGE value="Re-modified detil_transaksi table structure" />
     <MESSAGE value="Re-modified add Transaksi endpoint" />
     <MESSAGE value="Added retrieve detilTransaksi function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added retrieve detilTransaksi function block" />
+    <MESSAGE value="Re modified Approve Transaksi. (Still in progress)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re modified Approve Transaksi. (Still in progress)" />
   </component>
 </project>
