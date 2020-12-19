@@ -1454,14 +1454,14 @@ app.post("/api/transaksi/add",async(req,res)=> {
             return
         }
 
-        if (typeof req.files==='undefined'){
+        if (typeof req.files[0]==='undefined' && typeof req.files[1]==='undefined'){
 
             const transfer=new Transaksi(null,'NOW','NOW',
                 'NULL',req.body.is_rutin, 'Pending',req.body.bon_sementara, req.body.id_rekening,
                 req.body.id_cabang_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,
                 null,req.body.jumlah,req.body.id_kategori_transaksi,
                 'No Attachment',req.body.debit_credit,req.body.nomor_bukti_transaksi,
-                'No Attachment',req.body.pembebanan,'0', null)
+                'No Attachment',req.body.pembebanan,'0')
             dao.addTransaksi(transfer).then(result=>{
                 res.status(200).send({
                     success:true,
@@ -1747,39 +1747,60 @@ app.post("/api/transaksi/approve",(req,res)=>{
     const transfer=new Transaksi(req.body.id_transaksi,null,null,null,null,null,null,null,null,
         null, null,null,null,null,null)
 
+    const detil=new Detil_transaksi(null,req.body.id_transaksi,null,null,null,null,
+        null,null,null,null,null,null)
+
     dao.retrieveOneTransaksi(transfer).then(result=>{
         const id_rekening=result.t_rekening_penanggung_utama
-        dao.approveTransaksi(transfer).then(result=>{
-            dao.getDebitCreditTransaksi(new Detil_transaksi(null,req.body.id_transaksi)).then(result=>{
-                if(result.td_debit_credit===0){
-                    dao.debitSaldo(new Rekening_perusahaan(id_rekening)).then(result=>{
 
-                    }).catch(error=>{
-                        console.error(error)
-                        res.status(500).send({
-                            success:false,
-                            error:SOMETHING_WENT_WRONG
-                        })
-                    })
-                }else if(result.td_debit_credit===1){
-                    dao.creditSaldo(new Rekening_perusahaan(id_rekening)).then(result=>{
+        dao.retrieveDetilTransaksi(detil).then(result=>{
+            let values=[]
+            for(let i=0; i<result.length; i++){
+                values.push(result[i].td_jumlah)
+            }
 
-                    }).catch(error=>{
-                        console.error(error)
-                        res.status(500).send({
+            dao.approveTransaksi(transfer).then(result=>{
+                dao.getDebitCreditTransaksi(new Detil_transaksi(null,req.body.id_transaksi)).then(result=>{
+                    if(result.td_debit_credit===0){
+                        for(let i=0; i<values.length; i++){
+                            dao.debitSaldo(new Rekening_perusahaan(id_rekening,null,null,values[i].td_jumlah)).then(result=>{
+
+                            }).catch(error=>{
+                                console.error(error)
+                                res.status(500).send({
+                                    success:false,
+                                    error:SOMETHING_WENT_WRONG
+                                })
+                            })
+                        }
+                    }else if(result.td_debit_credit===1){
+                        for(let i=0; i<values.length; i++){
+                            dao.creditSaldo(new Rekening_perusahaan(id_rekening,null,null,values[i].td_jumlah)).then(result=>{
+
+                            }).catch(error=>{
+                                console.error(error)
+                                res.status(500).send({
+                                    success:false,
+                                    error:SOMETHING_WENT_WRONG
+                                })
+                            })
+                        }
+                    }
+                }).catch(error=>{
+                    if(error===NO_SUCH_CONTENT){
+                        res.status(204).send({
                             success:false,
-                            error:SOMETHING_WENT_WRONG
+                            error:NO_SUCH_CONTENT
                         })
-                    })
-                }
-            }).catch(error=>{
-                if(error===NO_SUCH_CONTENT){
-                    res.status(204).send({
+                        return
+                    }
+                    console.error(error)
+                    res.status(500).send({
                         success:false,
-                        error:NO_SUCH_CONTENT
+                        error:SOMETHING_WENT_WRONG
                     })
-                    return
-                }
+                })
+            }).catch(error=>{
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -1787,12 +1808,20 @@ app.post("/api/transaksi/approve",(req,res)=>{
                 })
             })
         }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }
             console.error(error)
             res.status(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
             })
         })
+
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
