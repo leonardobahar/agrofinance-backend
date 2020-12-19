@@ -1752,7 +1752,7 @@ app.post("/api/transaksi/approve",(req,res)=>{
         dao.approveTransaksi(transfer).then(result=>{
             dao.getDebitCreditTransaksi(new Detil_transaksi(null,req.body.id_transaksi)).then(result=>{
                 if(result.td_debit_credit===0){
-                    dao.debitSaldo(new Rekening_perusahaan(id_rekening)).then(result=>{
+                    dao.debitSaldo(new Rekening_perusahaan(id_rekening,)).then(result=>{
 
                     }).catch(error=>{
                         console.error(error)

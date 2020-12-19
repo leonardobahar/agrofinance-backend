@@ -1448,9 +1448,7 @@ export class Dao{
                 if(error){
                     reject(error)
                     return
-                }
-
-                else if(result.length>0){
+                } else if(result.length>0){
                     const transaksi=result.map(rowDataPacket=>{
                         return{
                             id_karyawan:rowDataPacket.k_id_karyawan,
@@ -1477,9 +1475,45 @@ export class Dao{
                         }
                     })
                     resolve(transaksi)
+                } else{
+                    reject(NO_SUCH_CONTENT)
                 }
+            })
+        })
+    }
 
-                else{
+    retrieveDetilTransaksi(detil){
+        return new Promise((resolve,reject)=>{
+            if(!detil instanceof Detil_transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT * FROM detil_transaksi WHERE td_id_transaksi=?"
+            this.mysqlConn.query(query,detil.td_id_transaksi,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    let details=[]
+                    for(let i=0; i<result.length; i++){
+                        details.push(new Detil_transaksi(
+                            result[i].td_id_detil_transaksi,
+                            result[i].td_id_transaksi,
+                            result[i].td_jumlah,
+                            result[i].td_id_kategori_transaksi,
+                            result[i].td_bpu_attachment,
+                            result[i].td_debit_credit,
+                            result[i].td_nomor_bukti_transaksi,
+                            result[i].td_file_bukti_transaksi,
+                            result[i].skema_pembebanan_json,
+                            result[i].td_is_deleted,
+                            result[i].td_is_pembebanan_karyawan,
+                            result[i].td_is_pembebanan_cabang
+                        ))
+                    }
+                    resolve(details)
+                }else{
                     reject(NO_SUCH_CONTENT)
                 }
             })
