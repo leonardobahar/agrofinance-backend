@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,14 +85,7 @@
       <workItem from="1608174399499" duration="22683000" />
       <workItem from="1608258132062" duration="2203000" />
       <workItem from="1608298781103" duration="7598000" />
-      <workItem from="1608348726686" duration="10436000" />
-    </task>
-    <task id="LOCAL-00056" summary="Modified Retrieve Transaksi endpoint">
-      <created>1607930934236</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1607930934236</updated>
+      <workItem from="1608348726686" duration="16416000" />
     </task>
     <task id="LOCAL-00057" summary="Added new function">
       <created>1607943989523</created>
@@ -430,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608361191421</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Added Check Pembebanan json function block">
+      <created>1608369374095</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1608369374095</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +459,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified Update Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi to Upload 2 files" />
     <MESSAGE value="Re-modified Get Transaksi File function" />
@@ -484,6 +483,7 @@
     <MESSAGE value="Added retrieve detilTransaksi function block" />
     <MESSAGE value="Re modified Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) II" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress) II" />
+    <MESSAGE value="Added Check Pembebanan json function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Check Pembebanan json function block" />
   </component>
 </project>
