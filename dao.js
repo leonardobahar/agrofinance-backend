@@ -17,7 +17,7 @@ import {
     Kategori_transaksi,
     Pembebanan,
     Perusahaan, Rekening_perusahaan,
-    Transaksi, Transaksi_rekening
+    Transaksi, Transaksi_rekening, User
 } from "./model";
 
 export class Dao{
@@ -47,7 +47,7 @@ export class Dao{
                             if(err){
                                 throw err
                             }else {
-                                console.log("CONNECTED SUCCESSFULLY TO DATABASE")
+                                //console.log("CONNECTED SUCCESSFULLY TO DATABASE")
                                 resolve(1)
                             }
                         })
@@ -71,28 +71,51 @@ export class Dao{
 
     login(username, password){
         return new Promise((resolve, reject)=>{
-            const query = "SELECT * FROM `user` WHERE `username` = ? AND `password` = ?"
-            this.mysqlConn.query(query, (error, result)=>{
+            const query = "SELECT * FROM `user` WHERE `u_username` = ? AND `u_password` = ?"
+            this.mysqlConn.query(query, [username, password], (error, result)=>{
                 if (error){
                     reject(error)
                     return
                 }
 
-                resolve(new User(result.id, result.username, result.email, result.password, result.role, result.is_blocked))
+                if (result.length > 0){
+                    resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].u_role, result[0].u_is_blocked))
+                }else{
+                    reject("FALSE_AUTH")
+                }
+
             })
         })
     }
 
-    addUserToken(token_id, user_id, expired_time){
+    addUserToken(token_id, user_id, role){
         return new Promise((resolve,reject)=>{
-            const query = "INSERT INTO `user_token`(`token_id`, `user_id`, `expired_timestamp`) VALUES (?, ?, ?)";
-            this.mysqlConn.query(query, (error, result)=>{
+            const query = "INSERT INTO `user_token`(`token_id`, `user_id`, `role`) VALUES (?, ?, ?)";
+            this.mysqlConn.query(query,[token_id, user_id, role] , (error, result)=>{
                 if (error){
                     reject(error)
                     return
                 }
 
                 resolve(token_id)
+            })
+        })
+    }
+
+    retrieveTokenRole(token_id){
+        return new Promise((resolve, reject) => {
+            const query = "SELECT role FROM user_token WHERE token_id = ?"
+            this.mysqlConn.query(query, [token_id], (error, result)=>{
+                if (error){
+                    reject(error)
+                    return
+                }
+
+                if (result.length>0){
+                    resolve(result[0].role)
+                }else{
+                    reject("FALSE_AUTH")
+                }
             })
         })
     }

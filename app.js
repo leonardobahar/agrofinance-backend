@@ -25,6 +25,7 @@ import {
 import multer from 'multer'
 import path from 'path'
 import jwt from "jsonwebtoken";
+import {generateAccessToken} from "./jwt/util";
 
 dotenv.config()
 
@@ -69,15 +70,60 @@ const authenticateToken = (req, res, next)=>{
     const token = authHeader && authHeader.split(' ')[1]
     if (token == null) return res.sendStatus(401) // if there isn't any token
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err , user) => {
-        console.log(err)
-        if (err) return res.sendStatus(403)
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async(err , user) => {
+        if (err) {
+            console.log(err)
+            return res.sendStatus(403)
+        }
+
+        if (req.originalUrl === "/api/transaksi/approve"){
+            const role = await dao.retrieveTokenRole(token)
+            if (role === "KASIR"){
+                return res.sendStatus(403)
+            }
+        }
         req.user = user
         next() // pass the execution off to whatever request the client intended
     })
 }
 
-app.get("/api/karyawan/retrieve",(req,res)=>{
+app.post("/api/login", (req, res)=>{
+    if (typeof req.body.username === 'undefined' || typeof req.body.password === 'undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.login(req.body.username, req.body.password).then(async result=>{
+        const token = generateAccessToken(req.body.username, process.env.ACCESS_TOKEN_SECRET)
+        await dao.addUserToken(token, result.user_id, result.role)
+        res.status(200).send({
+            success: true,
+            auth: true,
+            token: token,
+            message: "Authentication success"
+        })
+    }).catch(err=>{
+        if (err === "FALSE_AUTH"){
+            res.status(200).send({
+                success: true,
+                auth: false,
+                message: "Username or password incorrect"
+            })
+        }else{
+            console.error(err)
+            res.status(500).send({
+                success: false,
+                message: SOMETHING_WENT_WRONG
+            })
+
+        }
+    })
+})
+
+app.get("/api/karyawan/retrieve", authenticateToken,(req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
             res.status(200).send({
@@ -1735,7 +1781,7 @@ app.post("/api/transaksi/update",(req,res)=>{
     })
 })
 
-app.post("/api/transaksi/approve",(req,res)=>{
+app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
     if(typeof req.body.id_transaksi==='undefined'){
         res.status(400).send({
             success:false,
