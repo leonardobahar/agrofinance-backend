@@ -20,10 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/jwt/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generate-jwt-token.js" beforeDir="false" afterPath="$PROJECT_DIR$/jwt/generate-jwt-token.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +37,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1ksLIZVhDDQTTQFBC7Jg1vwZRsX" />
   <component name="ProjectViewState">
@@ -56,11 +55,6 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\thefatflyer\OneDrive\Desktop\agrofinance-backend\jwt" />
-    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -90,64 +84,8 @@
       <workItem from="1608090016636" duration="18507000" />
       <workItem from="1608174399499" duration="22683000" />
       <workItem from="1608258132062" duration="2203000" />
-      <workItem from="1608298781103" duration="3809000" />
-      <workItem from="1608381192538" duration="2623000" />
-    </task>
-    <task id="LOCAL-00049" summary="Fixed add Cabang Perusahaan's Add Transaksi bug">
-      <created>1607087732825</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1607087732825</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Fixed add rekening bug">
-      <created>1607612563989</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1607612563989</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Modified Transaksi table and added transaksi_cabang_perusahaan table">
-      <created>1607922657522</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1607922657523</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Modified Add Transaksi endpoints and Transaksi functions">
-      <created>1607923242144</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1607923242144</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Modified Transaksi endpoints and functions. (Removed Jenis Transaksi column)">
-      <created>1607924753640</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1607924753640</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Modified Transaksi endpoints. (Changed req.body.rekening_penanggung_utama to id_rekening)">
-      <created>1607926554895</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1607926554895</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Fixed Add Transaksi bug">
-      <created>1607927643137</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1607927643137</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Modified Retrieve Transaksi endpoint">
-      <created>1607930934236</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1607930934236</updated>
+      <workItem from="1608298781103" duration="7598000" />
+      <workItem from="1608348726686" duration="16416000" />
     </task>
     <task id="LOCAL-00057" summary="Added new function">
       <created>1607943989523</created>
@@ -436,7 +374,63 @@
       <option name="project" value="LOCAL" />
       <updated>1608301897116</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Modified detil_transaksi table structure">
+      <created>1608302953776</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1608302953776</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Re-modified detil_transaksi table structure">
+      <created>1608304471496</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1608304471496</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Re-modified detil_transaksi table structure">
+      <created>1608305989481</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1608305989481</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Re-modified add Transaksi endpoint">
+      <created>1608353106816</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1608353106816</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Added retrieve detilTransaksi function block">
+      <created>1608359001472</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1608359001472</updated>
+    </task>
+    <task id="LOCAL-00103" summary="Re modified Approve Transaksi. (Still in progress)">
+      <created>1608360360165</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1608360360165</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Re-modified Approve Transaksi. (Still in progress) II">
+      <created>1608361191421</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1608361191421</updated>
+    </task>
+    <task id="LOCAL-00105" summary="Added Check Pembebanan json function block">
+      <created>1608369374095</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1608369374095</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,13 +459,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Add Transaksi" />
-    <MESSAGE value="Re-modified Update Transaksi endpoint. (Still in Progress)" />
-    <MESSAGE value="Re-modified Update Transaksi function. (Still in Progress)" />
-    <MESSAGE value="Re-modified Update Transaksi endpoint and function. (Still in progress)" />
-    <MESSAGE value="Update Transaksi bug fixed" />
-    <MESSAGE value="Modified Add Transaksi to Upload 2 files" />
-    <MESSAGE value="Modified Update Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi" />
     <MESSAGE value="Re-modified Update Transaksi to Upload 2 files" />
     <MESSAGE value="Re-modified Get Transaksi File function" />
@@ -490,6 +477,13 @@
     <MESSAGE value="Added debitSaldo function block" />
     <MESSAGE value="Added creditSaldo function block" />
     <MESSAGE value="Modified Approve Transaksi. (Still in progress)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified Approve Transaksi. (Still in progress)" />
+    <MESSAGE value="Modified detil_transaksi table structure" />
+    <MESSAGE value="Re-modified detil_transaksi table structure" />
+    <MESSAGE value="Re-modified add Transaksi endpoint" />
+    <MESSAGE value="Added retrieve detilTransaksi function block" />
+    <MESSAGE value="Re modified Approve Transaksi. (Still in progress)" />
+    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) II" />
+    <MESSAGE value="Added Check Pembebanan json function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Check Pembebanan json function block" />
   </component>
 </project>

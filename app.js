@@ -1764,7 +1764,22 @@ app.post("/api/transaksi/approve",(req,res)=>{
                     if(result.td_debit_credit===0){
                         for(let i=0; i<values.length; i++){
                             dao.debitSaldo(new Rekening_perusahaan(id_rekening,null,null,values[i].td_jumlah)).then(result=>{
+                                dao.checkPembebananJson(detil).then(result=>{
 
+                                }).catch(error=>{
+                                    if(error===NO_SUCH_CONTENT){
+                                        res.status(204).send({
+                                            success:false,
+                                            error:NO_SUCH_CONTENT
+                                        })
+                                        return
+                                    }
+                                    console.error(error)
+                                    res.status(500).send({
+                                        success:false,
+                                        error:SOMETHING_WENT_WRONG
+                                    })
+                                })
                             }).catch(error=>{
                                 console.error(error)
                                 res.status(500).send({
@@ -1776,7 +1791,22 @@ app.post("/api/transaksi/approve",(req,res)=>{
                     }else if(result.td_debit_credit===1){
                         for(let i=0; i<values.length; i++){
                             dao.creditSaldo(new Rekening_perusahaan(id_rekening,null,null,values[i].td_jumlah)).then(result=>{
+                                dao.checkPembebananJson(detil).then(result=>{
 
+                                }).catch(error=>{
+                                    if(error===NO_SUCH_CONTENT){
+                                        res.status(204).send({
+                                            success:false,
+                                            error:NO_SUCH_CONTENT
+                                        })
+                                        return
+                                    }
+                                    console.error(error)
+                                    res.status(500).send({
+                                        success:false,
+                                        error:SOMETHING_WENT_WRONG
+                                    })
+                                })
                             }).catch(error=>{
                                 console.error(error)
                                 res.status(500).send({
