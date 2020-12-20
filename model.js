@@ -109,12 +109,13 @@ export class Detil_transaksi{
 }
 
 export class User{
-    constructor(user_id, username, email, password, role, is_blocked) {
+    constructor(user_id, username, email, password, role, karyawan_id, is_blocked) {
         this.user_id = user_id
         this.username = username
         this.email = email
         this.password = password
         this.role = role
         this.is_blocked = is_blocked
+        this.karyawan_id = karyawan_id
     }
 }

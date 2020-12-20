@@ -79,43 +79,11 @@ export class Dao{
                 }
 
                 if (result.length > 0){
-                    resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].u_role, result[0].u_is_blocked))
+                    resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].u_role, result[0].karyawan_id, result[0].u_is_blocked))
                 }else{
                     reject("FALSE_AUTH")
                 }
 
-            })
-        })
-    }
-
-    addUserToken(token_id, user_id, role){
-        return new Promise((resolve,reject)=>{
-            const query = "INSERT INTO `user_token`(`token_id`, `user_id`, `role`) VALUES (?, ?, ?)";
-            this.mysqlConn.query(query,[token_id, user_id, role] , (error, result)=>{
-                if (error){
-                    reject(error)
-                    return
-                }
-
-                resolve(token_id)
-            })
-        })
-    }
-
-    retrieveTokenRole(token_id){
-        return new Promise((resolve, reject) => {
-            const query = "SELECT role FROM user_token WHERE token_id = ?"
-            this.mysqlConn.query(query, [token_id], (error, result)=>{
-                if (error){
-                    reject(error)
-                    return
-                }
-
-                if (result.length>0){
-                    resolve(result[0].role)
-                }else{
-                    reject("FALSE_AUTH")
-                }
             })
         })
     }

@@ -77,10 +77,6 @@ const authenticateToken = (req, res, next)=>{
         }
 
         if (req.originalUrl === "/api/transaksi/approve"){
-            // const role = await dao.retrieveTokenRole(token)
-            // if (role === "KASIR"){
-            //     return res.sendStatus(403)
-            // }
             if (userInfo.role === "KASIR"){
                 return res.sendStatus(403)
             }
@@ -105,12 +101,12 @@ app.post("/api/login", (req, res)=>{
             user: req.body.username,
             role: result.role
         }, process.env.ACCESS_TOKEN_SECRET)
-        //await dao.addUserToken(token, result.user_id, result.role)
         res.status(200).send({
             success: true,
             auth: true,
             token: token,
             role: result.role,
+            karyawan_id: result.karyawan_id,
             message: "Authentication success"
         })
     }).catch(err=>{
