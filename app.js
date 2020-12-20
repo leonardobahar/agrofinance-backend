@@ -1577,8 +1577,8 @@ app.post("/api/transaksi/add",async(req,res)=> {
                 return res.send(error)
             }
 
-            console.log(req.files[0].filename)
-            console.log(req.files[1].filename)
+            console.log(req.files && req.files[0].filename)
+            console.log(req.files && req.files[1].filename)
             const transfer=new Transaksi(null,'NOW','NOW','NULL',req.body.is_rutin,'Pending',req.body.bon_sementara, req.body.id_rekening,
                 req.body.id_cabang_perusahaan,req.body.id_karyawan,'0',req.body.detail_transaksi,null,req.body.jumlah,req.body.id_kategori_transaksi,
                 req.files[0].filename,req.body.debit_credit,req.body.nomor_bukti_transaksi,
