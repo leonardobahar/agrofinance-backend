@@ -70,19 +70,23 @@ const authenticateToken = (req, res, next)=>{
     const token = authHeader && authHeader.split(' ')[1]
     if (token == null) return res.sendStatus(401) // if there isn't any token
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async(err , user) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async(err , userInfo) => {
         if (err) {
             console.log(err)
             return res.sendStatus(403)
         }
 
         if (req.originalUrl === "/api/transaksi/approve"){
-            const role = await dao.retrieveTokenRole(token)
-            if (role === "KASIR"){
+            // const role = await dao.retrieveTokenRole(token)
+            // if (role === "KASIR"){
+            //     return res.sendStatus(403)
+            // }
+            if (userInfo.role === "KASIR"){
                 return res.sendStatus(403)
             }
         }
-        req.user = user
+        req.user = userInfo
+        console.log(userInfo)
         next() // pass the execution off to whatever request the client intended
     })
 }
@@ -97,12 +101,16 @@ app.post("/api/login", (req, res)=>{
     }
 
     dao.login(req.body.username, req.body.password).then(async result=>{
-        const token = generateAccessToken(req.body.username, process.env.ACCESS_TOKEN_SECRET)
-        await dao.addUserToken(token, result.user_id, result.role)
+        const token = generateAccessToken({
+            user: req.body.username,
+            role: result.role
+        }, process.env.ACCESS_TOKEN_SECRET)
+        //await dao.addUserToken(token, result.user_id, result.role)
         res.status(200).send({
             success: true,
             auth: true,
             token: token,
+            role: result.role,
             message: "Authentication success"
         })
     }).catch(err=>{

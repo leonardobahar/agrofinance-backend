@@ -19,9 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints.">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Added jwt authentication protocol to retrieve perusahaan">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jwt/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/jwt/util.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,13 +108,6 @@
       <workItem from="1608258132062" duration="2203000" />
       <workItem from="1608298781103" duration="7598000" />
       <workItem from="1608348726686" duration="16416000" />
-    </task>
-    <task id="LOCAL-00059" summary="Modified getDefaultOrNonDefaultRekening function. New Delete feature still in progress.">
-      <created>1607951713645</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1607951713645</updated>
     </task>
     <task id="LOCAL-00060" summary="Modified sql file">
       <created>1607955536520</created>
@@ -451,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608391916684</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Added jwt authentication protocol to retrieve perusahaan">
+      <created>1608434874193</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1608434874193</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,7 +481,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Get Transaksi File function" />
     <MESSAGE value="Re-modified Update Transaksi. (Still in progress)" />
     <MESSAGE value="Added Delete Detil Transaksi function block" />
     <MESSAGE value="Re-modified Update Transaksi endpoint. (Still in progress)" />
@@ -505,6 +505,7 @@
     <MESSAGE value="Added Check Pembebanan json function block" />
     <MESSAGE value="Created addUserToken function and added jest to dependency" />
     <MESSAGE value="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints." />
+    <MESSAGE value="Added jwt authentication protocol to retrieve perusahaan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added jwt authentication protocol to retrieve perusahaan" />
   </component>
 </project>
