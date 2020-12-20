@@ -131,7 +131,7 @@ app.post("/api/login", (req, res)=>{
     })
 })
 
-app.get("/api/karyawan/retrieve",(req,res)=>{
+app.get("/api/karyawan/retrieve", (req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
             res.status(200).send({
