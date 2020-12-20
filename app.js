@@ -1807,105 +1807,62 @@ app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
     dao.retrieveOneTransaksi(transfer).then(result=>{
         const id_rekening=result.t_rekening_penanggung_utama
 
-        dao.retrieveDetilTransaksi(detil).then(result=>{
-            let values=[]
-            for(let i=0; i<result.length; i++){
-                values.push(result[i].td_jumlah)
-            }
+        dao.approveTransaksi(transfer).then(result=>{
+            dao.retrieveDetilTransaksi(detil).then(result=>{
+                let descriptions=[]
+                for(let i=0; i<result.length; i++){
+                    descriptions.push(
+                        result[i].td_id_detil_transaksi,
+                        result[i].td_id_transaksi,
+                        result[i].td_jumlah,
+                        result[i].td_id_kategori_transaksi,
+                        result[i].td_bpu_attachment,
+                        result[i].td_debit_credit,
+                        result[i].td_nomor_bukti_transaksi,
+                        result[i].td_file_bukti_transaksi,
+                        result[i].skema_pembebanan_json,
+                        result[i].td_is_deleted,
+                        result[i].td_is_pembebanan_karyawan,
+                        result[i].td_is_pembebanan_cabang
+                    )
 
-            dao.approveTransaksi(transfer).then(result=>{
-                dao.getDebitCreditTransaksi(new Detil_transaksi(null,req.body.id_transaksi)).then(result=>{
-                    if(result.td_debit_credit===0){
-                        for(let i=0; i<values.length; i++){
-                            dao.debitSaldo(new Rekening_perusahaan(id_rekening,null,null,values[i].td_jumlah)).then(result=>{
-                                dao.checkPembebananJson(detil).then(result=>{
+                    dao.getDebitCreditTransaksi(detil).then(result=>{
+                        if(result.td_debit_credit===0){
+                            dao.debitSaldo(new Rekening_perusahaan(id_rekening,null,null,result[i].td_jumlah)).then(result=>{
 
-                                }).catch(error=>{
-                                    if(error===NO_SUCH_CONTENT){
-                                        res.status(204).send({
-                                            success:false,
-                                            error:NO_SUCH_CONTENT
-                                        })
-                                        return
-                                    }
-                                    console.error(error)
-                                    res.status(500).send({
-                                        success:false,
-                                        error:SOMETHING_WENT_WRONG
-                                    })
-                                })
                             }).catch(error=>{
-                                console.error(error)
-                                res.status(500).send({
-                                    success:false,
-                                    error:SOMETHING_WENT_WRONG
-                                })
+
+                            })
+                        }else if(result.td_debit_credit===1){
+                            dao.creditSaldo(new Rekening_perusahaan(id_rekening,null,null,result[i].td_jumlah)).then(result=>{
+
+                            }).catch(error=>{
+
                             })
                         }
-                    }else if(result.td_debit_credit===1){
-                        for(let i=0; i<values.length; i++){
-                            dao.creditSaldo(new Rekening_perusahaan(id_rekening,null,null,values[i].td_jumlah)).then(result=>{
-                                dao.checkPembebananJson(detil).then(result=>{
-
-                                }).catch(error=>{
-                                    if(error===NO_SUCH_CONTENT){
-                                        res.status(204).send({
-                                            success:false,
-                                            error:NO_SUCH_CONTENT
-                                        })
-                                        return
-                                    }
-                                    console.error(error)
-                                    res.status(500).send({
-                                        success:false,
-                                        error:SOMETHING_WENT_WRONG
-                                    })
-                                })
-                            }).catch(error=>{
-                                console.error(error)
-                                res.status(500).send({
-                                    success:false,
-                                    error:SOMETHING_WENT_WRONG
-                                })
-                            })
-                        }
-                    }
-                }).catch(error=>{
-                    if(error===NO_SUCH_CONTENT){
-                        res.status(204).send({
+                    }).catch(error=>{
+                        console.error(error)
+                        res.status(500).send({
                             success:false,
-                            error:NO_SUCH_CONTENT
+                            error:SOMETHING_WENT_WRONG
                         })
-                        return
-                    }
-                    console.error(error)
-                    res.status(500).send({
-                        success:false,
-                        error:SOMETHING_WENT_WRONG
                     })
-                })
+                }
             }).catch(error=>{
+                if(error===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:false,
+                        error:NO_SUCH_CONTENT
+                    })
+                    return
+                }
                 console.error(error)
                 res.status(500).send({
                     success:false,
                     error:SOMETHING_WENT_WRONG
                 })
             })
-        }).catch(error=>{
-            if(error===NO_SUCH_CONTENT){
-                res.status(204).send({
-                    success:false,
-                    error:NO_SUCH_CONTENT
-                })
-                return
-            }
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
         })
-
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
