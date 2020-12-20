@@ -1839,7 +1839,7 @@ app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
                                                 descriptions,null,descriptions[i].td_jumlah,descriptions[i].td_id_kategori_transaksi,descriptions[i].td_bpu_attachment,
                                                 descriptions[i].td_debit_credit,descriptions[i].td_nomor_bukti_transaksi,descriptions[i].td_file_bukti_transaksi,
                                                 descriptions[i].skema_pembebanan_json,descriptions[i].td_is_deleted,descriptions[i].td_is_pembebanan_karyawan,
-                                                descriptions[i].td_is_pembebanan_cabang,
+                                                descriptions[i].td_is_pembebanan_cabang
                                             )).then(result=>{
                                                 res.status(200).send({
                                                     success:true,
@@ -1860,7 +1860,7 @@ app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
                                                 descriptions,null,descriptions[i].td_jumlah,descriptions[i].td_id_kategori_transaksi,descriptions[i].td_bpu_attachment,
                                                 descriptions[i].td_debit_credit,descriptions[i].td_nomor_bukti_transaksi,descriptions[i].td_file_bukti_transaksi,
                                                 descriptions[i].skema_pembebanan_json,descriptions[i].td_is_deleted,descriptions[i].td_is_pembebanan_karyawan,
-                                                descriptions[i].td_is_pembebanan_cabang,
+                                                descriptions[i].td_is_pembebanan_cabang
                                             )).then(result=>{
                                                 res.status(200).send({
                                                     success:true,
@@ -1900,7 +1900,7 @@ app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
                                                 descriptions,null,descriptions[i].td_jumlah,descriptions[i].td_id_kategori_transaksi,descriptions[i].td_bpu_attachment,
                                                 descriptions[i].td_debit_credit,descriptions[i].td_nomor_bukti_transaksi,descriptions[i].td_file_bukti_transaksi,
                                                 descriptions[i].skema_pembebanan_json,descriptions[i].td_is_deleted,descriptions[i].td_is_pembebanan_karyawan,
-                                                descriptions[i].td_is_pembebanan_cabang,
+                                                descriptions[i].td_is_pembebanan_cabang
                                             )).then(result=>{
                                                 res.status(200).send({
                                                     success:true,
@@ -1921,7 +1921,7 @@ app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
                                                 descriptions,null,descriptions[i].td_jumlah,descriptions[i].td_id_kategori_transaksi,descriptions[i].td_bpu_attachment,
                                                 descriptions[i].td_debit_credit,descriptions[i].td_nomor_bukti_transaksi,descriptions[i].td_file_bukti_transaksi,
                                                 descriptions[i].skema_pembebanan_json,descriptions[i].td_is_deleted,descriptions[i].td_is_pembebanan_karyawan,
-                                                descriptions[i].td_is_pembebanan_cabang,
+                                                descriptions[i].td_is_pembebanan_cabang
                                             )).then(result=>{
                                                 res.status(200).send({
                                                     success:true,
