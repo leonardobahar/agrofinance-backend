@@ -19,13 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Created addUserToken function and added jest to dependency">
-      <change afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jwt/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/jwt/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,13 +107,6 @@
       <workItem from="1608258132062" duration="2203000" />
       <workItem from="1608298781103" duration="7598000" />
       <workItem from="1608348726686" duration="16416000" />
-    </task>
-    <task id="LOCAL-00058" summary="Modifying Delete Rekening (Still in progress)">
-      <created>1607945051426</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1607945051426</updated>
     </task>
     <task id="LOCAL-00059" summary="Modified getDefaultOrNonDefaultRekening function. New Delete feature still in progress.">
       <created>1607951713645</created>
@@ -455,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608387514529</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints.">
+      <created>1608391916684</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1608391916684</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,7 +480,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Update Transaksi to Upload 2 files" />
     <MESSAGE value="Re-modified Get Transaksi File function" />
     <MESSAGE value="Re-modified Update Transaksi. (Still in progress)" />
     <MESSAGE value="Added Delete Detil Transaksi function block" />
@@ -509,6 +504,7 @@
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) II" />
     <MESSAGE value="Added Check Pembebanan json function block" />
     <MESSAGE value="Created addUserToken function and added jest to dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created addUserToken function and added jest to dependency" />
+    <MESSAGE value="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints." />
   </component>
 </project>
