@@ -111,3 +111,13 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_cabang_perusahaan`(
     FOREIGN KEY (`tp_id_cabang_perusahaan`) REFERENCES cabang_perusahaan(`cp_id_cabang`) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (`tp_id_transaksi`) REFERENCES transaksi(`t_id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`user` (
+  `u_user_id` int NOT NULL,
+  `u_username` varchar(255) NOT NULL,
+  `u_email` varchar(255) DEFAULT NULL,
+  `u_password` varchar(255) DEFAULT NULL,
+  `u_role` varchar(255) NOT NULL,
+  `u_is_blocked` tinyint(1) NOT NULL DEFAULT '0',
+  `u_karyawan_id` int NOT NULL
+);

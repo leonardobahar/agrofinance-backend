@@ -1702,7 +1702,7 @@ export class Dao{
                             detailTransaksi[i].td_debit_credit,
                             detailTransaksi[i].td_nomor_bukti_transaksi,
                             transaksi.td_file_bukti_transaksi,
-                            detailTransaksi[i].skema_pembebanan_json,
+                            JSON.stringify(detailTransaksi[i].skema_pembebanan_json),
                             0,
                             detailTransaksi[i].td_is_pembebanan_karyawan,
                             detailTransaksi[i].td_is_pembebanan_cabang
