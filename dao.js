@@ -79,7 +79,7 @@ export class Dao{
                 }
 
                 if (result.length > 0){
-                    resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].u_role, result[0].karyawan_id, result[0].u_is_blocked))
+                    resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].u_role, result[0].u_karyawan_id, result[0].u_is_blocked))
                 }else{
                     reject("FALSE_AUTH")
                 }

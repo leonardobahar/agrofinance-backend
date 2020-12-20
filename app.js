@@ -97,6 +97,7 @@ app.post("/api/login", (req, res)=>{
     }
 
     dao.login(req.body.username, req.body.password).then(async result=>{
+
         const token = generateAccessToken({
             user: req.body.username,
             role: result.role
