@@ -1508,7 +1508,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
             return
         }
 
-        if (!req.files && typeof req.files[0]==='undefined' && typeof req.files[1]==='undefined'){
+        if (!req.files || (typeof req.files[0]==='undefined' && typeof req.files[1]==='undefined')) {
 
             const transfer=new Transaksi(null,'NOW','NOW',
                 'NULL',req.body.is_rutin, 'Pending',req.body.bon_sementara, req.body.id_rekening,
