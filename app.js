@@ -123,7 +123,7 @@ app.post("/api/login", (req, res)=>{
     })
 })
 
-app.get("/api/karyawan/retrieve", authenticateToken,(req,res)=>{
+app.get("/api/karyawan/retrieve",(req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
             res.status(200).send({
@@ -409,7 +409,7 @@ app.delete("/api/karyawan/delete", (req,res)=>{
     })
 })
 
-app.get("/api/perusahaan/retrieve",authenticateToken,(req,res)=>{
+app.get("/api/perusahaan/retrieve",(req,res)=>{
     if(typeof req.query.id_perusahaan==='undefined'){
         dao.retrievePerusahaan().then(result=>{
             res.status(200).send({
