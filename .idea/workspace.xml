@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Added jwt expiration">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
@@ -108,13 +108,6 @@
       <workItem from="1608258132062" duration="2203000" />
       <workItem from="1608298781103" duration="7598000" />
       <workItem from="1608348726686" duration="16416000" />
-    </task>
-    <task id="LOCAL-00062" summary="Updated sql file">
-      <created>1608002582268</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1608002582268</updated>
     </task>
     <task id="LOCAL-00063" summary="Added Update Transaksi function">
       <created>1608005652855</created>
@@ -452,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608436688700</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Re-modified Approve Transaksi endpoint. (Still in progress)">
+      <created>1608440759923</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1608440759923</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,7 +481,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Update Transaksi endpoint. (Still in progress)" />
     <MESSAGE value="Re-modified Update Transaksi function block." />
     <MESSAGE value="Remove swagger dependencies" />
     <MESSAGE value="Removed swagger import added jwt import" />
@@ -506,6 +505,7 @@
     <MESSAGE value="Added jwt authentication protocol to retrieve perusahaan" />
     <MESSAGE value="Fixed jwt useless database addtokenauth" />
     <MESSAGE value="Added jwt expiration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added jwt expiration" />
+    <MESSAGE value="Re-modified Approve Transaksi endpoint. (Still in progress)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi endpoint. (Still in progress)" />
   </component>
 </project>
