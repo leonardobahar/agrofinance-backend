@@ -1604,34 +1604,6 @@ export class Dao{
         })
     }
 
-    checkPembebananJson(detil){
-        return new Promise((resolve,reject)=>{
-            if(!detil instanceof Detil_transaksi){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="SELECT td_is_pembebanan_karyawan, td_is_pembebanan_cabang WHERE td_id_transaksi=? "
-            this.mysqlConn.query(query,detil.td_id_transaksi,(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }else if(result.length>0){
-                    let pembebanan=[]
-                    for(let i=0; result.length; i++){
-                        pembebanan.push(
-                            result[i].td_is_pembebanan_karyawan,
-                            result[i].td_is_pembebanan_cabang
-                        )
-                    }
-                    resolve(pembebanan)
-                }else{
-                    reject(NO_SUCH_CONTENT)
-                }
-            })
-        })
-    }
-
     /*getPembebananJsonByKaryawanId(id_karyawan){
         return new Promise((resolve,reject)=>{
             const query="SELECT dt.skema_pembebanan_json FROM detil_transaksi dt "+
@@ -1710,8 +1682,8 @@ export class Dao{
             try {
                 let detailTransaksi = JSON.parse(transaksi.detail_transaksi);
                 const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_rekening_penanggung_utama`, `t_id_cabang_perusahaan`, `t_id_karyawan`, `t_is_deleted`) "+
-                    "VALUES(NOW(),NOW(),NULL,?,'Pending',?,?,?,?,0)"
-                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_bon_sementara, transaksi.t_rekening_penanggung_utama, transaksi.t_id_cabang_perusahaan, transaksi.t_id_karyawan],async (error, result) => {
+                    "VALUES(NOW(),NOW(),NULL,?,?,?,?,?,?,0)"
+                this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_status, transaksi.t_bon_sementara, transaksi.t_rekening_penanggung_utama, transaksi.t_id_cabang_perusahaan, transaksi.t_id_karyawan],async (error, result) => {
                     if (error) {
                         reject(error)
                         return
