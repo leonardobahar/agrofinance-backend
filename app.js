@@ -1802,6 +1802,8 @@ app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
 
     dao.retrieveOneTransaksi(transfer).then(result=>{
         const id_rekening=result.t_rekening_penanggung_utama
+        const id_cabang=result.t_id_cabang_perusahaan
+        const id_karyawan=result.t_id_karyawan
 
         dao.approveTransaksi(transfer).then(result=>{
             dao.retrieveDetilTransaksi(detil).then(result=>{
@@ -1824,17 +1826,67 @@ app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
 
                     dao.getDebitCreditTransaksi(detil).then(result=>{
                         if(result.td_debit_credit===0){
-                            dao.debitSaldo(new Rekening_perusahaan(id_rekening,null,null,result[i].td_jumlah)).then(result=>{
+                            for(let j=0; j<descriptions.length; i++){
+                                dao.debitSaldo(new Rekening_perusahaan(id_rekening,null,null,result[i].td_jumlah)).then(result=>{
+                                    if(result[i].skema_pembebanan_json.id_cabang==='undefined'){
+                                        if(result[i].skema_pembebanan_json.id_karyawan!==id_karyawan){
+                                            dao.addTransaksi(new Transaksi(
 
-                            }).catch(error=>{
+                                            ))
+                                        }
+                                    }else if(result[i].skema_pembebanan_json.id_karyawan==='undefined'){
+                                        if(result[i].skema_pembebanan_json.id_cabang!==id_cabang){
+                                            dao.addTransaksi(new Transaksi(
 
-                            })
+                                            ))
+                                        }
+                                    }
+                                }).catch(error=>{
+                                    if(error===NO_SUCH_CONTENT){
+                                        res.status(204).send({
+                                            success:false,
+                                            error:NO_SUCH_CONTENT
+                                        })
+                                        return
+                                    }
+                                    console.error(error)
+                                    res.status(500).send({
+                                        success:false,
+                                        error:SOMETHING_WENT_WRONG
+                                    })
+                                })
+                            }
                         }else if(result.td_debit_credit===1){
-                            dao.creditSaldo(new Rekening_perusahaan(id_rekening,null,null,result[i].td_jumlah)).then(result=>{
+                            for(let j=0; j<descriptions.length; i++){
+                                dao.creditSaldo().then(result=>{
+                                    if(result[i].skema_pembebanan_json.id_cabang==='undefined'){
+                                        if(result[i].skema_pembebanan_json.id_karyawan!==id_karyawan){
+                                            dao.addTransaksi(new Transaksi(
 
-                            }).catch(error=>{
+                                            ))
+                                        }
+                                    }else if(result[i].skema_pembebanan_json.id_karyawan==='undefined'){
+                                        if(result[i].skema_pembebanan_json.id_cabang!==id_cabang){
+                                            dao.addTransaksi(new Transaksi(
 
-                            })
+                                            ))
+                                        }
+                                    }
+                                }).catch(error=>{
+                                    if(error===NO_SUCH_CONTENT){
+                                        res.status(204).send({
+                                            success:false,
+                                            error:NO_SUCH_CONTENT
+                                        })
+                                        return
+                                    }
+                                    console.error(error)
+                                    res.status(500).send({
+                                        success:false,
+                                        error:SOMETHING_WENT_WRONG
+                                    })
+                                })
+                            }
                         }
                     }).catch(error=>{
                         console.error(error)

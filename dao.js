@@ -1604,34 +1604,6 @@ export class Dao{
         })
     }
 
-    checkPembebananJson(detil){
-        return new Promise((resolve,reject)=>{
-            if(!detil instanceof Detil_transaksi){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="SELECT td_is_pembebanan_karyawan, td_is_pembebanan_cabang WHERE td_id_transaksi=? "
-            this.mysqlConn.query(query,detil.td_id_transaksi,(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }else if(result.length>0){
-                    let pembebanan=[]
-                    for(let i=0; result.length; i++){
-                        pembebanan.push(
-                            result[i].td_is_pembebanan_karyawan,
-                            result[i].td_is_pembebanan_cabang
-                        )
-                    }
-                    resolve(pembebanan)
-                }else{
-                    reject(NO_SUCH_CONTENT)
-                }
-            })
-        })
-    }
-
     /*getPembebananJsonByKaryawanId(id_karyawan){
         return new Promise((resolve,reject)=>{
             const query="SELECT dt.skema_pembebanan_json FROM detil_transaksi dt "+
