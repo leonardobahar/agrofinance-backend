@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-    </list>
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,14 +104,7 @@
       <workItem from="1608258132062" duration="2203000" />
       <workItem from="1608298781103" duration="7598000" />
       <workItem from="1608348726686" duration="16416000" />
-      <workItem from="1608540460548" duration="7931000" />
-    </task>
-    <task id="LOCAL-00065" summary="Added Update Detil Transaksi endpoint">
-      <created>1608014126294</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1608014126294</updated>
+      <workItem from="1608540460548" duration="8800000" />
     </task>
     <task id="LOCAL-00066" summary="Modified Update Transaksi endpoint">
       <created>1608014309819</created>
@@ -452,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608547325277</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="Re-modified Approve Transaksi. (Still in progress) II">
+      <created>1608551525063</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1608551525064</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +493,6 @@
     <MESSAGE value="Re-modified add Transaksi endpoint" />
     <MESSAGE value="Added retrieve detilTransaksi function block" />
     <MESSAGE value="Re modified Approve Transaksi. (Still in progress)" />
-    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) II" />
     <MESSAGE value="Added Check Pembebanan json function block" />
     <MESSAGE value="Created addUserToken function and added jest to dependency" />
     <MESSAGE value="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints." />
@@ -506,6 +502,7 @@
     <MESSAGE value="Added missing catch in Approve Transaksi" />
     <MESSAGE value="Re-modified Approve Transaksi" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress)" />
+    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) II" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress) II" />
   </component>
 </project>
