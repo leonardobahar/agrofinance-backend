@@ -1809,7 +1809,7 @@ app.post("/api/transaksi/approve", (req,res)=>{
         const bon_sementara=result.t_bon_sementara
 
         dao.approveTransaksi(transfer).then(result=>{
-            dao.retrieveDetilTransaksi(id_transaksi).then(result=>{
+            dao.retrieveDetilTransaksi(req.body.id_transaksi).then(result=>{
                 let description=[]
                 for(let i=0; i<result.length; i++){
                     description.push(
@@ -1826,120 +1826,11 @@ app.post("/api/transaksi/approve", (req,res)=>{
                         result[i].td_is_pembebanan_karyawan,
                         result[i].td_is_pembebanan_cabang
                     )
-                    for(let j=0; j<description.length; j++){
-                        if(description[i].td_debit_credit===0){
-                            dao.debitSaldo(id_rekening).then(result=>{
-                                if(description[i].td_is_pembebanan_karyawan===1){
-                                    if(id_karyawan!==description[i].skema_pembebanan_json.karyawan_id){
-                                        dao.addTransaksi(new Transaksi(
-                                            null,null,null,null,
-                                            is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description[i],
-                                            description[i].td_id_detil_transaksi,description[i].td_jumlah,description[i].td_id_kategori_transaksi,
-                                            description[i].td_bpu_attachment,description[i].td_debit_credit,description[i].td_nomor_bukti_transaksi,
-                                            description[i].td_file_bukti_transaksi,description[i].skema_pembebanan_json,0
-                                        )).then(result=>{
-                                            res.status(200).send({
-                                                success:true,
-                                                result:result
-                                            })
-                                        }).catch(error=>{
-                                            console.error(error)
-                                            res.status(500).send({
-                                                success:false,
-                                                error:SOMETHING_WENT_WRONG
-                                            })
-                                        })
-                                    }else {
-                                        res.status(200).send({
-                                            success:true,
-                                            result:result
-                                        })
-                                    }
-                                }else if(description[i].td_is_pembebanan_cabang===1){
-                                    if(id_cabang!==description[i].skema_pembebanan_json.cabang_id){
-                                        dao.addTransaksi(new Transaksi(
-                                            null,null,null,null,
-                                            is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description[i],
-                                            description[i].td_id_detil_transaksi,description[i].td_jumlah,description[i].td_id_kategori_transaksi,
-                                            description[i].td_bpu_attachment,description[i].td_debit_credit,description[i].td_nomor_bukti_transaksi,
-                                            description[i].td_file_bukti_transaksi,description[i].skema_pembebanan_json,0
-                                        )).then(result=>{
-                                            if(description[i].td_is_pembebanan_karyawan===1){
-                                                if(id_karyawan!==description[i].skema_pembebanan_json.karyawan_id){
-                                                    dao.addTransaksi(new Transaksi(
-                                                        null,null,null,null,
-                                                        is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description[i],
-                                                        description[i].td_id_detil_transaksi,description[i].td_jumlah,description[i].td_id_kategori_transaksi,
-                                                        description[i].td_bpu_attachment,description[i].td_debit_credit,description[i].td_nomor_bukti_transaksi,
-                                                        description[i].td_file_bukti_transaksi,description[i].skema_pembebanan_json,0
-                                                    )).then(result=>{
-                                                        res.status(200).send({
-                                                            success:true,
-                                                            result:result
-                                                        })
-                                                    }).catch(error=>{
-                                                        console.error(error)
-                                                        res.status(500).send({
-                                                            success:false,
-                                                            error:SOMETHING_WENT_WRONG
-                                                        })
-                                                    })
-                                                }else {
-                                                    res.status(200).send({
-                                                        success:true,
-                                                        result:result
-                                                    })
-                                                }
-                                            }else if(description[i].td_is_pembebanan_cabang===1){
-                                                if(id_cabang!==description[i].skema_pembebanan_json.cabang_id){
-                                                    dao.addTransaksi(new Transaksi(
-                                                        null,null,null,null,
-                                                        is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description[i],
-                                                        description[i].td_id_detil_transaksi,description[i].td_jumlah,description[i].td_id_kategori_transaksi,
-                                                        description[i].td_bpu_attachment,description[i].td_debit_credit,description[i].td_nomor_bukti_transaksi,
-                                                        description[i].td_file_bukti_transaksi,description[i].skema_pembebanan_json,0
-                                                    )).then(result=>{
-                                                        res.status(200).send({
-                                                            success:true,
-                                                            result:result
-                                                        })
-                                                    }).catch(error=>{
-                                                        console.error(error)
-                                                        res.status(500).send({
-                                                            success:false,
-                                                            error:SOMETHING_WENT_WRONG
-                                                        })
-                                                    })
-                                                }else {
-                                                    res.status(200).send({
-                                                        success:true,
-                                                        result:result
-                                                    })
-                                                }
-                                            }
-                                        }).catch(error=>{
-                                            console.error(error)
-                                            res.status(500).send({
-                                                success:false,
-                                                error:SOMETHING_WENT_WRONG
-                                            })
-                                        })
-                                    }else {
-                                        res.status(200).send({
-                                            success:true,
-                                            result:result
-                                        })
-                                    }
-                                }
-                            }).catch(error=>{
-                                console.error(error)
-                                res.status(500).send({
-                                    success:false,
-                                    error:SOMETHING_WENT_WRONG
-                                })
-                            })
-                        }else if(description[i].td_debit_credit===1){
-                            dao.creditSaldo(id_rekening).then(result=>{
+
+                    for(let j=0; j<result.length; j++){
+                        console.log(result[j].td_debit_credit)
+                        if(result[j].td_debit_credit===0){
+                            dao.debitSaldo(new Rekening_perusahaan(id_rekening,null,null,result[j].td_jumlah)).then(result=>{
                                 res.status(200).send({
                                     success:true,
                                     result:result
@@ -1950,6 +1841,73 @@ app.post("/api/transaksi/approve", (req,res)=>{
                                     success:false,
                                     error:SOMETHING_WENT_WRONG
                                 })
+                            })
+                        }else if(result[j].td_debit_credit===1){
+                            dao.creditSaldo(new Rekening_perusahaan(id_rekening,null,null,result[j].td_jumlah)).then(result=>{
+                                res.status(200).send({
+                                    success:true,
+                                    result:result
+                                })
+                            }).catch(error=>{
+                                console.error(error)
+                                res.status(500).send({
+                                    success:false,
+                                    error:SOMETHING_WENT_WRONG
+                                })
+                            })
+                        }
+                    }
+
+                    if(result[i].td_is_pembebanan_karyawan===1){
+                        if(id_karyawan!==result[i].skema_pembebanan_json.karyawan_id){
+                            dao.addTransaksi(new Transaksi(
+                                null,null,null,null,
+                                is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,
+                                result[i].td_id_detil_transaksi,result[i].td_jumlah,result[i].td_id_kategori_transaksi,
+                                result[i].td_bpu_attachment,result[i].td_debit_credit,result[i].td_nomor_bukti_transaksi,
+                                result[i].td_file_bukti_transaksi,description[i].skema_pembebanan_json,0
+                            )).then(result=>{
+                                res.status(200).send({
+                                    success:true,
+                                    result:result
+                                })
+                            }).catch(error=>{
+                                console.error(error)
+                                res.status(500).send({
+                                    success:false,
+                                    error:SOMETHING_WENT_WRONG
+                                })
+                            })
+                        }else {
+                            res.status(200).send({
+                                success:true,
+                                result:result
+                            })
+                        }
+                    }else if(result[i].td_is_pembebanan_cabang===1){
+                        if(id_cabang!==result[i].skema_pembebanan_json.cabang_id){
+                            dao.addTransaksi(new Transaksi(
+                                null,null,null,null,
+                                is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,
+                                result[i].td_id_detil_transaksi,result[i].td_jumlah,result[i].td_id_kategori_transaksi,
+                                result[i].td_bpu_attachment,result[i].td_debit_credit,result[i].td_nomor_bukti_transaksi,
+                                result[i].td_file_bukti_transaksi,result[i].skema_pembebanan_json,0
+                            )).then(result=>{
+                                res.status(200).send({
+                                    success:true,
+                                    result:result
+                                })
+                            }).catch(error=>{
+                                console.error(error)
+                                res.status(500).send({
+                                    success:false,
+                                    error:SOMETHING_WENT_WRONG
+                                })
+                            })
+                        }else {
+                            res.status(200).send({
+                                success:true,
+                                result:result
                             })
                         }
                     }

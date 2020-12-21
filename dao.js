@@ -1766,6 +1766,8 @@ export class Dao{
         })
     }
 
+
+
     updateTransaksi(transaksi){
         return new Promise((resolve,reject)=>{
 

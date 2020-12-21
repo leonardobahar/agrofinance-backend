@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,14 +108,7 @@
       <workItem from="1608258132062" duration="2203000" />
       <workItem from="1608298781103" duration="7598000" />
       <workItem from="1608348726686" duration="16416000" />
-      <workItem from="1608540460548" duration="8800000" />
-    </task>
-    <task id="LOCAL-00066" summary="Modified Update Transaksi endpoint">
-      <created>1608014309819</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1608014309819</updated>
+      <workItem from="1608540460548" duration="11168000" />
     </task>
     <task id="LOCAL-00067" summary="remodified Update Transaksi endpoint. (Still in progress)">
       <created>1608018278854</created>
@@ -449,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608551525064</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="Re-modified Approve Transaksi. (Still in progress) III">
+      <created>1608553861115</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1608553861115</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,7 +482,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed swagger import added jwt import" />
     <MESSAGE value="Cleaned up swagger codes" />
     <MESSAGE value="Re-modified Add Transaksi endpoint" />
     <MESSAGE value="Re-modified Update and Delete Transaksi. (Update Transaksi still in progress)" />
@@ -503,6 +506,7 @@
     <MESSAGE value="Re-modified Approve Transaksi" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) II" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress) II" />
+    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) III" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress) III" />
   </component>
 </project>
