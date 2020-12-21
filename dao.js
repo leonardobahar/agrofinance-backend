@@ -1501,15 +1501,11 @@ export class Dao{
         })
     }
 
-    retrieveDetilTransaksi(detil){
+    retrieveDetilTransaksi(id_transaksi){
         return new Promise((resolve,reject)=>{
-            if(!detil instanceof Detil_transaksi){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
 
             const query="SELECT * FROM detil_transaksi WHERE td_id_transaksi=?"
-            this.mysqlConn.query(query,detil.td_id_transaksi,(error,result)=>{
+            this.mysqlConn.query(query,id_transaksi,(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -1664,6 +1660,7 @@ export class Dao{
                             result[i].td_debit_credit
                         )
                     }
+                    console.log(type)
                     resolve(type)
                 }else{
                     reject(NO_SUCH_CONTENT)
