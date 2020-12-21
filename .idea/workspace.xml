@@ -107,14 +107,7 @@
       <workItem from="1608258132062" duration="2203000" />
       <workItem from="1608298781103" duration="7598000" />
       <workItem from="1608348726686" duration="16416000" />
-      <workItem from="1608540460548" duration="5158000" />
-    </task>
-    <task id="LOCAL-00064" summary="Added Update Detil Transaksi function">
-      <created>1608007721383</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1608007721383</updated>
+      <workItem from="1608540460548" duration="7931000" />
     </task>
     <task id="LOCAL-00065" summary="Added Update Detil Transaksi endpoint">
       <created>1608014126294</created>
@@ -452,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608546172377</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="Re-modified Approve Transaksi. (Still in progress)">
+      <created>1608547325277</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1608547325277</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,7 +481,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove swagger dependencies" />
     <MESSAGE value="Removed swagger import added jwt import" />
     <MESSAGE value="Cleaned up swagger codes" />
     <MESSAGE value="Re-modified Add Transaksi endpoint" />
@@ -506,6 +505,7 @@
     <MESSAGE value="Added jwt expiration" />
     <MESSAGE value="Added missing catch in Approve Transaksi" />
     <MESSAGE value="Re-modified Approve Transaksi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi" />
+    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress)" />
   </component>
 </project>
