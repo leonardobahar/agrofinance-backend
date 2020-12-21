@@ -1827,6 +1827,25 @@ app.post("/api/transaksi/approve", (req,res)=>{
                         result[i].td_is_pembebanan_cabang
                     )
 
+                    if(description[i].td_is_pembebanan_karyawan===1){
+                        if(id_karyawan!==description[i].skema_pembebanan_json.karyawan_id){
+
+                        }else {
+                            res.status(200).send({
+                                success:true,
+                                result:result
+                            })
+                        }
+                    }else if(description[i].td_is_pembebanan_cabang===1){
+                        if(id_cabang!==description[i].skema_pembebanan_json.cabang_id){
+
+                        }else {
+                            res.status(200).send({
+                                success:true,
+                                result:result
+                            })
+                        }
+                    }
                     for(let j=0; j<description.length; j++){
                         if(description[i].td_debit_credit===0){
                             dao.debitSaldo(id_rekening).then(result=>{

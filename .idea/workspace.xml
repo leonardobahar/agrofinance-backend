@@ -22,7 +22,6 @@
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,14 +107,7 @@
       <workItem from="1608258132062" duration="2203000" />
       <workItem from="1608298781103" duration="7598000" />
       <workItem from="1608348726686" duration="16416000" />
-      <workItem from="1608540460548" duration="4196000" />
-    </task>
-    <task id="LOCAL-00063" summary="Added Update Transaksi function">
-      <created>1608005652855</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1608005652855</updated>
+      <workItem from="1608540460548" duration="5158000" />
     </task>
     <task id="LOCAL-00064" summary="Added Update Detil Transaksi function">
       <created>1608007721383</created>
@@ -453,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608448553085</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Re-modified Approve Transaksi">
+      <created>1608546172376</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1608546172377</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,7 +481,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Update Transaksi function block." />
     <MESSAGE value="Remove swagger dependencies" />
     <MESSAGE value="Removed swagger import added jwt import" />
     <MESSAGE value="Cleaned up swagger codes" />
@@ -507,6 +505,7 @@
     <MESSAGE value="Fixed jwt useless database addtokenauth" />
     <MESSAGE value="Added jwt expiration" />
     <MESSAGE value="Added missing catch in Approve Transaksi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added missing catch in Approve Transaksi" />
+    <MESSAGE value="Re-modified Approve Transaksi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi" />
   </component>
 </project>
