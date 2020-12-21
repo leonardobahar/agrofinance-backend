@@ -1852,7 +1852,7 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE rekening_perusahaan SET rp_saldo=rp_saldo+? WHERE rp_id_rekening=? "
+            const query="UPDATE rekening_perusahaan SET rp_saldo=rp_saldo-? WHERE rp_id_rekening=? "
             this.mysqlConn.query(query,[rekening.rp_saldo,rekening.rp_id_rekening],(error,result)=>{
                 if(error){
                     reject(error)

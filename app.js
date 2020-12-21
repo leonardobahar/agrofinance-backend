@@ -1828,7 +1828,6 @@ app.post("/api/transaksi/approve", (req,res)=>{
                     )
 
                     for(let j=0; j<result.length; j++){
-                        console.log(result[j].td_debit_credit)
                         if(result[j].td_debit_credit===0){
                             dao.debitSaldo(new Rekening_perusahaan(id_rekening,null,null,result[j].td_jumlah)).then(result=>{
                                 res.status(200).send({
@@ -1843,6 +1842,7 @@ app.post("/api/transaksi/approve", (req,res)=>{
                                 })
                             })
                         }else if(result[j].td_debit_credit===1){
+                            console.log(result[j].td_jumlah)
                             dao.creditSaldo(new Rekening_perusahaan(id_rekening,null,null,result[j].td_jumlah)).then(result=>{
                                 res.status(200).send({
                                     success:true,
