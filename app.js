@@ -1840,7 +1840,7 @@ app.post("/api/transaksi/approve", (req,res)=>{
 
                     for(let j=0; j<result.length; j++){
                         if(result[j].td_debit_credit===0){
-                            dao.debitSaldo(new Rekening_perusahaan(id_rekening,null,null,result[j].td_jumlah)).then(result=>{
+                            dao.debitSaldo(result[j].td_jumlah,id_rekening).then(result=>{
                                 if(pembebanan_karyawan===1){
                                     if(id_karyawan!==skema_pembebanan.karyawan_id){
                                         dao.addTransaksi(new Transaksi(
@@ -1899,7 +1899,7 @@ app.post("/api/transaksi/approve", (req,res)=>{
                             })
                         }else if(result[j].td_debit_credit===1){
                             console.log(result[j].td_jumlah)
-                            dao.creditSaldo(new Rekening_perusahaan(id_rekening,null,null,result[j].td_jumlah)).then(result=>{
+                            dao.creditSaldo(result[j].td_jumlah,id_rekening).then(result=>{
                                 if(pembebanan_karyawan===1){
                                     if(id_karyawan!==skema_pembebanan.karyawan_id){
                                         dao.addTransaksi(new Transaksi(

@@ -1826,40 +1826,30 @@ export class Dao{
         })
     }
 
-    debitSaldo(rekening){
+    debitSaldo(jumlah, id_rekening){
         return new Promise((resolve,reject)=>{
-            if(!rekening instanceof Rekening_perusahaan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
             const query="UPDATE rekening_perusahaan SET rp_saldo=rp_saldo+? WHERE rp_id_rekening=? "
-            this.mysqlConn.query(query,[rekening.rp_saldo,rekening.rp_id_rekening],(error,result)=>{
+            this.mysqlConn.query(query,[jumlah,id_rekening],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                resolve(rekening)
+                resolve(SUCCESS)
             })
         })
     }
 
-    creditSaldo(rekening){
+    creditSaldo(jumlah, id_rekening){
         return new Promise((resolve,reject)=>{
-            if(!rekening instanceof Rekening_perusahaan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
             const query="UPDATE rekening_perusahaan SET rp_saldo=rp_saldo-? WHERE rp_id_rekening=? "
-            this.mysqlConn.query(query,[rekening.rp_saldo,rekening.rp_id_rekening],(error,result)=>{
+            this.mysqlConn.query(query,[jumlah, id_rekening],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                resolve(rekening)
+                resolve(SUCCESS)
             })
         })
     }
