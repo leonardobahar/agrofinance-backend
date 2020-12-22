@@ -109,14 +109,7 @@
       <workItem from="1608298781103" duration="7598000" />
       <workItem from="1608348726686" duration="16416000" />
       <workItem from="1608540460548" duration="14549000" />
-      <workItem from="1608604275189" duration="3792000" />
-    </task>
-    <task id="LOCAL-00070" summary="Modifying Add Transaksi to be able to upload 2 files">
-      <created>1608113205776</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1608113205776</updated>
+      <workItem from="1608604275189" duration="4960000" />
     </task>
     <task id="LOCAL-00071" summary="Add Transaksi modification still in progress">
       <created>1608125524817</created>
@@ -454,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608608010711</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="Re-modified Approve Transaksi. (Still in progress) VII">
+      <created>1608609325215</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1608609325215</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -483,7 +483,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Update Transaksi. (still in progress)" />
     <MESSAGE value="Fixed Update Transaksi bug" />
     <MESSAGE value="Added getDebitCredit function block" />
     <MESSAGE value="Added debitSaldo function block" />
@@ -508,6 +507,7 @@
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) IV" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) V" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) VI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress) VI" />
+    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) VII" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress) VII" />
   </component>
 </project>
