@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,14 +106,8 @@
       <workItem from="1608258132062" duration="2203000" />
       <workItem from="1608298781103" duration="7598000" />
       <workItem from="1608348726686" duration="16416000" />
-      <workItem from="1608540460548" duration="13929000" />
-    </task>
-    <task id="LOCAL-00068" summary="Remodified Update Transaksi endpoint. (Update Detil Transaksi still in progress due to technical difficulties)">
-      <created>1608036171737</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1608036171737</updated>
+      <workItem from="1608540460548" duration="14549000" />
+      <workItem from="1608604275189" duration="2257000" />
     </task>
     <task id="LOCAL-00069" summary="Fixed Update Transaction bug">
       <created>1608037797292</created>
@@ -453,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608556215273</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="Re-modified Approve Transaksi. (Still in progress) V">
+      <created>1608559479089</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1608559479090</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,7 +481,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Add Transaksi endpoint" />
     <MESSAGE value="Re-modified Update and Delete Transaksi. (Update Transaksi still in progress)" />
     <MESSAGE value="Re-modified Update Transaksi. (still in progress)" />
     <MESSAGE value="Fixed Update Transaksi bug" />
@@ -507,6 +505,7 @@
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) II" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) III" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) IV" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress) IV" />
+    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) V" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress) V" />
   </component>
 </project>
