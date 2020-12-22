@@ -1828,7 +1828,6 @@ app.post("/api/transaksi/approve", (req,res)=>{
                     )
 
                     const id_detil=result[i].td_id_detil_transaksi
-                    const id_transaksi=result[i].td_id_transaksi
                     const jumlah=result[i].td_jumlah
                     const id_kategori=result[i].td_id_kategori_transaksi
                     const attachment=result[i].td_bpu_attachment
