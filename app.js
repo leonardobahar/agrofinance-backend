@@ -1798,14 +1798,12 @@ app.post("/api/transaksi/approve", (req,res)=>{
         null, null,null,null,null,null)
 
     dao.retrieveOneTransaksi(transfer).then(result=>{
-        const id_transaksi=result[0].id_transaksi
         const id_rekening=result[0].id_rekening
         const id_cabang=result[0].id_cabang
         const id_karyawan=result[0].id_karyawan
         const is_rutin=result[0].is_rutin
         const bon_sementara=result[0].bon_sementara
 
-        console.log(id_rekening)
         dao.approveTransaksi(transfer).then(result=>{
             dao.retrieveDetilTransaksi(req.body.id_transaksi).then(result=>{
                 let description=[]
@@ -1898,7 +1896,7 @@ app.post("/api/transaksi/approve", (req,res)=>{
                         }else if(result[j].td_debit_credit===1){
                             dao.creditSaldo(result[j].td_jumlah,id_rekening).then(result=>{
                                 if(pembebanan_karyawan===1){
-                                    if(id_karyawan!==skema_pembebanan.karyawan_id){
+                                    if(id_karyawan!==skema_pembebanan[j].karyawan_id){
                                         dao.addTransaksi(new Transaksi(
                                             null,null,null,null,
                                             is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,
@@ -1922,7 +1920,9 @@ app.post("/api/transaksi/approve", (req,res)=>{
                                         })
                                     }
                                 }else if(pembebanan_cabang===1){
-                                    if(id_cabang!==skema_pembebanan.cabang_id){
+                                    console.log(id_cabang)
+                                    console.log(skema_pembebanan)
+                                    if(id_cabang!==skema_pembebanan[j].cabang_id){
                                         dao.addTransaksi(new Transaksi(
                                             null,null,null,null,
                                             is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,
