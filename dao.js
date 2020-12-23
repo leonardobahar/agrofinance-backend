@@ -1503,6 +1503,7 @@ export class Dao{
                             is_rutin:rowDataPacket.t_is_rutin,
                             status:rowDataPacket.t_status,
                             bon_sementara:rowDataPacket.t_bon_sementara,
+                            id_transaksi:rowDataPacket.td_id_transaksi,
                             id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
                             jumlah:rowDataPacket.td_jumlah,
                             id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
@@ -1523,7 +1524,6 @@ export class Dao{
 
     retrieveDetilTransaksi(id_transaksi){
         return new Promise((resolve,reject)=>{
-
             const query="SELECT * FROM detil_transaksi WHERE td_id_transaksi=?"
             this.mysqlConn.query(query,id_transaksi,(error,result)=>{
                 if(error){

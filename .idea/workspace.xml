@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Re-modified sql">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
@@ -112,14 +111,7 @@
       <workItem from="1608348726686" duration="16416000" />
       <workItem from="1608540460548" duration="14549000" />
       <workItem from="1608604275189" duration="22847000" />
-      <workItem from="1608689072770" duration="3450000" />
-    </task>
-    <task id="LOCAL-00075" summary="Re-modified Update Transaksi function. (Still in Progress)">
-      <created>1608129085006</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1608129085006</updated>
+      <workItem from="1608689072770" duration="8920000" />
     </task>
     <task id="LOCAL-00076" summary="Re-modified Update Transaksi endpoint and function. (Still in progress)">
       <created>1608130503881</created>
@@ -457,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608632396679</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="Re-modified Approve Transaksi, added getSaldoRekening function block">
+      <created>1608694265046</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1608694265046</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,7 +485,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added creditSaldo function block" />
     <MESSAGE value="Modified Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Modified detil_transaksi table structure" />
     <MESSAGE value="Re-modified detil_transaksi table structure" />
@@ -511,6 +509,7 @@
     <MESSAGE value="Approve Transaksi starting to work. Still working on a few adjustments" />
     <MESSAGE value="Made some adjustments to Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Re-modified debitSalso and creditSaldo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified debitSalso and creditSaldo" />
+    <MESSAGE value="Re-modified Approve Transaksi, added getSaldoRekening function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi, added getSaldoRekening function block" />
   </component>
 </project>
