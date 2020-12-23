@@ -750,26 +750,6 @@ export class Dao{
         })
     }
 
-    getSaldoRekening(rekening){
-        return new Promise((resolve,reject)=>{
-            if(!rekening instanceof Rekening_perusahaan){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="SELECT rp_saldo FROM rekening_perusahaan WHERE rp_id_rekening=? "
-            this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
-                if(error){
-                    reject(error)
-                }else if(result.length>0){
-                    resolve(result[0].rp_saldo)
-                }else{
-                    reject(NO_SUCH_CONTENT)
-                }
-            })
-        })
-    }
-
     addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, is_rekening_utama){
         return new Promise((resolve,reject)=>{
             if (typeof is_rekening_utama === 'undefined' || is_rekening_utama === null){
@@ -1574,25 +1554,6 @@ export class Dao{
         })
     }
 
-    getTransaksiStatus(transfer){
-        return new Promise((resolve,reject)=>{
-            if(!transfer instanceof Transaksi){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="SELECT t_status FROM transaksi WHERE t_id_transaksi=?"
-            this.mysqlConn.query(query,transfer.t_id_transaksi,(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }else if(result.t_status !='Approved' || result.t_status !='Rejected'){
-                    resolve(transfer)
-                }
-            })
-        })
-    }
-
     getTransaksiFile(transaksi){
         return new Promise((resolve,reject)=>{
             if(transaksi instanceof Transaksi){
@@ -1617,75 +1578,6 @@ export class Dao{
             }else{
                 reject(MISMATCH_OBJ_TYPE)
             }
-        })
-    }
-
-    /*getPembebananJsonByKaryawanId(id_karyawan){
-        return new Promise((resolve,reject)=>{
-            const query="SELECT dt.skema_pembebanan_json FROM detil_transaksi dt "+
-                "LEFT OUTER JOIN transaksi t ON t.t_id_transaksi=dt.td_id_transaksi "+
-                "WHERE t.t_id_karyawan=?"
-            this.mysqlConn.query(query,[id_karyawan],(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }else if(result.length>0){
-                    let pembebanan=[]
-                    for(let i=0; i<result.length; i++){
-                        pembebanan.push(
-                            result[i].skema_pembebanan_json
-                        )
-                    }
-                    resolve(pembebanan)
-                }else{
-                    reject(NO_SUCH_CONTENT)
-                }
-            })
-        })
-    }
-
-    getPembebananJsonByPerusahaanId(id_perusahaan){
-        return new Promise((resolve,reject)=>{
-            const query="SELECT dt.skema_pembebanan_json FROM detil_transaksi dt "+
-                "LEFT OUTER JOIN transaksi t ON td_id_transaksi=t_id_transaksi "+
-                "WHERE t.t_id_perusahaan=?"
-            this.mysqlConn.query(query,id_perusahaan,(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }else if(result.length>0){
-                    resolve(result[0].skema_pembebanan_json)
-                }else{
-                    reject(NO_SUCH_CONTENT)
-                }
-            })
-        })
-    }*/
-
-    getDebitCreditTransaksi(detil){
-        return new Promise((resolve,reject)=>{
-            if(!detil instanceof Detil_transaksi){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="SELECT td_debit_credit FROM detil_transaksi WHERE td_id_transaksi=?"
-            this.mysqlConn.query(query,detil.td_id_transaksi,(error,result)=>{
-                if(error){
-                    reject(error)
-                }else if(result.length>0){
-                    let type=[]
-                    for(let i=0; i<result.length; i++){
-                        type.push(
-                            result[i].td_debit_credit
-                        )
-                    }
-                    console.log(type)
-                    resolve(type)
-                }else{
-                    reject(NO_SUCH_CONTENT)
-                }
-            })
         })
     }
 
@@ -1871,38 +1763,6 @@ export class Dao{
             })
         })
     }
-
-   /* Delete this block only if you are permitted to.
-   updateDetilTransaksi(detailTransaksiObject){
-        return new Promise((resolve,reject)=>{
-            if(!detailTransaksiObject instanceof Detil_transaksi){
-                reject(MISMATCH_OBJ_TYPE)
-                return
-            }
-
-            const query="UPDATE detil_transaksi SET td_jumlah=?, td_id_kategori_transaksi=?, td_bpu_attachment=?, td_debit_credit=?, " +
-                "td_nomor_bukti_transaksi=?, td_file_bukti_transaksi=?, skema_pembebanan_json=? " +
-                "WHERE td_id_detil_transaksi=? "
-            this.mysqlConn.query(query,[
-                detailTransaksiObject.td_jumlah,
-                detailTransaksiObject.td_id_kategori_transaksi,
-                detailTransaksiObject.td_bpu_attachment,
-                detailTransaksiObject.td_debit_credit,
-                detailTransaksiObject.td_nomor_bukti_transaksi,
-                detailTransaksiObject.td_file_bukti_transaksi,
-                detailTransaksiObject.skema_pembebanan_json,
-                detailTransaksiObject.td_id_detil_transaksi
-            ],(error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
-
-                //console.log(result)
-                resolve(detailTransaksiObject)
-            })
-        })
-    }*/
 
     approveTransaksi(transaksi){
         return new Promise((resolve,reject)=>{
