@@ -750,6 +750,26 @@ export class Dao{
         })
     }
 
+    getSaldoRekening(rekening){
+        return new Promise((resolve,reject)=>{
+            if(!rekening instanceof Rekening_perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT rp_saldo FROM rekening_perusahaan WHERE rp_id_rekening=? "
+            this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
+                if(error){
+                    reject(error)
+                }else if(result.length>0){
+                    resolve(result[0].rp_saldo)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
     addRekeningPerusahaan(nama_bank, nomor_rekening, saldo, id_cabang_perusahaan, is_rekening_utama){
         return new Promise((resolve,reject)=>{
             if (typeof is_rekening_utama === 'undefined' || is_rekening_utama === null){
@@ -1765,8 +1785,6 @@ export class Dao{
             })
         })
     }
-
-
 
     updateTransaksi(transaksi){
         return new Promise((resolve,reject)=>{
