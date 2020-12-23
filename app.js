@@ -1921,7 +1921,7 @@ app.post("/api/transaksi/approve", (req,res)=>{
                                     }
                                 }else if(pembebanan_cabang===1){
                                     console.log(id_cabang)
-                                    console.log(skema_pembebanan[j])
+                                    console.log(skema_pembebanan[j].cabang_id)
                                     if(id_cabang!==skema_pembebanan[j].cabang_id){
                                         dao.addTransaksi(new Transaksi(
                                             null,null,null,null,
