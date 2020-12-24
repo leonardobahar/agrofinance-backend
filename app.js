@@ -1851,7 +1851,7 @@ app.post("/api/transaksi/approve", (req,res)=>{
                                     if(id_karyawan!==skema_pembebanan_obj[j].karyawan_id){
                                         dao.addTransaksi(new Transaksi(
                                             null,null,null,null,
-                                            is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,
+                                            is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,JSON.stringify(description),
                                             id_detil,jumlah,id_kategori, attachment,debit_credit,nomor_bukti, file_bukti,skema_pembebanan,0
                                         )).then(result=>{
                                             res.status(200).send({
@@ -1877,7 +1877,7 @@ app.post("/api/transaksi/approve", (req,res)=>{
                                     if(id_cabang!==skema_pembebanan_obj[j].cabang_id){
                                         dao.addTransaksi(new Transaksi(
                                             null,null,null,null,
-                                            is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,
+                                            is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,JSON.stringify(description),
                                             id_detil,jumlah,id_kategori, attachment,debit_credit,nomor_bukti, file_bukti,skema_pembebanan,0
                                         )).then(result=>{
                                             res.status(200).send({
@@ -1939,7 +1939,7 @@ app.post("/api/transaksi/approve", (req,res)=>{
                                     if(id_cabang!==skema_pembebanan_obj[j].cabang_id){
                                         dao.addTransaksi(new Transaksi(
                                             null,null,null,null,
-                                            is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,
+                                            is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,JSON.stringify(description),
                                             id_detil,jumlah,id_kategori, attachment,debit_credit,nomor_bukti, file_bukti,skema_pembebanan,0
                                         )).then(result=>{
                                             res.status(200).send({

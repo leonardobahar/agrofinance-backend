@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,14 +110,7 @@
       <workItem from="1608540460548" duration="14549000" />
       <workItem from="1608604275189" duration="22847000" />
       <workItem from="1608689072770" duration="23541000" />
-      <workItem from="1608770465088" duration="14694000" />
-    </task>
-    <task id="LOCAL-00082" summary="Re-modified Get Transaksi File function">
-      <created>1608211564914</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1608211564914</updated>
+      <workItem from="1608770465088" duration="15074000" />
     </task>
     <task id="LOCAL-00083" summary="Re-modified Update Transaksi. (Still in progress)">
       <created>1608211952239</created>
@@ -457,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608783191442</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Re-modified Approve Transaksi.">
+      <created>1608799387778</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1608799387778</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -486,7 +484,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re modified Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Added Check Pembebanan json function block" />
     <MESSAGE value="Created addUserToken function and added jest to dependency" />
     <MESSAGE value="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints." />
@@ -511,6 +508,7 @@
     <MESSAGE value="Re-modified Approve Transaksi. Adjustments still being made." />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Re-modified Approve Transaksi JSON issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi JSON issue" />
+    <MESSAGE value="Re-modified Approve Transaksi." />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi." />
   </component>
 </project>
