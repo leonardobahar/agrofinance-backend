@@ -1842,13 +1842,15 @@ app.post("/api/transaksi/approve", (req,res)=>{
                     const pembebanan_cabang=detilTransaksiResult[i].td_is_pembebanan_cabang
                     const skema_pembebanan=detilTransaksiResult[i].skema_pembebanan_json
 
+                    const skema_pembebanan_obj=JSON.parse(skema_pembebanan)
+
                     if(detilTransaksiResult[i].td_debit_credit===0){
                         dao.debitSaldo(detilTransaksiResult[i].td_jumlah,id_rekening).then(result=>{
                             if(pembebanan_karyawan===1){ // if karyawan is being beban
-                                for (let j=0; j<skema_pembebanan.length; j++){
+                                for (let j=0; j<skema_pembebanan_obj.length; j++){
                                     // per object skema pembebanan, if 3 karyawan is being beban, loop will go 3 times
                                     console.log(detilTransaksiResult[i].skema_pembebanan_json)
-                                    if(id_karyawan!==skema_pembebanan[j].karyawan_id){
+                                    if(id_karyawan!==skema_pembebanan_obj[j].karyawan_id){
                                         dao.addTransaksi(new Transaksi(
                                             null,null,null,null,
                                             is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,
@@ -1873,8 +1875,8 @@ app.post("/api/transaksi/approve", (req,res)=>{
                                     }
                                 }
                             }else if(pembebanan_cabang===1){ // is pembebanan to cabang
-                                for(let j=0; j<skema_pembebanan.length; j++){
-                                    if(id_cabang!==skema_pembebanan.cabang_id){
+                                for(let j=0; j<skema_pembebanan_obj.length; j++){
+                                    if(id_cabang!==skema_pembebanan_obj[j].cabang_id){
                                         dao.addTransaksi(new Transaksi(
                                             null,null,null,null,
                                             is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,
@@ -1909,8 +1911,8 @@ app.post("/api/transaksi/approve", (req,res)=>{
                     }else if(detilTransaksiResult[i].td_debit_credit===1){
                         dao.creditSaldo(detilTransaksiResult[i].td_jumlah,id_rekening).then(result=>{
                             if(pembebanan_karyawan===1){
-                                for(let j=0; j<skema_pembebanan.length; j++){
-                                    if(id_karyawan!==skema_pembebanan[i].karyawan_id){
+                                for(let j=0; j<skema_pembebanan_obj.length; j++){
+                                    if(id_karyawan!==skema_pembebanan_obj[j].karyawan_id){
                                         dao.addTransaksi(new Transaksi(
                                             null,null,null,null,
                                             is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,
@@ -1935,8 +1937,8 @@ app.post("/api/transaksi/approve", (req,res)=>{
                                     }
                                 }
                             }else if(pembebanan_cabang===1){
-                                for(let j=0; j<skema_pembebanan.length; j++){
-                                    if(id_cabang!==skema_pembebanan[i].cabang_id){
+                                for(let j=0; j<skema_pembebanan_obj.length; j++){
+                                    if(id_cabang!==skema_pembebanan_obj[j].cabang_id){
                                         dao.addTransaksi(new Transaksi(
                                             null,null,null,null,
                                             is_rutin,'Approved', bon_sementara,id_rekening,id_cabang,id_karyawan,0,description,

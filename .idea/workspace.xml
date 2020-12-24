@@ -22,7 +22,6 @@
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,14 +111,7 @@
       <workItem from="1608540460548" duration="14549000" />
       <workItem from="1608604275189" duration="22847000" />
       <workItem from="1608689072770" duration="23541000" />
-      <workItem from="1608770465088" duration="1624000" />
-    </task>
-    <task id="LOCAL-00080" summary="Re-modified Update Transaksi">
-      <created>1608207384247</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1608207384248</updated>
+      <workItem from="1608770465088" duration="5525000" />
     </task>
     <task id="LOCAL-00081" summary="Re-modified Update Transaksi to Upload 2 files">
       <created>1608209190830</created>
@@ -457,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608733834148</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="Re-modified Approve Transaksi. (Still in progress)">
+      <created>1608772148506</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1608772148507</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +501,6 @@
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) V" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) VI" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) VII" />
-    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Approve Transaksi starting to work. Still working on a few adjustments" />
     <MESSAGE value="Made some adjustments to Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Re-modified debitSalso and creditSaldo" />
@@ -511,6 +509,7 @@
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress in the add Transaction part) II" />
     <MESSAGE value="Re-modified Approve Transaksi. Add Transaction part still being modified, Deleted some unused functions" />
     <MESSAGE value="Re-modified Approve Transaksi. Adjustments still being made." />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. Adjustments still being made." />
+    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi. (Still in progress)" />
   </component>
 </project>
