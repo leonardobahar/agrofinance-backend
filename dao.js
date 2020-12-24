@@ -1453,7 +1453,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifikasi, t.t_tanggal_realisasi, t.t_is_rutin, t.t_status, " +
+            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifikasi, t.t_tanggal_realisasi, t.t_is_rutin, t.t_status, t.t_bon_sementara, " +
                 "t.t_rekening_penanggung_utama, rp.rp_nomor_rekening, t.t_id_cabang_perusahaan, cp.cp_nama_cabang, p.p_nama_perusahaan, t.t_id_karyawan, k.k_nama_lengkap, " +
                 "dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.skema_pembebanan_json "+
                 "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
@@ -1470,7 +1470,7 @@ export class Dao{
                 } else if(result.length>0){
                     const transaksi=result.map(rowDataPacket=>{
                         return{
-                            id_karyawan:rowDataPacket.k_id_karyawan,
+                            id_karyawan:rowDataPacket.t_id_karyawan,
                             nama_karyawan:rowDataPacket.k_nama_lengkap,
                             id_rekening:rowDataPacket.t_rekening_penanggung_utama,
                             nomor_rekening:rowDataPacket.rp_nomor_rekening,
@@ -1589,7 +1589,8 @@ export class Dao{
             }
 
             try {
-                let detailTransaksi = JSON.parse(JSON.stringify(transaksi.detail_transaksi));
+                let detailTransaksi = JSON.parse(transaksi.detail_transaksi)
+
                 const query = "INSERT INTO `transaksi` (`t_tanggal_transaksi`, `t_tanggal_modifikasi`, `t_tanggal_realisasi`, `t_is_rutin`, `t_status`, `t_bon_sementara`, `t_rekening_penanggung_utama`, `t_id_cabang_perusahaan`, `t_id_karyawan`, `t_is_deleted`) "+
                     "VALUES(NOW(),NOW(),NULL,?,?,?,?,?,?,0)"
                 this.mysqlConn.query(query, [transaksi.t_is_rutin, transaksi.t_status, transaksi.t_bon_sementara, transaksi.t_rekening_penanggung_utama, transaksi.t_id_cabang_perusahaan, transaksi.t_id_karyawan],async (error, result) => {
