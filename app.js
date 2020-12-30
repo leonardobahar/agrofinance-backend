@@ -1682,8 +1682,6 @@ app.post("/api/transaksi/update",(req,res)=>{
                         return
                     }
 
-                    console.log(result[0])
-                    console.log(result[1])
                     fs.unlinkSync('./Uploads/'+result[0])
                     fs.unlinkSync('./Uploads/'+result[1])
 
