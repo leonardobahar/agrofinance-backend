@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,14 +124,7 @@
       <workItem from="1609989619504" duration="6265000" />
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
-      <workItem from="1610591555423" duration="599000" />
-    </task>
-    <task id="LOCAL-00085" summary="Re-modified Update Transaksi endpoint. (Still in progress)">
-      <created>1608213121468</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1608213121468</updated>
+      <workItem from="1610591555423" duration="3267000" />
     </task>
     <task id="LOCAL-00086" summary="Re-modified Update Transaksi function block.">
       <created>1608213256700</created>
@@ -468,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609317635564</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="Updated User table format">
+      <created>1610592455456</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1610592455457</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +498,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints." />
     <MESSAGE value="Added jwt authentication protocol to retrieve perusahaan" />
     <MESSAGE value="Fixed jwt useless database addtokenauth" />
     <MESSAGE value="Added jwt expiration" />
@@ -522,6 +522,7 @@
     <MESSAGE value="Re-modified Approve Transaksi." />
     <MESSAGE value="Approve Transaksi now functional." />
     <MESSAGE value="Fixed Update Transaksi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Update Transaksi" />
+    <MESSAGE value="Updated User table format" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated User table format" />
   </component>
 </project>

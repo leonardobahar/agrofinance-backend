@@ -88,6 +88,27 @@ export class Dao{
         })
     }
 
+    registerUser(user){
+        return new Promise((resolve,reject)=>{
+            if(!user instanceof User){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="INSERT INTO `user`(`u_username`, `u_email`, `u_password`, `u_role`, `u_is_blocked`, `u_karyawan_id`) " +
+                "VALUES(?, ?, ?, ?, ?, ?)"
+            this.mysqlConn.query(query,[user.username, user.email, user.password, user.role, user.is_blocked, user.karyawan_id],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                user.user_id=result.insertId
+                resolve(user)
+            })
+        })
+    }
+
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
             const query="SELECT * FROM karyawan "
