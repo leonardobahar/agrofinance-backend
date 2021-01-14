@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,14 +113,17 @@
       <workItem from="1608770465088" duration="16377000" />
       <workItem from="1609146544655" duration="620000" />
       <workItem from="1609211962410" duration="1207000" />
-      <workItem from="1609303119180" duration="3031000" />
-    </task>
-    <task id="LOCAL-00084" summary="Added Delete Detil Transaksi function block">
-      <created>1608212547750</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1608212547750</updated>
+      <workItem from="1609303119180" duration="4345000" />
+      <workItem from="1609325363488" duration="1213000" />
+      <workItem from="1609555444253" duration="6272000" />
+      <workItem from="1609644940202" duration="2025000" />
+      <workItem from="1609729653446" duration="3043000" />
+      <workItem from="1609822379939" duration="822000" />
+      <workItem from="1609906891058" duration="5678000" />
+      <workItem from="1609989619504" duration="6265000" />
+      <workItem from="1610091406185" duration="606000" />
+      <workItem from="1610543524016" duration="1693000" />
+      <workItem from="1610591555423" duration="599000" />
     </task>
     <task id="LOCAL-00085" summary="Re-modified Update Transaksi endpoint. (Still in progress)">
       <created>1608213121468</created>
@@ -459,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608799542040</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="Fixed Update Transaksi">
+      <created>1609317635562</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1609317635564</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +497,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created addUserToken function and added jest to dependency" />
     <MESSAGE value="Finished JWT basic implementation. Waiting to be tested and applied to all endpoints." />
     <MESSAGE value="Added jwt authentication protocol to retrieve perusahaan" />
     <MESSAGE value="Fixed jwt useless database addtokenauth" />
@@ -513,6 +521,7 @@
     <MESSAGE value="Re-modified Approve Transaksi JSON issue" />
     <MESSAGE value="Re-modified Approve Transaksi." />
     <MESSAGE value="Approve Transaksi now functional." />
-    <option name="LAST_COMMIT_MESSAGE" value="Approve Transaksi now functional." />
+    <MESSAGE value="Fixed Update Transaksi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Update Transaksi" />
   </component>
 </project>
