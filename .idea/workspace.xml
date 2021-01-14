@@ -21,10 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,14 +126,7 @@
       <workItem from="1609989619504" duration="6265000" />
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
-      <workItem from="1610591555423" duration="7411000" />
-    </task>
-    <task id="LOCAL-00087" summary="Remove swagger dependencies">
-      <created>1608258272942</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1608258272942</updated>
+      <workItem from="1610591555423" duration="8398000" />
     </task>
     <task id="LOCAL-00088" summary="Removed swagger import added jwt import">
       <created>1608261228889</created>
@@ -472,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610595022674</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Re-modified addKaryawan to register user">
+      <created>1610602906041</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1610602906041</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,7 +500,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed jwt useless database addtokenauth" />
     <MESSAGE value="Added jwt expiration" />
     <MESSAGE value="Added missing catch in Approve Transaksi" />
     <MESSAGE value="Re-modified Approve Transaksi" />
@@ -526,6 +524,7 @@
     <MESSAGE value="Fixed Update Transaksi" />
     <MESSAGE value="Updated User table format" />
     <MESSAGE value="Added registerUser function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added registerUser function block" />
+    <MESSAGE value="Re-modified addKaryawan to register user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified addKaryawan to register user" />
   </component>
 </project>

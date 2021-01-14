@@ -221,7 +221,7 @@ app.post("/api/karyawan/add", (req,res)=>{
 
     dao.addKaryawan(employee).then(async karyawanResult=>{
         dao.addKaryawan_kerja_dimana(new Karyawan_kerja_dimana(null,karyawanResult.k_id_karyawan,req.body.cabang_ids)).then(result=>{
-            dao.registerUser(new User(null,karyawanResult.k_nama_lengakp,req.body.email,req.body.password,karyawanResult.k_role,karyawanResult.k_id_karyawan,null)).then(result=>{
+            dao.registerUser(new User(null,karyawanResult.k_nama_lengkap,req.body.email,req.body.password,karyawanResult.k_role,karyawanResult.k_id_karyawan)).then(result=>{
                 res.status(200).send({
                     success:true,
                     result:result
