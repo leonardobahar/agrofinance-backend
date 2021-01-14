@@ -37,7 +37,8 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan` (
   `k_posisi` VARCHAR(45) NOT NULL,
   `k_nik` VARCHAR(255) UNIQUE NOT NULL,
   `k_role` VARCHAR(45) NOT NULL,
-  `k_masih_hidup` TINYINT(1) NULL);
+  `k_masih_hidup` TINYINT(1) NULL,
+  `k_is_deleted` TINYINT(1) DEFAULT 0);
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan_kerja_dimana` (
   `kkd_id_karyawan_kerja_dimana` INT(7) PRIMARY KEY AUTO_INCREMENT,

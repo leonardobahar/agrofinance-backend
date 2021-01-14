@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,14 +124,7 @@
       <workItem from="1609989619504" duration="6265000" />
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
-      <workItem from="1610591555423" duration="11304000" />
-    </task>
-    <task id="LOCAL-00090" summary="Re-modified Add Transaksi endpoint">
-      <created>1608266613416</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1608266613416</updated>
+      <workItem from="1610591555423" duration="12820000" />
     </task>
     <task id="LOCAL-00091" summary="Re-modified Update and Delete Transaksi. (Update Transaksi still in progress)">
       <created>1608267005149</created>
@@ -469,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610607781015</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="Re-modified Retrieve Perusahaan endpoint to have 2 search features. (By ID or by Name)">
+      <created>1610609385338</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1610609385338</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +498,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Approve Transaksi" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) II" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) III" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) IV" />
@@ -523,6 +522,7 @@
     <MESSAGE value="Re-modified addKaryawan to register user" />
     <MESSAGE value="Re-modified addKaryawan" />
     <MESSAGE value="Added retrievePerusahaanByName function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added retrievePerusahaanByName function block" />
+    <MESSAGE value="Re-modified Retrieve Perusahaan endpoint to have 2 search features. (By ID or by Name)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Retrieve Perusahaan endpoint to have 2 search features. (By ID or by Name)" />
   </component>
 </project>
