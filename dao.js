@@ -216,15 +216,14 @@ export class Dao{
                 return
             }
 
-            const query="DELETE FROM karyawan WHERE k_id_karyawan=?"
+            const query="UPDATE karyawan SET k_is_deleted=1 WHERE k_id_karyawan=?"
             this.mysqlConn.query(query,karyawan.k_id_karyawan,(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                karyawan.k_id_karyawan=result.k_id_karyawan
-                resolve(karyawan)
+                resolve(SUCCESS)
             })
         })
     }
