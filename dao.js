@@ -292,7 +292,7 @@ export class Dao{
         })
     }
 
-    retrievePeruahaanByName(perusahaan){
+    retrievePerusahaanByName(perusahaan){
         return new Promise((resolve,reject)=>{
             if(!perusahaan instanceof Perusahaan){
                 reject(MISMATCH_OBJ_TYPE)

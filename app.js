@@ -423,7 +423,8 @@ app.delete("/api/karyawan/delete", (req,res)=>{
 })
 
 app.get("/api/perusahaan/retrieve",(req,res)=>{
-    if(typeof req.query.id_perusahaan==='undefined'){
+    if(typeof req.query.id_perusahaan==='undefined' ||
+       typeof req.body.nama_perusahaan==='undefined'){
         dao.retrievePerusahaan().then(result=>{
             res.status(200).send({
                 success:true,
@@ -436,10 +437,32 @@ app.get("/api/perusahaan/retrieve",(req,res)=>{
                 error:SOMETHING_WENT_WRONG
             })
         })
-    }else{
-        const perusahaan=new Perusahaan(req.query.id_perusahaan,null,null)
+    }else if(typeof req.query.id_perusahaan!=='undefined'){
+        const perusahaan=new Perusahaan(req.query.id_perusahaan,null)
 
         dao.retrieveOnePerusahaan(perusahaan).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }else {
+        const perusahaan=new Perusahaan(null,req.body.nama_perusahaan)
+
+        dao.retrievePerusahaanByName(perusahaan).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
