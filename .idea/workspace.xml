@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,14 +124,7 @@
       <workItem from="1609989619504" duration="6265000" />
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
-      <workItem from="1610591555423" duration="8398000" />
-    </task>
-    <task id="LOCAL-00088" summary="Removed swagger import added jwt import">
-      <created>1608261228889</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1608261228889</updated>
+      <workItem from="1610591555423" duration="9850000" />
     </task>
     <task id="LOCAL-00089" summary="Cleaned up swagger codes">
       <created>1608261272560</created>
@@ -471,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610602906041</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="Re-modified addKaryawan">
+      <created>1610603716975</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1610603716975</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +498,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added jwt expiration" />
     <MESSAGE value="Added missing catch in Approve Transaksi" />
     <MESSAGE value="Re-modified Approve Transaksi" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) II" />
@@ -525,6 +522,7 @@
     <MESSAGE value="Updated User table format" />
     <MESSAGE value="Added registerUser function block" />
     <MESSAGE value="Re-modified addKaryawan to register user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified addKaryawan to register user" />
+    <MESSAGE value="Re-modified addKaryawan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified addKaryawan" />
   </component>
 </project>

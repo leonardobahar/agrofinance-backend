@@ -292,6 +292,35 @@ export class Dao{
         })
     }
 
+    retrievePeruahaanByName(perusahaan){
+        return new Promise((resolve,reject)=>{
+            if(!perusahaan instanceof Perusahaan){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT * FROM perusahaan WHERE p_nama_perusahaan=? "
+            this.mysqlConn.query(query,perusahaan.p_nama_perusahaan,async (error,result)=>{
+                if(error){
+                    reject(error)
+                }else if(result.length>0){
+                    let companies=[]
+                    for(let i=0;i<result.length;i++){
+                        companies.push(new Perusahaan(
+                            result[i].p_id_perusahaan,
+                            result[i].p_nama_perusahaan
+                        ), await this.retrieveCabangPerusahaanByPerusahaanId(result[i].p_id_perusahaan).catch(error=>{
+                            reject(error)
+                        }))
+                    }
+                    resolve(companies)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
     addPerusahaan(perusahaan){
         return new Promise((resolve,reject)=>{
             if(!perusahaan instanceof Perusahaan){
