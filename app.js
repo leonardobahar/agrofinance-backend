@@ -20,7 +20,7 @@ import {
     Kategori_transaksi,
     Pembebanan,
     Perusahaan, Rekening_perusahaan,
-    Transaksi, Transaksi_rekening
+    Transaksi, Transaksi_rekening, User
 } from "./model";
 import multer from 'multer'
 import path from 'path'
@@ -207,7 +207,9 @@ app.post("/api/karyawan/add", (req,res)=>{
         typeof req.body.nik==='undefined' ||
         typeof req.body.role==='undefined' ||
         typeof req.body.masih_hidup==='undefined' ||
-        typeof req.body.cabang_ids==='undefined'){
+        typeof req.body.cabang_ids==='undefined' ||
+        typeof req.body.email==='undefined' ||
+        typeof req.body.password==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -217,11 +219,19 @@ app.post("/api/karyawan/add", (req,res)=>{
 
     const employee=new Karyawan(null,req.body.nama_lengkap.toUpperCase(),req.body.posisi.toUpperCase(), req.body.nik, req.body.role.toUpperCase(), req.body.masih_hidup)
 
-    dao.addKaryawan(employee).then(async result=>{
-        dao.addKaryawan_kerja_dimana(new Karyawan_kerja_dimana(null,result.k_id_karyawan,req.body.cabang_ids)).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
+    dao.addKaryawan(employee).then(async karyawanResult=>{
+        dao.addKaryawan_kerja_dimana(new Karyawan_kerja_dimana(null,karyawanResult.k_id_karyawan,req.body.cabang_ids)).then(result=>{
+            dao.registerUser(new User(null,karyawanResult.k_nama_lengakp,req.body.email,req.body.password,karyawanResult.k_role,karyawanResult.k_id_karyawan,null)).then(result=>{
+                res.status(200).send({
+                    success:true,
+                    result:result
+                })
+            }).catch(error=>{
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
             })
         }).catch(error=>{
             console.error(error)
