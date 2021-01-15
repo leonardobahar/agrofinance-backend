@@ -124,21 +124,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="10313000" />
-    </task>
-    <task id="LOCAL-00109" summary="Fixed jwt useless database addtokenauth">
-      <created>1608436292466</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1608436292466</updated>
-    </task>
-    <task id="LOCAL-00110" summary="Added jwt expiration">
-      <created>1608436688700</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1608436688700</updated>
+      <workItem from="1610679580454" duration="10889000" />
     </task>
     <task id="LOCAL-00111" summary="Added missing catch in Approve Transaksi">
       <created>1608448553085</created>
@@ -469,7 +455,21 @@
       <option name="project" value="LOCAL" />
       <updated>1610696236457</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="Added delete position endpoint">
+      <created>1610696459327</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1610696459327</updated>
+    </task>
+    <task id="LOCAL-00159" summary="Re-modified delete position endpoint">
+      <created>1610696628779</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1610696628779</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,8 +498,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Update Transaksi" />
-    <MESSAGE value="Updated User table format" />
     <MESSAGE value="Added registerUser function block" />
     <MESSAGE value="Re-modified addKaryawan to register user" />
     <MESSAGE value="Re-modified addKaryawan" />
@@ -523,6 +521,8 @@
     <MESSAGE value="Added retrieve position endpoint" />
     <MESSAGE value="Added add position endpoint" />
     <MESSAGE value="Added update position endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added update position endpoint" />
+    <MESSAGE value="Added delete position endpoint" />
+    <MESSAGE value="Re-modified delete position endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified delete position endpoint" />
   </component>
 </project>

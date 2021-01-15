@@ -267,6 +267,36 @@ app.delete("/api/posisi/delete",(req,res)=>{
     })
 })
 
+app.get("/api/role/retrieve",(req,res)=>{
+    if(typeof req.query.id_role==='undefined'){
+        dao.retrieveRole().then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }else{
+        dao.retrieveOneRole(new Role(req.query.id_role)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }
+})
+
 app.get("/api/karyawan/retrieve", (req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
