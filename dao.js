@@ -202,6 +202,25 @@ export class Dao{
         })
     }
 
+    deletePosisi(posisi){
+        return new Promise((resolve,reject)=>{
+            if(!posisi instanceof Posisi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE posisi SET ps_is_deleted=1 WHERE ps_id_posisi=? "
+            this.mysqlConn.query(query,posisi.ps_id_posisi,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
             const query="SELECT * FROM karyawan "
