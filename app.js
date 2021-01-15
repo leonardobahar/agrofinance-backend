@@ -229,6 +229,33 @@ app.post("/api/posisi/update",(req,res)=>{
     })
 })
 
+app.delete("/api/posisi/delete",(req,res)=>{
+    if(typeof req.query.id_posisi==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.retrieveOnePosisi(new Posisi(req.query.id_posisi)).then(result=>{
+
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+            return
+        }
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
 app.get("/api/karyawan/retrieve", (req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
