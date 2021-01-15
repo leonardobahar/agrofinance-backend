@@ -360,6 +360,45 @@ app.post("/api/role/update",(req,res)=>{
     })
 })
 
+app.delete("/api/role/delete",(req,res)=>{
+    if(typeof req.query.id_role==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.retrieveOneRole(new Role(req.query.id_role)).then(result=>{
+        dao.deleteRole(new Role(req.query.id_role)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+            return
+        }
+
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
 app.get("/api/karyawan/retrieve", (req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
