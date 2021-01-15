@@ -243,6 +243,35 @@ export class Dao{
         })
     }
 
+    retrieveOneRole(role){
+        return new Promise((resolve,reject)=>{
+            if(!role instanceof Role){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT * FROM role WHERE r_id_role=? "
+            this.mysqlConn.query(query,role.r_id_role,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    let roles=[]
+                    for(let i=0;i<result.length; i++){
+                        roles.push(new Role(
+                            result[i].r_id_role,
+                            result[i].r_nama_role,
+                            result[i].r_is_deleted
+                        ))
+                    }
+                    resolve(roles)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
             const query="SELECT * FROM karyawan "
