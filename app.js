@@ -239,7 +239,18 @@ app.delete("/api/posisi/delete",(req,res)=>{
     }
 
     dao.retrieveOnePosisi(new Posisi(req.query.id_posisi)).then(result=>{
-
+        dao.deletePosisi(new Posisi(req.query.id_posisi)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
             res.status(204).send({
