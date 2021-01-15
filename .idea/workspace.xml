@@ -124,21 +124,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="7322000" />
-    </task>
-    <task id="LOCAL-00101" summary="Re-modified add Transaksi endpoint">
-      <created>1608353106816</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1608353106816</updated>
-    </task>
-    <task id="LOCAL-00102" summary="Added retrieve detilTransaksi function block">
-      <created>1608359001472</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1608359001472</updated>
+      <workItem from="1610679580454" duration="7663000" />
     </task>
     <task id="LOCAL-00103" summary="Re modified Approve Transaksi. (Still in progress)">
       <created>1608360360165</created>
@@ -469,7 +455,21 @@
       <option name="project" value="LOCAL" />
       <updated>1610690483348</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="Added retrieveRole function block">
+      <created>1610690735636</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1610690735636</updated>
+    </task>
+    <task id="LOCAL-00151" summary="Added retrieveOneRole function block">
+      <created>1610690914625</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1610690914625</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,8 +498,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Approve Transaksi, Still in progress in the add Transaction part" />
-    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress in the add Transaction part) II" />
     <MESSAGE value="Re-modified Approve Transaksi. Add Transaction part still being modified, Deleted some unused functions" />
     <MESSAGE value="Re-modified Approve Transaksi. Adjustments still being made." />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress)" />
@@ -523,6 +521,8 @@
     <MESSAGE value="Added addPosisi function block" />
     <MESSAGE value="Added updatePosisi function block" />
     <MESSAGE value="Added deletePosisi function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added deletePosisi function block" />
+    <MESSAGE value="Added retrieveRole function block" />
+    <MESSAGE value="Added retrieveOneRole function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added retrieveOneRole function block" />
   </component>
 </project>

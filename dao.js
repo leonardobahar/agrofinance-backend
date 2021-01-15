@@ -272,6 +272,26 @@ export class Dao{
         })
     }
 
+    addRole(role){
+        return new Promise((resolve,reject)=>{
+            if(!role instanceof Role){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="INSERT INTO `role`(`r_nama_role`) "
+            this.mysqlConn.query(query,role.r_nama_role,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                role.r_nama_role=result.insertId
+                resolve(role)
+            })
+        })
+    }
+
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
             const query="SELECT * FROM karyawan "
