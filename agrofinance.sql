@@ -33,6 +33,18 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`rekening_perusahaan` (
   FOREIGN KEY (`rp_id_cabang_perusahaan`) REFERENCES cabang_perusahaan(`cp_id_cabang`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS `agrofinance`.`posisi`(
+   `ps_id_posisi` INT(7) PRIMARY KEY AUTO_INCREMENT,
+   `ps_nama_posisi` VARCHAR(255) UNIQUE NOT NULL,
+   `ps_is_deleted` TINYINT(1) DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`role`(
+   `r_id_role` INT(7) PRIMARY KEY AUTO_INCREMENT,
+   `r_nama-role` VARCHAR(255) UNIQUE NOT NULL,
+   `r_is_deleted` TINYINT(1) DEFAULT 0
+);
+
 CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan` (
   `k_id_karyawan` INT(7) PRIMARY KEY AUTO_INCREMENT,
   `k_nama_lengkap` VARCHAR(255) UNIQUE NOT NULL,
