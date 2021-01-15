@@ -124,21 +124,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="6899000" />
-    </task>
-    <task id="LOCAL-00099" summary="Re-modified detil_transaksi table structure">
-      <created>1608304471496</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1608304471496</updated>
-    </task>
-    <task id="LOCAL-00100" summary="Re-modified detil_transaksi table structure">
-      <created>1608305989481</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1608305989481</updated>
+      <workItem from="1610679580454" duration="7322000" />
     </task>
     <task id="LOCAL-00101" summary="Re-modified add Transaksi endpoint">
       <created>1608353106816</created>
@@ -469,7 +455,21 @@
       <option name="project" value="LOCAL" />
       <updated>1610688683589</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="Added updatePosisi function block">
+      <created>1610690318072</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1610690318072</updated>
+    </task>
+    <task id="LOCAL-00149" summary="Added deletePosisi function block">
+      <created>1610690483348</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1610690483348</updated>
+    </task>
+    <option name="localTasksCounter" value="150" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,8 +498,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified debitSalso and creditSaldo" />
-    <MESSAGE value="Re-modified Approve Transaksi, added getSaldoRekening function block" />
     <MESSAGE value="Re-modified Approve Transaksi, Still in progress in the add Transaction part" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress in the add Transaction part) II" />
     <MESSAGE value="Re-modified Approve Transaksi. Add Transaction part still being modified, Deleted some unused functions" />
@@ -523,6 +521,8 @@
     <MESSAGE value="Added retrievePosisi function block" />
     <MESSAGE value="Added retrieveOnePosisi function block" />
     <MESSAGE value="Added addPosisi function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added addPosisi function block" />
+    <MESSAGE value="Added updatePosisi function block" />
+    <MESSAGE value="Added deletePosisi function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added deletePosisi function block" />
   </component>
 </project>

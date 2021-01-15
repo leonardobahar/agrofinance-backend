@@ -17,7 +17,7 @@ import {
     Karyawan_kerja_dimana,
     Kategori_transaksi,
     Pembebanan,
-    Perusahaan, Posisi, Rekening_perusahaan,
+    Perusahaan, Posisi, Rekening_perusahaan, Role,
     Transaksi, Transaksi_rekening, User
 } from "./model";
 
@@ -217,6 +217,28 @@ export class Dao{
                 }
 
                 resolve(SUCCESS)
+            })
+        })
+    }
+
+    retrieveRole(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT * FROM role "
+            this.mysqlConn.query(query,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                let roles=[]
+                for(let i=0;i<result.length; i++){
+                    roles.push(new Role(
+                        result[i].r_id_role,
+                        result[i].r_nama_role,
+                        result[i].r_is_deleted
+                    ))
+                }
+                resolve(roles)
             })
         })
     }
