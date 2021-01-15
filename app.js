@@ -19,7 +19,7 @@ import {
     Karyawan_kerja_dimana,
     Kategori_transaksi,
     Pembebanan,
-    Perusahaan, Posisi, Rekening_perusahaan,
+    Perusahaan, Posisi, Role, Rekening_perusahaan,
     Transaksi, Transaksi_rekening, User
 } from "./model";
 import multer from 'multer'
@@ -295,6 +295,29 @@ app.get("/api/role/retrieve",(req,res)=>{
             })
         })
     }
+})
+
+app.post("/api/role/add",(req,res)=>{
+    if(typeof req.query.nama_role==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.addRole(new Role(null,req.query.nama_role)).then(result=>{
+        res.status(200).send({
+            success:true,
+            result:result
+        })
+    }).catch(error=>{
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
 })
 
 app.get("/api/karyawan/retrieve", (req,res)=>{

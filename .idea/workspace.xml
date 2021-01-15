@@ -124,14 +124,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="10889000" />
-    </task>
-    <task id="LOCAL-00111" summary="Added missing catch in Approve Transaksi">
-      <created>1608448553085</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1608448553085</updated>
+      <workItem from="1610679580454" duration="11734000" />
     </task>
     <task id="LOCAL-00112" summary="Re-modified Approve Transaksi">
       <created>1608546172376</created>
@@ -469,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610696628779</updated>
     </task>
-    <option name="localTasksCounter" value="160" />
+    <task id="LOCAL-00160" summary="Added Add Role endpoint">
+      <created>1610697161030</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1610697161030</updated>
+    </task>
+    <option name="localTasksCounter" value="161" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +498,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added registerUser function block" />
     <MESSAGE value="Re-modified addKaryawan to register user" />
     <MESSAGE value="Re-modified addKaryawan" />
     <MESSAGE value="Added retrievePerusahaanByName function block" />
@@ -523,6 +522,7 @@
     <MESSAGE value="Added update position endpoint" />
     <MESSAGE value="Added delete position endpoint" />
     <MESSAGE value="Re-modified delete position endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified delete position endpoint" />
+    <MESSAGE value="Added Add Role endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Add Role endpoint" />
   </component>
 </project>
