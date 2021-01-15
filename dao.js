@@ -17,7 +17,7 @@ import {
     Karyawan_kerja_dimana,
     Kategori_transaksi,
     Pembebanan,
-    Perusahaan, Rekening_perusahaan,
+    Perusahaan, Posisi, Rekening_perusahaan,
     Transaksi, Transaksi_rekening, User
 } from "./model";
 
@@ -108,6 +108,28 @@ export class Dao{
 
                 user.user_id=result.insertId
                 resolve(user)
+            })
+        })
+    }
+
+    retrievePosisi(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT * FROM posisi "
+            this.mysqlConn.query(query,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                let positions=[]
+                for(let i=0;i<result.length;i++){
+                    positions.push(new Posisi(
+                        result[i].ps_id_posisi,
+                        result[i].ps_nama_posisi,
+                        result[i].ps_is_deleted
+                    ))
+                }
+                resolve(positions)
             })
         })
     }

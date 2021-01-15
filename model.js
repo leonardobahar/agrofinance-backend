@@ -1,3 +1,19 @@
+export class Posisi{
+    constructor(ps_id_posisi, ps_nama_posisi, ps_is_deleted) {
+        this.ps_id_posisi=ps_id_posisi
+        this.ps_nama_posisi=ps_nama_posisi
+        this.ps_is_deleted=ps_is_deleted
+    }
+}
+
+export class Role{
+    constructor(r_id_role, r_nama_role, r_is_deleted) {
+        this.r_id_role=r_id_role
+        this.r_nama_role=r_nama_role
+        this.r_is_deleted=r_is_deleted
+    }
+}
+
 export class Karyawan{
     constructor(k_id_karyawan, k_nama_lengkap, k_posisi, k_nik, k_role, k_masih_hidup) {
         this.k_id_karyawan=k_id_karyawan

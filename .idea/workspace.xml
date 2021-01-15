@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,14 +125,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="3907000" />
-    </task>
-    <task id="LOCAL-00095" summary="Added debitSaldo function block">
-      <created>1608297523255</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1608297523255</updated>
+      <workItem from="1610679580454" duration="4316000" />
     </task>
     <task id="LOCAL-00096" summary="Added creditSaldo function block">
       <created>1608299338958</created>
@@ -470,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610683181263</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="Added role and posisi tables in database">
+      <created>1610686155251</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1610686155252</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) VI" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) VII" />
     <MESSAGE value="Approve Transaksi starting to work. Still working on a few adjustments" />
     <MESSAGE value="Made some adjustments to Approve Transaksi. (Still in progress)" />
@@ -524,6 +523,7 @@
     <MESSAGE value="Re-modified Delete karyawan endpoint to not delete the entire data but to only change the flag" />
     <MESSAGE value="Re-modified Delete kategori transaksi endpoint" />
     <MESSAGE value="Re-modified Delete Perusahaan endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Delete Perusahaan endpoint" />
+    <MESSAGE value="Added role and posisi tables in database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added role and posisi tables in database" />
   </component>
 </project>
