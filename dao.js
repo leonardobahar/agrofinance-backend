@@ -142,7 +142,7 @@ export class Dao{
             }
 
             const query="SELECT * FROM posisi WHERE ps_id_posisi=? "
-            this.mysqlConn.query(query,(error,result)=>{
+            this.mysqlConn.query(query,posisi.ps_id_posisi,(error,result)=>{
                 if(error){
                     reject(error)
                     return
@@ -170,7 +170,7 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `posisi`(`ps_nama_posisi`) "
+            const query="INSERT INTO `posisi`(`ps_nama_posisi`) VALUES(?) "
             this.mysqlConn.query(query,posisi.ps_nama_posisi,(error,result)=>{
                 if(error){
                     reject(error)
@@ -279,14 +279,14 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `role`(`r_nama_role`) "
+            const query="INSERT INTO `role`(`r_nama_role`) VALUES(?) "
             this.mysqlConn.query(query,role.r_nama_role,(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                role.r_nama_role=result.insertId
+                role.r_id_role=result.insertId
                 resolve(role)
             })
         })

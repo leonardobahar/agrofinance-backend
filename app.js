@@ -306,7 +306,7 @@ app.post("/api/role/add",(req,res)=>{
         return
     }
 
-    dao.addRole(new Role(null,req.query.nama_role)).then(result=>{
+    dao.addRole(new Role(null,req.body.nama_role)).then(result=>{
         res.status(200).send({
             success:true,
             result:result

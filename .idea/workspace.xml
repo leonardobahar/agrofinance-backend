@@ -20,7 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,14 +125,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="13424000" />
-    </task>
-    <task id="LOCAL-00114" summary="Re-modified Approve Transaksi. (Still in progress) II">
-      <created>1608551525063</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1608551525064</updated>
+      <workItem from="1610679580454" duration="17662000" />
     </task>
     <task id="LOCAL-00115" summary="Re-modified Approve Transaksi. (Still in progress) III">
       <created>1608553861115</created>
@@ -469,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610698631199</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="Added Delete Role endpoint">
+      <created>1610699532640</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1610699532640</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified addKaryawan" />
     <MESSAGE value="Added retrievePerusahaanByName function block" />
     <MESSAGE value="Re-modified Retrieve Perusahaan endpoint to have 2 search features. (By ID or by Name)" />
     <MESSAGE value="Added k_is_deleted flag in karyawan column" />
@@ -523,6 +523,7 @@
     <MESSAGE value="Re-modified delete position endpoint" />
     <MESSAGE value="Added Add Role endpoint" />
     <MESSAGE value="Added Update Role endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Update Role endpoint" />
+    <MESSAGE value="Added Delete Role endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Delete Role endpoint" />
   </component>
 </project>
