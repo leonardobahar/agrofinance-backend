@@ -124,14 +124,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="11734000" />
-    </task>
-    <task id="LOCAL-00112" summary="Re-modified Approve Transaksi">
-      <created>1608546172376</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1608546172377</updated>
+      <workItem from="1610679580454" duration="12559000" />
     </task>
     <task id="LOCAL-00113" summary="Re-modified Approve Transaksi. (Still in progress)">
       <created>1608547325277</created>
@@ -469,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610697161030</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="Added Add Role endpoint">
+      <created>1610697820329</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1610697820329</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

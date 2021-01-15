@@ -298,7 +298,7 @@ app.get("/api/role/retrieve",(req,res)=>{
 })
 
 app.post("/api/role/add",(req,res)=>{
-    if(typeof req.query.nama_role==='undefined'){
+    if(typeof req.body.nama_role==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -312,6 +312,46 @@ app.post("/api/role/add",(req,res)=>{
             result:result
         })
     }).catch(error=>{
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
+app.post("/api/role/update",(req,res)=>{
+    if(typeof req.body.id_role==='undefined' ||
+       typeof req.body.nama_role==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.retrieveOneRole(new Role(req.body.id_role)).then(result=>{
+        dao.updatePosisi(new Posisi(req.body.id_role,req.body.nama_role)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+            return
+        }
+
         console.error(error)
         res.status(500).send({
             success:false,
