@@ -1246,15 +1246,14 @@ export class Dao{
                 return
             }
 
-            const query="DELETE FROM kategori_transaksi WHERE kt_id_kategori=?"
+            const query="UPDATE kategori_transaksi SET kt_is_deleted=1 WHERE kt_id_kategori=?"
             this.mysqlConn.query(query,kategori.kt_id_kategori,(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                kategori.kt_id_kategori=result.kt_id_kategori
-                resolve(kategori)
+                resolve(SUCCESS)
             })
         })
     }

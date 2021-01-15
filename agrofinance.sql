@@ -5,7 +5,8 @@ USE `agrofinance` ;
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`kategori_transaksi` (
   `kt_id_kategori` INT(7) PRIMARY KEY AUTO_INCREMENT,
-  `kt_nama_kategori` VARCHAR(255) NOT NULL);
+  `kt_nama_kategori` VARCHAR(255) NOT NULL,
+  `kt_is_deleted` tinyint(1) DEFAULT 0);
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`perusahaan` (
   `p_id_perusahaan` INT(7) PRIMARY KEY AUTO_INCREMENT,

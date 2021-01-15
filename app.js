@@ -1325,9 +1325,7 @@ app.get("/api/kategori-transaksi/retrieve",(req,res)=>{
                     success:false,
                     error:NO_SUCH_CONTENT
                 })
-            }
-
-            else {
+            } else {
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -1360,8 +1358,7 @@ app.post("/api/kategori-transaksi/add",(req,res)=>{
                 success:false,
                 error:ERROR_DUPLICATE_ENTRY
             })
-        }
-        else{
+        } else{
             console.error(error)
             res.status(500).send({
                 success:false,
@@ -1410,9 +1407,7 @@ app.post("/api/kategori-transaksi/update", (req,res)=>{
                 success:false,
                 error:NO_SUCH_CONTENT
             })
-        }
-
-        else {
+        } else {
             console.error(error)
             res.status(500).send({
                 success:false,
@@ -1452,9 +1447,7 @@ app.delete("/api/kategori-transaksi/delete", (req,res)=>{
                 success:false,
                 error:NO_SUCH_CONTENT
             })
-        }
-
-        else {
+        } else {
             console.error(error)
             res.status(500).send({
                 success:false,
