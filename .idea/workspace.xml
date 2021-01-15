@@ -22,7 +22,6 @@
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,14 +126,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="1017000" />
-    </task>
-    <task id="LOCAL-00093" summary="Fixed Update Transaksi bug">
-      <created>1608280018536</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1608280018536</updated>
+      <workItem from="1610679580454" duration="2180000" />
     </task>
     <task id="LOCAL-00094" summary="Added getDebitCredit function block">
       <created>1608282620067</created>
@@ -472,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610613780580</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="Re-modified Delete kategori transaksi endpoint">
+      <created>1610682121791</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1610682121791</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,7 +500,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) IV" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) V" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) VI" />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress) VII" />
@@ -526,6 +524,7 @@
     <MESSAGE value="Re-modified Retrieve Perusahaan endpoint to have 2 search features. (By ID or by Name)" />
     <MESSAGE value="Added k_is_deleted flag in karyawan column" />
     <MESSAGE value="Re-modified Delete karyawan endpoint to not delete the entire data but to only change the flag" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Delete karyawan endpoint to not delete the entire data but to only change the flag" />
+    <MESSAGE value="Re-modified Delete kategori transaksi endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Delete kategori transaksi endpoint" />
   </component>
 </project>

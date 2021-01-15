@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`kategori_transaksi` (
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`perusahaan` (
   `p_id_perusahaan` INT(7) PRIMARY KEY AUTO_INCREMENT,
-  `p_nama_perusahaan` VARCHAR(255) NOT NULL);
+  `p_nama_perusahaan` VARCHAR(255) NOT NULL,
+  `p_is_deleted` TINYINT(1) DEFAULT 0);
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`cabang_perusahaan`(
 	`cp_id_cabang` INT(7) PRIMARY KEY AUTO_INCREMENT,
