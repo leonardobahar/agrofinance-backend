@@ -19,7 +19,7 @@ import {
     Karyawan_kerja_dimana,
     Kategori_transaksi,
     Pembebanan,
-    Perusahaan, Rekening_perusahaan,
+    Perusahaan, Posisi, Rekening_perusahaan,
     Transaksi, Transaksi_rekening, User
 } from "./model";
 import multer from 'multer'
@@ -126,6 +126,44 @@ app.post("/api/login", (req, res)=>{
 
         }
     })
+})
+
+app.get("/api/posisi/retrieve",(req,res)=>{
+    if(typeof req.query.id_posisi==='undefined'){
+        dao.retrievePosisi().then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }else{
+        dao.retrieveOnePosisi(new Posisi(req.query.id_posisi)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }
+
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }
 })
 
 app.get("/api/karyawan/retrieve", (req,res)=>{

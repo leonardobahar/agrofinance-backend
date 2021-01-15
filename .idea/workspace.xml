@@ -20,7 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,14 +125,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="8109000" />
-    </task>
-    <task id="LOCAL-00105" summary="Added Check Pembebanan json function block">
-      <created>1608369374095</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1608369374095</updated>
+      <workItem from="1610679580454" duration="9039000" />
     </task>
     <task id="LOCAL-00106" summary="Created addUserToken function and added jest to dependency">
       <created>1608387514529</created>
@@ -469,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610691343273</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="Added deleteRole function block">
+      <created>1610691520557</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1610691520557</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Re-modified Approve Transaksi JSON issue" />
     <MESSAGE value="Re-modified Approve Transaksi." />
     <MESSAGE value="Approve Transaksi now functional." />
@@ -523,6 +523,7 @@
     <MESSAGE value="Added retrieveOneRole function block" />
     <MESSAGE value="Added addRole function block" />
     <MESSAGE value="Added updateRole function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added updateRole function block" />
+    <MESSAGE value="Added deleteRole function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added deleteRole function block" />
   </component>
 </project>
