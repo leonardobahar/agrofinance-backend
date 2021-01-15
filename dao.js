@@ -134,6 +134,35 @@ export class Dao{
         })
     }
 
+    retrieveOnePosisi(posisi){
+        return new Promise((resolve,reject)=>{
+            if(!posisi instanceof Posisi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT * FROM posisi WHERE ps_id_posisi=? "
+            this.mysqlConn.query(query,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    let positions=[]
+                    for(let i=0;i<result.length;i++){
+                        positions.push(new Posisi(
+                            result[0].ps_id_posisi,
+                            result[0].ps_nama_posisi,
+                            result[0].ps_is_deleted
+                        ))
+                    }
+                    resolve(positions)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
             const query="SELECT * FROM karyawan "
