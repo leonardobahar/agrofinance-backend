@@ -163,6 +163,26 @@ export class Dao{
         })
     }
 
+    addPosisi(posisi){
+        return new Promise((resolve,reject)=>{
+            if(!posisi instanceof Posisi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="INSERT INTO `posisi`(`ps_nama_posisi`) "
+            this.mysqlConn.query(query,posisi.ps_nama_posisi,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                posisi.ps_id_posisi=result.insertId
+                resolve(posisi)
+            })
+        })
+    }
+
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
             const query="SELECT * FROM karyawan "

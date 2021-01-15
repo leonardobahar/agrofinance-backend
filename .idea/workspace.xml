@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,14 +125,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="4686000" />
-    </task>
-    <task id="LOCAL-00097" summary="Modified Approve Transaksi. (Still in progress)">
-      <created>1608301897116</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1608301897116</updated>
+      <workItem from="1610679580454" duration="5987000" />
     </task>
     <task id="LOCAL-00098" summary="Modified detil_transaksi table structure">
       <created>1608302953776</created>
@@ -469,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610686727853</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="Added retrieveOnePosisi function block">
+      <created>1610687038573</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1610687038573</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Approve Transaksi starting to work. Still working on a few adjustments" />
     <MESSAGE value="Made some adjustments to Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Re-modified debitSalso and creditSaldo" />
     <MESSAGE value="Re-modified Approve Transaksi, added getSaldoRekening function block" />
@@ -523,6 +523,7 @@
     <MESSAGE value="Re-modified Delete Perusahaan endpoint" />
     <MESSAGE value="Added role and posisi tables in database" />
     <MESSAGE value="Added retrievePosisi function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added retrievePosisi function block" />
+    <MESSAGE value="Added retrieveOnePosisi function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added retrieveOnePosisi function block" />
   </component>
 </project>
