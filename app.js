@@ -189,6 +189,46 @@ app.post("/api/posisi/add",(req,res)=>{
     })
 })
 
+app.post("/api/posisi/update",(req,res)=>{
+    if(typeof req.body.id_posisi==='undefined' ||
+       typeof req.body.nama_posisi==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.retrieveOnePosisi(new Posisi(req.body.id_posisi)).then(result=>{
+        dao.updatePosisi(new Posisi(req.body.id_posisi,req.body.nama_posisi)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+            return
+        }
+
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
 app.get("/api/karyawan/retrieve", (req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
