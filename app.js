@@ -331,7 +331,7 @@ app.post("/api/role/update",(req,res)=>{
     }
 
     dao.retrieveOneRole(new Role(req.body.id_role)).then(result=>{
-        dao.updatePosisi(new Posisi(req.body.id_role,req.body.nama_role)).then(result=>{
+        dao.updateRole(new Role(req.body.id_role,req.body.nama_role)).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
