@@ -311,6 +311,25 @@ export class Dao{
         })
     }
 
+    deleteRole(role){
+        return new Promise((resolve,reject)=>{
+            if(!role instanceof Role){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE role SET r_is_deleted=1 WHERE r_id_role=? "
+            this.mysqlConn.query(query,role.r_id_role,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
             const query="SELECT * FROM karyawan "

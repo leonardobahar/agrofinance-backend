@@ -124,21 +124,7 @@
       <workItem from="1610091406185" duration="606000" />
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
-      <workItem from="1610679580454" duration="7663000" />
-    </task>
-    <task id="LOCAL-00103" summary="Re modified Approve Transaksi. (Still in progress)">
-      <created>1608360360165</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1608360360165</updated>
-    </task>
-    <task id="LOCAL-00104" summary="Re-modified Approve Transaksi. (Still in progress) II">
-      <created>1608361191421</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1608361191421</updated>
+      <workItem from="1610679580454" duration="8109000" />
     </task>
     <task id="LOCAL-00105" summary="Added Check Pembebanan json function block">
       <created>1608369374095</created>
@@ -469,7 +455,21 @@
       <option name="project" value="LOCAL" />
       <updated>1610690914625</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="Added addRole function block">
+      <created>1610691075450</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1610691075450</updated>
+    </task>
+    <task id="LOCAL-00153" summary="Added updateRole function block">
+      <created>1610691343272</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1610691343273</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,8 +498,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Approve Transaksi. Add Transaction part still being modified, Deleted some unused functions" />
-    <MESSAGE value="Re-modified Approve Transaksi. Adjustments still being made." />
     <MESSAGE value="Re-modified Approve Transaksi. (Still in progress)" />
     <MESSAGE value="Re-modified Approve Transaksi JSON issue" />
     <MESSAGE value="Re-modified Approve Transaksi." />
@@ -523,6 +521,8 @@
     <MESSAGE value="Added deletePosisi function block" />
     <MESSAGE value="Added retrieveRole function block" />
     <MESSAGE value="Added retrieveOneRole function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added retrieveOneRole function block" />
+    <MESSAGE value="Added addRole function block" />
+    <MESSAGE value="Added updateRole function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added updateRole function block" />
   </component>
 </project>
