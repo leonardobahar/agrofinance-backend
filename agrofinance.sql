@@ -134,8 +134,9 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`user` (
   `u_username` varchar(255) NOT NULL,
   `u_email` varchar(255) DEFAULT NULL,
   `u_password` varchar(255) DEFAULT NULL,
-  `u_role` varchar(255) NOT NULL,
+  `u_id_role` INT(7) NOT NULL,
   `u_is_blocked` tinyint(1) NOT NULL DEFAULT '0',
   `u_karyawan_id` int(7) NOT NULL,
-  FOREIGN KEY (`u_karyawan_id`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`u_karyawan_id`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`u_id_role`) REFERENCES role(`r_id_role`) ON DELETE CASCADE ON UPDATE CASCADE
 );

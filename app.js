@@ -475,9 +475,9 @@ app.get("/api/karyawan/retrieve", (req,res)=>{
 
 app.post("/api/karyawan/add", (req,res)=>{
     if(typeof req.body.nama_lengkap==='undefined' ||
-        typeof req.body.posisi==='undefined' ||
+        typeof req.body.id_posisi==='undefined' ||
         typeof req.body.nik==='undefined' ||
-        typeof req.body.role==='undefined' ||
+        typeof req.body.id_role==='undefined' ||
         typeof req.body.masih_hidup==='undefined' ||
         typeof req.body.cabang_ids==='undefined' ||
         typeof req.body.email==='undefined' ||
@@ -489,60 +489,92 @@ app.post("/api/karyawan/add", (req,res)=>{
         return
     }
 
-    const employee=new Karyawan(null,req.body.nama_lengkap.toUpperCase(),req.body.posisi.toUpperCase(), req.body.nik, req.body.role.toUpperCase(), req.body.masih_hidup)
+    const employee=new Karyawan(null,req.body.nama_lengkap.toUpperCase(),req.body.id_posisi, req.body.nik, req.body.id_role, req.body.masih_hidup)
 
-    dao.addKaryawan(employee).then(async karyawanResult=>{
-        dao.addKaryawan_kerja_dimana(new Karyawan_kerja_dimana(null,karyawanResult.k_id_karyawan,req.body.cabang_ids)).then(result=>{
-            dao.registerUser(new User(null,karyawanResult.k_nama_lengkap,req.body.email,req.body.password,karyawanResult.k_role,karyawanResult.k_id_karyawan)).then(result=>{
+    dao.retrieveOnePosisi(new Posisi(req.body.id_posisi)).then(result=>{
+        dao.retrieveOneRole(new Role(req.body.id_role)).then(result=>{
+            dao.addKaryawan(employee).then(async karyawanResult=>{
+                dao.addKaryawan_kerja_dimana(new Karyawan_kerja_dimana(null,karyawanResult.k_id_karyawan,req.body.cabang_ids)).then(result=>{
+                    dao.registerUser(new User(null,karyawanResult.k_nama_lengkap,req.body.email,req.body.password,karyawanResult.k_id_role,karyawanResult.k_id_karyawan)).then(result=>{
+                        res.status(200).send({
+                            success:true,
+                            result:result
+                        })
+                    }).catch(error=>{
+                        console.error(error)
+                        res.status(500).send({
+                            success:false,
+                            error:SOMETHING_WENT_WRONG
+                        })
+                    })
+                }).catch(error=>{
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                })
+                /*
+                const karyawanId = result.k_id_karyawan;
+
+                const karyawanPerusahaanRes = req.body.cabang_ids.map(cabangId => {
+                    const karyawanPerusahaan = new Karyawan_kerja_dimana(null, karyawanId, cabangId);
+
+                    return dao.addKaryawan_kerja_dimana(karyawanPerusahaan)
+                })
+
+                const karyawanPerusahaanValues = await Promise.all(karyawanPerusahaanRes)
+                    .then(values => values)
+                    .catch(errors => console.error(errors));
+
                 res.status(200).send({
                     success:true,
                     result:result
-                })
+                })*/
             }).catch(error=>{
-                console.error(error)
-                res.status(500).send({
-                    success:false,
-                    error:SOMETHING_WENT_WRONG
-                })
+                if(error.code==='ER_DUP_ENTRY'){
+                    res.status(500).send({
+                        success:false,
+                        error:ERROR_DUPLICATE_ENTRY
+                    })
+                }
+                else{
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                }
             })
         }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }
+
             console.error(error)
             res.status(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
             })
         })
-        /*
-        const karyawanId = result.k_id_karyawan;
-
-        const karyawanPerusahaanRes = req.body.cabang_ids.map(cabangId => {
-            const karyawanPerusahaan = new Karyawan_kerja_dimana(null, karyawanId, cabangId);
-
-            return dao.addKaryawan_kerja_dimana(karyawanPerusahaan)
-        })
-
-        const karyawanPerusahaanValues = await Promise.all(karyawanPerusahaanRes)
-            .then(values => values)
-            .catch(errors => console.error(errors));
-
-        res.status(200).send({
-            success:true,
-            result:result
-        })*/
     }).catch(error=>{
-        if(error.code==='ER_DUP_ENTRY'){
-            res.status(500).send({
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
                 success:false,
-                error:ERROR_DUPLICATE_ENTRY
+                error:NO_SUCH_CONTENT
             })
+            return
         }
-        else{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        }
+
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
     })
 })
 

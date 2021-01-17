@@ -21,7 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,14 +129,7 @@
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
       <workItem from="1610679580454" duration="20387000" />
-      <workItem from="1610857406768" duration="5656000" />
-    </task>
-    <task id="LOCAL-00120" summary="Re-modified Approve Transaksi. (Still in progress)">
-      <created>1608610654781</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1608610654781</updated>
+      <workItem from="1610857406768" duration="6910000" />
     </task>
     <task id="LOCAL-00121" summary="Approve Transaksi starting to work. Still working on a few adjustments">
       <created>1608612692985</created>
@@ -471,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610888699943</updated>
     </task>
-    <option name="localTasksCounter" value="169" />
+    <task id="LOCAL-00169" summary="Fixed retreive One karyawan bug">
+      <created>1610890197225</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1610890197225</updated>
+    </task>
+    <option name="localTasksCounter" value="170" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +503,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Delete Perusahaan endpoint" />
     <MESSAGE value="Added role and posisi tables in database" />
     <MESSAGE value="Added retrievePosisi function block" />
     <MESSAGE value="Added retrieveOnePosisi function block" />
@@ -525,6 +527,7 @@
     <MESSAGE value="Re-modified Karyawan table srtucture" />
     <MESSAGE value="Re-modified Karyawan code model" />
     <MESSAGE value="Re-modified Retrieve Karyawan endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Retrieve Karyawan endpoint" />
+    <MESSAGE value="Fixed retreive One karyawan bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed retreive One karyawan bug" />
   </component>
 </project>
