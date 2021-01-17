@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`transaksi_cabang_perusahaan`(
 CREATE TABLE IF NOT EXISTS `agrofinance`.`user` (
   `u_user_id` int(7)  PRIMARY KEY AUTO_INCREMENT,
   `u_username` varchar(255) NOT NULL,
-  `u_email` varchar(255) DEFAULT NULL,
+  `u_email` varchar(255) UNIQUE DEFAULT NULL,
   `u_password` varchar(255) DEFAULT NULL,
   `u_id_role` INT(7) NOT NULL,
   `u_is_blocked` tinyint(1) NOT NULL DEFAULT '0',

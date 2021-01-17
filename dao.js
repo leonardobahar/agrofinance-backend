@@ -403,8 +403,8 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `karyawan` (`k_nama_lengkap`,`k_posisi`, `k_nik`, `k_role`, `k_masih_hidup`) VALUES(?,?,?,?,?)"
-            this.mysqlConn.query(query, [karyawan.k_nama_lengkap, karyawan.k_posisi, karyawan.k_nik, karyawan.k_role, karyawan.k_masih_hidup], (error,result)=>{
+            const query="INSERT INTO `karyawan` (`k_nama_lengkap`,`k_id_posisi`, `k_nik`, `k_id_role`, `k_masih_hidup`) VALUES(?,?,?,?,?)"
+            this.mysqlConn.query(query, [karyawan.k_nama_lengkap, karyawan.k_id_posisi, karyawan.k_nik, karyawan.k_id_role, karyawan.k_masih_hidup], (error,result)=>{
                 if(error){
                     reject(error)
                     return
