@@ -332,7 +332,10 @@ export class Dao{
 
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM karyawan "
+            const query="SELECT k.k_id_karyawan, k.k_nama_lengkap, k.k_id_posisi, ps.ps_nama_posisi, k.k_nik, " +
+                "k.k_id_role, r.r_nama_role, k.k_masih_hidup " +
+                "FROM karyawan k LEFT OUTER JOIN posisi ps ON ps.ps_id_posisi=k.k_id_posisi " +
+                "LEFT OUTER JOIN role r ON r.r_id_role=k.k_id_role "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -343,9 +346,11 @@ export class Dao{
                     return{
                         id:rowDataPacket.k_id_karyawan,
                         nama_lengkap:rowDataPacket.k_nama_lengkap,
-                        posisi:rowDataPacket.k_posisi,
+                        id_posisi:rowDataPacket.k_id_posisi,
+                        nama_posisi:rowDataPacket.ps_nama_posisi,
                         nik:rowDataPacket.k_nik,
-                        role:rowDataPacket.k_role,
+                        id_role:rowDataPacket.k_id_role,
+                        nama_role:rowDataPacket.r_nama_role,
                         masih_hidup:rowDataPacket.k_masih_hidup
                     }
                 })
@@ -361,24 +366,26 @@ export class Dao{
                 return
             }
 
-            const query="SELECT * FROM karyawan WHERE k_id_karyawan=?"
+            const query="SELECT k.k_id_karyawan, k.k_nama_lengkap, k.k_id_posisi, ps.ps_nama_posisi, k.k_nik, " +
+                "k.k_id_role, r.r_nama_role, k.k_masih_hidup " +
+                "FROM karyawan k LEFT OUTER JOIN posisi ps ON ps.ps_id_posisi=k.k_id_posisi " +
+                "LEFT OUTER JOIN role r ON r.r_id_role=k.k_id_role " +
+                "WHERE k.k_id_karyawan=?"
             this.mysqlConn.query(query, karyawan.k_id_karyawan, async(error, result)=>{
                 if(error){
                     reject(error)
                     return
                 } else if(result.length>0){
-                    let employees=[]
-                    for(let i=0; i<result.length; i++){
-                        employees.push(new Karyawan(
-                            result[i].k_id_karyawan,
-                            result[i].k_nama_lengkap,
-                            result[i].k_posisi,
-                            result[i].k_nik,
-                            result[i].k_role,
-                            result[i].k_masih_hidup
-                        ))
+                    return{
+                        id:rowDataPacket.k_id_karyawan,
+                        nama_lengkap:rowDataPacket.k_nama_lengkap,
+                        id_posisi:rowDataPacket.k_id_posisi,
+                        nama_posisi:rowDataPacket.ps_nama_posisi,
+                        nik:rowDataPacket.k_nik,
+                        id_role:rowDataPacket.k_id_role,
+                        nama_role:rowDataPacket.r_nama_role,
+                        masih_hidup:rowDataPacket.k_masih_hidup
                     }
-                    resolve(employees)
                 } else {
                     reject(NO_SUCH_CONTENT)
                 }

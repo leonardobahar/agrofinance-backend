@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,14 +125,7 @@
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
       <workItem from="1610679580454" duration="20387000" />
-      <workItem from="1610857406768" duration="3752000" />
-    </task>
-    <task id="LOCAL-00118" summary="Re-modified Approve Transaksi. (Still in progress) VI">
-      <created>1608608010710</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1608608010711</updated>
+      <workItem from="1610857406768" duration="4357000" />
     </task>
     <task id="LOCAL-00119" summary="Re-modified Approve Transaksi. (Still in progress) VII">
       <created>1608609325215</created>
@@ -470,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610887918142</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="Re-modified Karyawan code model">
+      <created>1610888079623</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1610888079623</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Delete karyawan endpoint to not delete the entire data but to only change the flag" />
     <MESSAGE value="Re-modified Delete kategori transaksi endpoint" />
     <MESSAGE value="Re-modified Delete Perusahaan endpoint" />
     <MESSAGE value="Added role and posisi tables in database" />
@@ -524,6 +523,7 @@
     <MESSAGE value="Fixed add Role and add Posisi bug" />
     <MESSAGE value="Fixed update Role bug" />
     <MESSAGE value="Re-modified Karyawan table srtucture" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Karyawan table srtucture" />
+    <MESSAGE value="Re-modified Karyawan code model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Karyawan code model" />
   </component>
 </project>
