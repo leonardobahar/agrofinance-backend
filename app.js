@@ -581,9 +581,9 @@ app.post("/api/karyawan/add", (req,res)=>{
 app.post("/api/karyawan/update", (req,res)=>{
     if(typeof req.body.id_karyawan==='undefined' ||
         typeof req.body.nama_lengkap==='undefined' ||
-        typeof req.body.posisi==='undefined' ||
+        typeof req.body.id_posisi==='undefined' ||
         typeof req.body.nik==='undefined' ||
-        typeof req.body.role==='undefined' ||
+        typeof req.body.id_role==='undefined' ||
         typeof req.body.masih_hidup==='undefined' ||
         typeof req.body.cabang_ids==='undefined'){
         res.status(400).send({
@@ -593,7 +593,7 @@ app.post("/api/karyawan/update", (req,res)=>{
         return
     }
 
-    const employee=new Karyawan(req.body.id_karyawan, req.body.nama_lengkap.toUpperCase(), req.body.posisi.toUpperCase(), req.body.nik, req.body.role.toUpperCase(), req.body.masih_hidup.toUpperCase())
+    const employee=new Karyawan(req.body.id_karyawan, req.body.nama_lengkap.toUpperCase(), req.body.id_posisi, req.body.nik, req.body.id_role, req.body.masih_hidup.toUpperCase())
 
     dao.retrieveOneKaryawan(employee).then(async result=>{
         try {
@@ -659,8 +659,7 @@ app.post("/api/karyawan/update", (req,res)=>{
                     success:false,
                     error:ERROR_DUPLICATE_ENTRY
                 })
-            }
-            else{
+            } else{
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -674,9 +673,7 @@ app.post("/api/karyawan/update", (req,res)=>{
                 success:false,
                 error:NO_SUCH_CONTENT
             })
-        }
-
-        else {
+        } else {
             console.error(error)
             res.status(500).send({
                 success:false,
