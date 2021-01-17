@@ -376,16 +376,19 @@ export class Dao{
                     reject(error)
                     return
                 } else if(result.length>0){
-                    return{
-                        id:rowDataPacket.k_id_karyawan,
-                        nama_lengkap:rowDataPacket.k_nama_lengkap,
-                        id_posisi:rowDataPacket.k_id_posisi,
-                        nama_posisi:rowDataPacket.ps_nama_posisi,
-                        nik:rowDataPacket.k_nik,
-                        id_role:rowDataPacket.k_id_role,
-                        nama_role:rowDataPacket.r_nama_role,
-                        masih_hidup:rowDataPacket.k_masih_hidup
-                    }
+                    const employee=result.map(rowDataPacket=>{
+                        return{
+                            id:rowDataPacket.k_id_karyawan,
+                            nama_lengkap:rowDataPacket.k_nama_lengkap,
+                            id_posisi:rowDataPacket.k_id_posisi,
+                            nama_posisi:rowDataPacket.ps_nama_posisi,
+                            nik:rowDataPacket.k_nik,
+                            id_role:rowDataPacket.k_id_role,
+                            nama_role:rowDataPacket.r_nama_role,
+                            masih_hidup:rowDataPacket.k_masih_hidup
+                        }
+                    })
+                    resolve(employee)
                 } else {
                     reject(NO_SUCH_CONTENT)
                 }
@@ -1518,10 +1521,18 @@ export class Dao{
                     kkd.kkd_id_karyawan_kerja_dimana, 
                     kkd.kkd_id_karyawan, 
                     ka.k_nama_lengkap, 
+                    ka.k_id_posisi,
+                    ps.ps_nama_posisi,
+                    ka.k_nik,
+                    ka.k_id_role,
+                    r.r_nama_role,
+                    ka.k_masih_hidup,
                     kkd.kkd_id_cabang_perusahaan, 
                     cp.cp_nama_cabang 
                 FROM karyawan_kerja_dimana kkd 
                 LEFT OUTER JOIN karyawan ka ON kkd.kkd_id_karyawan=ka.k_id_karyawan
+                LEFT OUTER JOIN posisi ps ON ka.k_id_posisi=ps.ps_id_posisi
+                LEFT OUTER JOIN role r ON ka.k_id_role=r.r_id_role
                 LEFT OUTER JOIN cabang_perusahaan cp ON kkd.kkd_id_cabang_perusahaan=cp.cp_id_cabang
                 WHERE kkd.kkd_id_karyawan=?`;
             
@@ -1529,22 +1540,23 @@ export class Dao{
                 if(error){
                     reject(error)
                     return
-                }
-
-                else if(result.length>0){
+                } else if(result.length>0){
                     const works=result.map(rowDataPacket=>{
                         return{
                             id_karyawan_kerja_dimana:rowDataPacket.kkd_id_karyawan_kerja_dimana,
                             id_karyawan:rowDataPacket.kkd_id_karyawan,
                             nama_lengkap:rowDataPacket.k_nama_lengkap,
+                            id_posisi:rowDataPacket.k_id_posisi,
+                            nama_posisi:rowDataPacket.ps_nama_posisi,
+                            nik:rowDataPacket.k_nik,
+                            id_role:rowDataPacket.k_id_role,
+                            nama_role:rowDataPacket.r_nama_role,
                             id_cabang:rowDataPacket.kkd_id_cabang_perusahaan,
                             nama_cabang:rowDataPacket.cp_nama_cabang
                         }
                     })
                     resolve(works)
-                }
-
-                else{
+                } else{
                     reject(NO_SUCH_CONTENT)
                 }
             })

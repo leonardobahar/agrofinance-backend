@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -125,14 +126,7 @@
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
       <workItem from="1610679580454" duration="20387000" />
-      <workItem from="1610857406768" duration="4357000" />
-    </task>
-    <task id="LOCAL-00119" summary="Re-modified Approve Transaksi. (Still in progress) VII">
-      <created>1608609325215</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1608609325215</updated>
+      <workItem from="1610857406768" duration="5656000" />
     </task>
     <task id="LOCAL-00120" summary="Re-modified Approve Transaksi. (Still in progress)">
       <created>1608610654781</created>
@@ -470,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610888079623</updated>
     </task>
-    <option name="localTasksCounter" value="168" />
+    <task id="LOCAL-00168" summary="Re-modified Retrieve Karyawan endpoint">
+      <created>1610888699943</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1610888699943</updated>
+    </task>
+    <option name="localTasksCounter" value="169" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,7 +500,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Delete kategori transaksi endpoint" />
     <MESSAGE value="Re-modified Delete Perusahaan endpoint" />
     <MESSAGE value="Added role and posisi tables in database" />
     <MESSAGE value="Added retrievePosisi function block" />
@@ -524,6 +524,7 @@
     <MESSAGE value="Fixed update Role bug" />
     <MESSAGE value="Re-modified Karyawan table srtucture" />
     <MESSAGE value="Re-modified Karyawan code model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Karyawan code model" />
+    <MESSAGE value="Re-modified Retrieve Karyawan endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Retrieve Karyawan endpoint" />
   </component>
 </project>

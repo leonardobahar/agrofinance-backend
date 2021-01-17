@@ -417,7 +417,8 @@ app.get("/api/karyawan/retrieve", (req,res)=>{
         const employee = new Karyawan(req.query.id_karyawan,null,null,null,null,null);
 
         dao.retrieveOneKaryawan(employee).then(async result => {
-            const karyawanPerusahaan = new Karyawan_kerja_dimana(null, result[0].k_id_karyawan, null);
+
+            const karyawanPerusahaan = new Karyawan_kerja_dimana(null, req.query.id_karyawan, null);
 
             try {
                 const karyawanWithCabangRes = await dao.retrieveOneKaryawanKerjaDimana(karyawanPerusahaan);
