@@ -2096,7 +2096,7 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE transaksi SET t_status='Cancelled' WHERE t_id_transaksi=? "
+            const query="UPDATE transaksi SET t_status='Cancelled' WHERE t_status='Pending' AND t_id_transaksi=? "
             this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
                 if(error){
                     reject(error)

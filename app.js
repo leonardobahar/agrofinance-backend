@@ -2374,6 +2374,38 @@ app.post("/api/transaksi/reject",(req,res)=>{
     })
 })
 
+app.post("/api/transaksi/cancel",(req,res)=>{
+    if(typeof req.query.id_transaksi==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.getTransaksiID(new Transaksi(req.query.id_transaksi)).then(result=>{
+        dao.cancelTransaksi(new Transaksi(req.query.id_transaksi)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        })
+    }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+            return
+        }
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
 app.delete("/api/transaksi/delete", (req,res)=>{
     if(typeof req.query.id_transaksi==='undefined'){
         res.status(400).send({
