@@ -2389,6 +2389,12 @@ app.post("/api/transaksi/cancel",(req,res)=>{
                 success:true,
                 result:result
             })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
         })
     }).catch(error=>{
         if(error===NO_SUCH_CONTENT){
