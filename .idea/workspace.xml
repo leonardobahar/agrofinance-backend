@@ -21,8 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,14 +125,7 @@
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
       <workItem from="1610679580454" duration="20387000" />
-      <workItem from="1610857406768" duration="8258000" />
-    </task>
-    <task id="LOCAL-00123" summary="Re-modified debitSalso and creditSaldo">
-      <created>1608632396679</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1608632396679</updated>
+      <workItem from="1610857406768" duration="9360000" />
     </task>
     <task id="LOCAL-00124" summary="Re-modified Approve Transaksi, added getSaldoRekening function block">
       <created>1608694265046</created>
@@ -472,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610891974118</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="Re-modified update karyawan endpoint (still in progress)">
+      <created>1610892612281</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1610892612281</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added retrievePosisi function block" />
     <MESSAGE value="Added retrieveOnePosisi function block" />
     <MESSAGE value="Added addPosisi function block" />
     <MESSAGE value="Added updatePosisi function block" />
@@ -526,6 +523,7 @@
     <MESSAGE value="Re-modified Retrieve Karyawan endpoint" />
     <MESSAGE value="Fixed retreive One karyawan bug" />
     <MESSAGE value="Re-modified add karyawan endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified add karyawan endpoint" />
+    <MESSAGE value="Re-modified update karyawan endpoint (still in progress)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified update karyawan endpoint (still in progress)" />
   </component>
 </project>

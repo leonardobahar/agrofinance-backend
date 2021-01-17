@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`cabang_perusahaan`(
     `cp_lokasi` VARCHAR(225) NOT NULL,
     `cp_alamat_lengkap` VARCHAR(225) NOT NULL,
     `cp_is_default` TINYINT(1) NOT NULL DEFAULT 0,
+    `cp_is_deleted` TINYINT(1) NOT NULL DEFAULT 0,
     FOREIGN KEY (`cp_perusahaan_id`) REFERENCES perusahaan(`p_id_perusahaan`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

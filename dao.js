@@ -887,7 +887,7 @@ export class Dao{
                 return
             }
 
-            const query="DELETE FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            const query="UPDATE cabang_perusahaan SET cp_is_deleted=1 WHERE cp_id_cabang=?"
             this.mysqlConn.query(query, cabang.cp_id_cabang, (error,result)=>{
                 if(error){
                     reject(error)
