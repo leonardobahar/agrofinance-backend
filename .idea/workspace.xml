@@ -125,14 +125,7 @@
       <workItem from="1610543524016" duration="1693000" />
       <workItem from="1610591555423" duration="17423000" />
       <workItem from="1610679580454" duration="20387000" />
-      <workItem from="1610857406768" duration="9360000" />
-    </task>
-    <task id="LOCAL-00124" summary="Re-modified Approve Transaksi, added getSaldoRekening function block">
-      <created>1608694265046</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1608694265046</updated>
+      <workItem from="1610857406768" duration="11119000" />
     </task>
     <task id="LOCAL-00125" summary="Re-modified Approve Transaksi, Still in progress in the add Transaction part">
       <created>1608701037546</created>
@@ -470,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610892612281</updated>
     </task>
-    <option name="localTasksCounter" value="173" />
+    <task id="LOCAL-00173" summary="Added is_deleted column in cabang_perusahaan table">
+      <created>1610894066443</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1610894066443</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,7 +499,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added retrieveOnePosisi function block" />
     <MESSAGE value="Added addPosisi function block" />
     <MESSAGE value="Added updatePosisi function block" />
     <MESSAGE value="Added deletePosisi function block" />
@@ -524,6 +523,7 @@
     <MESSAGE value="Fixed retreive One karyawan bug" />
     <MESSAGE value="Re-modified add karyawan endpoint" />
     <MESSAGE value="Re-modified update karyawan endpoint (still in progress)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified update karyawan endpoint (still in progress)" />
+    <MESSAGE value="Added is_deleted column in cabang_perusahaan table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added is_deleted column in cabang_perusahaan table" />
   </component>
 </project>

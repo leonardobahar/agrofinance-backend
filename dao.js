@@ -2089,6 +2089,25 @@ export class Dao{
         })
     }
 
+    cancelTransaksi(transaksi){
+        return new Promise((resolve,reject)=>{
+            if(!transaksi instanceof Transaksi){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="UPDATE transaksi SET t_status='Cancelled' WHERE t_id_transaksi=? "
+            this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
     deleteTransaksi(transaksi){
         return new Promise((resolve,reject)=>{
             if(!transaksi instanceof Transaksi){
