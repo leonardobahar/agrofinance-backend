@@ -1080,15 +1080,14 @@ export class Dao{
                 return
             }
 
-            const query="DELETE FROM rekening_perusahaan WHERE rp_id_rekening=? "
+            const query="UPDATE rekening_perusahaan SET rp_is_deleted=1 WHERE rp_id_rekening=? "
             this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                rekening.rp_id_rekening=result.insertId
-                resolve(rekening)
+                resolve(SUCCESS)
             })
         })
     }

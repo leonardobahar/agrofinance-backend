@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`rekening_perusahaan` (
   `rp_saldo` INT(7) NOT NULL,
   `rp_rekening_utama`TINYINT(1) DEFAULT 0,
   `rp_id_cabang_perusahaan` INT(7) NOT NULL,
+  `rp_is_deleted` TINYINT(1) DEFAULT 0,
   FOREIGN KEY (`rp_id_cabang_perusahaan`) REFERENCES cabang_perusahaan(`cp_id_cabang`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

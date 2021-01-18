@@ -23,7 +23,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strings.js" beforeDir="false" afterPath="$PROJECT_DIR$/strings.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,14 +128,7 @@
       <workItem from="1610591555423" duration="17423000" />
       <workItem from="1610679580454" duration="20387000" />
       <workItem from="1610857406768" duration="13065000" />
-      <workItem from="1610939111359" duration="2281000" />
-    </task>
-    <task id="LOCAL-00128" summary="Re-modified Approve Transaksi. Adjustments still being made.">
-      <created>1608733834148</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1608733834148</updated>
+      <workItem from="1610939111359" duration="5074000" />
     </task>
     <task id="LOCAL-00129" summary="Re-modified Approve Transaksi. (Still in progress)">
       <created>1608772148506</created>
@@ -474,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610896369563</updated>
     </task>
-    <option name="localTasksCounter" value="177" />
+    <task id="LOCAL-00177" summary="Fixed Cancel Transaksi endpoint">
+      <created>1610942705466</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1610942705466</updated>
+    </task>
+    <option name="localTasksCounter" value="178" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +502,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added retrieveRole function block" />
     <MESSAGE value="Added retrieveOneRole function block" />
     <MESSAGE value="Added addRole function block" />
     <MESSAGE value="Added updateRole function block" />
@@ -528,6 +526,7 @@
     <MESSAGE value="Added cancelTransaksi function block" />
     <MESSAGE value="Added cancel transaksi endpoint" />
     <MESSAGE value="Re-modified cancel transaksi endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified cancel transaksi endpoint" />
+    <MESSAGE value="Fixed Cancel Transaksi endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Cancel Transaksi endpoint" />
   </component>
 </project>
