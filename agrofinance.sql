@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`posisi`(
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`role`(
    `r_id_role` INT(7) PRIMARY KEY AUTO_INCREMENT,
-   `r_nama-role` VARCHAR(255) UNIQUE NOT NULL,
+   `r_nama_role` VARCHAR(255) UNIQUE NOT NULL,
    `r_is_deleted` TINYINT(1) DEFAULT 0
 );
 

@@ -335,7 +335,8 @@ export class Dao{
             const query="SELECT k.k_id_karyawan, k.k_nama_lengkap, k.k_id_posisi, ps.ps_nama_posisi, k.k_nik, " +
                 "k.k_id_role, r.r_nama_role, k.k_masih_hidup " +
                 "FROM karyawan k LEFT OUTER JOIN posisi ps ON ps.ps_id_posisi=k.k_id_posisi " +
-                "LEFT OUTER JOIN role r ON r.r_id_role=k.k_id_role "
+                "LEFT OUTER JOIN role r ON r.r_id_role=k.k_id_role " +
+                "WHERE k.k_is_deleted = 0"
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -461,7 +462,8 @@ export class Dao{
             const query=`SELECT p.p_id_perusahaan, p.p_nama_perusahaan, cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_lokasi, cp.cp_alamat_lengkap, cp.cp_is_default,
                 rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama
                 FROM perusahaan p LEFT OUTER JOIN cabang_perusahaan cp ON cp.cp_perusahaan_id=p.p_id_perusahaan
-                LEFT OUTER JOIN rekening_perusahaan rp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang;`
+                LEFT OUTER JOIN rekening_perusahaan rp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang
+                WHERE p.p_is_deleted = 0;`
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
