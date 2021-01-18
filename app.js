@@ -2109,7 +2109,7 @@ app.post("/api/transaksi/update",(req,res)=>{
 })
 
 //Don't forget to put authenticateToken after "/api/transaksi/approve" once ur done
-app.post("/api/transaksi/approve", (req,res)=>{
+app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
     if(typeof req.body.id_transaksi==='undefined'){
         res.status(400).send({
             success:false,

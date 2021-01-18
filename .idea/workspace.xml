@@ -19,10 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Re-modified Delete Transaksi endpoint">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Re-modified Delete Karyawan Kerja Dimana endpoint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,14 +127,7 @@
       <workItem from="1610591555423" duration="17423000" />
       <workItem from="1610679580454" duration="20387000" />
       <workItem from="1610857406768" duration="13065000" />
-      <workItem from="1610939111359" duration="5750000" />
-    </task>
-    <task id="LOCAL-00130" summary="Re-modified Approve Transaksi JSON issue">
-      <created>1608783191442</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1608783191442</updated>
+      <workItem from="1610939111359" duration="7289000" />
     </task>
     <task id="LOCAL-00131" summary="Re-modified Approve Transaksi.">
       <created>1608799387778</created>
@@ -473,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610978801433</updated>
     </task>
-    <option name="localTasksCounter" value="179" />
+    <task id="LOCAL-00179" summary="Re-modified Delete Karyawan Kerja Dimana endpoint">
+      <created>1610979335309</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1610979335309</updated>
+    </task>
+    <option name="localTasksCounter" value="180" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +501,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added addRole function block" />
     <MESSAGE value="Added updateRole function block" />
     <MESSAGE value="Added deleteRole function block" />
     <MESSAGE value="Added retrieve position endpoint" />
@@ -527,6 +525,7 @@
     <MESSAGE value="Re-modified cancel transaksi endpoint" />
     <MESSAGE value="Fixed Cancel Transaksi endpoint" />
     <MESSAGE value="Re-modified Delete Transaksi endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Delete Transaksi endpoint" />
+    <MESSAGE value="Re-modified Delete Karyawan Kerja Dimana endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Delete Karyawan Kerja Dimana endpoint" />
   </component>
 </project>
