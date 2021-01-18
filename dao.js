@@ -8,7 +8,7 @@ import {
     NO_AFFECTED_ROWS, NO_MAIN_AACOUNT,
     NO_SUCH_CONTENT,
     ONLY_WITH_VENDORS, ORDER_PROCESSING,
-    SOMETHING_WENT_WRONG, SUCCESS, VALID, WRONG_BODY_FORMAT
+    SOMETHING_WENT_WRONG, SUCCESS, TRANSACTION_NOT_PENDING, VALID, WRONG_BODY_FORMAT
 } from "./strings"
 import {
     Cabang_perusahaan,
@@ -2096,14 +2096,22 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE transaksi SET t_status='Cancelled' WHERE t_status='Pending' AND t_id_transaksi=? "
-            this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
-                if(error){
-                    reject(error)
+            const checkQuery="SELECT t_status FROM transaksi WHERE t_id_transaksi=? "
+            this.mysqlConn.query(checkQuery,transaksi.t_id_transaksi,(error,result)=>{
+                if(result[0].t_status!=='Pending'){
+                    reject(TRANSACTION_NOT_PENDING)
                     return
                 }
 
-                resolve(SUCCESS)
+                const query="UPDATE transaksi SET t_status='Cancelled' WHERE t_id_transaksi=? "
+                this.mysqlConn.query(query,transaksi.t_id_transaksi,(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }
+
+                    resolve(SUCCESS)
+                })
             })
         })
     }

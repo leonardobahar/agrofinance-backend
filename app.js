@@ -10,7 +10,7 @@ import {
     ERROR_FOREIGN_KEY,
     WRONG_BODY_FORMAT,
     SOMETHING_WENT_WRONG,
-    NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE, MAIN_ACCOUNT_EXISTS, NO_MAIN_AACOUNT
+    NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE, MAIN_ACCOUNT_EXISTS, NO_MAIN_AACOUNT, TRANSACTION_NOT_PENDING
 } from "./strings";
 import {
     Cabang_perusahaan,
@@ -2390,6 +2390,12 @@ app.post("/api/transaksi/cancel",(req,res)=>{
                 result:result
             })
         }).catch(error=>{
+            if(error===TRANSACTION_NOT_PENDING){
+                res.status(204).send({
+                    success:false,
+                    error:TRANSACTION_NOT_PENDING
+                })
+            }
             console.error(error)
             res.status(500).send({
                 success:false,

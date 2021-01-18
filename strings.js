@@ -9,6 +9,7 @@ export const MISMATCH_OBJ_TYPE="Mismatch Object Type Passed"
 export const ERROR_DUPLICATE_ENTRY="Duplicate Entry Error"
 export const MAIN_ACCOUNT_EXISTS="There can only be 1 main account"
 export const NO_MAIN_AACOUNT="No main account."
+export const TRANSACTION_NOT_PENDING="Transaction has either been Approved or Rejected."
 
 //CONSTRAINTS
 export const SUCCESS="SUCCESS"
