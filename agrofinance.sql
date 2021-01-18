@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan_kerja_dimana` (
   `kkd_id_karyawan_kerja_dimana` INT(7) PRIMARY KEY AUTO_INCREMENT,
   `kkd_id_karyawan` INT(7) NOT NULL,
   `kkd_id_cabang_perusahaan` INT(7) NOT NULL,
+  `kkd_is_deleted` TINYINT(1) DEFAULT 0,
   FOREIGN KEY (`kkd_id_karyawan`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`kkd_id_cabang_perusahaan`) REFERENCES cabang_perusahaan(`cp_id_cabang`) ON DELETE CASCADE ON UPDATE CASCADE);
 

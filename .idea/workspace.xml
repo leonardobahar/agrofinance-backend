@@ -19,9 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Re-modified Delete Transaksi endpoint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,14 +128,7 @@
       <workItem from="1610591555423" duration="17423000" />
       <workItem from="1610679580454" duration="20387000" />
       <workItem from="1610857406768" duration="13065000" />
-      <workItem from="1610939111359" duration="5074000" />
-    </task>
-    <task id="LOCAL-00129" summary="Re-modified Approve Transaksi. (Still in progress)">
-      <created>1608772148506</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1608772148507</updated>
+      <workItem from="1610939111359" duration="5750000" />
     </task>
     <task id="LOCAL-00130" summary="Re-modified Approve Transaksi JSON issue">
       <created>1608783191442</created>
@@ -473,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610942705466</updated>
     </task>
-    <option name="localTasksCounter" value="178" />
+    <task id="LOCAL-00178" summary="Re-modified Delete Transaksi endpoint">
+      <created>1610978801433</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1610978801433</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +502,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added retrieveOneRole function block" />
     <MESSAGE value="Added addRole function block" />
     <MESSAGE value="Added updateRole function block" />
     <MESSAGE value="Added deleteRole function block" />
@@ -527,6 +526,7 @@
     <MESSAGE value="Added cancel transaksi endpoint" />
     <MESSAGE value="Re-modified cancel transaksi endpoint" />
     <MESSAGE value="Fixed Cancel Transaksi endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Cancel Transaksi endpoint" />
+    <MESSAGE value="Re-modified Delete Transaksi endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Delete Transaksi endpoint" />
   </component>
 </project>

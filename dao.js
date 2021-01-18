@@ -1649,15 +1649,14 @@ export class Dao{
                 return
             }
 
-            const query="DELETE FROM karyawan_kerja_dimana WHERE kkd_id_karyawan_kerja_dimana=?"
+            const query="UPDATE karyawan_kerja_dimana SET kkd_is_deleted=1 WHERE kkd_id_karyawan_kerja_dimana=?"
             this.mysqlConn.query(query,kerja.kkd_id_karyawan_kerja_dimana,(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                kerja.kkd_id_karyawan_kerja_dimana=result.kkd_id_karyawan_kerja_dimana
-                resolve(kerja)
+                resolve(SUCCESS)
             })
         })
     }
