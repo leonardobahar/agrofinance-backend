@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Re-modified Delete Karyawan Kerja Dimana endpoint">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
@@ -127,14 +127,8 @@
       <workItem from="1610591555423" duration="17423000" />
       <workItem from="1610679580454" duration="20387000" />
       <workItem from="1610857406768" duration="13065000" />
-      <workItem from="1610939111359" duration="7289000" />
-    </task>
-    <task id="LOCAL-00131" summary="Re-modified Approve Transaksi.">
-      <created>1608799387778</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1608799387778</updated>
+      <workItem from="1610939111359" duration="9415000" />
+      <workItem from="1611026541567" duration="8148000" />
     </task>
     <task id="LOCAL-00132" summary="Approve Transaksi now functional.">
       <created>1608799542040</created>
@@ -472,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610979335309</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <task id="LOCAL-00180" summary="Fixed Approve Transaksi">
+      <created>1610980875505</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1610980875505</updated>
+    </task>
+    <option name="localTasksCounter" value="181" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,7 +502,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added updateRole function block" />
     <MESSAGE value="Added deleteRole function block" />
     <MESSAGE value="Added retrieve position endpoint" />
     <MESSAGE value="Added add position endpoint" />
@@ -526,6 +526,7 @@
     <MESSAGE value="Fixed Cancel Transaksi endpoint" />
     <MESSAGE value="Re-modified Delete Transaksi endpoint" />
     <MESSAGE value="Re-modified Delete Karyawan Kerja Dimana endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Delete Karyawan Kerja Dimana endpoint" />
+    <MESSAGE value="Fixed Approve Transaksi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Approve Transaksi" />
   </component>
 </project>

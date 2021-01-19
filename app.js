@@ -2293,7 +2293,6 @@ app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
                             })
                         })
                     }
-
                 }
             }).catch(error=>{
                 console.error(error)
