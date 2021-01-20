@@ -102,11 +102,12 @@ app.post("/api/login", (req, res)=>{
             user: req.body.username,
             role: result.role
         }, process.env.ACCESS_TOKEN_SECRET)
+
         res.status(200).send({
             success: true,
             auth: true,
             token: token,
-            role: result.role,
+            role: result.id_role,
             karyawan_id: result.karyawan_id,
             message: "Authentication success"
         })
