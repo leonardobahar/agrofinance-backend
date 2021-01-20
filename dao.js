@@ -118,7 +118,7 @@ export class Dao{
 
     retrievePosisi(){
         return new Promise((resolve,reject)=>{
-            const query="SELECT * FROM posisi "
+            const query="SELECT * FROM posisi WHERE ps_is_deleted=0 "
             this.mysqlConn.query(query,(error,result)=>{
                 if(error){
                     reject(error)
@@ -145,7 +145,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT * FROM posisi WHERE ps_id_posisi=? "
+            const query="SELECT * FROM posisi WHERE ps_is_deleted=0 AND ps_id_posisi=? "
             this.mysqlConn.query(query,posisi.ps_id_posisi,(error,result)=>{
                 if(error){
                     reject(error)
