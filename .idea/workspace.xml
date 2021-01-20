@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-    </list>
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,14 +126,7 @@
       <workItem from="1610857406768" duration="13065000" />
       <workItem from="1610939111359" duration="9415000" />
       <workItem from="1611026541567" duration="8957000" />
-      <workItem from="1611120706657" duration="4823000" />
-    </task>
-    <task id="LOCAL-00133" summary="Fixed Update Transaksi">
-      <created>1609317635562</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1609317635564</updated>
+      <workItem from="1611120706657" duration="5191000" />
     </task>
     <task id="LOCAL-00134" summary="Updated User table format">
       <created>1610592455456</created>
@@ -474,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611068675863</updated>
     </task>
-    <option name="localTasksCounter" value="182" />
+    <task id="LOCAL-00182" summary="Re-modified a few endpoints">
+      <created>1611152757393</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1611152757394</updated>
+    </task>
+    <option name="localTasksCounter" value="183" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +500,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added retrieve position endpoint" />
     <MESSAGE value="Added add position endpoint" />
     <MESSAGE value="Added update position endpoint" />
     <MESSAGE value="Added delete position endpoint" />
@@ -528,6 +524,7 @@
     <MESSAGE value="Re-modified Delete Karyawan Kerja Dimana endpoint" />
     <MESSAGE value="Fixed Approve Transaksi" />
     <MESSAGE value="Added autheticateToken to Approve Transaksi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added autheticateToken to Approve Transaksi" />
+    <MESSAGE value="Re-modified a few endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified a few endpoints" />
   </component>
 </project>
