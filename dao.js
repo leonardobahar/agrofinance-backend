@@ -910,7 +910,7 @@ export class Dao{
         return new Promise((resolve,reject)=>{
             const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama, rp.rp_id_cabang_perusahaan, cp.cp_nama_cabang "+
                 "FROM rekening_perusahaan rp LEFT OUTER JOIN cabang_perusahaan cp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang " +
-                "WHERE cp_is_deleted=0 "
+                "WHERE rp_is_deleted=0 "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -943,7 +943,7 @@ export class Dao{
 
             const query="SELECT rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekenig_utama, rp.rp_id_cabang_perusahaan, cp.cp_nama_cabang"+
                 "FROM rekening_perusahaan rp LEFT OUTER JOIN cabang_perusahaan cp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang "+
-                "WHERE cp_is_deleted=0 AND rp.rp_id_cabang_perusahaan=?"
+                "WHERE rp_is_deleted=0 AND rp.rp_id_cabang_perusahaan=?"
             this.mysqlConn.query(query, rekening.rp_id_cabang_perusahaan, (error, result)=>{
                 if(error){
                     reject(error)
