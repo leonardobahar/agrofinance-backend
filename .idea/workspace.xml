@@ -128,28 +128,7 @@
       <workItem from="1610857406768" duration="13065000" />
       <workItem from="1610939111359" duration="9415000" />
       <workItem from="1611026541567" duration="8957000" />
-      <workItem from="1611120706657" duration="5563000" />
-    </task>
-    <task id="LOCAL-00136" summary="Re-modified addKaryawan to register user">
-      <created>1610602906041</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1610602906041</updated>
-    </task>
-    <task id="LOCAL-00137" summary="Re-modified addKaryawan">
-      <created>1610603716975</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1610603716975</updated>
-    </task>
-    <task id="LOCAL-00138" summary="Added retrievePerusahaanByName function block">
-      <created>1610607781015</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1610607781015</updated>
+      <workItem from="1611120706657" duration="6074000" />
     </task>
     <task id="LOCAL-00139" summary="Re-modified Retrieve Perusahaan endpoint to have 2 search features. (By ID or by Name)">
       <created>1610609385338</created>
@@ -473,7 +452,28 @@
       <option name="project" value="LOCAL" />
       <updated>1611153340026</updated>
     </task>
-    <option name="localTasksCounter" value="185" />
+    <task id="LOCAL-00185" summary="Re-modified a retrieveCabang and retrieveOneCabang">
+      <created>1611153450188</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1611153450188</updated>
+    </task>
+    <task id="LOCAL-00186" summary="Re-modified a few retrieve Cabang functions">
+      <created>1611153545594</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1611153545594</updated>
+    </task>
+    <task id="LOCAL-00187" summary="Re-modified a few Cabang Perusahaan function blocks">
+      <created>1611153685952</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1611153685952</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,9 +502,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added delete position endpoint" />
-    <MESSAGE value="Re-modified delete position endpoint" />
-    <MESSAGE value="Added Add Role endpoint" />
     <MESSAGE value="Added Update Role endpoint" />
     <MESSAGE value="Added Delete Role endpoint" />
     <MESSAGE value="Fixed add Role and add Posisi bug" />
@@ -527,6 +524,9 @@
     <MESSAGE value="Re-modified a few endpoints" />
     <MESSAGE value="Re-modified a retrieveRole and retrieveOneRole" />
     <MESSAGE value="Re-modified a retrievePosisi and retrieveOnePosisi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified a retrievePosisi and retrieveOnePosisi" />
+    <MESSAGE value="Re-modified a retrieveCabang and retrieveOneCabang" />
+    <MESSAGE value="Re-modified a few retrieve Cabang functions" />
+    <MESSAGE value="Re-modified a few Cabang Perusahaan function blocks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified a few Cabang Perusahaan function blocks" />
   </component>
 </project>
