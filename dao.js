@@ -970,7 +970,7 @@ export class Dao{
 
     getRekeningPerusahaanByCabangId(id_cabang_perusahaan){
         return new Promise((resolve,reject)=>{
-            const query="SELECT * FROM rekening_perusahaan WHERE rp_rekening_utama=1 AND rp_id_cabang_perusahaan=?"
+            const query="SELECT * FROM rekening_perusahaan WHERE rp_rekening_utama=1 AND rp_is_deleted=0 AND rp_id_cabang_perusahaan=?"
             this.mysqlConn.query(query,id_cabang_perusahaan,(error,result)=>{
                 if(error){
                     reject(error)
@@ -1002,7 +1002,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT rp_id_rekening FROM rekening_perusahaan WHERE rp_id_rekening=?"
+            const query="SELECT rp_id_rekening FROM rekening_perusahaan WHERE rp_is_deleted=0 AND rp_id_rekening=?"
             this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
                 if(error){
                     reject(error)
@@ -1023,7 +1023,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_rekening=?"
+            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_is_deleted=0 AND rp_id_rekening=?"
             this.mysqlConn.query(query,rekening.rp_id_rekening,(error,result)=>{
                 if(error){
                     reject(error)
