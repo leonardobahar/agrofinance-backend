@@ -72,7 +72,11 @@ export class Dao{
 
     login(username, password){
         return new Promise((resolve, reject)=>{
-            const query = "SELECT * FROM `user` WHERE `u_username` = ? AND `u_password` = ?"
+            const query = `
+                SELECT * 
+                FROM \`user\` u
+                INNER JOIN \`role\` r ON r.r_id_role = u.u_id_role
+                WHERE \`u_username\` = ? AND \`u_password\` = ?`
             this.mysqlConn.query(query, [username, password], (error, result)=>{
                 if (error){
                     reject(error)
@@ -80,7 +84,7 @@ export class Dao{
                 }
 
                 if (result.length > 0){
-                    resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].u_role, result[0].u_karyawan_id, result[0].u_is_blocked))
+                    resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].r_nama_role, result[0].u_karyawan_id, result[0].u_is_blocked))
                 }else{
                     reject("FALSE_AUTH")
                 }
