@@ -842,7 +842,7 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE cabang_perusahaan SET cp_is_default=1 WHERE cp_id_cabang=?"
+            const query="UPDATE cabang_perusahaan SET cp_is_default=1 WHERE cp_is_deleted=0 AND cp_id_cabang=?"
             this.mysqlConn.query(query, [cabang.cp_id_cabang], (error,result)=>{
                 if(error){
                     reject(error)
@@ -861,7 +861,7 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE cabang_perusahaan SET cp_is_default=0 WHERE cp_id_cabang=?"
+            const query="UPDATE cabang_perusahaan SET cp_is_default=0 WHERE cp_is_deleted=0 AND cp_id_cabang=?"
             this.mysqlConn.query(query, [cabang.cp_id_cabang], (error,result)=>{
                 if(error){
                     reject(error)
@@ -875,7 +875,7 @@ export class Dao{
 
     unsetDefaultCabangPerusahaanWithPerusahaanId(id_perusahaan){
         return new Promise((resolve,reject)=>{
-            const query="UPDATE cabang_perusahaan SET cp_is_default=0 WHERE cp_is_default=1 AND cp_perusahaan_id=?"
+            const query="UPDATE cabang_perusahaan SET cp_is_default=0 WHERE cp_is_deleted=0 AND cp_is_default=1 AND cp_perusahaan_id=?"
             this.mysqlConn.query(query, id_perusahaan, (error,result)=>{
                 if(error){
                     reject(error)
