@@ -223,7 +223,7 @@ export class Dao{
 
     retrieveRole(){
         return new Promise((resolve,reject)=>{
-            const query="SELECT * FROM role "
+            const query="SELECT * FROM role WHERE r_is_deleted=0 "
             this.mysqlConn.query(query,(error,result)=>{
                 if(error){
                     reject(error)
@@ -250,7 +250,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT * FROM role WHERE r_id_role=? "
+            const query="SELECT * FROM role WHERE r_is_deleted=0 AND r_id_role=? "
             this.mysqlConn.query(query,role.r_id_role,(error,result)=>{
                 if(error){
                     reject(error)
