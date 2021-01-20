@@ -616,7 +616,8 @@ export class Dao{
     retrieveCabangPerusahaan(){
         return new Promise((resolve,reject)=>{
             const query="SELECT cp.cp_id_cabang, cp.cp_nama_cabang, cp.cp_perusahaan_id, p.p_nama_perusahaan, cp.cp_lokasi, cp.cp_alamat_lengkap, cp.cp_is_default "+
-                "FROM cabang_perusahaan cp LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan"
+                "FROM cabang_perusahaan cp LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan " +
+                "WHERE cp_is_deleted=0 "
             this.mysqlConn.query(query, (error,result)=>{
                 if(error){
                     reject(error)
@@ -644,7 +645,7 @@ export class Dao{
                 reject(MISMATCH_OBJ_TYPE)
                 return
             }
-            const query="SELECT * FROM cabang_perusahaan WHERE cp_id_cabang=? "
+            const query="SELECT * FROM cabang_perusahaan WHERE cp_is_deleted=0 AND cp_id_cabang=? "
             this.mysqlConn.query(query,cabang.cp_id_cabang,(error,result)=>{
                 if(error){
                     reject(error)

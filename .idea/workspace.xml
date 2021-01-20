@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="" />
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -126,21 +128,7 @@
       <workItem from="1610857406768" duration="13065000" />
       <workItem from="1610939111359" duration="9415000" />
       <workItem from="1611026541567" duration="8957000" />
-      <workItem from="1611120706657" duration="5191000" />
-    </task>
-    <task id="LOCAL-00134" summary="Updated User table format">
-      <created>1610592455456</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1610592455457</updated>
-    </task>
-    <task id="LOCAL-00135" summary="Added registerUser function block">
-      <created>1610595022674</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1610595022674</updated>
+      <workItem from="1611120706657" duration="5563000" />
     </task>
     <task id="LOCAL-00136" summary="Re-modified addKaryawan to register user">
       <created>1610602906041</created>
@@ -471,7 +459,21 @@
       <option name="project" value="LOCAL" />
       <updated>1611152757394</updated>
     </task>
-    <option name="localTasksCounter" value="183" />
+    <task id="LOCAL-00183" summary="Re-modified a retrieveRole and retrieveOneRole">
+      <created>1611153274173</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1611153274173</updated>
+    </task>
+    <task id="LOCAL-00184" summary="Re-modified a retrievePosisi and retrieveOnePosisi">
+      <created>1611153340026</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1611153340026</updated>
+    </task>
+    <option name="localTasksCounter" value="185" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,8 +502,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added add position endpoint" />
-    <MESSAGE value="Added update position endpoint" />
     <MESSAGE value="Added delete position endpoint" />
     <MESSAGE value="Re-modified delete position endpoint" />
     <MESSAGE value="Added Add Role endpoint" />
@@ -525,6 +525,8 @@
     <MESSAGE value="Fixed Approve Transaksi" />
     <MESSAGE value="Added autheticateToken to Approve Transaksi" />
     <MESSAGE value="Re-modified a few endpoints" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified a few endpoints" />
+    <MESSAGE value="Re-modified a retrieveRole and retrieveOneRole" />
+    <MESSAGE value="Re-modified a retrievePosisi and retrieveOnePosisi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified a retrievePosisi and retrieveOnePosisi" />
   </component>
 </project>
