@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,14 +128,8 @@
       <workItem from="1610679580454" duration="20387000" />
       <workItem from="1610857406768" duration="13065000" />
       <workItem from="1610939111359" duration="9415000" />
-      <workItem from="1611026541567" duration="8148000" />
-    </task>
-    <task id="LOCAL-00132" summary="Approve Transaksi now functional.">
-      <created>1608799542040</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1608799542040</updated>
+      <workItem from="1611026541567" duration="8957000" />
+      <workItem from="1611120706657" duration="4823000" />
     </task>
     <task id="LOCAL-00133" summary="Fixed Update Transaksi">
       <created>1609317635562</created>
@@ -473,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610980875505</updated>
     </task>
-    <option name="localTasksCounter" value="181" />
+    <task id="LOCAL-00181" summary="Added autheticateToken to Approve Transaksi">
+      <created>1611068675862</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1611068675863</updated>
+    </task>
+    <option name="localTasksCounter" value="182" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +503,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added deleteRole function block" />
     <MESSAGE value="Added retrieve position endpoint" />
     <MESSAGE value="Added add position endpoint" />
     <MESSAGE value="Added update position endpoint" />
@@ -527,6 +527,7 @@
     <MESSAGE value="Re-modified Delete Transaksi endpoint" />
     <MESSAGE value="Re-modified Delete Karyawan Kerja Dimana endpoint" />
     <MESSAGE value="Fixed Approve Transaksi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Approve Transaksi" />
+    <MESSAGE value="Added autheticateToken to Approve Transaksi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added autheticateToken to Approve Transaksi" />
   </component>
 </project>

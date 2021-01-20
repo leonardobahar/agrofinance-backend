@@ -371,7 +371,7 @@ export class Dao{
                 "k.k_id_role, r.r_nama_role, k.k_masih_hidup " +
                 "FROM karyawan k LEFT OUTER JOIN posisi ps ON ps.ps_id_posisi=k.k_id_posisi " +
                 "LEFT OUTER JOIN role r ON r.r_id_role=k.k_id_role " +
-                "WHERE k.k_id_karyawan=?"
+                "WHERE k.k_is_deleted = 0 AND k.k_id_karyawan=?"
             this.mysqlConn.query(query, karyawan.k_id_karyawan, async(error, result)=>{
                 if(error){
                     reject(error)
@@ -1378,7 +1378,7 @@ export class Dao{
 
     retrieveKategoriTransaksi(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT * FROM kategori_transaksi"
+            const query="SELECT * FROM kategori_transaksi WHERE kt_is_deleted=0 "
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -1403,7 +1403,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT * FROM kategori_transaksi WHERE kt_id_kategori=?"
+            const query="SELECT * FROM kategori_transaksi WHERE kt_is_deleted=0 AND kt_id_kategori=?"
             this.mysqlConn.query(query, kategori.kt_id_kategori, (error, result)=>{
                 if(error){
                     reject(error)
