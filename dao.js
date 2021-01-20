@@ -672,7 +672,7 @@ export class Dao{
 
     retrieveCabangPerusahaanByPerusahaanId(perusahaan_id){
         return new Promise((resolve,reject)=>{
-            const query="SELECT * FROM cabang_perusahaan WHERE cp_perusahaan_id=? "
+            const query="SELECT * FROM cabang_perusahaan WHERE cp_is_deleted=0 AND cp_perusahaan_id=? "
             this.mysqlConn.query(query, perusahaan_id, async (error,result)=>{
                 if(error){
                     reject(error)
@@ -706,7 +706,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT cp_id_cabang FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            const query="SELECT cp_id_cabang FROM cabang_perusahaan WHERE cp_is_deleted=0 AND cp_id_cabang=?"
             this.mysqlConn.query(query, cabang.cp_id_cabang, (error,result)=>{
                 if(error){
                     reject(error)
@@ -727,7 +727,7 @@ export class Dao{
                 return
             }
 
-            const query="SELECT cp_perusahaan_id FROM cabang_perusahaan WHERE cp_id_cabang=?"
+            const query="SELECT cp_perusahaan_id FROM cabang_perusahaan WHERE cp_is_deleted=0 AND cp_id_cabang=?"
             this.mysqlConn.query(query, cabang.cp_id_cabang, async (error,result)=>{
                 if(error){
                     reject(error)
