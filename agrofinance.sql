@@ -140,6 +140,7 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`user` (
   `u_id_role` INT(7) NOT NULL,
   `u_is_blocked` tinyint(1) NOT NULL DEFAULT '0',
   `u_karyawan_id` int(7) NOT NULL,
+  `u_is_deleted` tinyint(1) NOT NULL DEFAULT 0,
   FOREIGN KEY (`u_karyawan_id`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`u_id_role`) REFERENCES role(`r_id_role`) ON DELETE CASCADE ON UPDATE CASCADE
 );
