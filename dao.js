@@ -450,8 +450,9 @@ export class Dao{
             }
 
             const query="UPDATE karyawan SET k_is_deleted=1 WHERE k_id_karyawan=? ; " +
-                "UPDATE karyawan_kerja_dimana SET kkd_is_deleted=1 WHERE kkd_id_karyawan=? "
-            this.mysqlConn.query(query,[karyawan.k_id_karyawan,karyawan.k_id_karyawan],(error,result)=>{
+                "UPDATE karyawan_kerja_dimana SET kkd_is_deleted=1 WHERE kkd_id_karyawan=? ; " +
+                "UPDATE user SET u_is_deleted=1 WHERE u_karyawan_id=? "
+            this.mysqlConn.query(query,[karyawan.k_id_karyawan,karyawan.k_id_karyawan,karyawan.k_id_karyawan],(error,result)=>{
                 if(error){
                     reject(error)
                     return
