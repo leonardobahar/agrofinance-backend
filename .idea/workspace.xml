@@ -130,14 +130,7 @@
       <workItem from="1610939111359" duration="9415000" />
       <workItem from="1611026541567" duration="8957000" />
       <workItem from="1611120706657" duration="10224000" />
-      <workItem from="1611199645965" duration="11429000" />
-    </task>
-    <task id="LOCAL-00142" summary="Re-modified Delete kategori transaksi endpoint">
-      <created>1610682121791</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1610682121791</updated>
+      <workItem from="1611199645965" duration="12689000" />
     </task>
     <task id="LOCAL-00143" summary="Re-modified Delete Perusahaan endpoint">
       <created>1610683181263</created>
@@ -475,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611154245346</updated>
     </task>
-    <option name="localTasksCounter" value="191" />
+    <task id="LOCAL-00191" summary="Re-modified Approve Transaksi endpoint">
+      <created>1611214920188</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1611214920189</updated>
+    </task>
+    <option name="localTasksCounter" value="192" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -504,7 +504,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed add Role and add Posisi bug" />
     <MESSAGE value="Fixed update Role bug" />
     <MESSAGE value="Re-modified Karyawan table srtucture" />
     <MESSAGE value="Re-modified Karyawan code model" />
@@ -529,6 +528,7 @@
     <MESSAGE value="Re-modified a few Cabang Perusahaan function blocks" />
     <MESSAGE value="Re-modified retrieveRekeiningPerusahaan and retrieveOneRekeningPerusahaan function blocks" />
     <MESSAGE value="Re-modified some Rekening Perusahaan function blocks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified some Rekening Perusahaan function blocks" />
+    <MESSAGE value="Re-modified Approve Transaksi endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Approve Transaksi endpoint" />
   </component>
 </project>
