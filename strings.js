@@ -10,6 +10,7 @@ export const ERROR_DUPLICATE_ENTRY="Duplicate Entry Error"
 export const MAIN_ACCOUNT_EXISTS="There can only be 1 main account"
 export const NO_MAIN_AACOUNT="No main account."
 export const TRANSACTION_NOT_PENDING="Transaction has either been Approved or Rejected."
+export const DATA_IS_DELETED="Data has been deleted."
 
 //CONSTRAINTS
 export const SUCCESS="SUCCESS"

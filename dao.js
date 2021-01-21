@@ -581,7 +581,7 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE perusahaan SET p_nama_perusahaan=?, WHERE p_id_perusahaan=?"
+            const query="UPDATE perusahaan SET p_nama_perusahaan=? WHERE p_id_perusahaan=?"
             this.mysqlConn.query(query, [perusahaan.p_nama_perusahaan, perusahaan.p_id_perusahaan], (error,result)=>{
                 if(error){
                     reject(error)
