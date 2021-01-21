@@ -602,8 +602,9 @@ export class Dao{
                 return
             }
 
-            const query="UPDATE perusahaan SET p_is_deleted=1 WHERE p_id_perusahaan=?"
-            this.mysqlConn.query(query,perusahaan.p_id_perusahaan,(error,result)=>{
+            const query="UPDATE perusahaan SET p_is_deleted=1 WHERE p_id_perusahaan=? ; " +
+                "UPDATE cabang_perusahaan SET cp_is_deleted=1 WHERE cp_perusahaan_id=? "
+            this.mysqlConn.query(query,[perusahaan.p_id_perusahaan,perusahaan.p_id_perusahaan],(error,result)=>{
                 if(error){
                     reject(error)
                     return
