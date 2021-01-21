@@ -20,7 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,28 +129,8 @@
       <workItem from="1610857406768" duration="13065000" />
       <workItem from="1610939111359" duration="9415000" />
       <workItem from="1611026541567" duration="8957000" />
-      <workItem from="1611120706657" duration="6074000" />
-    </task>
-    <task id="LOCAL-00139" summary="Re-modified Retrieve Perusahaan endpoint to have 2 search features. (By ID or by Name)">
-      <created>1610609385338</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1610609385338</updated>
-    </task>
-    <task id="LOCAL-00140" summary="Added k_is_deleted flag in karyawan column">
-      <created>1610613211054</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1610613211055</updated>
-    </task>
-    <task id="LOCAL-00141" summary="Re-modified Delete karyawan endpoint to not delete the entire data but to only change the flag">
-      <created>1610613780580</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1610613780580</updated>
+      <workItem from="1611120706657" duration="10224000" />
+      <workItem from="1611199645965" duration="11429000" />
     </task>
     <task id="LOCAL-00142" summary="Re-modified Delete kategori transaksi endpoint">
       <created>1610682121791</created>
@@ -473,7 +454,28 @@
       <option name="project" value="LOCAL" />
       <updated>1611153685952</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="Re-modified retrieveRekeiningPerusahaan and retrieveOneRekeningPerusahaan function blocks">
+      <created>1611153986887</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1611153986887</updated>
+    </task>
+    <task id="LOCAL-00189" summary="Re-modified retrieveRekeiningPerusahaan and retrieveOneRekeningPerusahaan function blocks">
+      <created>1611154139459</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1611154139459</updated>
+    </task>
+    <task id="LOCAL-00190" summary="Re-modified some Rekening Perusahaan function blocks">
+      <created>1611154245346</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1611154245346</updated>
+    </task>
+    <option name="localTasksCounter" value="191" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,8 +504,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Update Role endpoint" />
-    <MESSAGE value="Added Delete Role endpoint" />
     <MESSAGE value="Fixed add Role and add Posisi bug" />
     <MESSAGE value="Fixed update Role bug" />
     <MESSAGE value="Re-modified Karyawan table srtucture" />
@@ -527,6 +527,8 @@
     <MESSAGE value="Re-modified a retrieveCabang and retrieveOneCabang" />
     <MESSAGE value="Re-modified a few retrieve Cabang functions" />
     <MESSAGE value="Re-modified a few Cabang Perusahaan function blocks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified a few Cabang Perusahaan function blocks" />
+    <MESSAGE value="Re-modified retrieveRekeiningPerusahaan and retrieveOneRekeningPerusahaan function blocks" />
+    <MESSAGE value="Re-modified some Rekening Perusahaan function blocks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified some Rekening Perusahaan function blocks" />
   </component>
 </project>
