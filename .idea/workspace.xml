@@ -20,6 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cron-job.js" beforeDir="false" afterPath="$PROJECT_DIR$/cron-job.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -135,14 +137,7 @@
       <workItem from="1611651078198" duration="1344000" />
       <workItem from="1611820473340" duration="3055000" />
       <workItem from="1612146319234" duration="1244000" />
-      <workItem from="1612795280632" duration="1927000" />
-    </task>
-    <task id="LOCAL-00150" summary="Added retrieveRole function block">
-      <created>1610690735636</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1610690735636</updated>
+      <workItem from="1612795280632" duration="2733000" />
     </task>
     <task id="LOCAL-00151" summary="Added retrieveOneRole function block">
       <created>1610690914625</created>
@@ -480,7 +475,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612796609802</updated>
     </task>
-    <option name="localTasksCounter" value="199" />
+    <task id="LOCAL-00199" summary="fixed retrieveTodayAnIsRutintransaksi function block">
+      <created>1612797223062</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1612797223062</updated>
+    </task>
+    <option name="localTasksCounter" value="200" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +511,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified add karyawan endpoint" />
     <MESSAGE value="Re-modified update karyawan endpoint (still in progress)" />
     <MESSAGE value="Added is_deleted column in cabang_perusahaan table" />
     <MESSAGE value="Added cancelTransaksi function block" />
@@ -534,6 +535,7 @@
     <MESSAGE value="Re-modified User Table structure" />
     <MESSAGE value="Re-modified Delete karyawan endpoint" />
     <MESSAGE value="added retrieveTodayAnIsRutintransaksi function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="added retrieveTodayAnIsRutintransaksi function block" />
+    <MESSAGE value="fixed retrieveTodayAnIsRutintransaksi function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed retrieveTodayAnIsRutintransaksi function block" />
   </component>
 </project>

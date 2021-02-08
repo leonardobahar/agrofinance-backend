@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import {Dao} from "./dao";
 import * as res from "express";
 import {SOMETHING_WENT_WRONG} from "./strings";
+import {Transaksi} from "./model";
 
 const app=express()
 
@@ -20,8 +21,8 @@ cron.schedule("1 0 * * *",function (){
     const dateToday=new Date()
     const date=("0"+dateToday.getDate().slice(-2))
 
-    dao.retrieveTransaksi().then(result=>{
-        for(let i=0; i<result.length; i++){
+    dao.retrieveTodayAndRutinTransaksi(date).then(transactionResult=>{
+        for(let i=0; i<transactionResult.length; i++){
 
         }
     }).catch(error=>{
