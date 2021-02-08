@@ -20,12 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cron-job.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,14 +135,7 @@
       <workItem from="1611651078198" duration="1344000" />
       <workItem from="1611820473340" duration="3055000" />
       <workItem from="1612146319234" duration="1244000" />
-      <workItem from="1612795280632" duration="1279000" />
-    </task>
-    <task id="LOCAL-00149" summary="Added deletePosisi function block">
-      <created>1610690483348</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1610690483348</updated>
+      <workItem from="1612795280632" duration="1927000" />
     </task>
     <task id="LOCAL-00150" summary="Added retrieveRole function block">
       <created>1610690735636</created>
@@ -485,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611238957698</updated>
     </task>
-    <option name="localTasksCounter" value="198" />
+    <task id="LOCAL-00198" summary="added retrieveTodayAnIsRutintransaksi function block">
+      <created>1612796609801</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1612796609802</updated>
+    </task>
+    <option name="localTasksCounter" value="199" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +509,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed retreive One karyawan bug" />
     <MESSAGE value="Re-modified add karyawan endpoint" />
     <MESSAGE value="Re-modified update karyawan endpoint (still in progress)" />
     <MESSAGE value="Added is_deleted column in cabang_perusahaan table" />
@@ -539,6 +533,7 @@
     <MESSAGE value="Re-modified Delete Perusahaan endpoint" />
     <MESSAGE value="Re-modified User Table structure" />
     <MESSAGE value="Re-modified Delete karyawan endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Delete karyawan endpoint" />
+    <MESSAGE value="added retrieveTodayAnIsRutintransaksi function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="added retrieveTodayAnIsRutintransaksi function block" />
   </component>
 </project>

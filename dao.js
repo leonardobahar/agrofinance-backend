@@ -1807,33 +1807,21 @@ export class Dao{
                     reject(error)
                     return
                 }else if(result.length>0){
-                    const transaksi=result.map(rowDataPacket=>{
+                    const transaction=result.map(rowDataPacket=>{
                         return{
-                            id_karyawan:rowDataPacket.t_id_karyawan,
-                            nama_karyawan:rowDataPacket.k_nama_lengkap,
-                            id_rekening:rowDataPacket.t_rekening_penanggung_utama,
-                            nomor_rekening:rowDataPacket.rp_nomor_rekening,
-                            id_cabang:rowDataPacket.t_id_cabang_perusahaan,
-                            nama_cabang:rowDataPacket.cp_nama_cabang,
-                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                            id_transaksi:rowDataPacket.t_id_transaksi,
                             tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
                             tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
                             tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
                             is_rutin:rowDataPacket.t_is_rutin,
                             status:rowDataPacket.t_status,
                             bon_sementara:rowDataPacket.t_bon_sementara,
-                            id_transaksi:rowDataPacket.td_id_transaksi,
-                            id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
-                            jumlah:rowDataPacket.td_jumlah,
-                            id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
-                            bpu_attachment:rowDataPacket.td_bpu_attachment,
-                            debit_credit:rowDataPacket.td_debit_credit,
-                            nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
-                            file_bukti_transaksi:rowDataPacket.td_file_bukti_transaksi,
-                            pembebanan_json:rowDataPacket.skema_pembebanan_json
+                            id_rekening:rowDataPacket.t_rekening_penanggung_utama,
+                            id_cabang:rowDataPacket.t_id_cabang_perusahaan,
+                            id_karyawan:rowDataPacket.t_id_karyawan
                         }
                     })
-                    resolve(transaksi)
+                    resolve(transaction)
                 }else{
                     reject(NO_SUCH_CONTENT)
                 }
