@@ -20,8 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cron-job.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,21 +134,13 @@
       <workItem from="1610939111359" duration="9415000" />
       <workItem from="1611026541567" duration="8957000" />
       <workItem from="1611120706657" duration="10224000" />
-      <workItem from="1611199645965" duration="20217000" />
-    </task>
-    <task id="LOCAL-00147" summary="Added addPosisi function block">
-      <created>1610688683588</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1610688683589</updated>
-    </task>
-    <task id="LOCAL-00148" summary="Added updatePosisi function block">
-      <created>1610690318072</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1610690318072</updated>
+      <workItem from="1611199645965" duration="22478000" />
+      <workItem from="1611284961968" duration="9535000" />
+      <workItem from="1611542284554" duration="24659000" />
+      <workItem from="1611651078198" duration="1344000" />
+      <workItem from="1611820473340" duration="3055000" />
+      <workItem from="1612146319234" duration="1244000" />
+      <workItem from="1612795280632" duration="1279000" />
     </task>
     <task id="LOCAL-00149" summary="Added deletePosisi function block">
       <created>1610690483348</created>
@@ -475,7 +471,21 @@
       <option name="project" value="LOCAL" />
       <updated>1611238298988</updated>
     </task>
-    <option name="localTasksCounter" value="196" />
+    <task id="LOCAL-00196" summary="Re-modified User Table structure">
+      <created>1611238728234</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1611238728234</updated>
+    </task>
+    <task id="LOCAL-00197" summary="Re-modified Delete karyawan endpoint">
+      <created>1611238957698</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1611238957698</updated>
+    </task>
+    <option name="localTasksCounter" value="198" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -504,7 +514,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Retrieve Karyawan endpoint" />
     <MESSAGE value="Fixed retreive One karyawan bug" />
     <MESSAGE value="Re-modified add karyawan endpoint" />
     <MESSAGE value="Re-modified update karyawan endpoint (still in progress)" />
@@ -527,8 +536,9 @@
     <MESSAGE value="Re-modified some Rekening Perusahaan function blocks" />
     <MESSAGE value="Re-modified Approve Transaksi endpoint" />
     <MESSAGE value="Fixed Update perusahaan bug" />
-    <MESSAGE value="Re-modified Delete karyawan endpoint" />
     <MESSAGE value="Re-modified Delete Perusahaan endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Delete Perusahaan endpoint" />
+    <MESSAGE value="Re-modified User Table structure" />
+    <MESSAGE value="Re-modified Delete karyawan endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Delete karyawan endpoint" />
   </component>
 </project>

@@ -1,5 +1,6 @@
 import mysqlConn from './mysql-conn'
 import fs from 'fs'
+import moment from 'moment'
 import bcrypt from 'bcrypt'
 import {
     ADMIN_VALIDATED,
@@ -604,7 +605,7 @@ export class Dao{
             }
 
             const query="UPDATE perusahaan SET p_is_deleted=1 WHERE p_id_perusahaan=? ; " +
-                "UPDATE cabang_perusahaan SET cp_is_deleted=1 WHERE cp_perusahaan_id=? "
+                "UPDATE cabang_perusahaan SET cp_is_deleted=1 WHERE cp_perusahaan_id=? ; "
             this.mysqlConn.query(query,[perusahaan.p_id_perusahaan,perusahaan.p_id_perusahaan],(error,result)=>{
                 if(error){
                     reject(error)
@@ -1792,6 +1793,48 @@ export class Dao{
                     })
                     resolve(transaksi)
                 } else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
+    retrieveTodayAndRutinTransaksi(date){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT * FROM transaksi WHERE t_is_rutin=1 AND t_tanggal_transaksi=? "
+            this.mysqlConn.query(query,date,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }else if(result.length>0){
+                    const transaksi=result.map(rowDataPacket=>{
+                        return{
+                            id_karyawan:rowDataPacket.t_id_karyawan,
+                            nama_karyawan:rowDataPacket.k_nama_lengkap,
+                            id_rekening:rowDataPacket.t_rekening_penanggung_utama,
+                            nomor_rekening:rowDataPacket.rp_nomor_rekening,
+                            id_cabang:rowDataPacket.t_id_cabang_perusahaan,
+                            nama_cabang:rowDataPacket.cp_nama_cabang,
+                            nama_perusahaan:rowDataPacket.p_nama_perusahaan,
+                            tanggal_transaksi:rowDataPacket.t_tanggal_transaksi,
+                            tanggal_modifikasi:rowDataPacket.t_tanggal_modifikasi,
+                            tanggal_realisasi:rowDataPacket.t_tanggal_realisasi,
+                            is_rutin:rowDataPacket.t_is_rutin,
+                            status:rowDataPacket.t_status,
+                            bon_sementara:rowDataPacket.t_bon_sementara,
+                            id_transaksi:rowDataPacket.td_id_transaksi,
+                            id_detil_transaksi:rowDataPacket.td_id_detil_transaksi,
+                            jumlah:rowDataPacket.td_jumlah,
+                            id_kategori_transaksi:rowDataPacket.td_id_kategori_transaksi,
+                            bpu_attachment:rowDataPacket.td_bpu_attachment,
+                            debit_credit:rowDataPacket.td_debit_credit,
+                            nomor_bukti_transaksi:rowDataPacket.td_nomor_bukti_transaksi,
+                            file_bukti_transaksi:rowDataPacket.td_file_bukti_transaksi,
+                            pembebanan_json:rowDataPacket.skema_pembebanan_json
+                        }
+                    })
+                    resolve(transaksi)
+                }else{
                     reject(NO_SUCH_CONTENT)
                 }
             })

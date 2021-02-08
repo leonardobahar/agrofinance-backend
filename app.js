@@ -1791,6 +1791,8 @@ app.get("/api/transaksi/retrieve",(req,res)=>{
         const transfer=new Transaksi(req.query.id_transaksi,null,null,null,null,null,null)
 
         dao.retrieveOneTransaksi(transfer).then(result=>{
+            const date=result[0].tanggal_transaksi
+
             res.status(200).send({
                 success:true,
                 result:result
@@ -1801,9 +1803,7 @@ app.get("/api/transaksi/retrieve",(req,res)=>{
                     success:false,
                     error:NO_SUCH_CONTENT
                 })
-            }
-
-            else {
+            } else {
                 console.error(error)
                 res.status(500).send({
                     success:false,
@@ -1838,10 +1838,11 @@ app.post("/api/transaksi/add",async(req,res)=> {
                 null,req.body.jumlah,req.body.id_kategori_transaksi,
                 'No Attachment',req.body.debit_credit,req.body.nomor_bukti_transaksi,
                 'No Attachment',req.body.pembebanan,'0')
-            dao.addTransaksi(transfer).then(result=>{
+
+            dao.addTransaksi(transfer).then(transaksiResult=>{
                 res.status(200).send({
                     success:true,
-                    result:result
+                    result:transaksiResult
                 })
             }).catch(error=>{
                 console.error(error)
