@@ -45,10 +45,18 @@ cron.schedule("1 0 * * *",function (){
                 transactionResult[i].td_file_bukti_transaksi,
                 transactionResult[i].skema_pembebanan_json,
                 transactionResult[i].td_is_deleted
-            )).then(result=>{
-                res.status(200).send({
-                    success:true,
-                    result:result
+            )).then(transaksiResult=>{
+                dao.setTransaksiIsNotRutin(date).then(result=>{
+                    res.status(200).send({
+                        success:true,
+                        result:result
+                    })
+                }).catch(error=>{
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
                 })
             }).catch(error=>{
                 console.error(error)
@@ -65,8 +73,6 @@ cron.schedule("1 0 * * *",function (){
             error:SOMETHING_WENT_WRONG
         })
     })
-
-
 })
 
 app.listen(PORT, ()=>{
