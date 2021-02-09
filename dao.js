@@ -1810,7 +1810,7 @@ export class Dao{
                 "LEFT OUTER JOIN cabang_perusahaan cp ON t.t_id_cabang_perusahaan=cp.cp_id_cabang " +
                 "LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan " +
                 "LEFT OUTER JOIN karyawan k ON t.t_id_karyawan=k.k_id_karyawan " +
-                "WHERE t_is_deleted='0' AND t_is_rutin=1 AND t_tanggal_transaksi=? "
+                "WHERE t_is_deleted='0' AND t_is_rutin=1 AND date(t_tanggal_transaksi)=? "
             this.mysqlConn.query(query,date,(error,result)=>{
                 if(error){
                     reject(error)
