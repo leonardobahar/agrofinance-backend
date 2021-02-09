@@ -46,33 +46,33 @@ cron.schedule("1 0 * * *",function (){
                         detilTransaksiResult[j].td_is_pembebanan_cabang
                     ))
 
-                    dao.addTransaksi(new Transaksi(
-                        null,
-                        'NOW',
-                        'NOW',
-                        realisasi,
-                        transactionResult[i].is_rutin,
-                        transactionResult[i].status,
-                        transactionResult[i].bon_sementara,
-                        transactionResult[i].id_rekening,
-                        transactionResult[i].id_cabang,
-                        transactionResult[i].id_karyawan,
-                        0,
-                        JSON.stringify(description),
-                        null,
-                        detilTransaksiResult[j].td_jumlah,
-                        detilTransaksiResult[j].td_id_kategori_transaksi,
-                        detilTransaksiResult[j].td_bpu_attachment,
-                        detilTransaksiResult[j].td_debit_credit,
-                        detilTransaksiResult[j].td_nomor_bukti_transaksi,
-                        detilTransaksiResult[j].td_file_bukti_transaksi,
-                        detilTransaksiResult[j].skema_pembebanan_json,
-                        0
-                    )).then(transaksiResult=>{
-                        dao.setTransaksiIsNotRutin(fullDate).then(result=>{
+                    dao.setTransaksiIsNotRutin(fullDate).then(result=>{
+                        dao.addTransaksi(new Transaksi(
+                            null,
+                            'NOW',
+                            'NOW',
+                            realisasi,
+                            transactionResult[i].is_rutin,
+                            transactionResult[i].status,
+                            transactionResult[i].bon_sementara,
+                            transactionResult[i].id_rekening,
+                            transactionResult[i].id_cabang,
+                            transactionResult[i].id_karyawan,
+                            0,
+                            JSON.stringify(description),
+                            null,
+                            detilTransaksiResult[j].td_jumlah,
+                            detilTransaksiResult[j].td_id_kategori_transaksi,
+                            detilTransaksiResult[j].td_bpu_attachment,
+                            detilTransaksiResult[j].td_debit_credit,
+                            detilTransaksiResult[j].td_nomor_bukti_transaksi,
+                            detilTransaksiResult[j].td_file_bukti_transaksi,
+                            detilTransaksiResult[j].skema_pembebanan_json,
+                            0
+                        )).then(transaksiResult=>{
                             res.status(200).send({
                                 success:true,
-                                result:result
+                                result:transaksiResult
                             })
                         }).catch(error=>{
                             console.error(error)

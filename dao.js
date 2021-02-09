@@ -2087,7 +2087,7 @@ export class Dao{
 
     setTransaksiIsNotRutin(date){
         return new Promise((resolve,reject)=>{
-            const query="UPDATE transaksi SET t_is_rutin=0 WHERE t_tanggal_transaksi=? "
+            const query="UPDATE transaksi SET t_is_rutin=0 WHERE date(t_tanggal_transaksi)=? "
             this.mysqlConn.query(query,date,(error,result)=>{
                 if(error){
                     reject(error)
