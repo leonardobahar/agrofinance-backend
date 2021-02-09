@@ -65,6 +65,8 @@ cron.schedule("1 0 * * *",function (){
             error:SOMETHING_WENT_WRONG
         })
     })
+
+
 })
 
 app.listen(PORT, ()=>{

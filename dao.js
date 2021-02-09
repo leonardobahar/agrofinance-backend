@@ -2085,6 +2085,20 @@ export class Dao{
         })
     }
 
+    setTransaksiIsNotRutin(date){
+        return new Promise((resolve,reject)=>{
+            const query="UPDATE transaksi SET t_is_rutin=1 WHERE t_tanggal_transaksi=? "
+            this.mysqlConn.query(query,date,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
+
     debitSaldo(jumlah, id_rekening){
         return new Promise((resolve,reject)=>{
             const query="UPDATE rekening_perusahaan SET rp_saldo=rp_saldo+? WHERE rp_id_rekening=? "

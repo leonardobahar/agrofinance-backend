@@ -22,6 +22,8 @@
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cron-job.js" beforeDir="false" afterPath="$PROJECT_DIR$/cron-job.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,14 +138,8 @@
       <workItem from="1611651078198" duration="1344000" />
       <workItem from="1611820473340" duration="3055000" />
       <workItem from="1612146319234" duration="1244000" />
-      <workItem from="1612795280632" duration="3886000" />
-    </task>
-    <task id="LOCAL-00152" summary="Added addRole function block">
-      <created>1610691075450</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1610691075450</updated>
+      <workItem from="1612795280632" duration="5252000" />
+      <workItem from="1612842845106" duration="2363000" />
     </task>
     <task id="LOCAL-00153" summary="Added updateRole function block">
       <created>1610691343272</created>
@@ -481,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612798034689</updated>
     </task>
-    <option name="localTasksCounter" value="201" />
+    <task id="LOCAL-00201" summary="re-modified cron-job">
+      <created>1612799184324</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1612799184324</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,7 +513,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added is_deleted column in cabang_perusahaan table" />
     <MESSAGE value="Added cancelTransaksi function block" />
     <MESSAGE value="Added cancel transaksi endpoint" />
     <MESSAGE value="Re-modified cancel transaksi endpoint" />
@@ -535,6 +537,7 @@
     <MESSAGE value="added retrieveTodayAnIsRutintransaksi function block" />
     <MESSAGE value="fixed retrieveTodayAnIsRutintransaksi function block" />
     <MESSAGE value="re-modified retrieveTodayAnIsRutintransaksi function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="re-modified retrieveTodayAnIsRutintransaksi function block" />
+    <MESSAGE value="re-modified cron-job" />
+    <option name="LAST_COMMIT_MESSAGE" value="re-modified cron-job" />
   </component>
 </project>
