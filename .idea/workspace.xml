@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cron-job.js" beforeDir="false" afterPath="$PROJECT_DIR$/cron-job.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,21 +137,7 @@
       <workItem from="1611820473340" duration="3055000" />
       <workItem from="1612146319234" duration="1244000" />
       <workItem from="1612795280632" duration="5252000" />
-      <workItem from="1612842845106" duration="3309000" />
-    </task>
-    <task id="LOCAL-00154" summary="Added deleteRole function block">
-      <created>1610691520557</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1610691520557</updated>
-    </task>
-    <task id="LOCAL-00155" summary="Added retrieve position endpoint">
-      <created>1610695325138</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1610695325138</updated>
+      <workItem from="1612842845106" duration="4724000" />
     </task>
     <task id="LOCAL-00156" summary="Added add position endpoint">
       <created>1610695957239</created>
@@ -481,7 +468,21 @@
       <option name="project" value="LOCAL" />
       <updated>1612847269485</updated>
     </task>
-    <option name="localTasksCounter" value="203" />
+    <task id="LOCAL-00203" summary="Re-modified cron-job">
+      <created>1612848794171</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1612848794171</updated>
+    </task>
+    <task id="LOCAL-00204" summary="fixed setTransaksiIsNotRutin function block minor bug">
+      <created>1612849099276</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1612849099276</updated>
+    </task>
+    <option name="localTasksCounter" value="205" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,8 +511,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added cancel transaksi endpoint" />
-    <MESSAGE value="Re-modified cancel transaksi endpoint" />
     <MESSAGE value="Fixed Cancel Transaksi endpoint" />
     <MESSAGE value="Re-modified Delete Transaksi endpoint" />
     <MESSAGE value="Re-modified Delete Karyawan Kerja Dimana endpoint" />
@@ -535,6 +534,8 @@
     <MESSAGE value="re-modified retrieveTodayAnIsRutintransaksi function block" />
     <MESSAGE value="re-modified cron-job" />
     <MESSAGE value="Added setTransaksiIsNotRutin function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added setTransaksiIsNotRutin function block" />
+    <MESSAGE value="Re-modified cron-job" />
+    <MESSAGE value="fixed setTransaksiIsNotRutin function block minor bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed setTransaksiIsNotRutin function block minor bug" />
   </component>
 </project>

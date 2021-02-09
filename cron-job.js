@@ -20,8 +20,11 @@ const dao = new Dao(host,user,password,dbname)
 cron.schedule("1 0 * * *",function (){
     const dateToday=new Date()
     const date=("0"+dateToday.getDate().slice(-2))
+    const month=("0"+(dateToday.getMonth()+1)).slice(-2)
+    const year=dateToday.getFullYear()
+    const fullDate=(year+"-"+month+"-"+date)
 
-    dao.retrieveTodayAndRutinTransaksi(date).then(transactionResult=>{
+    dao.retrieveTodayAndRutinTransaksi(fullDate).then(transactionResult=>{
         for(let i=0; i<transactionResult.length; i++){
             dao.addTransaksi(new Transaksi(
                 null,
@@ -46,7 +49,7 @@ cron.schedule("1 0 * * *",function (){
                 transactionResult[i].skema_pembebanan_json,
                 transactionResult[i].td_is_deleted
             )).then(transaksiResult=>{
-                dao.setTransaksiIsNotRutin(date).then(result=>{
+                dao.setTransaksiIsNotRutin(fullDate).then(result=>{
                     res.status(200).send({
                         success:true,
                         result:result
