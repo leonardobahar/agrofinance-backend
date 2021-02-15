@@ -104,8 +104,12 @@ export class Dao{
                     return
                 }
 
-                if(result[0].r_nama_role==='Admin'){
-                    resolve(SUCCESS)
+                if(result.length>0){
+                    if(result[0].r_nama_role==='Admin'){
+                        resolve(SUCCESS)
+                    }else{
+                        reject("FALSE_AUTH")
+                    }
                 }else{
                     reject("FALSE_AUTH")
                 }
