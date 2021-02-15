@@ -94,29 +94,6 @@ export class Dao{
         })
     }
 
-    authRole(role){
-        return new Promise((resolve,reject)=>{
-            const query="SELECT * FROM role " +
-                "WHERE id=? "
-            this.mysqlConn.query(query, role.r_id_role, (error,result)=>{
-                if(error){
-                    reject(error)
-                    return
-                }
-
-                if(result.length>0){
-                    if(result[0].r_nama_role==='Admin'){
-                        resolve(SUCCESS)
-                    }else{
-                        reject("FALSE_AUTH")
-                    }
-                }else{
-                    reject("FALSE_AUTH")
-                }
-            })
-        })
-    }
-
     registerUser(user){
         return new Promise(async (resolve,reject)=>{
             if(!user instanceof User){
