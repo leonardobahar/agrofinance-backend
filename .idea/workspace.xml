@@ -21,7 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,28 +140,7 @@
       <workItem from="1612842845106" duration="15808000" />
       <workItem from="1612969093360" duration="1193000" />
       <workItem from="1612973421451" duration="609000" />
-      <workItem from="1613358483853" duration="3159000" />
-    </task>
-    <task id="LOCAL-00159" summary="Re-modified delete position endpoint">
-      <created>1610696628779</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1610696628779</updated>
-    </task>
-    <task id="LOCAL-00160" summary="Added Add Role endpoint">
-      <created>1610697161030</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1610697161030</updated>
-    </task>
-    <task id="LOCAL-00161" summary="Added Add Role endpoint">
-      <created>1610697820329</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1610697820329</updated>
+      <workItem from="1613358483853" duration="7333000" />
     </task>
     <task id="LOCAL-00162" summary="Added Update Role endpoint">
       <created>1610698631199</created>
@@ -485,7 +464,28 @@
       <option name="project" value="LOCAL" />
       <updated>1612863389875</updated>
     </task>
-    <option name="localTasksCounter" value="208" />
+    <task id="LOCAL-00208" summary="Added roleAuth function block">
+      <created>1613367720646</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1613367720646</updated>
+    </task>
+    <task id="LOCAL-00209" summary="Added roleAuth function block">
+      <created>1613367804693</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1613367804694</updated>
+    </task>
+    <task id="LOCAL-00210" summary="Removed roleAuth function block">
+      <created>1613367963675</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1613367963675</updated>
+    </task>
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,8 +514,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Cancel Transaksi endpoint" />
-    <MESSAGE value="Re-modified Delete Transaksi endpoint" />
     <MESSAGE value="Re-modified Delete Karyawan Kerja Dimana endpoint" />
     <MESSAGE value="Fixed Approve Transaksi" />
     <MESSAGE value="Added autheticateToken to Approve Transaksi" />
@@ -539,6 +537,8 @@
     <MESSAGE value="Re-modified cron-job" />
     <MESSAGE value="fixed setTransaksiIsNotRutin function block minor bug" />
     <MESSAGE value="re-modified cron-job" />
-    <option name="LAST_COMMIT_MESSAGE" value="re-modified cron-job" />
+    <MESSAGE value="Added roleAuth function block" />
+    <MESSAGE value="Removed roleAuth function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed roleAuth function block" />
   </component>
 </project>

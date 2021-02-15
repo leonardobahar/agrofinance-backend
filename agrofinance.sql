@@ -144,3 +144,11 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`user` (
   FOREIGN KEY (`u_karyawan_id`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`u_id_role`) REFERENCES role(`r_id_role`) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`feature_list`(
+	`f_id_feature_list` INT(7) PRIMARY KEY AUTO_INCREMENT,
+    `f_feature_name` varchar(255),
+    `f_access` TINYINT(1) DEFAULT 0,
+    `f_id_role` INT(7),
+    FOREIGN KEY (`f_id_role`) REFERENCES role(`r_id_role`) ON DELETE CASCADE ON UPDATE CASCADE
+)
