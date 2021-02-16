@@ -2285,4 +2285,24 @@ export class Dao{
             })
         })
     }
+
+    addFeature(feature){
+        return new Promise((resolve,reject)=>{
+            if(!feature instanceof Feature){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="INSERT INTO feature_list (`f_id_feature_list`, `f_feature_name`, `f_access`, `f_role_ids`) " +
+                "VALUES(?, ?, ?, ?) "
+            this.mysqlConn.query(query,[feature.feature_id,feature.feature_name,feature.feature_access,JSON.stringify(feature.role_ids)],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(feature)
+            })
+        })
+    }
 }
