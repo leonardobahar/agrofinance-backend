@@ -141,14 +141,7 @@
       <workItem from="1612973421451" duration="609000" />
       <workItem from="1613358483853" duration="8878000" />
       <workItem from="1613389621071" duration="2901000" />
-      <workItem from="1613453391456" duration="3546000" />
-    </task>
-    <task id="LOCAL-00165" summary="Fixed update Role bug">
-      <created>1610720749617</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1610720749617</updated>
+      <workItem from="1613453391456" duration="4263000" />
     </task>
     <task id="LOCAL-00166" summary="Re-modified Karyawan table srtucture">
       <created>1610887918115</created>
@@ -486,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613457917386</updated>
     </task>
-    <option name="localTasksCounter" value="214" />
+    <task id="LOCAL-00214" summary="Added retrieveFeatures function block">
+      <created>1613458433746</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1613458433746</updated>
+    </task>
+    <option name="localTasksCounter" value="215" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -515,7 +515,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified a few endpoints" />
     <MESSAGE value="Re-modified a retrieveRole and retrieveOneRole" />
     <MESSAGE value="Re-modified a retrievePosisi and retrieveOnePosisi" />
     <MESSAGE value="Re-modified a retrieveCabang and retrieveOneCabang" />
@@ -540,6 +539,7 @@
     <MESSAGE value="Added CREATE feature_list table sql syntax to sql file" />
     <MESSAGE value="Re-modified feature_list table structure" />
     <MESSAGE value="Added Feature model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Feature model" />
+    <MESSAGE value="Added retrieveFeatures function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added retrieveFeatures function block" />
   </component>
 </project>
