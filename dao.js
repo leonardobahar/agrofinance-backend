@@ -89,7 +89,6 @@ export class Dao{
                 }else{
                     reject("FALSE_AUTH")
                 }
-
             })
         })
     }

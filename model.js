@@ -135,3 +135,4 @@ export class User{
         this.karyawan_id = karyawan_id
     }
 }
+
