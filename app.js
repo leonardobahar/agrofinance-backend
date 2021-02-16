@@ -20,7 +20,7 @@ import {
     Kategori_transaksi,
     Pembebanan,
     Perusahaan, Posisi, Role, Rekening_perusahaan,
-    Transaksi, Transaksi_rekening, User
+    Transaksi, Transaksi_rekening, User, Feature
 } from "./model";
 import multer from 'multer'
 import path from 'path'
@@ -2701,6 +2701,36 @@ app.delete("/api/karyawan-kerja-dimana/delete",(req,res)=>{
             })
         }
     })
+})
+
+app.get("/api/access-control/view",(req,res)=>{
+    if(typeof req.query.id==='undefined'){
+        dao.retrieveFeatures().then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }else{
+        dao.retrieveOneFeature(new Feature(req.query.id)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }
 })
 
 app.listen(PORT, ()=>{
