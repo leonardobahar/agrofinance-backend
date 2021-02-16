@@ -143,14 +143,7 @@
       <workItem from="1613358483853" duration="8878000" />
       <workItem from="1613389621071" duration="2901000" />
       <workItem from="1613453391456" duration="6655000" />
-      <workItem from="1613473257951" duration="3488000" />
-    </task>
-    <task id="LOCAL-00169" summary="Fixed retreive One karyawan bug">
-      <created>1610890197225</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1610890197225</updated>
+      <workItem from="1613473257951" duration="6008000" />
     </task>
     <task id="LOCAL-00170" summary="Re-modified add karyawan endpoint">
       <created>1610891502624</created>
@@ -488,7 +481,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613462222512</updated>
     </task>
-    <option name="localTasksCounter" value="218" />
+    <task id="LOCAL-00218" summary="Added View Access Control endpoint">
+      <created>1613481213460</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1613481213460</updated>
+    </task>
+    <option name="localTasksCounter" value="219" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,7 +517,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified a few retrieve Cabang functions" />
     <MESSAGE value="Re-modified a few Cabang Perusahaan function blocks" />
     <MESSAGE value="Re-modified retrieveRekeiningPerusahaan and retrieveOneRekeningPerusahaan function blocks" />
     <MESSAGE value="Re-modified some Rekening Perusahaan function blocks" />
@@ -542,6 +541,7 @@
     <MESSAGE value="Added retrieveOneFeature function block" />
     <MESSAGE value="Added addFunction function block" />
     <MESSAGE value="Added deleteFeature function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added deleteFeature function block" />
+    <MESSAGE value="Added View Access Control endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added View Access Control endpoint" />
   </component>
 </project>

@@ -2733,6 +2733,31 @@ app.get("/api/access-control/view",(req,res)=>{
     }
 })
 
+app.post("/api/access-control/add",(req,res)=>{
+    if(typeof req.body.feature_name==='undefined' ||
+       typeof req.body.feature_access==='undefined' ||
+       typeof req.body.role_ids==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.addFeature(new Feature(null,req.body.feature_name,req.body.feature_access,req.body.role_ids)).then(result=>{
+        res.status(200).send({
+            success:true,
+            result:result
+        })
+    }).catch(error=>{
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
 app.listen(PORT, ()=>{
     console.info(`Server serving port ${PORT}`)
 })
