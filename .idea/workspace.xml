@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,14 +142,7 @@
       <workItem from="1613358483853" duration="8878000" />
       <workItem from="1613389621071" duration="2901000" />
       <workItem from="1613453391456" duration="6655000" />
-      <workItem from="1613473257951" duration="6889000" />
-    </task>
-    <task id="LOCAL-00171" summary="Re-modified add karyawan endpoint">
-      <created>1610891974118</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1610891974118</updated>
+      <workItem from="1613473257951" duration="7236000" />
     </task>
     <task id="LOCAL-00172" summary="Re-modified update karyawan endpoint (still in progress)">
       <created>1610892612281</created>
@@ -488,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613484984013</updated>
     </task>
-    <option name="localTasksCounter" value="220" />
+    <task id="LOCAL-00220" summary="Added Update Access Control endpoint">
+      <created>1613485737208</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1613485737208</updated>
+    </task>
+    <option name="localTasksCounter" value="221" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,7 +516,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified retrieveRekeiningPerusahaan and retrieveOneRekeningPerusahaan function blocks" />
     <MESSAGE value="Re-modified some Rekening Perusahaan function blocks" />
     <MESSAGE value="Re-modified Approve Transaksi endpoint" />
     <MESSAGE value="Fixed Update perusahaan bug" />
@@ -542,6 +540,7 @@
     <MESSAGE value="Added deleteFeature function block" />
     <MESSAGE value="Added View Access Control endpoint" />
     <MESSAGE value="Added Add Access Control endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Add Access Control endpoint" />
+    <MESSAGE value="Added Update Access Control endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Update Access Control endpoint" />
   </component>
 </project>

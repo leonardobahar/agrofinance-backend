@@ -2792,6 +2792,40 @@ app.post("/api/access-control/update",(req,res)=>{
     })
 })
 
+app.delete("/api/access-control/delete",(req,res)=>{
+    if(typeof req.query.id==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.retrieveOneFeature(new Feature(req.query.id)).then(result=>{
+        dao.deleteFeature(new Feature(req.query.id)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }).catch(error=>{
+        console.error(error)
+        res.status(500).send(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    })
+})
+
 app.listen(PORT, ()=>{
     console.info(`Server serving port ${PORT}`)
 })
