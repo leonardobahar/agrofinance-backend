@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,14 +141,7 @@
       <workItem from="1612973421451" duration="609000" />
       <workItem from="1613358483853" duration="8878000" />
       <workItem from="1613389621071" duration="2901000" />
-      <workItem from="1613453391456" duration="5255000" />
-    </task>
-    <task id="LOCAL-00167" summary="Re-modified Karyawan code model">
-      <created>1610888079623</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1610888079623</updated>
+      <workItem from="1613453391456" duration="6032000" />
     </task>
     <task id="LOCAL-00168" summary="Re-modified Retrieve Karyawan endpoint">
       <created>1610888699943</created>
@@ -487,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613458989897</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="Added addFunction function block">
+      <created>1613460583611</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1613460583611</updated>
+    </task>
+    <option name="localTasksCounter" value="217" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +515,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified a retrievePosisi and retrieveOnePosisi" />
     <MESSAGE value="Re-modified a retrieveCabang and retrieveOneCabang" />
     <MESSAGE value="Re-modified a few retrieve Cabang functions" />
     <MESSAGE value="Re-modified a few Cabang Perusahaan function blocks" />
@@ -541,6 +539,7 @@
     <MESSAGE value="Added Feature model" />
     <MESSAGE value="Added retrieveFeatures function block" />
     <MESSAGE value="Added retrieveOneFeature function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added retrieveOneFeature function block" />
+    <MESSAGE value="Added addFunction function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added addFunction function block" />
   </component>
 </project>

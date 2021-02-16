@@ -2305,4 +2305,23 @@ export class Dao{
             })
         })
     }
+
+    deleteFeature(feature){
+        return new Promise((resolve,reject)=>{
+            if(!feature instanceof Feature){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="DELETE FROM feature_list WHERE f_id_feature_list=? "
+            this.mysqlConn.query(query,feature.feature_id,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(SUCCESS)
+            })
+        })
+    }
 }
