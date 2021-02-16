@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,14 +141,7 @@
       <workItem from="1612973421451" duration="609000" />
       <workItem from="1613358483853" duration="8878000" />
       <workItem from="1613389621071" duration="2901000" />
-      <workItem from="1613453391456" duration="3191000" />
-    </task>
-    <task id="LOCAL-00164" summary="Fixed add Role and add Posisi bug">
-      <created>1610720306908</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1610720306908</updated>
+      <workItem from="1613453391456" duration="3546000" />
     </task>
     <task id="LOCAL-00165" summary="Fixed update Role bug">
       <created>1610720749617</created>
@@ -487,7 +479,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613456702098</updated>
     </task>
-    <option name="localTasksCounter" value="213" />
+    <task id="LOCAL-00213" summary="Added Feature model">
+      <created>1613457917386</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1613457917386</updated>
+    </task>
+    <option name="localTasksCounter" value="214" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +515,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added autheticateToken to Approve Transaksi" />
     <MESSAGE value="Re-modified a few endpoints" />
     <MESSAGE value="Re-modified a retrieveRole and retrieveOneRole" />
     <MESSAGE value="Re-modified a retrievePosisi and retrieveOnePosisi" />
@@ -541,6 +539,7 @@
     <MESSAGE value="Removed roleAuth function block" />
     <MESSAGE value="Added CREATE feature_list table sql syntax to sql file" />
     <MESSAGE value="Re-modified feature_list table structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified feature_list table structure" />
+    <MESSAGE value="Added Feature model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Feature model" />
   </component>
 </project>

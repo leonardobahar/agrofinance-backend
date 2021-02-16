@@ -13,7 +13,7 @@ import {
 } from "./strings"
 import {
     Cabang_perusahaan,
-    Detil_transaksi,
+    Detil_transaksi, Feature,
     Karyawan,
     Karyawan_kerja_dimana,
     Kategori_transaksi,
@@ -2231,5 +2231,26 @@ export class Dao{
         })
     }
 
+    retrieveFeatures(){
+        return new Promise((resolve,reject)=>{
+            const query="SELECT * FROM feature_list "
+            this.mysqlConn.query(query,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
 
+                let features=[]
+                for(let i=0; i<result.length; i++){
+                    features.push(new Feature(
+                        result[i].f_id_feature_list,
+                        result[i].f_feature_name,
+                        result[i].f_access,
+                        result[i].f_role_ids
+                    ))
+                }
+                resolve(features)
+            })
+        })
+    }
 }
