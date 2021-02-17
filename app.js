@@ -2770,11 +2770,19 @@ app.post("/api/access-control/update",(req,res)=>{
         return
     }
 
-    dao.deleteFeature(new Feature(req.body.id)).then(result=>{
-        dao.addFeature(new Feature(null,req.body.feature_name,req.body.feature_access,req.body.role_ids)).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
+    dao.retrieveOneFeature(new Feature(req.body.id)).then(result=>{
+        dao.deleteFeature(new Feature(req.body.id)).then(result=>{
+            dao.addFeature(new Feature(null,req.body.feature_name,req.body.feature_access,req.body.role_ids)).then(result=>{
+                res.status(200).send({
+                    success:true,
+                    result:result
+                })
+            }).catch(error=>{
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
             })
         }).catch(error=>{
             console.error(error)
@@ -2784,12 +2792,21 @@ app.post("/api/access-control/update",(req,res)=>{
             })
         })
     }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+            return
+        }
+
         console.error(error)
         res.status(500).send({
             success:false,
             error:SOMETHING_WENT_WRONG
         })
     })
+
 })
 
 app.delete("/api/access-control/delete",(req,res)=>{
