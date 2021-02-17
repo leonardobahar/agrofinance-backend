@@ -22,6 +22,7 @@
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,14 +145,7 @@
       <workItem from="1613389621071" duration="2901000" />
       <workItem from="1613453391456" duration="6655000" />
       <workItem from="1613473257951" duration="8455000" />
-      <workItem from="1613533424489" duration="4498000" />
-    </task>
-    <task id="LOCAL-00173" summary="Added is_deleted column in cabang_perusahaan table">
-      <created>1610894066443</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1610894066443</updated>
+      <workItem from="1613533424489" duration="16202000" />
     </task>
     <task id="LOCAL-00174" summary="Added cancelTransaksi function block">
       <created>1610895818286</created>
@@ -489,7 +483,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613486083709</updated>
     </task>
-    <option name="localTasksCounter" value="222" />
+    <task id="LOCAL-00222" summary="Re-modified Update Access Control endpoint">
+      <created>1613542205963</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1613542205964</updated>
+    </task>
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,7 +519,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Approve Transaksi endpoint" />
     <MESSAGE value="Fixed Update perusahaan bug" />
     <MESSAGE value="Re-modified Delete Perusahaan endpoint" />
     <MESSAGE value="Re-modified User Table structure" />
@@ -543,6 +543,7 @@
     <MESSAGE value="Added Add Access Control endpoint" />
     <MESSAGE value="Added Update Access Control endpoint" />
     <MESSAGE value="Added Delete Access Control endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Delete Access Control endpoint" />
+    <MESSAGE value="Re-modified Update Access Control endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Update Access Control endpoint" />
   </component>
 </project>

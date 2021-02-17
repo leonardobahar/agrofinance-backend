@@ -2724,6 +2724,13 @@ app.get("/api/access-control/view",(req,res)=>{
                 result:result
             })
         }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }
             console.error(error)
             res.status(500).send({
                 success:false,
@@ -2743,6 +2750,27 @@ app.post("/api/access-control/add",(req,res)=>{
         })
         return
     }
+
+    const roles=JSON.parse(req.body.role_ids)
+
+    /*for(let i=0; i<roles.length; i++){
+        dao.retrieveOneRole(new Role(roles[i])).then(result=>{
+
+        }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }*/
 
     dao.addFeature(new Feature(null,req.body.feature_name,req.body.feature_access,req.body.role_ids)).then(result=>{
         res.status(200).send({
@@ -2832,6 +2860,13 @@ app.delete("/api/access-control/delete",(req,res)=>{
             })
         })
     }).catch(error=>{
+        if(error===NO_SUCH_CONTENT){
+            res.status(204).send({
+                success:false,
+                error:NO_SUCH_CONTENT
+            })
+            return
+        }
         console.error(error)
         res.status(500).send(error=>{
             console.error(error)

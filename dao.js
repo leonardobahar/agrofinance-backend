@@ -2293,14 +2293,15 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO feature_list (`f_id_feature_list`, `f_feature_name`, `f_access`, `f_role_ids`) " +
-                "VALUES(?, ?, ?, ?) "
-            this.mysqlConn.query(query,[feature.feature_id,feature.feature_name,feature.feature_access,JSON.stringify(feature.role_ids)],(error,result)=>{
+            const query="INSERT INTO feature_list ( `f_feature_name`, `f_access`, `f_role_ids`) " +
+                "VALUES(?, ?, ?) "
+            this.mysqlConn.query(query,[feature.feature_name,feature.feature_access,JSON.stringify(feature.role_ids)],(error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
+                feature.feature_id=result.insertId
                 resolve(feature)
             })
         })
