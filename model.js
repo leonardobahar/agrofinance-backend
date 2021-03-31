@@ -15,13 +15,14 @@ export class Role{
 }
 
 export class Karyawan{
-    constructor(k_id_karyawan, k_nama_lengkap, k_id_posisi, k_nik, k_id_role, k_masih_hidup) {
+    constructor(k_id_karyawan, k_nama_lengkap, k_id_posisi, k_nik, k_id_role, k_masih_hidup, k_superior) {
         this.k_id_karyawan=k_id_karyawan
         this.k_nama_lengkap=k_nama_lengkap
         this.k_id_posisi=k_id_posisi
         this.k_nik=k_nik
         this.k_id_role=k_id_role
         this.k_masih_hidup=k_masih_hidup
+        this.k_superior=k_superior
     }
 }
 
