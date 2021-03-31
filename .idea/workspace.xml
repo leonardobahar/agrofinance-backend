@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cron-job.js" beforeDir="false" afterPath="$PROJECT_DIR$/cron-job.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,14 +153,7 @@
       <workItem from="1615389734704" duration="2603000" />
       <workItem from="1615524959683" duration="641000" />
       <workItem from="1615993333247" duration="2024000" />
-      <workItem from="1617197690732" duration="1584000" />
-    </task>
-    <task id="LOCAL-00175" summary="Added cancel transaksi endpoint">
-      <created>1610896262416</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1610896262416</updated>
+      <workItem from="1617197690732" duration="1942000" />
     </task>
     <task id="LOCAL-00176" summary="Re-modified cancel transaksi endpoint">
       <created>1610896369563</created>
@@ -499,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613559441757</updated>
     </task>
-    <option name="localTasksCounter" value="224" />
+    <task id="LOCAL-00224" summary="Commanded cron job with &quot;1 0 30 * *&quot;">
+      <created>1617199320268</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1617199320269</updated>
+    </task>
+    <option name="localTasksCounter" value="225" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -528,7 +527,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Delete Perusahaan endpoint" />
     <MESSAGE value="Re-modified User Table structure" />
     <MESSAGE value="Re-modified Delete karyawan endpoint" />
     <MESSAGE value="added retrieveTodayAnIsRutintransaksi function block" />
@@ -553,6 +551,7 @@
     <MESSAGE value="Added Delete Access Control endpoint" />
     <MESSAGE value="Re-modified Update Access Control endpoint" />
     <MESSAGE value="Re-modified Access Control endpoints" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Access Control endpoints" />
+    <MESSAGE value="Commanded cron job with &quot;1 0 30 * *&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commanded cron job with &quot;1 0 30 * *&quot;" />
   </component>
 </project>
