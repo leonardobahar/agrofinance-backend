@@ -480,7 +480,6 @@ app.post("/api/karyawan/add", (req,res)=>{
         typeof req.body.nik==='undefined' ||
         typeof req.body.id_role==='undefined' ||
         typeof req.body.masih_hidup==='undefined' ||
-        typeof req.body.superior==='undefined' ||
         typeof req.body.cabang_ids==='undefined' ||
         typeof req.body.email==='undefined' ||
         typeof req.body.password==='undefined'){
@@ -491,6 +490,7 @@ app.post("/api/karyawan/add", (req,res)=>{
         return
     }
 
+    req.body.superios = typeof req.body.superior == "undefined" ? null : req.body.superior;
     const employee=new Karyawan(null,req.body.nama_lengkap.toUpperCase(),req.body.id_posisi, req.body.nik, req.body.id_role, req.body.masih_hidup, req.body.superior)
 
     dao.retrieveOnePosisi(new Posisi(req.body.id_posisi)).then(result=>{

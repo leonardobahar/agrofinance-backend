@@ -19,7 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Re-modified /api/karyawan/add endpoint to have user input superior's 'karyawan_id'">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,13 +155,6 @@
       <workItem from="1615524959683" duration="641000" />
       <workItem from="1615993333247" duration="2024000" />
       <workItem from="1617197690732" duration="4653000" />
-    </task>
-    <task id="LOCAL-00178" summary="Re-modified Delete Transaksi endpoint">
-      <created>1610978801433</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1610978801433</updated>
     </task>
     <task id="LOCAL-00179" summary="Re-modified Delete Karyawan Kerja Dimana endpoint">
       <created>1610979335309</created>
@@ -498,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617202673011</updated>
     </task>
-    <option name="localTasksCounter" value="227" />
+    <task id="LOCAL-00227" summary="Set correct unset caban g id when add new cabang">
+      <created>1617203964105</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1617203964105</updated>
+    </task>
+    <option name="localTasksCounter" value="228" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -527,7 +528,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added retrieveTodayAnIsRutintransaksi function block" />
     <MESSAGE value="fixed retrieveTodayAnIsRutintransaksi function block" />
     <MESSAGE value="re-modified retrieveTodayAnIsRutintransaksi function block" />
     <MESSAGE value="Added setTransaksiIsNotRutin function block" />
@@ -552,20 +552,21 @@
     <MESSAGE value="Commanded cron job with &quot;1 0 30 * *&quot;" />
     <MESSAGE value="Commanded cron job with 1 0 28-30 * *" />
     <MESSAGE value="Re-modified /api/karyawan/add endpoint to have user input superior's 'karyawan_id'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified /api/karyawan/add endpoint to have user input superior's 'karyawan_id'" />
+    <MESSAGE value="Set correct unset caban g id when add new cabang" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set correct unset caban g id when add new cabang" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="391" y="78" key="CommitChangelistDialog2" timestamp="1617203881944">
+    <state x="391" y="78" key="CommitChangelistDialog2" timestamp="1617203963953">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
-    <state x="391" y="78" key="CommitChangelistDialog2/0.25.1680.962@0.25.1680.962" timestamp="1617203881944" />
+    <state x="391" y="78" key="CommitChangelistDialog2/0.25.1680.962@0.25.1680.962" timestamp="1617203963953" />
     <state x="478" y="271" key="MultipleFileMergeDialog" timestamp="1617203861601">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
     <state x="478" y="271" key="MultipleFileMergeDialog/0.25.1680.962@0.25.1680.962" timestamp="1617203861601" />
-    <state x="440" y="230" key="Vcs.Push.Dialog.v2" timestamp="1617203849666">
+    <state x="440" y="230" key="Vcs.Push.Dialog.v2" timestamp="1617203965401">
       <screen x="0" y="25" width="1680" height="962" />
     </state>
-    <state x="440" y="230" key="Vcs.Push.Dialog.v2/0.25.1680.962@0.25.1680.962" timestamp="1617203849666" />
+    <state x="440" y="230" key="Vcs.Push.Dialog.v2/0.25.1680.962@0.25.1680.962" timestamp="1617203965401" />
   </component>
 </project>
