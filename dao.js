@@ -337,7 +337,7 @@ export class Dao{
     retrieveKaryawan(){
         return new Promise((resolve, reject)=>{
             const query="SELECT k.k_id_karyawan, k.k_nama_lengkap, k.k_id_posisi, ps.ps_nama_posisi, k.k_nik, " +
-                "k.k_id_role, r.r_nama_role, k.k_masih_hidup " +
+                "k.k_id_role, r.r_nama_role, k.k_masih_hidup, k.k_superior " +
                 "FROM karyawan k LEFT OUTER JOIN posisi ps ON ps.ps_id_posisi=k.k_id_posisi " +
                 "LEFT OUTER JOIN role r ON r.r_id_role=k.k_id_role " +
                 "WHERE k.k_is_deleted = 0"
@@ -356,7 +356,8 @@ export class Dao{
                         nik:rowDataPacket.k_nik,
                         id_role:rowDataPacket.k_id_role,
                         nama_role:rowDataPacket.r_nama_role,
-                        masih_hidup:rowDataPacket.k_masih_hidup
+                        masih_hidup:rowDataPacket.k_masih_hidup,
+                        superior:rowDataPacket.k_superior
                     }
                 })
                 resolve(employees)
@@ -372,7 +373,7 @@ export class Dao{
             }
 
             const query="SELECT k.k_id_karyawan, k.k_nama_lengkap, k.k_id_posisi, ps.ps_nama_posisi, k.k_nik, " +
-                "k.k_id_role, r.r_nama_role, k.k_masih_hidup " +
+                "k.k_id_role, r.r_nama_role, k.k_masih_hidup, k.k_superior " +
                 "FROM karyawan k LEFT OUTER JOIN posisi ps ON ps.ps_id_posisi=k.k_id_posisi " +
                 "LEFT OUTER JOIN role r ON r.r_id_role=k.k_id_role " +
                 "WHERE k.k_is_deleted = 0 AND k.k_id_karyawan=?"
@@ -390,7 +391,8 @@ export class Dao{
                             nik:rowDataPacket.k_nik,
                             id_role:rowDataPacket.k_id_role,
                             nama_role:rowDataPacket.r_nama_role,
-                            masih_hidup:rowDataPacket.k_masih_hidup
+                            masih_hidup:rowDataPacket.k_masih_hidup,
+                            superior:rowDataPacket.k_superior
                         }
                     })
                     resolve(employee)
