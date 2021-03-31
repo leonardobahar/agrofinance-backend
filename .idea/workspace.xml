@@ -21,8 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cron-job.js" beforeDir="false" afterPath="$PROJECT_DIR$/cron-job.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,13 +145,16 @@
       <workItem from="1613453391456" duration="6655000" />
       <workItem from="1613473257951" duration="8455000" />
       <workItem from="1613533424489" duration="16202000" />
-    </task>
-    <task id="LOCAL-00174" summary="Added cancelTransaksi function block">
-      <created>1610895818286</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1610895818286</updated>
+      <workItem from="1613559418654" duration="36000" />
+      <workItem from="1613659480811" duration="655000" />
+      <workItem from="1613709509035" duration="5460000" />
+      <workItem from="1613746162332" duration="3716000" />
+      <workItem from="1613798072491" duration="1198000" />
+      <workItem from="1614323247301" duration="1232000" />
+      <workItem from="1615389734704" duration="2603000" />
+      <workItem from="1615524959683" duration="641000" />
+      <workItem from="1615993333247" duration="2024000" />
+      <workItem from="1617197690732" duration="1584000" />
     </task>
     <task id="LOCAL-00175" summary="Added cancel transaksi endpoint">
       <created>1610896262416</created>
@@ -490,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613542205964</updated>
     </task>
-    <option name="localTasksCounter" value="223" />
+    <task id="LOCAL-00223" summary="Re-modified Access Control endpoints">
+      <created>1613559441757</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1613559441757</updated>
+    </task>
+    <option name="localTasksCounter" value="224" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -519,7 +528,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Update perusahaan bug" />
     <MESSAGE value="Re-modified Delete Perusahaan endpoint" />
     <MESSAGE value="Re-modified User Table structure" />
     <MESSAGE value="Re-modified Delete karyawan endpoint" />
@@ -544,6 +552,7 @@
     <MESSAGE value="Added Update Access Control endpoint" />
     <MESSAGE value="Added Delete Access Control endpoint" />
     <MESSAGE value="Re-modified Update Access Control endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Update Access Control endpoint" />
+    <MESSAGE value="Re-modified Access Control endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Access Control endpoints" />
   </component>
 </project>

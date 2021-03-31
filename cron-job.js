@@ -17,6 +17,9 @@ const password = typeof process.env.MY_SQL_PASSWORD === 'undefined' ? '' : proce
 const dbname = process.env.MY_SQL_DBNAME
 const dao = new Dao(host,user,password,dbname)
 
+//cron.schedule("1 0 30 * *",function (){
+//
+//})
 cron.schedule("1 0 * * *",function (){
     const dateToday=new Date()
     const date=("0"+dateToday.getDate()).slice(-2)
