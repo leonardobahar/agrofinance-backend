@@ -1007,7 +1007,7 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
 
     dao.addCabangPerusahaan(new Cabang_perusahaan(null,req.body.nama_cabang.toUpperCase(),req.body.perusahaan_id,req.body.lokasi,req.body.alamat_lengkap,null)).then(result=>{
         const cabangId=result.cp_id_cabang
-        //dao.unsetRekeningUtamaByPerusahaanId(req.body.perusahaan_id).then(result=>{
+        dao.unsetRekeningUtamaByPerusahaanId(cabangId).then(result=>{
             dao.addRekeningPerusahaan(req.body.nama_bank,req.body.nomor_rekening,req.body.saldo,cabangId,true).then(result=>{
                 res.status(200).send({
                     success:true,
@@ -1020,25 +1020,25 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
                     error:SOMETHING_WENT_WRONG
                 })
             })
-        // }).catch(error=>{
-        //     if(error===NO_SUCH_CONTENT){
-        //         res.status(204).send({
-        //             success:false,
-        //             error:NO_SUCH_CONTENT
-        //         })
-        //         return
-        //     }else if(error===NO_MAIN_AACOUNT){
-        //         res.status(200).send({
-        //             success:true,
-        //             result:result
-        //         })
-        //     }
-        //     console.error(error)
-        //     res.status(500).send({
-        //         success:false,
-        //         error:SOMETHING_WENT_WRONG
-        //     })
-        // })
+        }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }else if(error===NO_MAIN_AACOUNT){
+                res.status(200).send({
+                    success:true,
+                    result:result
+                })
+            }
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
     }).catch(error=>{
         console.error(error)
         res.status(500).send({
