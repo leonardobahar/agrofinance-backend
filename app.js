@@ -480,9 +480,7 @@ app.post("/api/karyawan/add", (req,res)=>{
         typeof req.body.nik==='undefined' ||
         typeof req.body.id_role==='undefined' ||
         typeof req.body.masih_hidup==='undefined' ||
-        typeof req.body.cabang_ids==='undefined' ||
-        typeof req.body.email==='undefined' ||
-        typeof req.body.password==='undefined'){
+        typeof req.body.cabang_ids==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -497,18 +495,25 @@ app.post("/api/karyawan/add", (req,res)=>{
         dao.retrieveOneRole(new Role(req.body.id_role)).then(result=>{
             dao.addKaryawan(employee).then(async karyawanResult=>{
                 dao.addKaryawan_kerja_dimana(new Karyawan_kerja_dimana(null,karyawanResult.k_id_karyawan,req.body.cabang_ids)).then(result=>{
-                    dao.registerUser(new User(null,karyawanResult.k_nama_lengkap,req.body.email,req.body.password,karyawanResult.k_id_role,karyawanResult.k_id_karyawan)).then(result=>{
+                    if(typeof req.body.email!=='undefined' && typeof req.body.password !=='undefined'){
+                        dao.registerUser(new User(null,karyawanResult.k_nama_lengkap,req.body.email,req.body.password,karyawanResult.k_id_role,karyawanResult.k_id_karyawan)).then(result=>{
+                            res.status(200).send({
+                                success:true,
+                                result:result
+                            })
+                        }).catch(error=>{
+                            console.error(error)
+                            res.status(500).send({
+                                success:false,
+                                error:SOMETHING_WENT_WRONG
+                            })
+                        })
+                    }else{
                         res.status(200).send({
                             success:true,
-                            result:result
+                            result:karyawanResult
                         })
-                    }).catch(error=>{
-                        console.error(error)
-                        res.status(500).send({
-                            success:false,
-                            error:SOMETHING_WENT_WRONG
-                        })
-                    })
+                    }
                 }).catch(error=>{
                     console.error(error)
                     res.status(500).send({
