@@ -490,7 +490,7 @@ app.post("/api/karyawan/add", (req,res)=>{
         return
     }
 
-    req.body.superios = typeof req.body.superior == "undefined" ? null : req.body.superior;
+    req.body.superior = typeof req.body.superior == "undefined" ? null : req.body.superior;
     const employee=new Karyawan(null,req.body.nama_lengkap.toUpperCase(),req.body.id_posisi, req.body.nik, req.body.id_role, req.body.masih_hidup, req.body.superior)
 
     dao.retrieveOnePosisi(new Posisi(req.body.id_posisi)).then(result=>{

@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -554,19 +553,5 @@
     <MESSAGE value="Re-modified /api/karyawan/add endpoint to have user input superior's 'karyawan_id'" />
     <MESSAGE value="Set correct unset caban g id when add new cabang" />
     <option name="LAST_COMMIT_MESSAGE" value="Set correct unset caban g id when add new cabang" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="391" y="78" key="CommitChangelistDialog2" timestamp="1617203963953">
-      <screen x="0" y="25" width="1680" height="962" />
-    </state>
-    <state x="391" y="78" key="CommitChangelistDialog2/0.25.1680.962@0.25.1680.962" timestamp="1617203963953" />
-    <state x="478" y="271" key="MultipleFileMergeDialog" timestamp="1617203861601">
-      <screen x="0" y="25" width="1680" height="962" />
-    </state>
-    <state x="478" y="271" key="MultipleFileMergeDialog/0.25.1680.962@0.25.1680.962" timestamp="1617203861601" />
-    <state x="440" y="230" key="Vcs.Push.Dialog.v2" timestamp="1617203965401">
-      <screen x="0" y="25" width="1680" height="962" />
-    </state>
-    <state x="440" y="230" key="Vcs.Push.Dialog.v2/0.25.1680.962@0.25.1680.962" timestamp="1617203965401" />
   </component>
 </project>
