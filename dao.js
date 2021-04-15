@@ -1688,16 +1688,42 @@ export class Dao{
 
     retrieveTransaksi(){
         return new Promise((resolve, reject)=>{
-            const query="SELECT dt.td_id_transaksi, dt.td_id_detil_transaksi, t.t_tanggal_transaksi, t.t_tanggal_modifikasi, t.t_tanggal_realisasi, t.t_is_rutin, t.t_status, " +
-                "t.t_rekening_penanggung_utama, rp.rp_nomor_rekening, t.t_id_cabang_perusahaan, cp.cp_nama_cabang, p.p_nama_perusahaan, t.t_id_karyawan, k.k_nama_lengkap, " +
-                "dt.td_jumlah, dt.td_id_kategori_transaksi, kt.kt_nama_kategori, dt.td_bpu_attachment, dt.td_debit_credit, dt.td_nomor_bukti_transaksi, dt.td_file_bukti_transaksi, dt.skema_pembebanan_json, p.p_id_perusahaan "+
-                "FROM detil_transaksi dt LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi "+
-                "LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori " +
-                "LEFT OUTER JOIN rekening_perusahaan rp ON t.t_rekening_penanggung_utama=rp.rp_id_rekening "+
-                "LEFT OUTER JOIN cabang_perusahaan cp ON t.t_id_cabang_perusahaan=cp.cp_id_cabang " +
-                "LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan " +
-                "LEFT OUTER JOIN karyawan k ON t.t_id_karyawan=k.k_id_karyawan " +
-                "WHERE t_is_deleted='0'"
+            const query = `
+                SELECT 
+                    dt.td_id_transaksi, 
+                    dt.td_id_detil_transaksi, 
+                    t.t_tanggal_transaksi, 
+                    t.t_tanggal_modifikasi, 
+                    t.t_tanggal_realisasi, 
+                    t.t_is_rutin, 
+                    t.t_status, 
+                    t.t_bon_sementara,
+                    t.t_rekening_penanggung_utama, 
+                    rp.rp_nomor_rekening, 
+                    t.t_id_cabang_perusahaan, 
+                    cp.cp_nama_cabang, 
+                    p.p_nama_perusahaan, 
+                    t.t_id_karyawan, 
+                    k.k_nama_lengkap, 
+                    dt.td_jumlah, 
+                    dt.td_id_kategori_transaksi, 
+                    kt.kt_nama_kategori, 
+                    dt.td_bpu_attachment, 
+                    dt.td_debit_credit, 
+                    dt.td_nomor_bukti_transaksi, 
+                    dt.td_file_bukti_transaksi, 
+                    dt.skema_pembebanan_json, 
+                    p.p_id_perusahaan
+                FROM detil_transaksi dt 
+                    LEFT OUTER JOIN transaksi t ON dt.td_id_transaksi=t.t_id_transaksi
+                    LEFT OUTER JOIN kategori_transaksi kt ON dt.td_id_kategori_transaksi=kt.kt_id_kategori 
+                    LEFT OUTER JOIN rekening_perusahaan rp ON t.t_rekening_penanggung_utama=rp.rp_id_rekening
+                    LEFT OUTER JOIN cabang_perusahaan cp ON t.t_id_cabang_perusahaan=cp.cp_id_cabang 
+                    LEFT OUTER JOIN perusahaan p ON cp.cp_perusahaan_id=p.p_id_perusahaan 
+                    LEFT OUTER JOIN karyawan k ON t.t_id_karyawan=k.k_id_karyawan 
+                WHERE t_is_deleted='0'
+            `;
+            
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
