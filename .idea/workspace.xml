@@ -157,14 +157,7 @@
       <workItem from="1615993333247" duration="2024000" />
       <workItem from="1617197690732" duration="4653000" />
       <workItem from="1617622853558" duration="577000" />
-      <workItem from="1618465359351" duration="17489000" />
-    </task>
-    <task id="LOCAL-00183" summary="Re-modified a retrieveRole and retrieveOneRole">
-      <created>1611153274173</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1611153274173</updated>
+      <workItem from="1618465359351" duration="20655000" />
     </task>
     <task id="LOCAL-00184" summary="Re-modified a retrievePosisi and retrieveOnePosisi">
       <created>1611153340026</created>
@@ -502,7 +495,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618498362452</updated>
     </task>
-    <option name="localTasksCounter" value="232" />
+    <task id="LOCAL-00232" summary="Fixed /api/rekening-utama/set endpoint bug to unset previous default rekening">
+      <created>1618500487095</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1618500487095</updated>
+    </task>
+    <option name="localTasksCounter" value="233" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +531,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed setTransaksiIsNotRutin function block minor bug" />
     <MESSAGE value="re-modified cron-job" />
     <MESSAGE value="Added roleAuth function block" />
     <MESSAGE value="Removed roleAuth function block" />
@@ -556,6 +555,7 @@
     <MESSAGE value="Re-modified /api/karyawan/add endpoint to make req.body.email and req.body.password optional" />
     <MESSAGE value="Re-modified /api/cabang_perusahaan/retrieve endpoint to retrieve one cabang_perusahaan by id_cabang" />
     <MESSAGE value="Fixed /api/perusahaan/retrieve endpoint bug to not show deleted cabang_perusahaan" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed /api/perusahaan/retrieve endpoint bug to not show deleted cabang_perusahaan" />
+    <MESSAGE value="Fixed /api/rekening-utama/set endpoint bug to unset previous default rekening" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed /api/rekening-utama/set endpoint bug to unset previous default rekening" />
   </component>
 </project>

@@ -1035,7 +1035,7 @@ export class Dao{
                 }else if(result.length>0){
                     resolve(result[0].rp_rekening_utama)
                 }else{
-                    reject(NO_MAIN_AACOUNT)
+                    reject(NO_SUCH_CONTENT)
                 }
             })
         })

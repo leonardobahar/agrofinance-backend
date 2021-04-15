@@ -1404,18 +1404,11 @@ app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
                     result:result
                 })
             }).catch(error=>{
-                if(error===NO_SUCH_CONTENT){
-                    res.status(204).send({
-                        success:false,
-                        error:NO_SUCH_CONTENT
-                    })
-                }else {
-                    console.error(error)
-                    res.status(500).send({
-                        success:false,
-                        error:SOMETHING_WENT_WRONG
-                    })
-                }
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
             })
         }else{
             res.status(204).send({
