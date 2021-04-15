@@ -10,7 +10,7 @@ import {
     ERROR_FOREIGN_KEY,
     WRONG_BODY_FORMAT,
     SOMETHING_WENT_WRONG,
-    NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE, MAIN_ACCOUNT_EXISTS, NO_MAIN_AACOUNT, TRANSACTION_NOT_PENDING
+    NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE, MAIN_ACCOUNT_EXISTS, NO_MAIN_AACOUNT, TRANSACTION_NOT_PENDING, SUCCESS
 } from "./strings";
 import {
     Cabang_perusahaan,
@@ -81,6 +81,29 @@ const authenticateToken = (req, res, next)=>{
                 return res.sendStatus(403)
             }
         }
+
+        // if(req.originalUrl==="/api/posisi/add"){
+        //     dao.retrieveOneFeature(new Feature(null, '/api/posisi/add')).then(result=>{
+        //         const roles=JSON.parse(result.role)
+        //         for(let i=0;i<roles.size();i++){
+        //             if(roles[i])
+        //         }
+        //     }).catch(error=>{
+        //         if(error===NO_SUCH_CONTENT){
+        //             res.status(204).send({
+        //                 success:false,
+        //                 error:NO_SUCH_CONTENT
+        //             })
+        //             return
+        //         }
+        //         console.error(error)
+        //         res.status(500).send({
+        //             success:false,
+        //             error:SOMETHING_WENT_WRONG
+        //         })
+        //     })
+        // }
+
         req.user = userInfo
         console.log(userInfo)
         next() // pass the execution off to whatever request the client intended
@@ -958,7 +981,8 @@ app.delete("/api/perusahaan/delete", (req,res)=>{
 })
 
 app.get("/api/cabang_perusahaan/retrieve",(req,res)=>{
-    if(typeof req.query.perusahaan_id==='undefined'){
+    if(typeof req.query.perusahaan_id==='undefined' &&
+       typeof req.query.id_cabang==='undefined'){
         dao.retrieveCabangPerusahaan().then(result=>{
             res.status(200).send({
                 success:true,
@@ -971,7 +995,8 @@ app.get("/api/cabang_perusahaan/retrieve",(req,res)=>{
                 error:SOMETHING_WENT_WRONG
             })
         })
-    }else {
+    }else if(typeof req.query.perusahaan_id!=='undefined' &&
+        typeof req.query.id_cabang==='undefined') {
         dao.retrieveCabangPerusahaanByPerusahaanId(req.query.perusahaan_id).then(result=>{
             res.status(200).send({
                 success:true,
@@ -986,6 +1011,26 @@ app.get("/api/cabang_perusahaan/retrieve",(req,res)=>{
                 return
             }
 
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }else{
+        dao.retrieveOneCabangPerusahaan(new Cabang_perusahaan(req.query.id_cabang)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }
             console.error(error)
             res.status(500).send({
                 success:false,
@@ -1396,7 +1441,7 @@ app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
 
 app.post("/api/rekening-utama/set",(req,res)=>{
     if(typeof req.body.id_rekening==='undefined' ||
-        typeof req.body.id_perusahaan==='undefined'){
+        typeof req.body.id_cabang_perusahaan==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -1404,11 +1449,34 @@ app.post("/api/rekening-utama/set",(req,res)=>{
         return
     }
 
-    dao.getRekeningNonUtama(req.body.id_perusahaan).then(result=>{
+    dao.getRekeningNonUtama(req.body.id_cabang_perusahaan).then(result=>{
         dao.setRekeningUtama(req.body.id_rekening).then(result=>{
-            res.status(200).send({
-                success:true,
-                result:result
+            dao.getRekeningUtama(req.body.id_cabang_perusahaan).then(rekeningResult=>{
+                dao.unsetRekeningUtama(rekeningResult.rp_id_rekening).then(result=>{
+                    res.status(200).send({
+                        success:true,
+                        result:result
+                    })
+                }).catch(error=>{
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
+                })
+            }).catch(error=>{
+                if(error===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:false,
+                        error:NO_SUCH_CONTENT
+                    })
+                    return
+                }
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
             })
         }).catch(error=>{
             console.error(error)
@@ -2759,9 +2827,13 @@ app.post("/api/access-control/add",(req,res)=>{
 
     const roles=JSON.parse(req.body.role_ids)
 
-    /*for(let i=0; i<roles.length; i++){
+    for(let i=0; i<roles.length; i++){
         dao.retrieveOneRole(new Role(roles[i])).then(result=>{
-
+            if(result.r_nama_role==='KASIR'){
+                console.log('This role is invalid')
+                return
+            }
+            console.log(roles[i]+' is are valid')
         }).catch(error=>{
             if(error===NO_SUCH_CONTENT){
                 res.status(204).send({
@@ -2776,7 +2848,7 @@ app.post("/api/access-control/add",(req,res)=>{
                 error:SOMETHING_WENT_WRONG
             })
         })
-    }*/
+    }
 
     dao.addFeature(new Feature(null,req.body.feature_name,req.body.feature_access,req.body.role_ids)).then(result=>{
         res.status(200).send({
@@ -2804,56 +2876,33 @@ app.post("/api/access-control/update",(req,res)=>{
         return
     }
 
-    dao.retrieveOneFeature(new Feature(req.body.id)).then(result=>{
-        dao.deleteFeature(new Feature(req.body.id)).then(result=>{
-            dao.addFeature(new Feature(null,req.body.feature_name,req.body.feature_access,req.body.role_ids)).then(result=>{
-                res.status(200).send({
-                    success:true,
-                    result:result
-                })
-            }).catch(error=>{
-                console.error(error)
-                res.status(500).send({
-                    success:false,
-                    error:SOMETHING_WENT_WRONG
-                })
-            })
+    const roles=JSON.parse(req.body.role_ids)
+
+    for(let i=0; i<roles.length; i++){
+        dao.retrieveOneRole(new Role(roles[i])).then(result=>{
+            if(result.r_nama_role==='KASIR'){
+                console.log('This role is invalid')
+                return
+            }
+            console.log(roles[i]+' is are valid')
         }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }
             console.error(error)
             res.status(500).send({
                 success:false,
                 error:SOMETHING_WENT_WRONG
             })
         })
-    }).catch(error=>{
-        if(error===NO_SUCH_CONTENT){
-            res.status(204).send({
-                success:false,
-                error:NO_SUCH_CONTENT
-            })
-            return
-        }
-
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
-    })
-
-})
-
-app.delete("/api/access-control/delete",(req,res)=>{
-    if(typeof req.query.id==='undefined'){
-        res.status(400).send({
-            success:false,
-            error:WRONG_BODY_FORMAT
-        })
-        return
     }
 
-    dao.retrieveOneFeature(new Feature(req.query.id)).then(result=>{
-        dao.deleteFeature(new Feature(req.query.id)).then(result=>{
+    dao.deleteFeature(new Feature(req.body.id)).then(result=>{
+        dao.addFeature(new Feature(null,req.body.feature_name,req.body.feature_access,req.body.role_ids)).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
@@ -2866,20 +2915,33 @@ app.delete("/api/access-control/delete",(req,res)=>{
             })
         })
     }).catch(error=>{
-        if(error===NO_SUCH_CONTENT){
-            res.status(204).send({
-                success:false,
-                error:NO_SUCH_CONTENT
-            })
-            return
-        }
         console.error(error)
-        res.status(500).send(error=>{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
+    })
+})
+
+app.delete("/api/access-control/delete",(req,res)=>{
+    if(typeof req.query.id==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    dao.deleteFeature(new Feature(req.query.id)).then(result=>{
+        res.status(200).send({
+            success:true,
+            result:SUCCESS
+        })
+    }).catch(error=>{
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
         })
     })
 })

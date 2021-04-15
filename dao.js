@@ -1167,21 +1167,17 @@ export class Dao{
 
     getRekeningUtama(id_cabang){
         return new Promise((resolve,reject)=>{
-            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_cabang_perusahaan=?"
+            const query="SELECT rp_id_rekening FROM rekening_perusahaan WHERE rp_rekening_utama=0 AND rp_id_cabang_perusahaan=?"
             this.mysqlConn.query(query, id_cabang, (error,result)=>{
                 if(error){
                     reject(error)
                     return
                 }
 
-                for(let i=0; i<result.length; i++){
-                    if(result[i].rp_rekening_utama===1){
-                        resolve(result[i].rp_rekening_utama)
-                    }else if(result[i].rp_rekening_utama===0){
-                        reject(MAIN_ACCOUNT_EXISTS)
-                    }else{
-                        reject(NO_SUCH_CONTENT)
-                    }
+                if(result.length>0){
+                    resolve(result[0].rp_id_rekening)
+                }else{
+                    reject(NO_SUCH_CONTENT)
                 }
             })
         })
@@ -1189,7 +1185,7 @@ export class Dao{
 
     getRekeningNonUtama(id_cabang){
         return new Promise((resolve,reject)=>{
-            const query="SELECT rp_rekening_utama FROM rekening_perusahaan WHERE rp_id_cabang_perusahaan=?"
+            const query="SELECT rp_id_rekening, rp_rekening_utama FROM rekening_perusahaan WHERE rp_rekening_utama=0 AND rp_id_cabang_perusahaan=?"
             this.mysqlConn.query(query, id_cabang, (error,result)=>{
                 if(error){
                     reject(error)
@@ -1198,9 +1194,7 @@ export class Dao{
 
                 for(let i=0; i<result.length; i++){
                     if(result[i].rp_rekening_utama===0){
-                        resolve(result[i].rp_rekening_utama)
-                    }else if(result[i].rp_rekening_utama===1){
-                        reject(MAIN_ACCOUNT_EXISTS)
+                        resolve(result[i].rp_id_rekening)
                     }else{
                         reject(NO_SUCH_CONTENT)
                     }
@@ -1211,7 +1205,6 @@ export class Dao{
 
     setRekeningUtama(id_rekening){
         return new Promise((resolve,reject)=>{
-
             const query="UPDATE rekening_perusahaan SET rp_rekening_utama=1 WHERE rp_id_rekening=?"
             this.mysqlConn.query(query,id_rekening, (error,result)=>{
                 if(error){
@@ -2262,8 +2255,8 @@ export class Dao{
                 return
             }
 
-            const query="SELECT * FROM feature_list WHERE f_id_feature_list=? "
-            this.mysqlConn.query(query,feature.feature_id,(error,result)=>{
+            const query="SELECT * FROM feature_list WHERE f_feature_name=? "
+            this.mysqlConn.query(query,feature.feature_name,(error,result)=>{
                 if(error){
                     reject(error)
                     return

@@ -20,7 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,13 +156,8 @@
       <workItem from="1615524959683" duration="641000" />
       <workItem from="1615993333247" duration="2024000" />
       <workItem from="1617197690732" duration="4653000" />
-    </task>
-    <task id="LOCAL-00180" summary="Fixed Approve Transaksi">
-      <created>1610980875505</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1610980875505</updated>
+      <workItem from="1617622853558" duration="577000" />
+      <workItem from="1618465359351" duration="14922000" />
     </task>
     <task id="LOCAL-00181" summary="Added autheticateToken to Approve Transaksi">
       <created>1611068675862</created>
@@ -498,7 +495,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617284530787</updated>
     </task>
-    <option name="localTasksCounter" value="229" />
+    <task id="LOCAL-00229" summary="Re-modified /api/karyawan/add endpoint to make req.body.email and req.body.password optional">
+      <created>1617288752000</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1617288752001</updated>
+    </task>
+    <option name="localTasksCounter" value="230" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -527,7 +531,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="re-modified retrieveTodayAnIsRutintransaksi function block" />
     <MESSAGE value="Added setTransaksiIsNotRutin function block" />
     <MESSAGE value="Re-modified cron-job" />
     <MESSAGE value="fixed setTransaksiIsNotRutin function block minor bug" />
@@ -552,6 +555,7 @@
     <MESSAGE value="Re-modified /api/karyawan/add endpoint to have user input superior's 'karyawan_id'" />
     <MESSAGE value="Set correct unset caban g id when add new cabang" />
     <MESSAGE value="Fixed typo in /api/karyawan/add endpoint (req.body.superios)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed typo in /api/karyawan/add endpoint (req.body.superios)" />
+    <MESSAGE value="Re-modified /api/karyawan/add endpoint to make req.body.email and req.body.password optional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified /api/karyawan/add endpoint to make req.body.email and req.body.password optional" />
   </component>
 </project>
