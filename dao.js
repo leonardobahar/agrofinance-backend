@@ -1167,7 +1167,7 @@ export class Dao{
 
     getRekeningUtama(id_cabang){
         return new Promise((resolve,reject)=>{
-            const query="SELECT rp_id_rekening FROM rekening_perusahaan WHERE rp_rekening_utama=0 AND rp_id_cabang_perusahaan=?"
+            const query="SELECT rp_id_rekening FROM rekening_perusahaan WHERE rp_rekening_utama=1 AND rp_id_cabang_perusahaan=?"
             this.mysqlConn.query(query, id_cabang, (error,result)=>{
                 if(error){
                     reject(error)

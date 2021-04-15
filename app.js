@@ -1449,12 +1449,20 @@ app.post("/api/rekening-utama/set",(req,res)=>{
         return
     }
 
-    dao.getRekeningNonUtama(req.body.id_cabang_perusahaan).then(result=>{
-        dao.setRekeningUtama(req.body.id_rekening).then(result=>{
-            dao.unsetRekeningUtama(rekeningResult.rp_id_rekening).then(result=>{
-                res.status(200).send({
-                    success:true,
-                    result:result
+    dao.getRekeningUtama(req.body.id_cabang_perusahaan).then(rekeningResult=>{
+        dao.getRekeningNonUtama(req.body.id_cabang_perusahaan).then(result=>{
+            dao.setRekeningUtama(req.body.id_rekening).then(result=>{
+                dao.unsetRekeningUtama(rekeningResult).then(result=>{
+                    res.status(200).send({
+                        success:true,
+                        result:result
+                    })
+                }).catch(error=>{
+                    console.error(error)
+                    res.status(500).send({
+                        success:false,
+                        error:SOMETHING_WENT_WRONG
+                    })
                 })
             }).catch(error=>{
                 console.error(error)
@@ -1464,31 +1472,31 @@ app.post("/api/rekening-utama/set",(req,res)=>{
                 })
             })
         }).catch(error=>{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }else if(error===MAIN_ACCOUNT_EXISTS){
+                res.status(204).send({
+                    success:false,
+                    error:MAIN_ACCOUNT_EXISTS
+                })
+            }else{
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
+            }
         })
     }).catch(error=>{
-        if(error===NO_SUCH_CONTENT){
-            res.status(204).send({
-                success:false,
-                error:NO_SUCH_CONTENT
-            })
-            return
-        }else if(error===MAIN_ACCOUNT_EXISTS){
-            res.status(204).send({
-                success:false,
-                error:MAIN_ACCOUNT_EXISTS
-            })
-        }else{
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        }
+        console.error(error)
+        res.status(500).send({
+            success:false,
+            error:SOMETHING_WENT_WRONG
+        })
     })
 })
 
