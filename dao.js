@@ -470,7 +470,7 @@ export class Dao{
                 rp.rp_id_rekening, rp.rp_nama_bank, rp.rp_nomor_rekening, rp.rp_saldo, rp.rp_rekening_utama
                 FROM perusahaan p LEFT OUTER JOIN cabang_perusahaan cp ON cp.cp_perusahaan_id=p.p_id_perusahaan
                 LEFT OUTER JOIN rekening_perusahaan rp ON rp.rp_id_cabang_perusahaan=cp.cp_id_cabang
-                WHERE p.p_is_deleted = 0;`
+                WHERE p.p_is_deleted = 0 AND cp.cp_is_deleted=0;`
             this.mysqlConn.query(query, (error, result)=>{
                 if(error){
                     reject(error)
@@ -505,7 +505,7 @@ export class Dao{
                 return
             }
 
-            const query=`SELECT * FROM perusahaan WHERE p_id_perusahaan=? `
+            const query=`SELECT * FROM perusahaan WHERE p_is_deleted=0 AND p_id_perusahaan=? `
             this.mysqlConn.query(query, perusahaan.p_id_perusahaan, async (error, result)=>{
                 if(error){
                     reject(error)

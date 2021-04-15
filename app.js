@@ -1451,27 +1451,12 @@ app.post("/api/rekening-utama/set",(req,res)=>{
 
     dao.getRekeningNonUtama(req.body.id_cabang_perusahaan).then(result=>{
         dao.setRekeningUtama(req.body.id_rekening).then(result=>{
-            dao.getRekeningUtama(req.body.id_cabang_perusahaan).then(rekeningResult=>{
-                dao.unsetRekeningUtama(rekeningResult.rp_id_rekening).then(result=>{
-                    res.status(200).send({
-                        success:true,
-                        result:result
-                    })
-                }).catch(error=>{
-                    console.error(error)
-                    res.status(500).send({
-                        success:false,
-                        error:SOMETHING_WENT_WRONG
-                    })
+            dao.unsetRekeningUtama(rekeningResult.rp_id_rekening).then(result=>{
+                res.status(200).send({
+                    success:true,
+                    result:result
                 })
             }).catch(error=>{
-                if(error===NO_SUCH_CONTENT){
-                    res.status(204).send({
-                        success:false,
-                        error:NO_SUCH_CONTENT
-                    })
-                    return
-                }
                 console.error(error)
                 res.status(500).send({
                     success:false,

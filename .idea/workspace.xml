@@ -157,14 +157,7 @@
       <workItem from="1615993333247" duration="2024000" />
       <workItem from="1617197690732" duration="4653000" />
       <workItem from="1617622853558" duration="577000" />
-      <workItem from="1618465359351" duration="14922000" />
-    </task>
-    <task id="LOCAL-00181" summary="Added autheticateToken to Approve Transaksi">
-      <created>1611068675862</created>
-      <option name="number" value="00181" />
-      <option name="presentableId" value="LOCAL-00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1611068675863</updated>
+      <workItem from="1618465359351" duration="15838000" />
     </task>
     <task id="LOCAL-00182" summary="Re-modified a few endpoints">
       <created>1611152757393</created>
@@ -502,7 +495,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617288752001</updated>
     </task>
-    <option name="localTasksCounter" value="230" />
+    <task id="LOCAL-00230" summary="Re-modified /api/cabang_perusahaan/retrieve endpoint to retrieve one cabang_perusahaan by id_cabang">
+      <created>1618497223106</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1618497223106</updated>
+    </task>
+    <option name="localTasksCounter" value="231" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +531,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added setTransaksiIsNotRutin function block" />
     <MESSAGE value="Re-modified cron-job" />
     <MESSAGE value="fixed setTransaksiIsNotRutin function block minor bug" />
     <MESSAGE value="re-modified cron-job" />
@@ -556,6 +555,7 @@
     <MESSAGE value="Set correct unset caban g id when add new cabang" />
     <MESSAGE value="Fixed typo in /api/karyawan/add endpoint (req.body.superios)" />
     <MESSAGE value="Re-modified /api/karyawan/add endpoint to make req.body.email and req.body.password optional" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified /api/karyawan/add endpoint to make req.body.email and req.body.password optional" />
+    <MESSAGE value="Re-modified /api/cabang_perusahaan/retrieve endpoint to retrieve one cabang_perusahaan by id_cabang" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified /api/cabang_perusahaan/retrieve endpoint to retrieve one cabang_perusahaan by id_cabang" />
   </component>
 </project>
