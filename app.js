@@ -754,7 +754,7 @@ app.delete("/api/karyawan/delete", (req,res)=>{
 })
 
 app.get("/api/perusahaan/retrieve",(req,res)=>{
-    if(typeof req.query.id_perusahaan==='undefined' ||
+    if(typeof req.query.id_perusahaan==='undefined' &&
        typeof req.body.nama_perusahaan==='undefined'){
         dao.retrievePerusahaan().then(result=>{
             res.status(200).send({
