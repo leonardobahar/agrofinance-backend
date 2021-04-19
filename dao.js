@@ -2306,6 +2306,38 @@ export class Dao{
         })
     }
 
+    retrieveFeatureByName(feature){
+        return new Promise((resolve,reject)=>{
+            if(!feature instanceof Feature){
+                reject(MISMATCH_OBJ_TYPE)
+                return
+            }
+
+            const query="SELECT * FROM feature_list WHERE f_feature_name=? "
+            this.mysqlConn.query(query,feature.feature_name,(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                if(result.length>0){
+                    let features=[]
+                    for(let i=0; i<result.length; i++){
+                        features.push(new Feature(
+                            result[i].f_id_feature_list,
+                            result[i].f_pretty_name,
+                            result[i].f_feature_name,
+                            result[i].f_role_id
+                        ))
+                    }
+                    resolve(features)
+                }else{
+                    reject(NO_SUCH_CONTENT)
+                }
+            })
+        })
+    }
+
     addFeature(feature){
         return new Promise((resolve,reject)=>{
             if(!feature instanceof Feature){
