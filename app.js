@@ -2835,6 +2835,7 @@ app.post("/api/access-control/add",(req,res)=>{
 
 app.post("/api/access-control/update",(req,res)=>{
     if(typeof req.body.feature_name==='undefined' ||
+        typeof req.body.pretty_name==='undefined' ||
         typeof req.body.role_id==='undefined' ||
         typeof req.body.id==='undefined'){
         res.status(400).send({
@@ -2845,7 +2846,7 @@ app.post("/api/access-control/update",(req,res)=>{
     }
 
     dao.deleteFeature(new Feature(req.body.id)).then(result=>{
-        dao.addFeature(new Feature(null,req.body.feature_name,req.body.role_id)).then(result=>{
+        dao.addFeature(new Feature(null,req.body.pretty_name,req.body.feature_name,req.body.role_id)).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result
@@ -2858,6 +2859,13 @@ app.post("/api/access-control/update",(req,res)=>{
             })
         })
     }).catch(error=>{
+        if(error.code==='ER_NO_REFERENCED_ROW_2'){
+            res.status(204).send({
+                success:false,
+                error:ERROR_FOREIGN_KEY
+            })
+            return
+        }
         console.error(error)
         res.status(500).send({
             success:false,
@@ -2881,6 +2889,13 @@ app.delete("/api/access-control/delete",(req,res)=>{
             result:SUCCESS
         })
     }).catch(error=>{
+        if(error.code==='ER_NO_REFERENCED_ROW_2'){
+            res.status(204).send({
+                success:false,
+                error:ERROR_FOREIGN_KEY
+            })
+            return
+        }
         console.error(error)
         res.status(500).send({
             success:false,
