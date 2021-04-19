@@ -85,7 +85,6 @@ const authenticateToken = (req, res, next)=>{
         if(req.originalUrl==="/api/posisi/add"){
             const feature=new Feature(null,'/api/posisi/add')
             dao.retrieveOneFeature(feature).then(result=>{
-                const roles=JSON.parse(result.f_role_ids)
 
             }).catch(error=>{
                 if(error===NO_SUCH_CONTENT){
@@ -2818,6 +2817,13 @@ app.post("/api/access-control/add",(req,res)=>{
             result:result
         })
     }).catch(error=>{
+        if(error.code==='ER_NO_REFERENCED_ROW_2'){
+            res.status(204).send({
+                success:false,
+                error:ERROR_FOREIGN_KEY
+            })
+            return
+        }
         console.error(error)
         res.status(500).send({
             success:false,
