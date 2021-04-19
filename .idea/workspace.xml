@@ -19,10 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Re-modified /api/access-control/add endpoint parameter">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,14 +157,7 @@
       <workItem from="1617622853558" duration="577000" />
       <workItem from="1618465359351" duration="22348000" />
       <workItem from="1618833485056" duration="608000" />
-      <workItem from="1618836257950" duration="5789000" />
-    </task>
-    <task id="LOCAL-00187" summary="Re-modified a few Cabang Perusahaan function blocks">
-      <created>1611153685952</created>
-      <option name="number" value="00187" />
-      <option name="presentableId" value="LOCAL-00187" />
-      <option name="project" value="LOCAL" />
-      <updated>1611153685952</updated>
+      <workItem from="1618836257950" duration="6105000" />
     </task>
     <task id="LOCAL-00188" summary="Re-modified retrieveRekeiningPerusahaan and retrieveOneRekeningPerusahaan function blocks">
       <created>1611153986887</created>
@@ -504,7 +495,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618840833435</updated>
     </task>
-    <option name="localTasksCounter" value="236" />
+    <task id="LOCAL-00236" summary="Re-modified Feature constructor. constructor(feature_id, pretty_name, feature_name, role_id)">
+      <created>1618842580154</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1618842580154</updated>
+    </task>
+    <option name="localTasksCounter" value="237" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,7 +531,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed roleAuth function block" />
     <MESSAGE value="Added CREATE feature_list table sql syntax to sql file" />
     <MESSAGE value="Added Feature model" />
     <MESSAGE value="Added retrieveFeatures function block" />
@@ -558,6 +555,7 @@
     <MESSAGE value="Fixed /api/rekening-perusahaan/delete endpoint bug" />
     <MESSAGE value="Fixed /api/perusahaan/retrieve endpoint bug" />
     <MESSAGE value="Re-modified feature_list table structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified feature_list table structure" />
+    <MESSAGE value="Re-modified Feature constructor. constructor(feature_id, pretty_name, feature_name, role_id)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified Feature constructor. constructor(feature_id, pretty_name, feature_name, role_id)" />
   </component>
 </project>

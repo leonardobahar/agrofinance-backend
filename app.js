@@ -2803,6 +2803,7 @@ app.get("/api/access-control/view",(req,res)=>{
 
 app.post("/api/access-control/add",(req,res)=>{
     if(typeof req.body.feature_name==='undefined' ||
+        typeof req.body.pretty_name==='undefined'||
        typeof req.body.role_id==='undefined'){
         res.status(400).send({
             success:false,
@@ -2811,7 +2812,7 @@ app.post("/api/access-control/add",(req,res)=>{
         return
     }
 
-    dao.addFeature(new Feature(null,req.body.feature_name,req.body.role_id)).then(result=>{
+    dao.addFeature(new Feature(null,req.body.pretty_name,req.body.feature_name,req.body.role_id)).then(result=>{
         res.status(200).send({
             success:true,
             result:result
