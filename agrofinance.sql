@@ -149,7 +149,13 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`user` (
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`feature_list`(
 	`f_id_feature_list` INT(7) PRIMARY KEY AUTO_INCREMENT,
-    `f_feature_name` varchar(255),
-    `f_role_id` int(7) NOT NULL,
-    FOREIGN KEY (`f_role_id`) REFERENCES role(`r_id_role`) ON DELETE CASCADE ON UPDATE CASCADE
+	`f_pretty_name` varchar(255),
+    `f_feature_name` varchar(255)
+);
+
+CREATE TABLE IF NOT EXISTS `agrofinance`.`role_have_feature`(
+    `role_id` int(7),
+    `feature_id` int(7),
+    `allowed` tinyint(1) DEFAULT 0,
+    ADD PRIMARY KEY(role_id,feature_id)
 );

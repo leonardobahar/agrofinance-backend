@@ -2265,8 +2265,7 @@ export class Dao{
                     features.push(new Feature(
                         result[i].f_id_feature_list,
                         result[i].f_pretty_name,
-                        result[i].f_feature_name,
-                        result[i].f_role_id
+                        result[i].f_feature_name
                     ))
                 }
                 resolve(features)
@@ -2294,8 +2293,7 @@ export class Dao{
                         features.push(new Feature(
                             result[i].f_id_feature_list,
                             result[i].f_pretty_name,
-                            result[i].f_feature_name,
-                            result[i].f_role_id
+                            result[i].f_feature_name
                         ))
                     }
                     resolve(features)
@@ -2326,8 +2324,7 @@ export class Dao{
                         features.push(new Feature(
                             result[i].f_id_feature_list,
                             result[i].f_pretty_name,
-                            result[i].f_feature_name,
-                            result[i].f_role_id
+                            result[i].f_feature_name
                         ))
                     }
                     resolve(features)
@@ -2345,9 +2342,9 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO feature_list ( `f_pretty_name`,`f_feature_name`, `f_role_id`) " +
-                "VALUES(?, ?, ?) "
-            this.mysqlConn.query(query,[feature.pretty_name,feature.feature_name,feature.role_id],(error,result)=>{
+            const query="INSERT INTO feature_list ( `f_pretty_name`,`f_feature_name`) " +
+                "VALUES(?, ?) "
+            this.mysqlConn.query(query,[feature.pretty_name,feature.feature_name],(error,result)=>{
                 if(error){
                     reject(error)
                     return

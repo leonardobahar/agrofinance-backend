@@ -82,27 +82,9 @@ const authenticateToken = (req, res, next)=>{
             }
         }
 
-        if(req.originalUrl==="/api/posisi/add"){
-            const feature=new Feature(null,'/api/posisi/add')
-            dao.retrieveOneFeature(feature).then(result=>{
-
-            }).catch(error=>{
-                if(error===NO_SUCH_CONTENT){
-                    res.status(204).send({
-                        success:false,
-                        error:NO_SUCH_CONTENT
-                    })
-                    return
-                }
-                console.error(error)
-                res.status(500).send({
-                    success:false,
-                    error:SOMETHING_WENT_WRONG
-                })
-            })
-        }
-
-
+        // if(req.originalUrl==="/api/posisi/add"){
+        //
+        // }
 
         req.user = userInfo
         console.log(userInfo)
@@ -123,7 +105,7 @@ app.post("/api/login", (req, res)=>{
 
         const token = generateAccessToken({
             user: req.body.username,
-            //role_id:result.
+            role_id:result.r_id_role,
             role: result.role
         }, process.env.ACCESS_TOKEN_SECRET)
 
@@ -131,7 +113,7 @@ app.post("/api/login", (req, res)=>{
             success: true,
             auth: true,
             token: token,
-            role: result.id_role,
+            role: result.r_id_role,
             karyawan_id: result.karyawan_id,
             message: "Authentication success"
         })
@@ -2803,8 +2785,7 @@ app.get("/api/access-control/view",(req,res)=>{
 
 app.post("/api/access-control/add",(req,res)=>{
     if(typeof req.body.feature_name==='undefined' ||
-        typeof req.body.pretty_name==='undefined'||
-       typeof req.body.role_id==='undefined'){
+        typeof req.body.pretty_name==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -2812,19 +2793,12 @@ app.post("/api/access-control/add",(req,res)=>{
         return
     }
 
-    dao.addFeature(new Feature(null,req.body.pretty_name,req.body.feature_name,req.body.role_id)).then(result=>{
+    dao.addFeature(new Feature(null,req.body.pretty_name,req.body.feature_name)).then(result=>{
         res.status(200).send({
             success:true,
             result:result
         })
     }).catch(error=>{
-        if(error.code==='ER_NO_REFERENCED_ROW_2'){
-            res.status(204).send({
-                success:false,
-                error:ERROR_FOREIGN_KEY
-            })
-            return
-        }
         console.error(error)
         res.status(500).send({
             success:false,
@@ -2836,7 +2810,6 @@ app.post("/api/access-control/add",(req,res)=>{
 app.post("/api/access-control/update",(req,res)=>{
     if(typeof req.body.feature_name==='undefined' ||
         typeof req.body.pretty_name==='undefined' ||
-        typeof req.body.role_id==='undefined' ||
         typeof req.body.id==='undefined'){
         res.status(400).send({
             success:false,
