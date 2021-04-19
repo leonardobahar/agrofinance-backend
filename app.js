@@ -82,27 +82,28 @@ const authenticateToken = (req, res, next)=>{
             }
         }
 
-        // if(req.originalUrl==="/api/posisi/add"){
-        //     dao.retrieveOneFeature(new Feature(null, '/api/posisi/add')).then(result=>{
-        //         const roles=JSON.parse(result.role)
-        //         for(let i=0;i<roles.size();i++){
-        //             if(roles[i])
-        //         }
-        //     }).catch(error=>{
-        //         if(error===NO_SUCH_CONTENT){
-        //             res.status(204).send({
-        //                 success:false,
-        //                 error:NO_SUCH_CONTENT
-        //             })
-        //             return
-        //         }
-        //         console.error(error)
-        //         res.status(500).send({
-        //             success:false,
-        //             error:SOMETHING_WENT_WRONG
-        //         })
-        //     })
-        // }
+        if(req.originalUrl==="/api/posisi/add"){
+            const feature=new Feature(null,'/api/posisi/add')
+            dao.retrieveOneFeature(feature).then(result=>{
+                const roles=JSON.parse(result.f_role_ids)
+
+            }).catch(error=>{
+                if(error===NO_SUCH_CONTENT){
+                    res.status(204).send({
+                        success:false,
+                        error:NO_SUCH_CONTENT
+                    })
+                    return
+                }
+                console.error(error)
+                res.status(500).send({
+                    success:false,
+                    error:SOMETHING_WENT_WRONG
+                })
+            })
+        }
+
+
 
         req.user = userInfo
         console.log(userInfo)
@@ -123,6 +124,7 @@ app.post("/api/login", (req, res)=>{
 
         const token = generateAccessToken({
             user: req.body.username,
+            //role_id:result.
             role: result.role
         }, process.env.ACCESS_TOKEN_SECRET)
 
@@ -2802,8 +2804,7 @@ app.get("/api/access-control/view",(req,res)=>{
 
 app.post("/api/access-control/add",(req,res)=>{
     if(typeof req.body.feature_name==='undefined' ||
-       typeof req.body.feature_access==='undefined' ||
-       typeof req.body.role_ids==='undefined'){
+       typeof req.body.role_id==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -2811,32 +2812,7 @@ app.post("/api/access-control/add",(req,res)=>{
         return
     }
 
-    const roles=JSON.parse(req.body.role_ids)
-
-    for(let i=0; i<roles.length; i++){
-        dao.retrieveOneRole(new Role(roles[i])).then(result=>{
-            if(result.r_nama_role==='KASIR'){
-                console.log('This role is invalid')
-                return
-            }
-            console.log(roles[i]+' is are valid')
-        }).catch(error=>{
-            if(error===NO_SUCH_CONTENT){
-                res.status(204).send({
-                    success:false,
-                    error:NO_SUCH_CONTENT
-                })
-                return
-            }
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        })
-    }
-
-    dao.addFeature(new Feature(null,req.body.feature_name,req.body.feature_access,req.body.role_ids)).then(result=>{
+    dao.addFeature(new Feature(null,req.body.feature_name,req.body.role_id)).then(result=>{
         res.status(200).send({
             success:true,
             result:result
@@ -2852,8 +2828,7 @@ app.post("/api/access-control/add",(req,res)=>{
 
 app.post("/api/access-control/update",(req,res)=>{
     if(typeof req.body.feature_name==='undefined' ||
-        typeof req.body.feature_access==='undefined' ||
-        typeof req.body.role_ids==='undefined' ||
+        typeof req.body.role_id==='undefined' ||
         typeof req.body.id==='undefined'){
         res.status(400).send({
             success:false,
@@ -2862,33 +2837,8 @@ app.post("/api/access-control/update",(req,res)=>{
         return
     }
 
-    const roles=JSON.parse(req.body.role_ids)
-
-    for(let i=0; i<roles.length; i++){
-        dao.retrieveOneRole(new Role(roles[i])).then(result=>{
-            if(result.r_nama_role==='KASIR'){
-                console.log('This role is invalid')
-                return
-            }
-            console.log(roles[i]+' is are valid')
-        }).catch(error=>{
-            if(error===NO_SUCH_CONTENT){
-                res.status(204).send({
-                    success:false,
-                    error:NO_SUCH_CONTENT
-                })
-                return
-            }
-            console.error(error)
-            res.status(500).send({
-                success:false,
-                error:SOMETHING_WENT_WRONG
-            })
-        })
-    }
-
     dao.deleteFeature(new Feature(req.body.id)).then(result=>{
-        dao.addFeature(new Feature(null,req.body.feature_name,req.body.feature_access,req.body.role_ids)).then(result=>{
+        dao.addFeature(new Feature(null,req.body.feature_name,req.body.role_id)).then(result=>{
             res.status(200).send({
                 success:true,
                 result:result

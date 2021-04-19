@@ -150,6 +150,6 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`user` (
 CREATE TABLE IF NOT EXISTS `agrofinance`.`feature_list`(
 	`f_id_feature_list` INT(7) PRIMARY KEY AUTO_INCREMENT,
     `f_feature_name` varchar(255),
-    `f_access` TINYINT(1) DEFAULT 0,
-    `f_role_ids` LONGTEXT
+    `f_role_id` int(7) NOT NULL,
+    FOREIGN KEY (`f_role_id`) REFERENCES role(`r_id_role`) ON DELETE CASCADE ON UPDATE CASCADE
 );

@@ -138,10 +138,9 @@ export class User{
 }
 
 export class Feature{
-    constructor(feature_id, feature_name, feature_access, role_ids) {
+    constructor(feature_id, feature_name, role_id) {
         this.feature_id=feature_id
         this.feature_name=feature_name
-        this.feature_access=feature_access
-        this.role_ids=role_ids
+        this.role_id=role_id
     }
 }

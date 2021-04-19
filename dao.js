@@ -85,7 +85,7 @@ export class Dao{
                 }
 
                 if (result.length > 0){
-                    resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].r_nama_role, result[0].u_karyawan_id, result[0].u_is_blocked))
+                    resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].r_id_role, result[0].r_nama_role, result[0].u_karyawan_id, result[0].u_is_blocked))
                 }else{
                     reject("FALSE_AUTH")
                 }
@@ -2265,7 +2265,6 @@ export class Dao{
                     features.push(new Feature(
                         result[i].f_id_feature_list,
                         result[i].f_feature_name,
-                        result[i].f_access,
                         result[i].f_role_ids
                     ))
                 }
@@ -2294,7 +2293,6 @@ export class Dao{
                         features.push(new Feature(
                             result[i].f_id_feature_list,
                             result[i].f_feature_name,
-                            result[i].f_access,
                             result[i].f_role_ids
                         ))
                     }
@@ -2313,9 +2311,9 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO feature_list ( `f_feature_name`, `f_access`, `f_role_ids`) " +
+            const query="INSERT INTO feature_list ( `f_feature_name`, `f_role_ids`) " +
                 "VALUES(?, ?, ?) "
-            this.mysqlConn.query(query,[feature.feature_name,feature.feature_access,JSON.stringify(feature.role_ids)],(error,result)=>{
+            this.mysqlConn.query(query,[feature.feature_name,feature.role_id],(error,result)=>{
                 if(error){
                     reject(error)
                     return

@@ -21,8 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,14 +159,9 @@
       <workItem from="1615993333247" duration="2024000" />
       <workItem from="1617197690732" duration="4653000" />
       <workItem from="1617622853558" duration="577000" />
-      <workItem from="1618465359351" duration="21663000" />
-    </task>
-    <task id="LOCAL-00185" summary="Re-modified a retrieveCabang and retrieveOneCabang">
-      <created>1611153450188</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1611153450188</updated>
+      <workItem from="1618465359351" duration="22348000" />
+      <workItem from="1618833485056" duration="608000" />
+      <workItem from="1618836257950" duration="4002000" />
     </task>
     <task id="LOCAL-00186" summary="Re-modified a few retrieve Cabang functions">
       <created>1611153545594</created>
@@ -502,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618503433746</updated>
     </task>
-    <option name="localTasksCounter" value="234" />
+    <task id="LOCAL-00234" summary="Fixed /api/perusahaan/retrieve endpoint bug">
+      <created>1618504832204</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1618504832204</updated>
+    </task>
+    <option name="localTasksCounter" value="235" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +535,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added roleAuth function block" />
     <MESSAGE value="Removed roleAuth function block" />
     <MESSAGE value="Added CREATE feature_list table sql syntax to sql file" />
     <MESSAGE value="Re-modified feature_list table structure" />
@@ -556,6 +559,7 @@
     <MESSAGE value="Fixed /api/perusahaan/retrieve endpoint bug to not show deleted cabang_perusahaan" />
     <MESSAGE value="Fixed /api/rekening-utama/set endpoint bug to unset previous default rekening" />
     <MESSAGE value="Fixed /api/rekening-perusahaan/delete endpoint bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed /api/rekening-perusahaan/delete endpoint bug" />
+    <MESSAGE value="Fixed /api/perusahaan/retrieve endpoint bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed /api/perusahaan/retrieve endpoint bug" />
   </component>
 </project>
