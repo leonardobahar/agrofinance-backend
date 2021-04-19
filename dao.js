@@ -2281,8 +2281,8 @@ export class Dao{
                 return
             }
 
-            const query="SELECT * FROM feature_list WHERE f_feature_name=? "
-            this.mysqlConn.query(query,feature.feature_name,(error,result)=>{
+            const query="SELECT * FROM feature_list WHERE f_id_feature_list=? "
+            this.mysqlConn.query(query,feature.feature_id,(error,result)=>{
                 if(error){
                     reject(error)
                     return

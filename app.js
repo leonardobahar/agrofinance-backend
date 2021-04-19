@@ -2883,16 +2883,24 @@ app.delete("/api/access-control/delete",(req,res)=>{
         return
     }
 
-    dao.deleteFeature(new Feature(req.query.id)).then(result=>{
-        res.status(200).send({
-            success:true,
-            result:SUCCESS
+    dao.retrieveOneFeature(new Feature(req.query.id)).then(result=>{
+        dao.deleteFeature(new Feature(req.query.id)).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:SUCCESS
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
         })
     }).catch(error=>{
-        if(error.code==='ER_NO_REFERENCED_ROW_2'){
+        if(error===NO_SUCH_CONTENT){
             res.status(204).send({
                 success:false,
-                error:ERROR_FOREIGN_KEY
+                error:NO_SUCH_CONTENT
             })
             return
         }
