@@ -2374,4 +2374,18 @@ export class Dao{
             })
         })
     }
+
+    bindFeatureToRole(role_id,feature_id,access){
+        return new Promise((resolve,reject)=>{
+            const query="INSERT INTO role_have_feature (`role_id`,`feature_id`,`allowed`) VALUES(?, ?, ?) "
+            this.mysqlConn.query(query,[role_id,feature_id,access],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                resolve(result)
+            })
+        })
+    }
 }
