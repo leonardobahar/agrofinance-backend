@@ -21,10 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrofinance.sql" beforeDir="false" afterPath="$PROJECT_DIR$/agrofinance.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,21 +158,8 @@
       <workItem from="1617622853558" duration="577000" />
       <workItem from="1618465359351" duration="22348000" />
       <workItem from="1618833485056" duration="608000" />
-      <workItem from="1618836257950" duration="10614000" />
-    </task>
-    <task id="LOCAL-00192" summary="Re-modified Approve Transaksi endpoint">
-      <created>1611216463276</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1611216463276</updated>
-    </task>
-    <task id="LOCAL-00193" summary="Fixed Update perusahaan bug">
-      <created>1611237306917</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1611237306917</updated>
+      <workItem from="1618836257950" duration="12124000" />
+      <workItem from="1618923865831" duration="1161000" />
     </task>
     <task id="LOCAL-00194" summary="Re-modified Delete karyawan endpoint">
       <created>1611238073688</created>
@@ -506,7 +490,21 @@
       <option name="project" value="LOCAL" />
       <updated>1618844562450</updated>
     </task>
-    <option name="localTasksCounter" value="241" />
+    <task id="LOCAL-00241" summary="Re-modified Feature constructor to 'constructor(feature_id, pretty_name, feature_name)'">
+      <created>1618847970782</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1618847970783</updated>
+    </task>
+    <task id="LOCAL-00242" summary="Added bindFeatureToRole function block">
+      <created>1618848224148</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1618848224148</updated>
+    </task>
+    <option name="localTasksCounter" value="243" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,8 +533,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added addFunction function block" />
-    <MESSAGE value="Added deleteFeature function block" />
     <MESSAGE value="Added View Access Control endpoint" />
     <MESSAGE value="Added Add Access Control endpoint" />
     <MESSAGE value="Added Update Access Control endpoint" />
@@ -560,6 +556,8 @@
     <MESSAGE value="Re-modified /api/access-control/update endpoint to input pretty_name, feature_name, role_id, and id" />
     <MESSAGE value="Re-modified /api/access-control/delete endpoint code" />
     <MESSAGE value="Added retrieveFeatureByName function block" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added retrieveFeatureByName function block" />
+    <MESSAGE value="Re-modified Feature constructor to 'constructor(feature_id, pretty_name, feature_name)'" />
+    <MESSAGE value="Added bindFeatureToRole function block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added bindFeatureToRole function block" />
   </component>
 </project>
