@@ -2885,6 +2885,24 @@ app.delete("/api/feature-list/delete",(req,res)=>{
     })
 })
 
+app.get('/api/access-control/get', async (req, res) => {
+    const roleID = req.query.role_id;
+
+    if(!roleID) {
+        return res.status(400).send({
+            success: false,
+            error: WRONG_BODY_FORMAT
+        })
+    }
+
+    const result = await dao.getFeatureByRole(roleID);
+
+    return res.status(200).send({
+        success: true,
+        result,
+    })
+})
+
 app.post('/api/access-control/set',(req,res)=>{
     if(typeof req.body.role_id==='undefined' ||
        typeof req.body.feature_id==='undefined'){

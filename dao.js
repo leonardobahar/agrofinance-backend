@@ -2405,4 +2405,30 @@ export class Dao{
             })
         })
     }
+
+    getFeatureByRole(role_id) {
+        return new Promise((resolve, reject) => {
+            const query = `
+                SELECT f.f_id_feature_list, f.f_pretty_name, f.f_feature_name, rf.allowed 
+                FROM role_have_feature rf INNER JOIN feature_list f ON rf.feature_id = f.f_id_feature_list
+                WHERE role_id=?
+            `;
+
+            this.mysqlConn.query(query, role_id, (error, result) => {
+                if(error) {
+                    reject(error);
+                    return;
+                }
+
+                const featuresByRole = result.map(currRow => ({
+                    f_id: currRow.f_id_feature_list,
+                    f_pretty_name: currRow.f_pretty_name,
+                    f_feature_name: currRow.f_feature_name,
+                    allowed: currRow.allowed
+                }))
+
+                resolve(featuresByRole)
+            })
+        })
+    }
 }
