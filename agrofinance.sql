@@ -55,9 +55,9 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan` (
   `k_id_role` INT(7) NOT NULL,
   `k_masih_hidup` TINYINT(1) NULL,
   `k_is_deleted` TINYINT(1) DEFAULT 0,
-  `k_superior` INT(7) NOT NULL,
+  `k_superior` INT(7),
   FOREIGN KEY (`k_id_posisi`) REFERENCES posisi(`ps_id_posisi`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`k_id_role`) REFERENCES role(`r_id_role`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`k_id_role`) REFERENCES `role`(`r_id_role`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`k_superior`) REFERENCES karyawan(`k_id_karyawan`) ON DELETE SET NULL);
 
 CREATE TABLE IF NOT EXISTS `agrofinance`.`karyawan_kerja_dimana` (
