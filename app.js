@@ -2895,18 +2895,22 @@ app.post('/api/access-control/set',(req,res)=>{
         return
     }
 
-    dao.bindFeatureToRole(req.body.role_id,req.body.feature_id,1).then(result=>{
-        res.status(200).send({
-            success:true,
-            result:result
+    const featureIds=req.body.feature_id
+
+    for(let i=0;i<featureIds.length;i++){
+        dao.bindFeatureToRole(req.body.role_id,featureIds[i],1).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:result
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
         })
-    }).catch(error=>{
-        console.error(error)
-        res.status(500).send({
-            success:false,
-            error:SOMETHING_WENT_WRONG
-        })
-    })
+    }
 })
 
 app.post('/api/access-control/update',(req,res)=>{
@@ -2920,7 +2924,6 @@ app.post('/api/access-control/update',(req,res)=>{
     }
 
     const featureIds=req.body.feature_id
-    console.log(featureIds.length)
 
     for(let i=0;i<featureIds.length;i++){
         dao.updateRoleHaveFeature(req.body.role_id,featureIds[i]).then(result=>{
