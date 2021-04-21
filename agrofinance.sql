@@ -156,6 +156,5 @@ CREATE TABLE IF NOT EXISTS `agrofinance`.`feature_list`(
 CREATE TABLE IF NOT EXISTS `agrofinance`.`role_have_feature`(
     `role_id` int(7),
     `feature_id` int(7),
-    `allowed` tinyint(1) DEFAULT 0,
-    ADD PRIMARY KEY(role_id,feature_id)
+    `allowed` tinyint(1) DEFAULT 0
 );

@@ -2384,7 +2384,7 @@ export class Dao{
                     return
                 }
 
-                resolve(result)
+                resolve(SUCCESS)
             })
         })
     }

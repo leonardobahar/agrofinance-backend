@@ -2887,8 +2887,7 @@ app.delete("/api/feature-list/delete",(req,res)=>{
 
 app.post('/api/access-control/set',(req,res)=>{
     if(typeof req.body.role_id==='undefined' ||
-       typeof req.body.feature_id==='undefined' ||
-       typeof req.body.access_control==='undefined'){
+       typeof req.body.feature_id==='undefined'){
         res.status(400).send({
             success:false,
             error:WRONG_BODY_FORMAT
@@ -2896,7 +2895,7 @@ app.post('/api/access-control/set',(req,res)=>{
         return
     }
 
-    dao.bindFeatureToRole(req.body.role_id,req.body.feature_id,req.body.access_control).then(result=>{
+    dao.bindFeatureToRole(req.body.role_id,req.body.feature_id,1).then(result=>{
         res.status(200).send({
             success:true,
             result:result
