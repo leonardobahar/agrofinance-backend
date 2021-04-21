@@ -2388,4 +2388,21 @@ export class Dao{
             })
         })
     }
+
+    updateRoleHaveFeature(role_id,feature_id){
+        return new Promise((resolve,reject)=>{
+            const delQuery="DELETE FROM role_have_feature WHERE role_id=? "
+            this.mysqlConn.query(delQuery,role_id,(error,result)=>{
+                const query="INSERT INTO role_have_feature (`role_id`,`feature_id`,`allowed`) VALUES(?,?,1) "
+                this.mysqlConn.query(query,[role_id,feature_id],(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }
+
+                    resolve(SUCCESS)
+                })
+            })
+        })
+    }
 }

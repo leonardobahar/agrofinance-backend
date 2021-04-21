@@ -2909,6 +2909,35 @@ app.post('/api/access-control/set',(req,res)=>{
     })
 })
 
+app.post('/api/access-control/update',(req,res)=>{
+    if(typeof req.body.role_id==='undefined' ||
+       typeof req.body.feature_id==='undefined'){
+        res.status(400).send({
+            success:false,
+            error:WRONG_BODY_FORMAT
+        })
+        return
+    }
+
+    const featureIds=req.body.feature_id
+    console.log(featureIds.length)
+
+    for(let i=0;i<featureIds.length;i++){
+        dao.updateRoleHaveFeature(req.body.role_id,featureIds[i]).then(result=>{
+            res.status(200).send({
+                success:true,
+                result:SUCCESS
+            })
+        }).catch(error=>{
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
+    }
+})
+
 app.listen(PORT, ()=>{
     console.info(`Server serving port ${PORT}`)
 })
