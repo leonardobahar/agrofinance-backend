@@ -20,7 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,14 +160,9 @@
       <workItem from="1618833485056" duration="608000" />
       <workItem from="1618836257950" duration="12124000" />
       <workItem from="1618923865831" duration="4648000" />
-      <workItem from="1619010916651" duration="8291000" />
-    </task>
-    <task id="LOCAL-00197" summary="Re-modified Delete karyawan endpoint">
-      <created>1611238957698</created>
-      <option name="number" value="00197" />
-      <option name="presentableId" value="LOCAL-00197" />
-      <option name="project" value="LOCAL" />
-      <updated>1611238957698</updated>
+      <workItem from="1619010916651" duration="8979000" />
+      <workItem from="1619087380232" duration="594000" />
+      <workItem from="1619098931163" duration="1102000" />
     </task>
     <task id="LOCAL-00198" summary="added retrieveTodayAnIsRutintransaksi function block">
       <created>1612796609801</created>
@@ -504,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619019456291</updated>
     </task>
-    <option name="localTasksCounter" value="246" />
+    <task id="LOCAL-00246" summary="Re-modified /api/access-control/set endpoint to input multiple feature_id (array)">
+      <created>1619019713984</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1619019713984</updated>
+    </task>
+    <option name="localTasksCounter" value="247" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,7 +536,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Delete Access Control endpoint" />
     <MESSAGE value="Re-modified Update Access Control endpoint" />
     <MESSAGE value="Re-modified Access Control endpoints" />
     <MESSAGE value="Commanded cron job with &quot;1 0 30 * *&quot;" />
@@ -558,6 +560,7 @@
     <MESSAGE value="Added /api/access-control/set to connect role ids with feature ids" />
     <MESSAGE value="Re-modified /api/access-control/set to allow users to only input feature_id and role_id" />
     <MESSAGE value="Added /api/access-control/update endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added /api/access-control/update endpoint" />
+    <MESSAGE value="Re-modified /api/access-control/set endpoint to input multiple feature_id (array)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified /api/access-control/set endpoint to input multiple feature_id (array)" />
   </component>
 </project>
