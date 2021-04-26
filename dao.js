@@ -72,20 +72,26 @@ export class Dao{
     }
 
     login(username, password){
-        return new Promise((resolve, reject)=>{
-            const query = `
-                SELECT * 
-                FROM \`user\` u
-                INNER JOIN \`role\` r ON r.r_id_role = u.u_id_role
-                WHERE \`u_username\` = ? AND \`u_password\` = ?`
-            this.mysqlConn.query(query, [username, password], (error, result)=>{
+        return new Promise(async (resolve, reject)=>{
+            const query = "SELECT * FROM user u " +
+                "INNER JOIN role r ON r.r_id_role = u.u_id_role " +
+                "WHERE u_username = ? "
+
+            this.mysqlConn.query(query, [username.toUpperCase()], (error, result)=>{
                 if (error){
                     reject(error)
                     return
                 }
 
                 if (result.length > 0){
-                    resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].r_id_role, result[0].r_nama_role, result[0].u_karyawan_id, result[0].u_is_blocked))
+                    const salt=result[0].u_salt
+                    const hashedPassword= bcrypt.hashSync(password,salt)
+                    const bcryptedPassword = hashedPassword===result[0].u_password ? true : false
+                    if(bcryptedPassword){
+                        resolve(new User(result[0].u_user_id, result[0].u_username, result[0].u_email, result[0].u_password, result[0].u_salt, result[0].r_id_role, result[0].r_nama_role, result[0].u_karyawan_id, result[0].u_is_blocked))
+                    }else{
+                        reject("FALSE_AUTH")
+                    }
                 }else{
                     reject("FALSE_AUTH")
                 }
@@ -100,11 +106,11 @@ export class Dao{
                 return
             }
 
-            const query="INSERT INTO `user`(`u_username`, `u_email`, `u_password`, `u_id_role`, `u_karyawan_id`) " +
-                "VALUES(?, ?, ?, ?, ?)"
+            const query="INSERT INTO `user`(`u_username`, `u_email`, `u_password`, `u_salt`, `u_id_role`, `u_karyawan_id`) " +
+                "VALUES(?, ?, ?, ?, ?, ?)"
             const salt=await bcrypt.genSalt(5)
             const hash=await bcrypt.hash(user.password,salt)
-            this.mysqlConn.query(query,[user.username, user.email, hash, user.id_role, user.karyawan_id],(error,result)=>{
+            this.mysqlConn.query(query,[user.username, user.email, hash, salt, user.id_role, user.karyawan_id],(error,result)=>{
                 if(error){
                     reject(error)
                     return

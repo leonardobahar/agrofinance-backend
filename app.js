@@ -10,7 +10,13 @@ import {
     ERROR_FOREIGN_KEY,
     WRONG_BODY_FORMAT,
     SOMETHING_WENT_WRONG,
-    NO_SUCH_CONTENT, MISMATCH_OBJ_TYPE, MAIN_ACCOUNT_EXISTS, NO_MAIN_AACOUNT, TRANSACTION_NOT_PENDING, SUCCESS
+    NO_SUCH_CONTENT,
+    MISMATCH_OBJ_TYPE,
+    MAIN_ACCOUNT_EXISTS,
+    NO_MAIN_AACOUNT,
+    TRANSACTION_NOT_PENDING,
+    SUCCESS,
+    ROLE_HAS_NO_ACCESS
 } from "./strings";
 import {
     Cabang_perusahaan,
@@ -76,15 +82,37 @@ const authenticateToken = (req, res, next)=>{
             return res.sendStatus(403)
         }
 
-        if (req.originalUrl === "/api/transaksi/approve"){
-            if (userInfo.role === "KASIR"){
-                return res.sendStatus(403)
-            }
-        }
+        // if (req.originalUrl === "/api/transaksi/approve"){
+        //     if (userInfo.role === "KASIR"){
+        //         return res.sendStatus(403)
+        //     }
+        // }
 
         // if(req.originalUrl==="/api/posisi/add"){
         //
         // }
+
+        dao.getFeatureByRole(userInfo.role_id).then(result=>{
+            if(req.originalUrl!=result.f_feature_name){
+                return res.status(403).send({
+                    success:false,
+                    error:ROLE_HAS_NO_ACCESS
+                })
+            }
+        }).catch(error=>{
+            if(error===NO_SUCH_CONTENT){
+                res.status(204).send({
+                    success:false,
+                    error:NO_SUCH_CONTENT
+                })
+                return
+            }
+            console.error(error)
+            res.status(500).send({
+                success:false,
+                error:SOMETHING_WENT_WRONG
+            })
+        })
 
         req.user = userInfo
         console.log(userInfo)
@@ -173,7 +201,7 @@ app.get("/api/posisi/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/posisi/add",(req,res)=>{
+app.post("/api/posisi/add",authenticateToken,(req,res)=>{
     if(typeof req.body.nama_posisi==='undefined'){
         res.status(400).send({
             success:false,
@@ -502,7 +530,7 @@ app.post("/api/karyawan/add", (req,res)=>{
             dao.addKaryawan(employee).then(async karyawanResult=>{
                 dao.addKaryawan_kerja_dimana(new Karyawan_kerja_dimana(null,karyawanResult.k_id_karyawan,req.body.cabang_ids)).then(result=>{
                     if(typeof req.body.email!=='undefined' && typeof req.body.password !=='undefined'){
-                        dao.registerUser(new User(null,karyawanResult.k_nama_lengkap,req.body.email,req.body.password,karyawanResult.k_id_role,karyawanResult.k_id_karyawan)).then(result=>{
+                        dao.registerUser(new User(null,karyawanResult.k_nama_lengkap,req.body.email,req.body.password,null,karyawanResult.k_id_role,karyawanResult.k_id_karyawan)).then(result=>{
                             res.status(200).send({
                                 success:true,
                                 result:result

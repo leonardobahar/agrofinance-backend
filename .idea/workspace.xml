@@ -21,7 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strings.js" beforeDir="false" afterPath="$PROJECT_DIR$/strings.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,14 +165,14 @@
       <workItem from="1618923865831" duration="4648000" />
       <workItem from="1619010916651" duration="8979000" />
       <workItem from="1619087380232" duration="594000" />
-      <workItem from="1619098931163" duration="1102000" />
-    </task>
-    <task id="LOCAL-00198" summary="added retrieveTodayAnIsRutintransaksi function block">
-      <created>1612796609801</created>
-      <option name="number" value="00198" />
-      <option name="presentableId" value="LOCAL-00198" />
-      <option name="project" value="LOCAL" />
-      <updated>1612796609802</updated>
+      <workItem from="1619098931163" duration="4245000" />
+      <workItem from="1619183718537" duration="593000" />
+      <workItem from="1619244329103" duration="3639000" />
+      <workItem from="1619250756483" duration="421000" />
+      <workItem from="1619330530633" duration="2299000" />
+      <workItem from="1619351933091" duration="1598000" />
+      <workItem from="1619407368836" duration="1191000" />
+      <workItem from="1619439376163" duration="3499000" />
     </task>
     <task id="LOCAL-00199" summary="fixed retrieveTodayAnIsRutintransaksi function block">
       <created>1612797223062</created>
@@ -507,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619019713984</updated>
     </task>
-    <option name="localTasksCounter" value="247" />
+    <task id="LOCAL-00247" summary="Fixed /api/access-control/set endpoint bug to delete feature_ids by role_id before setting new feature_ids to that certain role_id">
+      <created>1619100217038</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
+      <option name="project" value="LOCAL" />
+      <updated>1619100217039</updated>
+    </task>
+    <option name="localTasksCounter" value="248" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -536,7 +546,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified Update Access Control endpoint" />
     <MESSAGE value="Re-modified Access Control endpoints" />
     <MESSAGE value="Commanded cron job with &quot;1 0 30 * *&quot;" />
     <MESSAGE value="Commanded cron job with 1 0 28-30 * *" />
@@ -561,6 +570,7 @@
     <MESSAGE value="Re-modified /api/access-control/set to allow users to only input feature_id and role_id" />
     <MESSAGE value="Added /api/access-control/update endpoint" />
     <MESSAGE value="Re-modified /api/access-control/set endpoint to input multiple feature_id (array)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-modified /api/access-control/set endpoint to input multiple feature_id (array)" />
+    <MESSAGE value="Fixed /api/access-control/set endpoint bug to delete feature_ids by role_id before setting new feature_ids to that certain role_id" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed /api/access-control/set endpoint bug to delete feature_ids by role_id before setting new feature_ids to that certain role_id" />
   </component>
 </project>
