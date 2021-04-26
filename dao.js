@@ -8,7 +8,7 @@ import {
     MISMATCH_OBJ_TYPE,
     NO_AFFECTED_ROWS, NO_MAIN_AACOUNT,
     NO_SUCH_CONTENT,
-    ONLY_WITH_VENDORS, ORDER_PROCESSING,
+    ONLY_WITH_VENDORS, ORDER_PROCESSING, ROLE_HAS_NO_ACCESS,
     SOMETHING_WENT_WRONG, SUCCESS, TRANSACTION_NOT_PENDING, VALID, WRONG_BODY_FORMAT
 } from "./strings"
 import {
@@ -2437,6 +2437,35 @@ export class Dao{
                 }))
 
                 resolve(featuresByRole)
+            })
+        })
+    }
+
+    getOneFeatureByRole(feature_name,role_id){
+        return new Promise((resolve,reject)=>{
+            const query = `
+                SELECT f.f_id_feature_list, f.f_pretty_name, f.f_feature_name, rf.allowed 
+                FROM role_have_feature rf INNER JOIN feature_list f ON rf.feature_id = f.f_id_feature_list
+                WHERE role_id=? AND f.f_feature_name=?
+            `;
+            this.mysqlConn.query(query,[role_id,feature_name],(error,result)=>{
+                if(error){
+                    reject(error)
+                    return
+                }
+
+                if(result.length>0){
+                    const featuresByRole = result.map(currRow => ({
+                        f_id: currRow.f_id_feature_list,
+                        f_pretty_name: currRow.f_pretty_name,
+                        f_feature_name: currRow.f_feature_name,
+                        allowed: currRow.allowed
+                    }))
+
+                    resolve(featuresByRole)
+                }else{
+                    reject(ROLE_HAS_NO_ACCESS)
+                }
             })
         })
     }

@@ -82,28 +82,45 @@ const authenticateToken = (req, res, next)=>{
             return res.sendStatus(403)
         }
 
-        // if (req.originalUrl === "/api/transaksi/approve"){
-        //     if (userInfo.role === "KASIR"){
-        //         return res.sendStatus(403)
-        //     }
-        // }
-
-        // if(req.originalUrl==="/api/posisi/add"){
+        // dao.getFeatureByRole(userInfo.role_id).then(result=>{
+        //     for(let i=0;i<result.length;i++){
+        //         if(req.originalUrl!=result[i].f_feature_name){
         //
-        // }
+        //             res.status(403).send({
+        //                 success:false,
+        //                 error:ROLE_HAS_NO_ACCESS
+        //             })
+        //         }else{
+        //             req.user = userInfo
+        //             console.log(userInfo)
+        //             next() // pass the execution off to whatever request the client intended
+        //         }
+        //     }
+        //
+        // }).catch(error=>{
+        //     if(error===NO_SUCH_CONTENT){
+        //         res.status(204).send({
+        //             success:false,
+        //             error:NO_SUCH_CONTENT
+        //         })
+        //         return
+        //     }
+        //     console.error(error)
+        //     res.status(500).send({
+        //         success:false,
+        //         error:SOMETHING_WENT_WRONG
+        //     })
+        // })
 
-        dao.getFeatureByRole(userInfo.role_id).then(result=>{
-            if(req.originalUrl!=result.f_feature_name){
-                return res.status(403).send({
+        dao.getOneFeatureByRole(req.originalUrl,userInfo.role_id).then(result=>{
+            req.user = userInfo
+            console.log(userInfo)
+            next() // pass the execution off to whatever request the client intended
+        }).catch(error=>{
+            if(error===ROLE_HAS_NO_ACCESS){
+                res.status(403).send({
                     success:false,
                     error:ROLE_HAS_NO_ACCESS
-                })
-            }
-        }).catch(error=>{
-            if(error===NO_SUCH_CONTENT){
-                res.status(204).send({
-                    success:false,
-                    error:NO_SUCH_CONTENT
                 })
                 return
             }
@@ -113,10 +130,6 @@ const authenticateToken = (req, res, next)=>{
                 error:SOMETHING_WENT_WRONG
             })
         })
-
-        req.user = userInfo
-        console.log(userInfo)
-        next() // pass the execution off to whatever request the client intended
     })
 }
 
@@ -129,11 +142,11 @@ app.post("/api/login", (req, res)=>{
         return
     }
 
-    dao.login(req.body.username, req.body.password).then(async result=>{
+    dao.login(req.body.username, req.body.password).then(result=>{
 
         const token = generateAccessToken({
             user: req.body.username,
-            role_id:result.r_id_role,
+            role_id:result.id_role,
             role: result.role
         }, process.env.ACCESS_TOKEN_SECRET)
 
@@ -141,7 +154,7 @@ app.post("/api/login", (req, res)=>{
             success: true,
             auth: true,
             token: token,
-            role: result.r_id_role,
+            role: result.id_role,
             karyawan_id: result.karyawan_id,
             message: "Authentication success"
         })
@@ -163,7 +176,7 @@ app.post("/api/login", (req, res)=>{
     })
 })
 
-app.get("/api/posisi/retrieve",(req,res)=>{
+app.get("/api/posisi/retrieve",authenticateToken,(req,res)=>{
     if(typeof req.query.id_posisi==='undefined'){
         dao.retrievePosisi().then(result=>{
             res.status(200).send({
@@ -224,7 +237,7 @@ app.post("/api/posisi/add",authenticateToken,(req,res)=>{
     })
 })
 
-app.post("/api/posisi/update",(req,res)=>{
+app.post("/api/posisi/update",authenticateToken,(req,res)=>{
     if(typeof req.body.id_posisi==='undefined' ||
        typeof req.body.nama_posisi==='undefined'){
         res.status(400).send({
@@ -264,7 +277,7 @@ app.post("/api/posisi/update",(req,res)=>{
     })
 })
 
-app.delete("/api/posisi/delete",(req,res)=>{
+app.delete("/api/posisi/delete",authenticateToken,(req,res)=>{
     if(typeof req.query.id_posisi==='undefined'){
         res.status(400).send({
             success:false,
@@ -302,7 +315,7 @@ app.delete("/api/posisi/delete",(req,res)=>{
     })
 })
 
-app.get("/api/role/retrieve",(req,res)=>{
+app.get("/api/role/retrieve",authenticateToken,(req,res)=>{
     if(typeof req.query.id_role==='undefined'){
         dao.retrieveRole().then(result=>{
             res.status(200).send({
@@ -332,7 +345,7 @@ app.get("/api/role/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/role/add",(req,res)=>{
+app.post("/api/role/add",authenticateToken,(req,res)=>{
     if(typeof req.body.nama_role==='undefined'){
         res.status(400).send({
             success:false,
@@ -355,7 +368,7 @@ app.post("/api/role/add",(req,res)=>{
     })
 })
 
-app.post("/api/role/update",(req,res)=>{
+app.post("/api/role/update",authenticateToken,(req,res)=>{
     if(typeof req.body.id_role==='undefined' ||
        typeof req.body.nama_role==='undefined'){
         res.status(400).send({
@@ -395,7 +408,7 @@ app.post("/api/role/update",(req,res)=>{
     })
 })
 
-app.delete("/api/role/delete",(req,res)=>{
+app.delete("/api/role/delete",authenticateToken,(req,res)=>{
     if(typeof req.query.id_role==='undefined'){
         res.status(400).send({
             success:false,
@@ -434,7 +447,7 @@ app.delete("/api/role/delete",(req,res)=>{
     })
 })
 
-app.get("/api/karyawan/retrieve", (req,res)=>{
+app.get("/api/karyawan/retrieve",authenticateToken, (req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawan().then(result=>{
             res.status(200).send({
@@ -508,7 +521,7 @@ app.get("/api/karyawan/retrieve", (req,res)=>{
     }
 })
 
-app.post("/api/karyawan/add", (req,res)=>{
+app.post("/api/karyawan/add",authenticateToken, (req,res)=>{
     if(typeof req.body.nama_lengkap==='undefined' ||
         typeof req.body.id_posisi==='undefined' ||
         typeof req.body.nik==='undefined' ||
@@ -619,7 +632,7 @@ app.post("/api/karyawan/add", (req,res)=>{
     })
 })
 
-app.post("/api/karyawan/update", (req,res)=>{
+app.post("/api/karyawan/update",authenticateToken, (req,res)=>{
     if(typeof req.body.id_karyawan==='undefined' ||
         typeof req.body.nama_lengkap==='undefined' ||
         typeof req.body.id_posisi==='undefined' ||
@@ -724,7 +737,7 @@ app.post("/api/karyawan/update", (req,res)=>{
     })
 })
 
-app.delete("/api/karyawan/delete", (req,res)=>{
+app.delete("/api/karyawan/delete",authenticateToken, (req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         res.status(400).send({
             success:false,
@@ -764,7 +777,7 @@ app.delete("/api/karyawan/delete", (req,res)=>{
     })
 })
 
-app.get("/api/perusahaan/retrieve",(req,res)=>{
+app.get("/api/perusahaan/retrieve",authenticateToken,(req,res)=>{
     if(typeof req.query.id_perusahaan==='undefined' &&
        typeof req.body.nama_perusahaan==='undefined'){
         dao.retrievePerusahaan().then(result=>{
@@ -826,7 +839,7 @@ app.get("/api/perusahaan/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/perusahaan/add",(req,res)=>{
+app.post("/api/perusahaan/add",authenticateToken,(req,res)=>{
     if(typeof req.body.nama_perusahaan==='undefined' ||
         typeof req.body.nama_cabang==='undefined' ||
         typeof req.body.lokasi==='undefined' ||
@@ -898,7 +911,7 @@ app.post("/api/perusahaan/add",(req,res)=>{
     })
 })
 
-app.post("/api/perusahaan/update", (req,res)=>{
+app.post("/api/perusahaan/update",authenticateToken, (req,res)=>{
     if(typeof req.body.id_perusahaan==='undefined' ||
         typeof req.body.nama_perusahaan==='undefined'){
         res.status(400).send({
@@ -949,7 +962,7 @@ app.post("/api/perusahaan/update", (req,res)=>{
     })
 })
 
-app.delete("/api/perusahaan/delete", (req,res)=>{
+app.delete("/api/perusahaan/delete",authenticateToken, (req,res)=>{
     if(req.query.id_perusahaan==='undefined'){
         res.status(400).send({
             success:false,
@@ -991,7 +1004,7 @@ app.delete("/api/perusahaan/delete", (req,res)=>{
     })
 })
 
-app.get("/api/cabang_perusahaan/retrieve",(req,res)=>{
+app.get("/api/cabang_perusahaan/retrieve",authenticateToken,(req,res)=>{
     if(typeof req.query.perusahaan_id==='undefined' &&
        typeof req.query.id_cabang==='undefined'){
         dao.retrieveCabangPerusahaan().then(result=>{
@@ -1051,7 +1064,7 @@ app.get("/api/cabang_perusahaan/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/cabang-perusahaan/add",(req,res)=>{
+app.post("/api/cabang-perusahaan/add",authenticateToken,(req,res)=>{
     if(typeof req.body.nama_cabang==='undefined' ||
        typeof req.body.perusahaan_id==='undefined' ||
        typeof req.body.lokasi==='undefined' ||
@@ -1109,7 +1122,7 @@ app.post("/api/cabang-perusahaan/add",(req,res)=>{
     })
 })
 
-app.post("/api/cabang-perusahaan/set",(req,res)=>{
+app.post("/api/cabang-perusahaan/set",authenticateToken,(req,res)=>{
     if(typeof req.body.id_cabang==='undefined'){
         res.status(400).send({
             success:false,
@@ -1155,7 +1168,7 @@ app.post("/api/cabang-perusahaan/set",(req,res)=>{
     })
 })
 
-app.post("/api/cabang-perusahaan/unset",(req,res)=>{
+app.post("/api/cabang-perusahaan/unset",authenticateToken,(req,res)=>{
     if(typeof req.body.id_cabang==='undefined'){
         res.status(400).send({
             success:false,
@@ -1194,7 +1207,7 @@ app.post("/api/cabang-perusahaan/unset",(req,res)=>{
     })
 })
 
-app.post("/api/cabang-perushaan/update",(req,res)=>{
+app.post("/api/cabang-perushaan/update",authenticateToken,(req,res)=>{
     if(typeof req.body.id_cabang==='undefined' ||
        typeof req.body.nama_cabang==='undefined' ||
        typeof req.body.perusahaan_id==='undefined' ||
@@ -1237,7 +1250,7 @@ app.post("/api/cabang-perushaan/update",(req,res)=>{
     })
 })
 
-app.delete("/api/cabang-perusahaan/delete",(req,res)=>{
+app.delete("/api/cabang-perusahaan/delete",authenticateToken,(req,res)=>{
     if(typeof req.query.id_cabang==='undefined'){
         res.status(400).send({
             success:false,
@@ -1275,7 +1288,7 @@ app.delete("/api/cabang-perusahaan/delete",(req,res)=>{
     })
 })
 
-app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
+app.get("/api/rekening-perusahaan/retrieve",authenticateToken,(req,res)=>{
     if(typeof req.query.id_perusahaan==='undefined'){
         dao.retrieveRekeningPerusahaan().then(result=>{
             res.status(200).send({
@@ -1313,7 +1326,7 @@ app.get("/api/rekening-perusahaan/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/rekening-perusahaan/add",(req,res)=>{
+app.post("/api/rekening-perusahaan/add",authenticateToken,(req,res)=>{
     if(typeof req.body.nama_bank==='undefined' ||
         typeof req.body.nomor_rekening==='undefined' ||
         typeof req.body.saldo==='undefined' ||
@@ -1354,7 +1367,7 @@ app.post("/api/rekening-perusahaan/add",(req,res)=>{
     })
 })
 
-app.post("/api/rekening-perusahaan/update",(req,res)=>{
+app.post("/api/rekening-perusahaan/update",authenticateToken,(req,res)=>{
     if(typeof req.body.nama_bank==='undefined' ||
         typeof req.body.nomor_rekening==='undefined' ||
         typeof req.body.id_cabang_perusahaan==='undefined' ||
@@ -1397,7 +1410,7 @@ app.post("/api/rekening-perusahaan/update",(req,res)=>{
     })
 })
 
-app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
+app.delete("/api/rekening-perusahaan/delete",authenticateToken,(req,res)=>{
     if(typeof req.query.id_rekening==='undefined'){
         res.status(400).send({
             success:false,
@@ -1443,7 +1456,7 @@ app.delete("/api/rekening-perusahaan/delete",(req,res)=>{
     })
 })
 
-app.post("/api/rekening-utama/set",(req,res)=>{
+app.post("/api/rekening-utama/set",authenticateToken,(req,res)=>{
     if(typeof req.body.id_rekening==='undefined' ||
         typeof req.body.id_cabang_perusahaan==='undefined'){
         res.status(400).send({
@@ -1504,7 +1517,7 @@ app.post("/api/rekening-utama/set",(req,res)=>{
     })
 })
 
-app.post("/api/rekening-utama/unset", (req,res)=>{
+app.post("/api/rekening-utama/unset",authenticateToken, (req,res)=>{
     if(typeof req.body.id_rekening==='undefined' ||
         typeof req.body.id_perusahaan==='undefined'){
         res.status(400).send({
@@ -1549,7 +1562,7 @@ app.post("/api/rekening-utama/unset", (req,res)=>{
     })
 })
 
-app.get("/api/transaksi-rekening/retrieve",(req,res)=>{
+app.get("/api/transaksi-rekening/retrieve",authenticateToken,(req,res)=>{
     if(typeof req.query.id_transaksi==='undefined'){
         dao.retrieveRekeningPerusahaan().then(result=>{
             res.status(200).send({
@@ -1587,7 +1600,7 @@ app.get("/api/transaksi-rekening/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/transaksi-rekening/add",(req,res)=>{
+app.post("/api/transaksi-rekening/add",authenticateToken,(req,res)=>{
     if(typeof req.body.credit==='undefined' ||
         typeof req.body.debit==='undefined' ||
         typeof req.body.id_transaksi==='undefined'){
@@ -1613,7 +1626,7 @@ app.post("/api/transaksi-rekening/add",(req,res)=>{
     })
 })
 
-app.post("/api/transaksi-rekening/update",(req,res)=>{
+app.post("/api/transaksi-rekening/update",authenticateToken,(req,res)=>{
     if(typeof req.body.credit==='undefined' ||
         typeof req.body.debit==='undefined' ||
         typeof req.body.id_transaksi==='undefined' ||
@@ -1638,7 +1651,7 @@ app.post("/api/transaksi-rekening/update",(req,res)=>{
     })
 })
 
-app.delete("/api/transaksi-rekening/delete",(req,res)=>{
+app.delete("/api/transaksi-rekening/delete",authenticateToken,(req,res)=>{
     if(typeof req.body.id_transaksi_rekening==='undefined'){
         res.status(400).send({
             success:false,
@@ -1669,7 +1682,7 @@ app.delete("/api/transaksi-rekening/delete",(req,res)=>{
     })
 })
 
-app.get("/api/kategori-transaksi/retrieve",(req,res)=>{
+app.get("/api/kategori-transaksi/retrieve",authenticateToken,(req,res)=>{
     if(typeof req.query.id_kategori==='undefined'){
         dao.retrieveKategoriTransaksi().then(result=>{
             res.status(200).send({
@@ -1708,7 +1721,7 @@ app.get("/api/kategori-transaksi/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/kategori-transaksi/add",(req,res)=>{
+app.post("/api/kategori-transaksi/add",authenticateToken,(req,res)=>{
     if(typeof req.body.nama_kategori==='undefined'){
         res.status(400).send({
             success:false,
@@ -1740,7 +1753,7 @@ app.post("/api/kategori-transaksi/add",(req,res)=>{
     })
 })
 
-app.post("/api/kategori-transaksi/update", (req,res)=>{
+app.post("/api/kategori-transaksi/update",authenticateToken, (req,res)=>{
     if(typeof req.body.id_kategori==='undefined' ||
         typeof req.body.nama_kategori==='undefined'){
         res.status(400).send({
@@ -1789,7 +1802,7 @@ app.post("/api/kategori-transaksi/update", (req,res)=>{
     })
 })
 
-app.delete("/api/kategori-transaksi/delete", (req,res)=>{
+app.delete("/api/kategori-transaksi/delete",authenticateToken, (req,res)=>{
     if(req.query.id_kategori==='undefined'){
         res.status(400).send({
             success:false,
@@ -1844,7 +1857,7 @@ const uploadFilter=(req,file,cb)=>{
     cb(null,true);
 }
 
-app.get("/api/transaksi/retrieve",(req,res)=>{
+app.get("/api/transaksi/retrieve",authenticateToken,(req,res)=>{
     if(typeof req.query.id_transaksi==='undefined'){
         dao.retrieveTransaksi().then(result=>{
             res.status(200).send({
@@ -1885,7 +1898,7 @@ app.get("/api/transaksi/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/transaksi/add",async(req,res)=> {
+app.post("/api/transaksi/add",authenticateToken,async(req,res)=> {
     const upload=multer({storage:storage, fileFilter:uploadFilter}).array('attachment_transaksi',2)
 
     upload(req,res, async (error)=>{
@@ -2036,7 +2049,7 @@ app.post("/api/transaksi/add",async(req,res)=> {
     })
 })
 
-app.post("/api/transaksi/update",(req,res)=>{
+app.post("/api/transaksi/update",authenticateToken,(req,res)=>{
     const upload=multer({storage:storage, fileFilter:uploadFilter}).array('attachment_transaksi',2)
 
     upload(req,res,async (error)=>{
@@ -2427,7 +2440,7 @@ app.post("/api/transaksi/approve", authenticateToken, (req,res)=>{
     })
 })
 
-app.post("/api/transaksi/reject",(req,res)=>{
+app.post("/api/transaksi/reject",authenticateToken,(req,res)=>{
     if(typeof req.body.id_transaksi==='undefined'){
         res.status(400).send({
             success:false,
@@ -2468,7 +2481,7 @@ app.post("/api/transaksi/reject",(req,res)=>{
     })
 })
 
-app.post("/api/transaksi/cancel",(req,res)=>{
+app.post("/api/transaksi/cancel",authenticateToken,(req,res)=>{
     if(typeof req.query.id_transaksi==='undefined'){
         res.status(400).send({
             success:false,
@@ -2512,7 +2525,7 @@ app.post("/api/transaksi/cancel",(req,res)=>{
     })
 })
 
-app.delete("/api/transaksi/delete", (req,res)=>{
+app.delete("/api/transaksi/delete",authenticateToken, (req,res)=>{
     if(typeof req.query.id_transaksi==='undefined'){
         res.status(400).send({
             success:false,
@@ -2572,7 +2585,7 @@ app.delete("/api/transaksi/delete", (req,res)=>{
     })
 })
 
-app.get("/api/karyawan-kerja-dimana/retrieve",(req,res)=>{
+app.get("/api/karyawan-kerja-dimana/retrieve",authenticateToken,(req,res)=>{
     if(typeof req.query.id_karyawan==='undefined'){
         dao.retrieveKaryawanKerjaDimana().then(result=>{
             res.status(200).send({
@@ -2610,7 +2623,7 @@ app.get("/api/karyawan-kerja-dimana/retrieve",(req,res)=>{
     }
 })
 
-app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
+app.post("/api/karyawan-kerja-dimana/add",authenticateToken,(req,res)=>{
     if(typeof req.body.id_karyawan==='undefined' ||
         typeof req.body.id_cabang==='undefined'){
         res.status(400).send({
@@ -2672,7 +2685,7 @@ app.post("/api/karyawan-kerja-dimana/add",(req,res)=>{
     })
 })
 
-app.post("/api/karyawan-kerja-dimana/update", (req,res)=>{
+app.post("/api/karyawan-kerja-dimana/update",authenticateToken, (req,res)=>{
     if(typeof req.body.id_karyawan_kerja_dimana==='undefined' ||
         typeof req.body.id_karyawan==='undefined' ||
         typeof req.body.id_cabang==='undefined'){
@@ -2735,7 +2748,7 @@ app.post("/api/karyawan-kerja-dimana/update", (req,res)=>{
     })
 })
 
-app.delete("/api/karyawan-kerja-dimana/delete",(req,res)=>{
+app.delete("/api/karyawan-kerja-dimana/delete",authenticateToken,(req,res)=>{
     if(typeof req.query.id_karyawan_kerja_dimana==='undefined'){
         res.status(400).send({
             success:false,
@@ -2774,7 +2787,7 @@ app.delete("/api/karyawan-kerja-dimana/delete",(req,res)=>{
     })
 })
 
-app.get("/api/feature-list/view",(req,res)=>{
+app.get("/api/feature-list/view",authenticateToken,(req,res)=>{
     if(typeof req.query.id==='undefined'){
         dao.retrieveFeatures().then(result=>{
             res.status(200).send({
@@ -2811,7 +2824,7 @@ app.get("/api/feature-list/view",(req,res)=>{
     }
 })
 
-app.post("/api/feature-list/add",(req,res)=>{
+app.post("/api/feature-list/add",authenticateToken,(req,res)=>{
     if(typeof req.body.feature_name==='undefined' ||
         typeof req.body.pretty_name==='undefined'){
         res.status(400).send({
@@ -2835,7 +2848,7 @@ app.post("/api/feature-list/add",(req,res)=>{
     })
 })
 
-app.post("/api/feature-list/update",(req,res)=>{
+app.post("/api/feature-list/update",authenticateToken,(req,res)=>{
     if(typeof req.body.feature_name==='undefined' ||
         typeof req.body.pretty_name==='undefined' ||
         typeof req.body.id==='undefined'){
@@ -2875,7 +2888,7 @@ app.post("/api/feature-list/update",(req,res)=>{
     })
 })
 
-app.delete("/api/feature-list/delete",(req,res)=>{
+app.delete("/api/feature-list/delete",authenticateToken,(req,res)=>{
     if(typeof req.query.id==='undefined'){
         res.status(400).send({
             success:false,
