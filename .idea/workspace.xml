@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Applied JWT (authenticateToken) to access-control endpoints (">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Re-modified jwt to cut paramete">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
@@ -172,14 +172,7 @@
       <workItem from="1619439376163" duration="12099000" />
       <workItem from="1619526116918" duration="2486000" />
       <workItem from="1619618245342" duration="4387000" />
-      <workItem from="1619705817922" duration="1501000" />
-    </task>
-    <task id="LOCAL-00201" summary="re-modified cron-job">
-      <created>1612799184324</created>
-      <option name="number" value="00201" />
-      <option name="presentableId" value="LOCAL-00201" />
-      <option name="project" value="LOCAL" />
-      <updated>1612799184324</updated>
+      <workItem from="1619705817922" duration="3408000" />
     </task>
     <task id="LOCAL-00202" summary="Added setTransaksiIsNotRutin function block">
       <created>1612847269484</created>
@@ -517,7 +510,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619452229546</updated>
     </task>
-    <option name="localTasksCounter" value="250" />
+    <task id="LOCAL-00250" summary="Applied JWT (authenticateToken) to access-control endpoints (/api/access-control/get, /api/access-control/set, and /api/access-control/update)">
+      <created>1619707376203</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1619707376203</updated>
+    </task>
+    <option name="localTasksCounter" value="251" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,7 +546,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commanded cron job with 1 0 28-30 * *" />
     <MESSAGE value="Re-modified /api/karyawan/add endpoint to have user input superior's 'karyawan_id'" />
     <MESSAGE value="Set correct unset caban g id when add new cabang" />
     <MESSAGE value="Fixed typo in /api/karyawan/add endpoint (req.body.superios)" />
@@ -571,6 +570,7 @@
     <MESSAGE value="Fixed /api/access-control/set endpoint bug to delete feature_ids by role_id before setting new feature_ids to that certain role_id" />
     <MESSAGE value="Added u_salt column to user table. Re-modified /api/login endpoint code" />
     <MESSAGE value="Applied JWT (authenticateToken) to most endpoints (except for access-control endpoints)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Applied JWT (authenticateToken) to most endpoints (except for access-control endpoints)" />
+    <MESSAGE value="Applied JWT (authenticateToken) to access-control endpoints (/api/access-control/get, /api/access-control/set, and /api/access-control/update)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Applied JWT (authenticateToken) to access-control endpoints (/api/access-control/get, /api/access-control/set, and /api/access-control/update)" />
   </component>
 </project>

@@ -112,7 +112,17 @@ const authenticateToken = (req, res, next)=>{
         //     })
         // })
 
-        dao.getOneFeatureByRole(req.originalUrl,userInfo.role_id).then(result=>{
+        let x=req.originalUrl
+        let url
+        let check=x.includes('?')
+        if(check){
+            let remove_after=x.indexOf('?')
+            url=x.substring(0,remove_after)
+        }else{
+            url=x
+        }
+
+        dao.getOneFeatureByRole(url,userInfo.role_id).then(result=>{
             req.user = userInfo
             console.log(userInfo)
             console.log(token)
