@@ -115,6 +115,7 @@ const authenticateToken = (req, res, next)=>{
         dao.getOneFeatureByRole(req.originalUrl,userInfo.role_id).then(result=>{
             req.user = userInfo
             console.log(userInfo)
+            console.log(token)
             next() // pass the execution off to whatever request the client intended
         }).catch(error=>{
             if(error===ROLE_HAS_NO_ACCESS){
@@ -2926,7 +2927,7 @@ app.delete("/api/feature-list/delete",authenticateToken,(req,res)=>{
     })
 })
 
-app.get('/api/access-control/get', async (req, res) => {
+app.get('/api/access-control/get',authenticateToken, async (req, res) => {
     const roleID = req.query.role_id;
 
     if(!roleID) {
@@ -2944,7 +2945,7 @@ app.get('/api/access-control/get', async (req, res) => {
     })
 })
 
-app.post('/api/access-control/set',(req,res)=>{
+app.post('/api/access-control/set',authenticateToken,(req,res)=>{
     if(typeof req.body.role_id==='undefined' ||
        typeof req.body.feature_id==='undefined'){
         res.status(400).send({
@@ -2972,7 +2973,7 @@ app.post('/api/access-control/set',(req,res)=>{
     }
 })
 
-app.post('/api/access-control/update',(req,res)=>{
+app.post('/api/access-control/update',authenticateToken,(req,res)=>{
     if(typeof req.body.role_id==='undefined' ||
        typeof req.body.feature_id==='undefined'){
         res.status(400).send({
