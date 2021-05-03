@@ -19,9 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="Re-modified jwt to cut paramete">
+    <list default="true" id="2552d12d-d2a0-4e6a-a4ea-0661788e2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,14 +173,13 @@
       <workItem from="1619439376163" duration="12099000" />
       <workItem from="1619526116918" duration="2486000" />
       <workItem from="1619618245342" duration="4387000" />
-      <workItem from="1619705817922" duration="3408000" />
-    </task>
-    <task id="LOCAL-00202" summary="Added setTransaksiIsNotRutin function block">
-      <created>1612847269484</created>
-      <option name="number" value="00202" />
-      <option name="presentableId" value="LOCAL-00202" />
-      <option name="project" value="LOCAL" />
-      <updated>1612847269485</updated>
+      <workItem from="1619705817922" duration="5637000" />
+      <workItem from="1619844090230" duration="102000" />
+      <workItem from="1619844505510" duration="982000" />
+      <workItem from="1619854396417" duration="604000" />
+      <workItem from="1619868749607" duration="1359000" />
+      <workItem from="1619953765582" duration="1413000" />
+      <workItem from="1620048298336" duration="4208000" />
     </task>
     <task id="LOCAL-00203" summary="Re-modified cron-job">
       <created>1612848794171</created>
@@ -517,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619707376203</updated>
     </task>
-    <option name="localTasksCounter" value="251" />
+    <task id="LOCAL-00251" summary="Re-modified jwt to cut url parameter if required">
+      <created>1619709608267</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1619709608267</updated>
+    </task>
+    <option name="localTasksCounter" value="252" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,7 +553,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Re-modified /api/karyawan/add endpoint to have user input superior's 'karyawan_id'" />
     <MESSAGE value="Set correct unset caban g id when add new cabang" />
     <MESSAGE value="Fixed typo in /api/karyawan/add endpoint (req.body.superios)" />
     <MESSAGE value="Re-modified /api/karyawan/add endpoint to make req.body.email and req.body.password optional" />
@@ -571,6 +577,7 @@
     <MESSAGE value="Added u_salt column to user table. Re-modified /api/login endpoint code" />
     <MESSAGE value="Applied JWT (authenticateToken) to most endpoints (except for access-control endpoints)" />
     <MESSAGE value="Applied JWT (authenticateToken) to access-control endpoints (/api/access-control/get, /api/access-control/set, and /api/access-control/update)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Applied JWT (authenticateToken) to access-control endpoints (/api/access-control/get, /api/access-control/set, and /api/access-control/update)" />
+    <MESSAGE value="Re-modified jwt to cut url parameter if required" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-modified jwt to cut url parameter if required" />
   </component>
 </project>

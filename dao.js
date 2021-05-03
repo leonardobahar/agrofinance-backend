@@ -443,8 +443,16 @@ export class Dao{
                     return
                 }
 
-                karyawan.k_id_karyawan=result.k_id_karyawan
-                resolve(karyawan)
+                const query2="UPDATE user SET u_username=? WHERE u_karyawan_id=? "
+                this.mysqlConn.query(query2,[karyawan.k_nama_lengkap.toUpperCase(),karyawan.k_id_karyawan],(error,result)=>{
+                    if(error){
+                        reject(error)
+                        return
+                    }
+
+                    karyawan.k_id_karyawan=result.k_id_karyawan
+                    resolve(karyawan)
+                })
             })
         })
     }
